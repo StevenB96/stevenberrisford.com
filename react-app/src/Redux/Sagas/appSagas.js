@@ -24,7 +24,7 @@ function* getProfile(action) {
   try {
     const data = yield call(fetchDataFromApi, {
       method: 'GET',
-      url: 'http://stevenberrisford.com:8008/',
+      url: 'http://stevenberrisford.com/',
       path: 'profile/',
       qParams: '',
       payload: action.payload
@@ -40,7 +40,7 @@ function* getContent(action) {
   try {
     const data = yield call(fetchDataFromApi, {
       method: 'GET',
-      url: 'http://stevenberrisford.com:8008/',
+      url: 'http://stevenberrisford.com/',
       path: 'content/',
       qParams: '',
       payload: action.payload
