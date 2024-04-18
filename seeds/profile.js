@@ -16,9 +16,9 @@ exports.seed = async function (knex) {
           phone: '(+44) 07891078922',
           email: 'stevenberrisford@gmail.com',
           address: '80 Thetford Road\nNew Malden\nSurrey\nKT3 5DT\nLondon UK',
-          profile_picture_link: 'http://localhost:3000/public/images/profile_picture.jpg',
-          background_image_link: 'http://localhost:3000/public/images/background_image.jpg',
-          cv_link: 'http://localhost:3000/public/documents/cv.pdf',
+          profile_picture_link: 'http://localhost:8008/public/images/profile_picture.jpg',
+          background_image_link: 'http://localhost:8008/public/images/background_image.jpg',
+          cv_link: 'http://localhost:8008/public/documents/cv.pdf',
           created_at: new Date(),
           updated_at: new Date()
         },
