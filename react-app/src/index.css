@@ -39,6 +39,10 @@ p {
     display: none;
 }
 
+.react-tabs__tab {
+    bottom: 0px;
+}
+
 .react-tabs__tab-list {
     margin: 0px;
     padding: 0px;

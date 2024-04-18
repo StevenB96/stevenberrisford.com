@@ -26,13 +26,17 @@ const ImageComponent = ({ item }) => {
         textDecoration: 'none',
         color: 'black',
         width: '100%',
+        aspectRatio: 1,
         display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
       }}
       href={item.link}>
       <img
         src={item.media_link}
         alt={item.title}
         style={{
+          width: '100%',
           aspectRatio: 1,
           objectFit: 'cover',
         }} />

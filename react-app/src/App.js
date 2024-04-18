@@ -34,12 +34,11 @@ function App() {
   const tabStyle = {
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 'min(6px, 0.5vw) 12px',
+    padding: '6px min(12px, 0.5vw)',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     flex: 0,
-    bottom: -3,
     boxSizing: 'border-box',
   };
 
@@ -84,7 +83,7 @@ function App() {
         >
           <div
             style={{
-              padding: '6px min(48px, 3vw)',
+              padding: '6px min(36px, 1.5vw)',
             }}
           >
             <h1
@@ -163,7 +162,7 @@ function App() {
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'flex-start',
-        gap: 'min(100px, 5vw)',
+        gap: 'min(36px, 3vw)',
         textAlign: 'left',
         whiteSpace: 'pre-wrap',
         userSelect: 'none',
