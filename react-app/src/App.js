@@ -24,9 +24,13 @@ function App() {
   }, []);
 
   const tabStyle = {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    padding: 'min(6px, 0.5vw) 12px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 0,
   };
 
   const textStyle = {
@@ -35,7 +39,12 @@ function App() {
   }
 
   return (
-    <div>
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
       <Tabs
         style={{
           display: 'flex',
@@ -52,15 +61,22 @@ function App() {
             flexDirection: 'row',
             width: '100%',
             position: 'relative',
-            maxWidth: 1200,
+            bottom: 1,
           }}
         >
-          <h1 style={{
-            ...textStyle,
-            marginLeft: 20,
-            marginRight: 20,
-            userSelect: 'none',
-          }}>Steven Berrisford</h1>
+          <div
+            style={{
+              padding: '6px min(48px, 3vw)',
+            }}
+          >
+            <h1
+              style={{
+                textAlign: 'center',
+                whiteSpace: 'nowrap',
+              }} >
+              Steven Berrisford
+            </h1>
+          </div>
           <Tab style={tabStyle}>
             <h2 style={textStyle}>Profile</h2>
           </Tab>
@@ -74,18 +90,23 @@ function App() {
             <h2 style={textStyle}>Hobbies</h2>
           </Tab>
         </TabList>
-        <TabPanel>
-          <Profile />
-        </TabPanel>
-        <TabPanel>
-          <Projects />
-        </TabPanel>
-        <TabPanel>
-          <Articles />
-        </TabPanel>
-        <TabPanel>
-          <Hobbies />
-        </TabPanel>
+        <div style={{
+          width: '100%',
+          backgroundColor: '#2B61AA'
+        }}>
+          <TabPanel>
+            <Profile />
+          </TabPanel>
+          <TabPanel>
+            <Projects />
+          </TabPanel>
+          <TabPanel>
+            <Articles />
+          </TabPanel>
+          <TabPanel>
+            <Hobbies />
+          </TabPanel>
+        </div>
       </Tabs>
     </div>
   );

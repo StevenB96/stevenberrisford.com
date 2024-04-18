@@ -22,6 +22,7 @@ const DownloadButton = ({ fileName, fileUrl }) => {
       style={{
         margin: 20,
         fontFamily: 'inherit',
+        fontSize: 'min(calc(4vw / ( 2 / 1 ), 1em)',
       }}
       onClick={handleDownload}
     >Download {fileName}
@@ -50,8 +51,7 @@ function Profile({ }) {
             borderRadius: 50,
             overflow: 'hidden',
             border: 'solid',
-            marginTop: 40,
-            marginBottom: 40,
+            margin: 40,
             boxShadow: 'rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px',
             backgroundColor: 'lightgray',
             padding: 30,
@@ -61,7 +61,7 @@ function Profile({ }) {
             src={profile.profile_picture_link}
             alt={profile.profile_picture_link}
             style={{
-              width: '50%',
+              width: '33%',
               aspectRatio: 1,
               objectFit: 'cover',
             }} />

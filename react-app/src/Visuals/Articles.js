@@ -9,7 +9,7 @@ import Content from './Content';
 function Articles({ }) {
   const articles = useSelector(state => state.app.articles);
 
-  return articles ?
+  return articles && articles.length > 0 ?
     (
       <div
         style={{
@@ -19,7 +19,7 @@ function Articles({ }) {
         }}>
         <Slider
           style={{
-            maxWidth: 1000,
+            width: '100%',
           }}
           accessibility={true}
           draggable={true}
@@ -31,10 +31,10 @@ function Articles({ }) {
         >
           {
             articles.map(item => {
-              return <Content
+              return item?.id ? <Content
                 key={item.id}
                 item={item}
-              />
+              /> : <></>
             }
             )
           }

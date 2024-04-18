@@ -49,9 +49,9 @@ const app = (state = initialState, action) => {
 
       return {
         ...state,
-        projects,
-        articles,
-        hobbies,
+        projects: projects?.length > 1 ? projects : [...projects, null],
+        articles: articles?.length > 1 ? articles : [...articles, null],
+        hobbies: hobbies?.length > 1 ? hobbies : [...hobbies, null],
         loading: false,
         error: false
       };

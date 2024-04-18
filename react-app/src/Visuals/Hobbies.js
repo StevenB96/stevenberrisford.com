@@ -1,4 +1,7 @@
 import {
+  useState,
+} from 'react';
+import {
   useSelector
 } from 'react-redux';
 import Slider from "react-slick";
@@ -8,6 +11,7 @@ import Content from './Content';
 
 function Hobbies({ }) {
   const hobbies = useSelector(state => state.app.hobbies);
+  const [activeTab, setActiveTab] = useState(0);
 
   return hobbies && hobbies.length > 0 ?
     (
@@ -19,7 +23,7 @@ function Hobbies({ }) {
         }}>
         <Slider
           style={{
-            maxWidth: 1000,
+            width: '100%',
           }}
           accessibility={true}
           draggable={true}
@@ -28,12 +32,16 @@ function Hobbies({ }) {
           speed={500}
           slidesToShow={1}
           slidesToScroll={1}
+          beforeChange={(oldIndex, newIndex) => setActiveTab(newIndex)}
+          initialSlide={0}
         >
           {
-            hobbies.map(item => {
+            hobbies.map((item, index) => {
               return <Content
                 key={item.id}
                 item={item}
+                tab={index}
+                activeTab={activeTab}
               />
             }
             )

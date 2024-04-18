@@ -9,7 +9,7 @@ import Content from './Content';
 function Projects({ }) {
   const projects = useSelector(state => state.app.projects);
 
-  return projects ?
+  return projects && projects.length > 0 ?
     (
       <div
         style={{
@@ -19,7 +19,7 @@ function Projects({ }) {
         }}>
         <Slider
           style={{
-            maxWidth: 1000,
+            width: '100%',
           }}
           accessibility={true}
           draggable={true}

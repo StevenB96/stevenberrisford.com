@@ -102,6 +102,16 @@ exports.seed = async function (knex) {
             created_at: new Date(),
             updated_at: new Date()
           },
+          {
+            title: 'Decision Tree Guide',
+            text: '',
+            link: '',
+            media_link: 'http://localhost:3000/public/documents/decision_trees.pdf',
+            media_type: types.PDF_MEDIA_TYPE,
+            content_type: types.ARTICLE_CONTENT_TYPE,
+            created_at: new Date(),
+            updated_at: new Date()
+          },
         ]
       );
     });
