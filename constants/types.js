@@ -1,0 +1,9 @@
+module.exports = {
+  'PROJECT_CONTENT_TYPE': 1,
+  'ARTICLE_CONTENT_TYPE': 2,
+  'HOBBY_CONTENT_TYPE': 3,
+
+  'IMAGE_MEDIA_TYPE': 1,
+  'PDF_MEDIA_TYPE': 2,
+  'YOUTUBE_MEDIA_TYPE': 3,
+};

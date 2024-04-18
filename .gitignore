@@ -1,0 +1,49 @@
+## EXPRESS
+
+# Ignore node_modules directory
+**/node_modules/
+
+# Ignore generated files
+**/lib/
+
+# Ignore log files
+**/logs/
+
+# Ignore temp files
+**/tmp/
+
+# Ignore environment variables file
+**/.env
+
+# Ignore compiled TypeScript files
+**/dist/
+
+# Pem files
+**/.pem
+
+## REACT
+
+# Dependencies
+**/node_modules
+**/.pnp
+**/.pnp.js
+
+# Production build
+**/build
+
+# Development files
+**/.DS_Store
+**/npm-debug.log*
+
+# Environment variables file
+**/.env
+
+# Cache and logs
+**/.cache/
+**/yarn-error.log
+
+# Editor configuration
+**/.vscode/
+
+# Test coverage report
+**/coverage/

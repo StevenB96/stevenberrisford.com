@@ -1,0 +1,31 @@
+var path = require('path');
+var express = require('express');
+var router = express.Router();
+const db = require('../config/db');
+
+router.get('/profile', async (req, res, next) => {
+  try {
+    const profile = await db.select().from('profile').first();
+    res.json(profile);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get('/content', async (req, res, next) => {
+  try {
+    const content = await db.select().from('content');
+    res.json(content);
+  } catch (error) {
+    next(error);
+  }
+});
+
+// Serve React App
+const reactBuildDir = path.join(__dirname, '../react-app/build');
+router.use(express.static(reactBuildDir));
+router.get('/app', (req, res) => {
+  res.sendFile(path.join(reactBuildDir, 'index.html'));
+});
+
+module.exports = router;
