@@ -2,7 +2,7 @@ const cors = require('cors');
 
 // Define allowed origins
 const allowedOrigins = [
-  'http://localhost:8008',
+  'http://stevenberrisford.com',
   'http://stevenberrisford.com',
 ];
 
