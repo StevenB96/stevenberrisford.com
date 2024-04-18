@@ -2,7 +2,8 @@ const cors = require('cors');
 
 // Define allowed origins
 const allowedOrigins = [
-  'http://localhost:3000',
+  'http://localhost:8008',
+  'http://stevenberrisford.com',
 ];
 
 // Configure CORS options
@@ -16,4 +17,4 @@ const corsOptions = {
   }
 };
 
-module.exports = cors();
+module.exports = cors(corsOptions);
