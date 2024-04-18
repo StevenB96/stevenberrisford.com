@@ -9,7 +9,23 @@ import Content from './Content';
 function Articles({ }) {
   const articles = useSelector(state => state.app.articles);
 
-  return articles && articles.length > 0 ?
+  if (articles && articles?.length < 2) {
+    return (
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+        }}>
+        <Content
+          item={articles[0]}
+          tab={0}
+          activeTab={0}
+        />
+      </div>
+    );
+  }
+
+  return articles && articles?.length > 0 ?
     (
       <div
         style={{
@@ -30,12 +46,10 @@ function Articles({ }) {
           slidesToScroll={1}
         >
           {
-            articles.map(item => {
-              return item?.id ? <Content
-                key={item.id}
-                item={item}
-              /> : <></>
-            }
+            articles.map((item) => <Content
+              key={item.id}
+              item={item}
+            />
             )
           }
         </Slider>

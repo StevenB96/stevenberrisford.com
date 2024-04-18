@@ -9,7 +9,24 @@ import Content from './Content';
 function Projects({ }) {
   const projects = useSelector(state => state.app.projects);
 
-  return projects && projects.length > 0 ?
+  if (projects && projects?.length < 2) {
+    return (
+      <div
+        style={{
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'center'
+        }}>
+        <Content
+          item={projects[0]}
+          tab={0}
+          activeTab={0}
+        />
+      </div>
+    );
+  }
+
+  return projects && projects?.length > 0 ?
     (
       <div
         style={{

@@ -40,6 +40,7 @@ function Profile({ }) {
           width: '100%',
           display: 'flex',
           justifyContent: 'center',
+          userSelect: 'none',
         }}>
         <div
           style={{
@@ -53,7 +54,7 @@ function Profile({ }) {
             border: 'solid',
             margin: 40,
             boxShadow: 'rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px',
-            backgroundColor: 'lightgray',
+            backgroundColor: '#FFFFFF',
             padding: 30,
             boxSizing: 'border-box',
           }}>
@@ -64,6 +65,7 @@ function Profile({ }) {
               width: '33%',
               aspectRatio: 1,
               objectFit: 'cover',
+              borderRadius: '50%',
             }} />
           <div
             style={{

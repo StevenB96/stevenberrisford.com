@@ -13,7 +13,24 @@ function Hobbies({ }) {
   const hobbies = useSelector(state => state.app.hobbies);
   const [activeTab, setActiveTab] = useState(0);
 
-  return hobbies && hobbies.length > 0 ?
+  if (hobbies && hobbies?.length < 2) {
+    return (
+      <div
+        style={{
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+        }}>
+        <Content
+          item={hobbies[0]}
+          tab={0}
+          activeTab={0}
+        />
+      </div>
+    );
+  }
+
+  return hobbies && hobbies?.length > 0 ?
     (
       <div
         style={{
@@ -28,8 +45,10 @@ function Hobbies({ }) {
           accessibility={true}
           draggable={true}
           dots={true}
+          fade={false}
           infinite={true}
           speed={500}
+          arrows={true}
           slidesToShow={1}
           slidesToScroll={1}
           beforeChange={(oldIndex, newIndex) => setActiveTab(newIndex)}

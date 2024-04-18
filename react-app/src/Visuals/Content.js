@@ -13,6 +13,7 @@ const PDFComponent = ({ item }) => {
       style={{
         border: "none",
         aspectRatio: 1,
+        display: 'flex',
       }}
     />
   );
@@ -24,13 +25,14 @@ const ImageComponent = ({ item }) => {
       style={{
         textDecoration: 'none',
         color: 'black',
+        width: '100%',
+        display: 'flex',
       }}
       href={item.link}>
       <img
         src={item.media_link}
         alt={item.title}
         style={{
-          width: '100%',
           aspectRatio: 1,
           objectFit: 'cover',
         }} />
@@ -38,22 +40,30 @@ const ImageComponent = ({ item }) => {
   );
 }
 
-const YoutubeComponent = ({ item, activeTab, tab }) => {
+const YoutubeComponent = ({
+  item,
+  activeTab,
+  tab
+}) => {
   const playerRef = useRef(null);
 
   useEffect(() => {
-    playerRef.current.internalPlayer.seekTo(0);
-    playerRef.current.internalPlayer.pauseVideo();
+    if (playerRef?.current?.internalPlayer) {
+      playerRef.current.internalPlayer.seekTo(0);
+      playerRef.current.internalPlayer.pauseVideo();
+    }
   }, [activeTab === tab]);
 
   useEffect(() => {
-    if (activeTab !== tab) {
-      if (playerRef.current && playerRef.current.internalPlayer) {
-        playerRef.current.internalPlayer.seekTo(0);
-        playerRef.current.internalPlayer.pauseVideo();
-      }
+    if (playerRef?.current?.internalPlayer) {
+      playerRef.current.internalPlayer.seekTo(0);
+      playerRef.current.internalPlayer.pauseVideo();
     }
   }, [tab]);
+
+  if (!playerRef) {
+    return null;
+  }
 
   return (
     <YouTube
@@ -65,11 +75,18 @@ const YoutubeComponent = ({ item, activeTab, tab }) => {
           autoplay: 0,
         }
       }}
+      style={{
+        display: 'flex',
+      }}
     />
   );
 }
 
-function Content({ item, activeTab, tab }) {
+function Content({
+  item,
+  activeTab,
+  tab
+}) {
   let component;
   let borderRadius;
   switch (item?.media_type) {
@@ -96,22 +113,27 @@ function Content({ item, activeTab, tab }) {
         display: 'flex',
         alignContent: 'center',
         justifyContent: 'center',
+        width: '100%',
       }}>
       <div
         style={{
+          border: 'solid',
           width: '100%',
           maxWidth: 500,
           objectFit: 'cover',
           borderRadius,
           margin: 40,
           overflow: 'hidden',
-          backgroundColor: 'lightgray',
+          backgroundColor: '#FFFFFF',
           boxShadow: 'rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px',
         }}>
         {component}
         <div
           style={{
-            margin: 30,
+            borderTop: 'solid',
+            padding: 30,
+            userSelect: 'none',
+            paddingTop: 0,
           }}>
           <h3>{item.title}</h3>
           <p>{item.text}</p>
