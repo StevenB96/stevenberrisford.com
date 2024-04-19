@@ -10,14 +10,6 @@ var indexRouter = require('./routes/index');
 
 var app = express();
 
-// /**
-//  * Set env variables for app.
-//  */
-
-// dotenv.config({ path: path.resolve(__dirname, '..', '.env')});
-// const environment = process.env.NODE_ENV || 'development';
-// dotenv.config({ path: path.resolve(__dirname, '..', `../.env.${environment}`) });
-
 /**
  * Configure CORS with allowed origins
  */

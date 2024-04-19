@@ -22,7 +22,7 @@ router.get('/content', async (req, res, next) => {
 });
 
 // Serve React App
-const reactBuildDir = path.join(__dirname, '../react-app/build');
+const reactBuildDir = path.join(__dirname, '..', 'react-app', 'build');
 router.use(express.static(reactBuildDir));
 router.get('/app', (req, res) => {
   res.sendFile(path.join(reactBuildDir, 'index.html'));
