@@ -135,12 +135,19 @@ function Content({
         <div
           style={{
             borderTop: 'solid',
-            padding: 30,
+            padding: 'min(30px, 4vw)',
             userSelect: 'none',
-            paddingTop: 0,
           }}>
-          <h3>{item.title}</h3>
-          <p>{item.text}</p>
+          <h3
+            style={{
+              margin: 0,
+              whiteSpace: 'pre-wrap',
+            }}>{item.title}</h3>
+          <p
+            style={{
+              margin: 0,
+              whiteSpace: 'pre-wrap',
+            }}>{item.text}</p>
         </div>
       </div>
     </div >

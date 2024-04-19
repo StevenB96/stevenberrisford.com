@@ -169,6 +169,7 @@ function App() {
         borderTop: 'solid',
         backgroundColor: '#2B61AA',
         flex: 1,
+        padding: 'min(15px, 2vw)',
       }}>
         <h3>{'Email:\n'}{profile?.email}</h3>
         <h3>{'Phone number:\n'}{profile?.phone}</h3>

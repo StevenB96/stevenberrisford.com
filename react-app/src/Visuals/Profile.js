@@ -84,10 +84,15 @@ function Profile({ }) {
               style={{
                 whiteSpace: 'pre-wrap',
                 textAlign: 'center',
+                marginTop: 0,
               }}
             >{profile.job_title}</h3>
             <p
-              style={{ whiteSpace: 'pre-wrap' }}
+              style={{
+                whiteSpace: 'pre-wrap',
+                textAlign: 'left',
+                margin: 0,
+              }}
             >{profile.description}</p>
             <DownloadButton
               fileName="CV"
