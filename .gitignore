@@ -15,7 +15,7 @@
 # Ignore environment variables file
 **/.env*
 # Allow .env.example
-!.env.example
+!**/.env.example
 
 # Ignore compiled TypeScript files
 **/dist/
