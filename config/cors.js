@@ -13,9 +13,7 @@ const corsOptions = {
     } else {
       callback(new Error('Not allowed by CORS'));
     }
-  },
-  // Allow font requests from any origin
-  exposedHeaders: ['Access-Control-Allow-Origin'],
+  }
 };
 
 module.exports = cors(corsOptions);
