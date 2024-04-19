@@ -1,9 +1,9 @@
 const cors = require('cors');
+const environment = require('../constants/environment');
 
 // Define allowed origins
 const allowedOrigins = [
-  'http://stevenberrisford.com',
-  'http://stevenberrisford.com',
+  environment.SERVER_URL,
 ];
 
 // Configure CORS options
@@ -17,4 +17,4 @@ const corsOptions = {
   }
 };
 
-module.exports = cors(corsOptions);
+module.exports = cors();
