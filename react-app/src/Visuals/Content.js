@@ -96,18 +96,18 @@ function Content({
   switch (item?.media_type) {
     case 1:
       component = <ImageComponent item={item} />
-      borderRadius = '50px'
+      borderRadius = 'min(50px, 5vw)'
       break;
     case 2:
       component = <PDFComponent item={item} />
-      borderRadius = '0px 0px 50px 50px'
+      borderRadius = '0px 0px min(50px, 5vw) min(50px, 5vw)'
       break;
     case 3:
       component = <YoutubeComponent
         item={item}
         activeTab={activeTab}
         tab={tab} />
-      borderRadius = '0px 0px 50px 50px '
+      borderRadius = '0px 0px min(50px, 5vw) min(50px, 5vw)'
       break;
   }
 

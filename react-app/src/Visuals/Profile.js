@@ -18,16 +18,26 @@ const DownloadButton = ({ fileName, fileUrl }) => {
   };
 
   return (
-    <button
+    <div
       style={{
-        margin: 20,
-        fontFamily: 'inherit',
-        fontSize: 'min(calc(4vw / ( 2 / 1 ), 1em)',
-      }}
-      onClick={handleDownload}
-    >Download {fileName}
-    </button>
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
+      <button
+        style={{
+          margin: 20,
+          fontFamily: 'inherit',
+          fontSize: 'min(calc(4vw / (2 / 1.17)), 1.17em)',
+          marginBottom: 0,
+          width: '50%',
+        }}
+        onClick={handleDownload}
+      >Download {fileName}
+      </button>
+    </div>
   );
+
 };
 
 function Profile({ }) {
@@ -49,13 +59,13 @@ function Profile({ }) {
             display: 'flex',
             alignItems: 'center',
             flexDirection: 'column',
-            borderRadius: 50,
+            borderRadius: 'min(50px, 5vw)',
             overflow: 'hidden',
             border: 'solid',
             margin: 40,
             boxShadow: 'rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px',
             backgroundColor: '#FFFFFF',
-            padding: 30,
+            padding: 'min(30px, 4vw)',
             boxSizing: 'border-box',
           }}>
           <img
