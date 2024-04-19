@@ -1,9 +1,8 @@
 const cors = require('cors');
-const environment = require('../constants/environment');
 
 // Define allowed origins
 const allowedOrigins = [
-  environment.SERVER_URL,
+  process.env.SERVER_URL || "http://localhost:3000",
 ];
 
 // Configure CORS options
@@ -17,4 +16,4 @@ const corsOptions = {
   }
 };
 
-module.exports = cors();
+module.exports = cors(corsOptions);

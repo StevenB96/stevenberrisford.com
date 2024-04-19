@@ -5,15 +5,27 @@
  */
 
 var app = require('../app');
-const environment = require('../constants/environment');
 var debug = require('debug')('express-boilerplate:server');
 var http = require('http');
+const dotenv = require('dotenv');
+
+/**
+ * Set env variables for app.
+ */
+
+try {
+  dotenv.config({ path: '.env' });
+  const environment = process.env.NODE_ENV || 'development';
+  dotenv.config({ path: `.env.${environment}` });
+} catch (error) {
+  console.error('Error loading environment variables:', error);
+}
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || environment.SERVER_PORT);
+var port = normalizePort(process.env.SERVER_PORT || 3000);
 app.set('port', port);
 
 /**
