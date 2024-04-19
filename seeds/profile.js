@@ -1,3 +1,11 @@
+var defineEnv = require('../config/defineEnv');
+
+/**
+ * Set env variables for app.
+ */
+
+defineEnv('..');
+
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> } 
