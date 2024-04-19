@@ -1,5 +1,4 @@
 const types = require('../constants/types');
-const environment = require('../constants/environment');
 
 /**
  * @param { import("knex").Knex } knex

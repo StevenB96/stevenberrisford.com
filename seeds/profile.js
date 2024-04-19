@@ -1,5 +1,3 @@
-const environment = require('../constants/environment');
-
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> } 
