@@ -79,6 +79,7 @@ function App() {
             borderBottom: 'solid',
             boxSizing: 'border-box',
             backgroundColor: '#2B61AA',
+            gap: 'min(7.5px, 1vw)',
           }}
         >
           <div
@@ -169,7 +170,7 @@ function App() {
         borderTop: 'solid',
         backgroundColor: '#2B61AA',
         flex: 1,
-        padding: 'min(15px, 2vw)',
+        padding: 'min(30px, 4vw)',
       }}>
         <h3>{'Email:\n'}{profile?.email}</h3>
         <h3>{'Phone number:\n'}{profile?.phone}</h3>
