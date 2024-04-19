@@ -25,7 +25,7 @@ function* getProfile(action) {
   try {
     const data = yield call(fetchDataFromApi, {
       method: 'GET',
-      url: `${environment.SERVER_URL}/`,
+      url: `${process.env.SERVER_URL || "http://localhost:3000"}/`,
       path: 'profile/',
       qParams: '',
       payload: action.payload
@@ -41,7 +41,7 @@ function* getContent(action) {
   try {
     const data = yield call(fetchDataFromApi, {
       method: 'GET',
-      url: `${environment.SERVER_URL}/`,
+      url: `${process.env.SERVER_URL || "http://localhost:3000"}/`,
       path: 'content/',
       qParams: '',
       payload: action.payload
