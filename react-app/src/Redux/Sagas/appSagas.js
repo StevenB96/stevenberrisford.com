@@ -19,13 +19,13 @@ import {
 } from '../Actions/appActions';
 
 import { fetchDataFromApi } from '../api';
-import environment from '../../constants/environment';
+import env from '../../env';
 
 function* getProfile(action) {
   try {
     const data = yield call(fetchDataFromApi, {
       method: 'GET',
-      url: `${process.env.SERVER_URL || "http://localhost:3000"}/`,
+      url: `${env.SERVER_URL || "http://localhost:3000"}/`,
       path: 'profile/',
       qParams: '',
       payload: action.payload
@@ -41,7 +41,7 @@ function* getContent(action) {
   try {
     const data = yield call(fetchDataFromApi, {
       method: 'GET',
-      url: `${process.env.SERVER_URL || "http://localhost:3000"}/`,
+      url: `${env.SERVER_URL || "http://localhost:3000"}/`,
       path: 'content/',
       qParams: '',
       payload: action.payload
