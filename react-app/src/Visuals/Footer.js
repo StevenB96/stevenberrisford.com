@@ -48,16 +48,12 @@ function Footer() {
               paddingLeft: 'min(10px, 1vw)',
               borderWidth: 2,
             }}>
-              <strong>
-                <h3 style={{ margin: 0, }}>
-                  {item.title}
-                </h3>
-              </strong>
-              <small>
-                <h3 style={{ margin: 0, }}>
-                  {item.value}
-                </h3>
-              </small>
+              <h2 style={{ margin: 0, }}>
+                {item.title}
+              </h2>
+              <h3 style={{ margin: 0, }}>
+                {item.value}
+              </h3>
             </div>
           );
         })

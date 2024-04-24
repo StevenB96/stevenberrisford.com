@@ -49,9 +49,10 @@ function App() {
         flexDirection: 'column',
         backgroundImage: `url("${profile?.background_image_link}")`,
         backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        backgroundRepeat: 'repeat-y',
+        backgroundPosition: 'center top',
         minHeight: '100vh',
-      }}>
+      }} >
       <Tabs
         selectedIndex={activeTab}
         onSelect={(index) => handleTabSelect(index)}
