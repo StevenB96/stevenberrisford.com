@@ -7,10 +7,13 @@ import {
   useSelector
 } from 'react-redux';
 import Profile from './Visuals/Profile';
-import Articles from './Visuals/Articles';
-import Hobbies from './Visuals/Hobbies';
-import Projects from './Visuals/Projects';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import Header from './Visuals/Header';
+import Footer from './Visuals/Footer';
+import ContentTab from './Visuals/ContentTab';
+import {
+  Tabs,
+  TabPanel,
+} from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import {
   getProfileRequest,
@@ -22,6 +25,12 @@ function App() {
   const [activeTab, setActiveTab] = useState(0);
   const profile = useSelector(state => state.app.profile);
 
+  const contentTypes = [
+    'projects',
+    'articles',
+    'hobbies'
+  ];
+
   const handleTabSelect = (index) => {
     setActiveTab(index);
   };
@@ -30,22 +39,6 @@ function App() {
     dispatch(getProfileRequest());
     dispatch(getContentRequest());
   }, []);
-
-  const tabStyle = {
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: '6px min(12px, 0.5vw)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 0,
-    boxSizing: 'border-box',
-  };
-
-  const textStyle = {
-    textAlign: 'center',
-    whiteSpace: 'nowrap',
-  }
 
   return (
     <div
@@ -60,122 +53,43 @@ function App() {
         minHeight: '100vh',
       }}>
       <Tabs
+        selectedIndex={activeTab}
         onSelect={(index) => handleTabSelect(index)}
         style={{
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          justifyContent: 'center',
+          justifyContent: 'flex-start',
           width: '100%',
+          minHeight: '70vh',
         }}>
-        <TabList
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            flexDirection: 'row',
-            width: '100%',
-            position: 'relative',
-            userSelect: 'none',
-            borderBottom: 'solid',
-            boxSizing: 'border-box',
-            backgroundColor: '#2B61AA',
-            gap: 'min(7.5px, 1vw)',
-          }}
-        >
-          <div
-            style={{
-              padding: '6px min(36px, 1.5vw)',
-            }}
-          >
-            <h1
-              style={{
-                textAlign: 'center',
-                whiteSpace: 'nowrap',
-              }} >
-              <u>Steven Berrisford</u>
-            </h1>
-          </div>
-          <Tab
-            style={{
-              ...tabStyle,
-              border: 'solid',
-              borderBottom: 'none',
-              borderColor: activeTab === 0 ? '#000000' : 'transparent',
-              backgroundColor: activeTab === 0 ? '#FFFFFF' : 'initial',
-            }}
-          >
-            <h2 style={textStyle}>Profile</h2>
-          </Tab>
-          <Tab
-            style={{
-              ...tabStyle,
-              border: 'solid',
-              borderBottom: 'none',
-              borderColor: activeTab === 1 ? '#000000' : 'transparent',
-              backgroundColor: activeTab === 1 ? '#FFFFFF' : 'initial',
-            }}
-          >
-            <h2 style={textStyle}>Projects</h2>
-          </Tab>
-          <Tab
-            style={{
-              ...tabStyle,
-              border: 'solid',
-              borderBottom: 'none',
-              borderColor: activeTab === 2 ? '#000000' : 'transparent',
-              backgroundColor: activeTab === 2 ? '#FFFFFF' : 'initial',
-            }}
-          >
-            <h2 style={textStyle}>Articles</h2>
-          </Tab>
-          <Tab
-            style={{
-              ...tabStyle,
-              border: 'solid',
-              borderBottom: 'none',
-              borderColor: activeTab === 3 ? '#000000' : 'transparent',
-              backgroundColor: activeTab === 3 ? '#FFFFFF' : 'initial',
-            }}
-          >
-            <h2 style={textStyle}>Hobbies</h2>
-          </Tab>
-        </TabList>
+        <Header
+          activeTab={activeTab}
+          handleTabSelect={handleTabSelect}
+        />
         <div style={{
           width: '100%',
         }}>
-          <TabPanel>
+          <TabPanel selected={activeTab === 0}>
             <Profile />
           </TabPanel>
-          <TabPanel>
-            <Projects />
-          </TabPanel>
-          <TabPanel>
-            <Articles />
-          </TabPanel>
-          <TabPanel>
-            <Hobbies />
-          </TabPanel>
+          {
+            contentTypes.map((contentType, index) => {
+              return (
+                <TabPanel
+                  selected={activeTab === index + 1}
+                  key={index}
+                >
+                  <ContentTab
+                    contentType={contentType}
+                  />
+                </TabPanel>
+              )
+            })
+          }
         </div>
       </Tabs>
-      <div style={{
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        gap: 'min(36px, 3vw)',
-        textAlign: 'left',
-        whiteSpace: 'pre-wrap',
-        userSelect: 'none',
-        borderTop: 'solid',
-        backgroundColor: '#2B61AA',
-        flex: 1,
-        padding: 'min(30px, 4vw)',
-      }}>
-        <h3>{'Email:\n'}{profile?.email}</h3>
-        <h3>{'Phone number:\n'}{profile?.phone}</h3>
-        <h3>{'Address:\n'}{profile?.address}</h3>
-      </div>
+      <Footer />
     </div>
   );
 }

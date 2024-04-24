@@ -51,6 +51,7 @@ function Profile({ }) {
           display: 'flex',
           justifyContent: 'center',
           userSelect: 'none',
+          whiteSpace: 'pre-wrap',
         }}>
         <div
           style={{
@@ -84,22 +85,13 @@ function Profile({ }) {
               flexDirection: 'column',
               boxSizing: 'border-box',
             }}>
-            <h2
-              style={{
-                whiteSpace: 'pre-wrap',
-                textAlign: 'center',
-              }}
-            >{profile.name}</h2>
             <h3
               style={{
-                whiteSpace: 'pre-wrap',
                 textAlign: 'center',
-                marginTop: 0,
               }}
             >{profile.job_title}</h3>
             <p
               style={{
-                whiteSpace: 'pre-wrap',
                 textAlign: 'left',
                 margin: 0,
               }}

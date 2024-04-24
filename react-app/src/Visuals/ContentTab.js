@@ -6,19 +6,20 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Content from './Content';
 
-function Projects({ }) {
-  const projects = useSelector(state => state.app.projects);
+function ContentTab({ 
+  contentType 
+}) {
+  const content = useSelector(state => state.app[contentType]);
 
-  if (projects && projects?.length < 2) {
+  if (content && content?.length < 2) {
     return (
       <div
         style={{
-          width: '100%',
           display: 'flex',
-          justifyContent: 'center'
+          justifyContent: 'center',
         }}>
         <Content
-          item={projects[0]}
+          item={content[0]}
           tab={0}
           activeTab={0}
         />
@@ -26,7 +27,7 @@ function Projects({ }) {
     );
   }
 
-  return projects && projects?.length > 0 ?
+  return content && content?.length > 0 ?
     (
       <div
         style={{
@@ -47,12 +48,10 @@ function Projects({ }) {
           slidesToScroll={1}
         >
           {
-            projects.map(item => {
-              return <Content
-                key={item.id}
-                item={item}
-              />
-            }
+            content.map((item) => <Content
+              key={item.id}
+              item={item}
+            />
             )
           }
         </Slider>
@@ -62,4 +61,4 @@ function Projects({ }) {
     null;
 }
 
-export default Projects;
+export default ContentTab;
