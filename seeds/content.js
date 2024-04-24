@@ -20,6 +20,26 @@ exports.seed = async function (knex) {
       return knex('content').insert(
         [
           {
+            title: 'Bare Dating',
+            text: 'I was a junior working on this dating app, built using React Native (frontend framework) and Yii2 (backend framework). It was packed with features e.g. verification, animations, tutorials, user locations, "Bare Games".',
+            link: null,
+            media_link: `${process.env.SERVER_URL || "http://localhost:3000"}/public/images/bare_dating.jpg`,
+            media_type: types.IMAGE_MEDIA_TYPE,
+            content_type: types.PROJECT_CONTENT_TYPE,
+            created_at: new Date(),
+            updated_at: new Date()
+          },
+          {
+            title: 'Oman FM',
+            text: 'I took a leading role developing this app, built React Native (frontend framework) and Laravel (backend framework). It was diplomatic, proving information about Omanian politics e.g. locating embassies and news notificaitons.',
+            link: null,
+            media_link: `${process.env.SERVER_URL || "http://localhost:3000"}/public/images/oman_fm.png`,
+            media_type: types.IMAGE_MEDIA_TYPE,
+            content_type: types.PROJECT_CONTENT_TYPE,
+            created_at: new Date(),
+            updated_at: new Date()
+          },
+          {
             title: 'Movie Predictor',
             text: 'A Python web/ETL application deployed with Docker on AWS Infrastructure (ECS, Lambda, S3, CodePipeline). Built on Flask (web framework), Scikit Learn (ML library) and Matplotlib (graphing tool).',
             link: 'http://etl-project.stevenberrisford.com/',

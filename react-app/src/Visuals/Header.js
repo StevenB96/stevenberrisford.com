@@ -26,8 +26,7 @@ function Header({
     boxSizing: 'border-box',
     border: 'solid',
     borderBottom: 'none',
-    borderTopRightRadius: 10,
-    borderTopLeftRadius: 10,
+    borderRadius: 'min(30px, 3vw) min(30px, 3vw) 0px 0px'
   };
 
   const textStyle = {
