@@ -21,6 +21,9 @@
 # Ignore compiled TypeScript files
 **/dist/
 
+# Db files
+**/*.db
+
 # Pem files
 **/*.pem
 
