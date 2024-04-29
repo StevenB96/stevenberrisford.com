@@ -35,7 +35,6 @@ function Footer() {
     backgroundColor: '#2B61AA',
     flex: 1,
     padding: 'min(30px, 3vw)',
-    boxShadow: 'rgba(0, 0, 0, 0.09) 0px -2px 1px, rgba(0, 0, 0, 0.09) 0px -4px 2px, rgba(0, 0, 0, 0.09) 0px -8px 4px, rgba(0, 0, 0, 0.09) 0px -16px 8px, rgba(0, 0, 0, 0.09) 0px -32px 16px',
   }
 
   return (

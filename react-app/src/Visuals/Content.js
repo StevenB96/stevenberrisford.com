@@ -94,10 +94,10 @@ const YoutubeComponent = ({
 function Content({
   item,
   activeTab,
-  tab
+  tab,
+  handleZoomIn
 }) {
   const [hovered, setHovered] = useState(false);
-  const [contentFullScreen, setContentFullScreen] = useState(false);
 
   let component;
   let borderRadius;
@@ -138,7 +138,7 @@ function Content({
           margin: 40,
           overflow: 'hidden',
           backgroundColor: '#FFFFFF',
-          boxShadow: 'rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px',
+          boxShadow: '1px 1px 1px rgba(0, 0, 0, 0.08), 2px 2px 2px rgba(0, 0, 0, 0.08), 3px 3px 3px rgba(0, 0, 0, 0.08), 4px 4px 4px rgba(0, 0, 0, 0.08), 16px 16px 16px rgba(0, 0, 0, 0.08)',
         }}>
         <div
           style={{
@@ -150,26 +150,24 @@ function Content({
             justifyContent: 'center',
             height: 100,
             aspectRatio: 1,
-            borderRadius: '50%',
+            borderBottomLeftRadius: '50%',
             cursor: 'pointer',
+            background: '#000000',
           }}
+          onClick={() => handleZoomIn({
+            component
+          })}
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
         >
           <TiZoomIn
             size={100}
-            color={hovered ? 'lightgrey' : '#FFFFFF'}
+            color={hovered ? 'grey' : '#FFFFFF'}
             style={{
             }}
           />
         </div>
-        {
-          contentFullScreen
-            ?
-            null
-            :
-            component
-        }
+        {component}
         <div
           style={{
             borderTop: 'solid',
@@ -188,16 +186,6 @@ function Content({
             }}>{item.text}</p>
         </div>
       </div>
-      <div
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          aspectRatio: 1,
-          backgroundColor: 'yellow',
-        }}
-      >a</div>
     </div >
   );
 }

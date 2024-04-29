@@ -64,7 +64,7 @@ function Profile({ }) {
             overflow: 'hidden',
             border: 'solid',
             margin: 40,
-            boxShadow: 'rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px',
+            boxShadow: '1px 1px 1px rgba(0, 0, 0, 0.08), 2px 2px 2px rgba(0, 0, 0, 0.08), 3px 3px 3px rgba(0, 0, 0, 0.08), 4px 4px 4px rgba(0, 0, 0, 0.08), 16px 16px 16px rgba(0, 0, 0, 0.08)',
             backgroundColor: '#FFFFFF',
             padding: 'min(30px, 4vw)',
             boxSizing: 'border-box',

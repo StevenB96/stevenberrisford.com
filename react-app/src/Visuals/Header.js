@@ -27,7 +27,7 @@ function Header({
     boxSizing: 'border-box',
     backgroundColor: '#2B61AA',
     minHeight: '10vh',
-    boxShadow: 'rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px',
+    boxShadow: '1px 1px 1px rgba(0, 0, 0, 0.08), 2px 2px 2px rgba(0, 0, 0, 0.08), 3px 3px 3px rgba(0, 0, 0, 0.08), 4px 4px 4px rgba(0, 0, 0, 0.08), 16px 16px 16px rgba(0, 0, 0, 0.08)',
   }
 
   const headerLineStyles = {
@@ -52,7 +52,7 @@ function Header({
   }
 
   const headerNameStyles = {
-    padding: '6px min(68px, 3vw)',
+    padding: '6px min(64px, 3vw)',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -68,7 +68,7 @@ function Header({
     paddingLeft: 'min(10px, 1vw)',
     paddingRight: 'min(10px, 1vw)',
     flex: 1,
-  };
+  }
 
   const textStyle = {
     textAlign: 'center',
@@ -93,6 +93,7 @@ function Header({
             borderRadius: '50%',
             backgroundColor: '#FFFFFF',
             border: 'solid',
+            boxShadow: '1px 1px 1px rgba(0, 0, 0, 0.08), 2px 2px 2px rgba(0, 0, 0, 0.08), 3px 3px 3px rgba(0, 0, 0, 0.08), 4px 4px 4px rgba(0, 0, 0, 0.08), 16px 16px 16px rgba(0, 0, 0, 0.08)',
           }} />
         <div
           style={{
@@ -123,7 +124,9 @@ function Header({
                   transitionProperty: 'background-color',
                   transitionDuration: '0.5s',
                   backgroundColor: '#FFFFFF',
-                  textDecoration: activeTab === index ? 'underline' : null,
+                  boxShadow: activeTab === index ? 
+                  'inset 1px 1px 1px rgba(0, 0, 0, 0.13) , inset 2px 2px 2px rgba(0, 0, 0, 0.13), inset 3px 3px 3px rgba(0, 0, 0, 0.13), inset 4px 4px 4px rgba(0, 0, 0, 0.13), inset 16px 16px 16px rgba(0, 0, 0, 0.13)' : 
+                  '1px 1px 1px rgba(0, 0, 0, 0.08), 2px 2px 2px rgba(0, 0, 0, 0.08), 3px 3px 3px rgba(0, 0, 0, 0.08), 4px 4px 4px rgba(0, 0, 0, 0.08), 16px 16px 16px rgba(0, 0, 0, 0.08)',
                 }}
                 onClick={() => handleTabSelect(index)}
               >
