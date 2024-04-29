@@ -2,7 +2,12 @@ import YouTube from 'react-youtube';
 import {
   useEffect,
   useRef,
+  useState,
 } from 'react';
+import {
+  TiZoomIn
+} from "react-icons/ti";
+
 
 const PDFComponent = ({ item }) => {
   return (
@@ -91,6 +96,9 @@ function Content({
   activeTab,
   tab
 }) {
+  const [hovered, setHovered] = useState(false);
+  const [contentFullScreen, setContentFullScreen] = useState(false);
+
   let component;
   let borderRadius;
   switch (item?.media_type) {
@@ -121,6 +129,7 @@ function Content({
       }}>
       <div
         style={{
+          position: 'relative',
           border: 'solid',
           width: '100%',
           maxWidth: 500,
@@ -131,7 +140,36 @@ function Content({
           backgroundColor: '#FFFFFF',
           boxShadow: 'rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px',
         }}>
-        {component}
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            right: 0,
+            display: 'flex',
+            alignContent: 'center',
+            justifyContent: 'center',
+            height: 100,
+            aspectRatio: 1,
+            borderRadius: '50%',
+            cursor: 'pointer',
+          }}
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+        >
+          <TiZoomIn
+            size={100}
+            color={hovered ? 'lightgrey' : '#FFFFFF'}
+            style={{
+            }}
+          />
+        </div>
+        {
+          contentFullScreen
+            ?
+            null
+            :
+            component
+        }
         <div
           style={{
             borderTop: 'solid',
@@ -150,6 +188,16 @@ function Content({
             }}>{item.text}</p>
         </div>
       </div>
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          aspectRatio: 1,
+          backgroundColor: 'yellow',
+        }}
+      >a</div>
     </div >
   );
 }

@@ -69,15 +69,6 @@ function Profile({ }) {
             padding: 'min(30px, 4vw)',
             boxSizing: 'border-box',
           }}>
-          <img
-            src={profile.profile_picture_link}
-            alt={profile.profile_picture_link}
-            style={{
-              width: '33%',
-              aspectRatio: 1,
-              objectFit: 'cover',
-              borderRadius: '50%',
-            }} />
           <div
             style={{
               display: 'flex',

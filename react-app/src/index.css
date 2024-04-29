@@ -60,6 +60,10 @@ p {
     font-family: 'slick';
     font-size: 30px;
     line-height: 30px;
+    color: lightgrey;
+    opacity: 0.75;
+    height: 30px;
+    width: 30px;
 }
 
 .slick-dots {
@@ -67,8 +71,17 @@ p {
     align-items: center;
     justify-content: center;
     bottom: 0px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: unset;
+    height: 30px;
+}
+
+.slick-dots li.slick-active button:before {
+    color: #000000;
 }
 
 .slick-dots li {
     width: 30px;
+    height: 30px;
 }

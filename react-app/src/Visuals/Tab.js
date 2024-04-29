@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Content from './Content';
 
-function ContentTab({ 
+function Tab({ 
   contentType 
 }) {
   const content = useSelector(state => state.app[contentType]);
@@ -61,4 +61,4 @@ function ContentTab({
     null;
 }
 
-export default ContentTab;
+export default Tab;

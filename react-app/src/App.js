@@ -6,14 +6,9 @@ import {
   useDispatch,
   useSelector
 } from 'react-redux';
-import Profile from './Visuals/Profile';
 import Header from './Visuals/Header';
+import Tabs from './Visuals/Tabs';
 import Footer from './Visuals/Footer';
-import ContentTab from './Visuals/ContentTab';
-import {
-  Tabs,
-  TabPanel,
-} from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import {
   getProfileRequest,
@@ -24,12 +19,6 @@ function App() {
   const dispatch = useDispatch();
   const [activeTab, setActiveTab] = useState(0);
   const profile = useSelector(state => state.app.profile);
-
-  const contentTypes = [
-    'projects',
-    'articles',
-    'hobbies'
-  ];
 
   const handleTabSelect = (index) => {
     setActiveTab(index);
@@ -45,7 +34,7 @@ function App() {
       style={{
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'flex-start',
+        justifyContent: 'space-between',
         flexDirection: 'column',
         backgroundImage: `url("${profile?.background_image_link}")`,
         backgroundSize: 'cover',
@@ -53,43 +42,11 @@ function App() {
         backgroundPosition: 'center top',
         minHeight: '100vh',
       }} >
-      <Tabs
-        selectedIndex={activeTab}
-        onSelect={(index) => handleTabSelect(index)}
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'flex-start',
-          width: '100%',
-          minHeight: '70vh',
-        }}>
-        <Header
-          activeTab={activeTab}
-          handleTabSelect={handleTabSelect}
-        />
-        <div style={{
-          width: '100%',
-        }}>
-          <TabPanel selected={activeTab === 0}>
-            <Profile />
-          </TabPanel>
-          {
-            contentTypes.map((contentType, index) => {
-              return (
-                <TabPanel
-                  selected={activeTab === index + 1}
-                  key={index}
-                >
-                  <ContentTab
-                    contentType={contentType}
-                  />
-                </TabPanel>
-              )
-            })
-          }
-        </div>
-      </Tabs>
+      <Header
+        activeTab={activeTab}
+        handleTabSelect={handleTabSelect}
+      />
+      <Tabs activeTab={activeTab} />
       <Footer />
     </div>
   );
