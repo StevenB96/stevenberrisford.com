@@ -27,7 +27,7 @@ function Header({
     boxSizing: 'border-box',
     backgroundColor: '#2B61AA',
     minHeight: '10vh',
-    boxShadow: '1px 1px 1px rgba(0, 0, 0, 0.08), 2px 2px 2px rgba(0, 0, 0, 0.08), 3px 3px 3px rgba(0, 0, 0, 0.08), 4px 4px 4px rgba(0, 0, 0, 0.08), 16px 16px 16px rgba(0, 0, 0, 0.08)',
+    boxShadow: '1px 1px 1px rgba(0, 0, 0, 0.13), 2px 2px 2px rgba(0, 0, 0, 0.13), 3px 3px 3px rgba(0, 0, 0, 0.13), 4px 4px 4px rgba(0, 0, 0, 0.13), 16px 16px 16px rgba(0, 0, 0, 0.13)',
   }
 
   const headerLineStyles = {
@@ -93,7 +93,7 @@ function Header({
             borderRadius: '50%',
             backgroundColor: '#FFFFFF',
             border: 'solid',
-            boxShadow: '1px 1px 1px rgba(0, 0, 0, 0.08), 2px 2px 2px rgba(0, 0, 0, 0.08), 3px 3px 3px rgba(0, 0, 0, 0.08), 4px 4px 4px rgba(0, 0, 0, 0.08), 16px 16px 16px rgba(0, 0, 0, 0.08)',
+            boxShadow: '1px 1px 1px rgba(0, 0, 0, 0.13), 2px 2px 2px rgba(0, 0, 0, 0.13), 3px 3px 3px rgba(0, 0, 0, 0.13), 4px 4px 4px rgba(0, 0, 0, 0.13), 16px 16px 16px rgba(0, 0, 0, 0.13)',
           }} />
         <div
           style={{
@@ -126,7 +126,7 @@ function Header({
                   backgroundColor: '#FFFFFF',
                   boxShadow: activeTab === index ? 
                   'inset 1px 1px 1px rgba(0, 0, 0, 0.13) , inset 2px 2px 2px rgba(0, 0, 0, 0.13), inset 3px 3px 3px rgba(0, 0, 0, 0.13), inset 4px 4px 4px rgba(0, 0, 0, 0.13), inset 16px 16px 16px rgba(0, 0, 0, 0.13)' : 
-                  '1px 1px 1px rgba(0, 0, 0, 0.08), 2px 2px 2px rgba(0, 0, 0, 0.08), 3px 3px 3px rgba(0, 0, 0, 0.08), 4px 4px 4px rgba(0, 0, 0, 0.08), 16px 16px 16px rgba(0, 0, 0, 0.08)',
+                  '1px 1px 1px rgba(0, 0, 0, 0.13), 2px 2px 2px rgba(0, 0, 0, 0.13), 3px 3px 3px rgba(0, 0, 0, 0.13), 4px 4px 4px rgba(0, 0, 0, 0.13), 16px 16px 16px rgba(0, 0, 0, 0.13)',
                 }}
                 onClick={() => handleTabSelect(index)}
               >

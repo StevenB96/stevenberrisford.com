@@ -7,23 +7,19 @@ import {
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import {
-  TiZoomOut
-} from "react-icons/ti";
 import Content from './Content';
+import FullScreenContent from './FullScreenContent';
 
 function Tab({
   contentType
 }) {
   const content = useSelector(state => state.app[contentType]);
   const [fullScreenContent, setFullScreenContent] = useState(null);
-  const [hovered, setHovered] = useState(false);
 
-  const handleZoomIn = ({
-    component
+  const handleZoom = ({
+    content
   }) => {
-    console.log(component);
-    setFullScreenContent(component)
+    setFullScreenContent(content)
   }
 
   if (content && content?.length < 2) {
@@ -37,12 +33,20 @@ function Tab({
           item={content[0]}
           tab={0}
           activeTab={0}
-          handleZoomIn={handleZoomIn}
+          handleZoom={handleZoom}
         />
+        {
+          fullScreenContent !== null && (
+            <FullScreenContent
+              fullScreenContent={fullScreenContent}
+              handleZoom={handleZoom}
+            />
+          )
+        }
       </div>
     );
   }
-  console.log(fullScreenContent);
+
   return content && content?.length > 0 ?
     (
       <div
@@ -67,49 +71,17 @@ function Tab({
             content.map((item) => <Content
               key={item.id}
               item={item}
+              handleZoom={handleZoom}
             />
             )
           }
         </Slider>
         {
-          fullScreenContent && (
-            <div
-              style={{
-                position: 'absolute',
-                top: '10vh',
-                left: '10vw',
-                width: '80vw',
-                height: '80vh',
-                aspectRatio: 1,
-              }}
-            >
-              <div
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  right: 0,
-                  display: 'flex',
-                  alignContent: 'center',
-                  justifyContent: 'center',
-                  height: 100,
-                  aspectRatio: 1,
-                  borderBottomLeftRadius: '50%',
-                  cursor: 'pointer',
-                  background: '#000000',
-                }}
-                onClick={() => setFullScreenContent(null)}
-                onMouseEnter={() => setHovered(true)}
-                onMouseLeave={() => setHovered(false)}
-              >
-                <TiZoomOut
-                  size={100}
-                  color={hovered ? 'grey' : '#FFFFFF'}
-                  style={{
-                  }}
-                />
-              </div>
-              {fullScreenContent}
-            </div>
+          fullScreenContent !== null && (
+            <FullScreenContent
+              fullScreenContent={fullScreenContent}
+              handleZoom={handleZoom}
+            />
           )
         }
       </div>

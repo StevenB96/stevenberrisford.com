@@ -9,7 +9,10 @@ import {
 } from "react-icons/ti";
 
 
-const PDFComponent = ({ item }) => {
+const PDFComponent = ({
+  item,
+  type,
+}) => {
   return (
     <iframe
       src={item.media_link}
@@ -19,22 +22,26 @@ const PDFComponent = ({ item }) => {
         border: "none",
         aspectRatio: 1,
         display: 'flex',
+        backgroundColor: 'black',
       }}
     />
   );
 };
 
-const ImageComponent = ({ item }) => {
+const ImageComponent = ({
+  item,
+  type,
+}) => {
   return (
     <a
       style={{
         textDecoration: 'none',
-        color: 'black',
-        width: '100%',
-        aspectRatio: 1,
+        backgroundColor: 'black',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        overflow: 'hidden',
+        aspectRatio: 1,
       }}
       href={item.link}>
       <img
@@ -42,7 +49,6 @@ const ImageComponent = ({ item }) => {
         alt={item.title}
         style={{
           width: '100%',
-          aspectRatio: 1,
           objectFit: 'cover',
         }} />
     </a>
@@ -52,7 +58,9 @@ const ImageComponent = ({ item }) => {
 const YoutubeComponent = ({
   item,
   activeTab,
-  tab
+  tab,
+  type,
+  setPlayerRef,
 }) => {
   const playerRef = useRef(null);
 
@@ -70,6 +78,10 @@ const YoutubeComponent = ({
     }
   }, [tab]);
 
+  useEffect(() => {
+    setPlayerRef(playerRef);
+  }, []);
+
   if (!playerRef) {
     return null;
   }
@@ -80,12 +92,15 @@ const YoutubeComponent = ({
       videoId={item.media_link}
       opts={{
         width: '100%',
+        height: '100%',
         playerVars: {
           autoplay: 0,
         }
       }}
       style={{
         display: 'flex',
+        aspectRatio: 16 / 9,
+        backgroundColor: 'black',
       }}
     />
   );
@@ -95,28 +110,76 @@ function Content({
   item,
   activeTab,
   tab,
-  handleZoomIn
+  handleZoom,
+  type,
 }) {
   const [hovered, setHovered] = useState(false);
+  const [playerRef, setPlayerRef] = useState(null);
 
-  let component;
-  let borderRadius;
-  switch (item?.media_type) {
-    case 1:
-      component = <ImageComponent item={item} />
-      borderRadius = 'min(50px, 5vw)'
-      break;
-    case 2:
-      component = <PDFComponent item={item} />
-      borderRadius = '0px 0px min(50px, 5vw) min(50px, 5vw)'
-      break;
-    case 3:
-      component = <YoutubeComponent
-        item={item}
-        activeTab={activeTab}
-        tab={tab} />
-      borderRadius = '0px 0px min(50px, 5vw) min(50px, 5vw)'
-      break;
+  const content = (type) => {
+    let component;
+    switch (item?.media_type) {
+      case 1:
+        component = <ImageComponent
+          item={item}
+          type={type}
+        />
+        break;
+      case 2:
+        component = <PDFComponent
+          item={item}
+          type={type}
+        />
+        break;
+      case 3:
+        component = <YoutubeComponent
+          setPlayerRef={setPlayerRef}
+          item={item}
+          activeTab={activeTab}
+          tab={tab}
+          type={type}
+        />
+        break;
+    }
+    return (
+      <>
+        <div
+          style={{
+            cursor: 'pointer',
+          }}>
+          {component}</div>
+        <div
+          style={{
+            borderTop: 'solid',
+            padding: 'min(30px, 4vw)',
+            userSelect: 'none',
+          }}>
+          <h3
+            style={{
+              fontSize: type === 'fullScreen' ? 'min(calc(8vw / (2 / 1)), 2.34em)' : null,
+              margin: 0,
+              whiteSpace: 'pre-wrap',
+            }}>{item.title}</h3>
+          <p
+            style={{
+              fontSize: (type === 'fullScreen') ? 'min(calc(8vw / (2 /  1.17)), 2em)' : null,
+              margin: 0,
+              whiteSpace: 'pre-wrap',
+            }}>{item.text}</p>
+        </div>
+      </>
+    );
+  }
+
+  const handleZoomClick = () => {
+    if (playerRef?.current?.internalPlayer) {
+      playerRef.current.internalPlayer.seekTo(0);
+      playerRef.current.internalPlayer.pauseVideo();
+    }
+
+    handleZoom({
+      content: content('fullScreen')
+    })
   }
 
   return (
@@ -134,11 +197,10 @@ function Content({
           width: '100%',
           maxWidth: 500,
           objectFit: 'cover',
-          borderRadius,
           margin: 40,
           overflow: 'hidden',
           backgroundColor: '#FFFFFF',
-          boxShadow: '1px 1px 1px rgba(0, 0, 0, 0.08), 2px 2px 2px rgba(0, 0, 0, 0.08), 3px 3px 3px rgba(0, 0, 0, 0.08), 4px 4px 4px rgba(0, 0, 0, 0.08), 16px 16px 16px rgba(0, 0, 0, 0.08)',
+          boxShadow: '1px 1px 1px rgba(0, 0, 0, 0.13), 2px 2px 2px rgba(0, 0, 0, 0.13), 3px 3px 3px rgba(0, 0, 0, 0.13), 4px 4px 4px rgba(0, 0, 0, 0.13), 16px 16px 16px rgba(0, 0, 0, 0.13)',
         }}>
         <div
           style={{
@@ -148,43 +210,26 @@ function Content({
             display: 'flex',
             alignContent: 'center',
             justifyContent: 'center',
-            height: 100,
+            width: 'min(10%, 150px)',
+            border: 'solid',
+            borderWidth: '0px 0px 4px 4px',
             aspectRatio: 1,
             borderBottomLeftRadius: '50%',
             cursor: 'pointer',
-            background: '#000000',
+            background: '#FFFFFF',
           }}
-          onClick={() => handleZoomIn({
-            component
-          })}
+          onClick={() => handleZoomClick()}
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
         >
           <TiZoomIn
-            size={100}
-            color={hovered ? 'grey' : '#FFFFFF'}
+            size={'100%'}
+            color={hovered ? '#000000' : '#2B61AA'}
             style={{
             }}
           />
         </div>
-        {component}
-        <div
-          style={{
-            borderTop: 'solid',
-            padding: 'min(30px, 4vw)',
-            userSelect: 'none',
-          }}>
-          <h3
-            style={{
-              margin: 0,
-              whiteSpace: 'pre-wrap',
-            }}>{item.title}</h3>
-          <p
-            style={{
-              margin: 0,
-              whiteSpace: 'pre-wrap',
-            }}>{item.text}</p>
-        </div>
+        {content('normal')}
       </div>
     </div >
   );

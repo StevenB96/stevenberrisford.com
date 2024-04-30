@@ -35,6 +35,7 @@ function Footer() {
     backgroundColor: '#2B61AA',
     flex: 1,
     padding: 'min(30px, 3vw)',
+    boxSizing: 'border-box',
   }
 
   return (

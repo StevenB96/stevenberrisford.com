@@ -27,5 +27,8 @@ router.use(express.static(reactBuildDir));
 router.get('/app', (req, res) => {
   res.sendFile(path.join(reactBuildDir, 'index.html'));
 });
+router.get('/projects', (req, res) => {
+  res.sendFile(path.join(reactBuildDir, 'index.html'));
+});
 
 module.exports = router;
