@@ -48,7 +48,7 @@ function Footer() {
               style={{
                 borderLeft: 'solid',
                 padding: '0px min(10px, 1vw) 0px  min(10px, 1vw)',
-                borderWidth: 3,
+                borderWidth: 'min(0.6vw, 6px)',
               }}>
               <h2 style={{ margin: 0, }}>
                 {item.title}

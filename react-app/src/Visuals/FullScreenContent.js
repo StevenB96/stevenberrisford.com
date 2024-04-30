@@ -28,6 +28,7 @@ function FullScreenContent({
           maxHeight: '100%',
           backgroundColor: '#FFFFFF',
           border: 'solid',
+          borderWidth: 'min(0.6vw, 6px)',
           boxShadow: '1px 1px 1px rgba(0, 0, 0, 0.13), 2px 2px 2px rgba(0, 0, 0, 0.13), 3px 3px 3px rgba(0, 0, 0, 0.13), 4px 4px 4px rgba(0, 0, 0, 0.13), 16px 16px 16px rgba(0, 0, 0, 0.13)',
           overflow: 'hidden',
         }}
@@ -45,7 +46,7 @@ function FullScreenContent({
             background: '#FFFFFF',
             width: '10%',
             border: 'solid',
-            borderWidth: '0px 0px 5px 5px',
+            borderWidth: '0px 0px min(0.6vw, 6px) min(0.6vw, 6px)',
           }}
           onClick={() => handleZoom({
             content: null,

@@ -151,18 +151,19 @@ function Content({
         <div
           style={{
             borderTop: 'solid',
+            borderWidth: 'min(0.6vw, 6px)',
             padding: 'min(30px, 4vw)',
             userSelect: 'none',
           }}>
           <h3
             style={{
-              fontSize: type === 'fullScreen' ? 'min(calc(8vw / (2 / 1)), 2.34em)' : null,
+              fontSize: type === 'fullScreen' ? 'min(calc(8vw / (2 / 1.17)), 2.34em)' : null,
               margin: 0,
               whiteSpace: 'pre-wrap',
             }}>{item.title}</h3>
           <p
             style={{
-              fontSize: (type === 'fullScreen') ? 'min(calc(8vw / (2 /  1.17)), 2em)' : null,
+              fontSize: (type === 'fullScreen') ? 'min(calc(8vw / (2 / 1)), 2em)' : null,
               margin: 0,
               whiteSpace: 'pre-wrap',
             }}>{item.text}</p>
@@ -194,6 +195,7 @@ function Content({
         style={{
           position: 'relative',
           border: 'solid',
+          borderWidth: 'min(0.6vw, 6px)',
           width: '100%',
           maxWidth: 500,
           objectFit: 'cover',
@@ -212,7 +214,7 @@ function Content({
             justifyContent: 'center',
             width: 'min(10%, 150px)',
             border: 'solid',
-            borderWidth: '0px 0px 4px 4px',
+            borderWidth: '0px 0px min(0.6vw, 6px) min(0.6vw, 6px)',
             aspectRatio: 1,
             borderBottomLeftRadius: '50%',
             cursor: 'pointer',

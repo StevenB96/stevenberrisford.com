@@ -63,6 +63,7 @@ function Profile({ }) {
             borderRadius: 'min(50px, 5vw)',
             overflow: 'hidden',
             border: 'solid',
+            borderWidth: 'min(0.6vw, 6px)',
             margin: 40,
             boxShadow: '1px 1px 1px rgba(0, 0, 0, 0.13), 2px 2px 2px rgba(0, 0, 0, 0.13), 3px 3px 3px rgba(0, 0, 0, 0.13), 4px 4px 4px rgba(0, 0, 0, 0.13), 16px 16px 16px rgba(0, 0, 0, 0.13)',
             backgroundColor: '#FFFFFF',
