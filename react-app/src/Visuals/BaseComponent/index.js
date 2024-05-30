@@ -11,7 +11,7 @@ function PdfComponent({ children }) {
         boxSizing: 'border-box',
         border: 'solid',
         borderRadius: 20,
-        backgroundColor: 'white',
+        backgroundColor: 'lightgrey',
       }}>
       <Card.Body
         style={{

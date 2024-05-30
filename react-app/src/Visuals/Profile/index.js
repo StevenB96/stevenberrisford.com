@@ -40,7 +40,7 @@ function Profile({ profile }) {
         border: 'solid',
         width: 'calc(100% - 80px)',
         borderRadius: 20,
-        backgroundColor: 'white',
+        backgroundColor: 'lightgrey',
       }}>
       <h2 style={{ textAlign: 'center' }}>{profile?.job_title}</h2>
       <p
