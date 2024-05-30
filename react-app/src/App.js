@@ -32,7 +32,7 @@ const ListToggle = ({ }) => {
     <div style={{
       aspectRatio: 1,
       height: 25,
-      backgroundColor: 'lightGrey',
+      backgroundColor: 'grey',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -98,7 +98,7 @@ const NavBarColumn = ({ navInputMap, scrollToSection }) => {
           display: 'flex',
           justifyContent: 'flex-end',
           alignItems: 'center',
-          backgroundColor: 'grey',
+          backgroundColor: 'lightgrey',
           border: 'solid',
           padding: 10,
           paddingRight: 20,
@@ -108,7 +108,10 @@ const NavBarColumn = ({ navInputMap, scrollToSection }) => {
           overflow: 'hidden',
         }}
       >
-        <h2>Menu</h2><div onClick={() => setIsMenuOpen(!isMenuOpen)}><ListToggle /></div>
+        <h2>Menu</h2>
+        <div onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <ListToggle/>
+        </div>
       </Nav.Item>
       {
         isMenuOpen &&
@@ -150,6 +153,57 @@ const NavBarColumn = ({ navInputMap, scrollToSection }) => {
         )
       }
     </div>
+  );
+}
+
+const TopScrollElement = () => {
+  return (
+    <div
+      onClick={
+        () => {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          })
+        }
+      }
+      style={{
+        top: 0,
+        position: 'fixed',
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '50%',
+        backgroundColor: 'lightgrey',
+        border: 'solid',
+        borderTop: 0,
+        borderBottomLeftRadius: '50%',
+        borderBottomRightRadius: '50%',
+      }}>
+      <h6 style={{ margin: 5, }}>Scroll to top</h6><FaArrowTurnUp />
+    </div>
+  );
+}
+
+const ProfilePictureElement = ({ profile }) => {
+  return (
+    <img
+      src={profile?.profile_picture_link}
+      alt={profile?.profile_picture_link}
+      style={{
+        top: '1vw',
+        left: '1vw',
+        position: 'fixed',
+        display: 'flex',
+        height: 'min(150px, 20vw)',
+        aspectRatio: 1,
+        objectFit: 'cover',
+        borderRadius: '50%',
+        backgroundColor: '#FFFFFF',
+        border: 'solid',
+        boxShadow: '1px 1px 1px rgba(0, 0, 0, 0.08), 2px 2px 2px rgba(0, 0, 0, 0.08), 3px 3px 3px rgba(0, 0, 0, 0.08), 4px 4px 4px rgba(0, 0, 0, 0.08), 16px 16px 16px rgba(0, 0, 0, 0.08)',
+      }} />
   );
 }
 
@@ -207,6 +261,7 @@ function App() {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
+    width: '100%',
   };
 
   const contentGroupLabelStyle = {
@@ -227,31 +282,39 @@ function App() {
       alignItems: 'center',
       width: '100%',
     }}>
-      <h1>My name is Steven Berrisford, <br></br>this is my website / portfolio</h1>
-      <Nav
-        style={{
-          width: 'calc(100% - 40px)',
-        }}
-      >
-        {
-          navBarIsRow ?
-            <NavBarRow
-              navInputMap={navInputMap}
-              scrollToSection={scrollToSection} /> :
-            <NavBarColumn
-              navInputMap={navInputMap}
-              scrollToSection={scrollToSection} />
-        }
-      </Nav>
-      <div ref={profileSectionRef} style={{ ...contentGroupStyle }}>
-        {profile &&
-          <Profile profile={profile} />
-        }
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        width: '100%',
+        // backgroundColor: 'yellow',
+      }}>
+        <h1>My name is Steven Berrisford, <br></br>this is my website / portfolio</h1>
+        <Nav
+          style={{
+            width: 'calc(100% - 40px)',
+          }}
+        >
+          {
+            navBarIsRow ?
+              <NavBarRow
+                navInputMap={navInputMap}
+                scrollToSection={scrollToSection} /> :
+              <NavBarColumn
+                navInputMap={navInputMap}
+                scrollToSection={scrollToSection} />
+          }
+        </Nav>
+        <div ref={profileSectionRef}>
+          {profile &&
+            <Profile profile={profile} />
+          }
+        </div>
       </div>
       <div ref={projectsSectionRef} style={{ ...contentGroupLabelStyle }}>
         <h2>Projects</h2>
       </div>
-      <div style={{ ...contentGroupStyle }}>
+      <div style={{ ...contentGroupStyle, backgroundColor: 'green', }}>
         {projects && projects.map(item =>
           <ProjectComponent key={item.id} project={item} />
         )}
@@ -259,7 +322,7 @@ function App() {
       <div ref={articlesSectionRef} style={{ ...contentGroupLabelStyle }}>
         <h2>Articles</h2>
       </div>
-      <div style={{ ...contentGroupStyle }}>
+      <div style={{ ...contentGroupStyle, backgroundColor: 'blue', }}>
         {articles && articles.map(item =>
           <PdfComponent key={item.id} article={item} />
         )}
@@ -267,38 +330,15 @@ function App() {
       <div ref={hobbiesSectionRef} style={{ ...contentGroupLabelStyle }}>
         <h2>Hobbies</h2>
       </div>
-      <div style={{ ...contentGroupStyle }}>
+      <div style={{ ...contentGroupStyle, backgroundColor: 'orange', }}>
         {hobbies && hobbies.map(item =>
           <YoutubeComponent key={item.id} hobby={item} />
         )}
       </div>
-      {scrollY > 500 && (
-        <div
-          onClick={
-            () => {
-              window.scrollTo({
-                top: 0,
-                behavior: "smooth",
-              })
-            }
-          }
-          style={{
-            top: 0,
-            position: 'fixed',
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '50%',
-            backgroundColor: 'lightgrey',
-            border: 'solid',
-            borderTop: 0,
-            borderBottomLeftRadius: '50%',
-            borderBottomRightRadius: '50%',
-          }}>
-          <h6 style={{ margin: 5, }}>Scroll to top</h6><FaArrowTurnUp />
-        </div>
+      {scrollY > 20 && (
+        <TopScrollElement />
       )}
+      <ProfilePictureElement profile={profile} />
     </div>
   );
 }
