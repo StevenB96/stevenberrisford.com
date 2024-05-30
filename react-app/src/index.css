@@ -12,76 +12,34 @@ body {
     font-family: 'Quicksand', sans-serif;
     padding: 0;
     margin: 0;
+    background-color: beige;
 }
 
 h1 {
     /* font-size: 2em; */
     font-size: min(calc(4vw), 2em);
+    user-select: none;
 }
 
 h2 {
     /* font-size: 1.5em; */
     font-size: min(calc(4vw / (2 / 1.5)), 1.5em);
+    user-select: none;
 }
 
 h3 {
     /* font-size: 1.17em; */
     font-size: min(calc(4vw / (2 / 1.17)), 1.17em);
+    user-select: none;
 }
 
 p {
     /* font-size: 1em; */
     font-size: min(calc(4vw / (2 / 1)), 1em);
+    user-select: none;
 }
 
-.react-tabs__tab::after {
-    content: none;
-    display: none;
-}
-
-.react-tabs__tab {
-    bottom: 0px;
-}
-
-.react-tabs__tab-list {
-    margin: 0px;
-    padding: 0px;
-    bottom: 0px;
-    border-bottom: 0px;
-}
-
-.slick-slider {
-    margin-bottom: 40px;
-    background-color: transparent;
-}
-
-.slick-dots li button:before
-{
-    font-family: 'slick';
-    font-size: 30px;
-    line-height: 30px;
-    color: lightgrey;
-    opacity: 0.75;
-    height: 30px;
-    width: 30px;
-}
-
-.slick-dots {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    bottom: 0px;
-    left: 50%;
-    transform: translate(-50%, 0);
-    width: unset;
-    height: 30px;
-}
-
-.slick-dots li.slick-active button:before {
-    color: #000000;
-}
-
-.slick-dots li {
-    width: 30px;
-    height: 30px;
+.youtube_video iframe {
+    width: 100%;
+    aspect-ratio: 1;
 }
