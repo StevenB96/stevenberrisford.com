@@ -6,7 +6,7 @@ import Card from 'react-bootstrap/Card';
 function PdfComponent({ children }) {
   let [width, height] = useWindowSize();
   width = Math.min(width, 1400);
-  const a = 50;
+  const a = 20;
   const b = 220;
   const c = 0.6;
   const divisions = Math.floor((width / b) ** c);

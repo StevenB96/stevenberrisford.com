@@ -6,20 +6,14 @@ import Card from 'react-bootstrap/Card';
 function ContactComponent({ contactMethod }) {
   let [width, height] = useWindowSize();
   width = Math.min(width, 1400);
-  const a = 180;
+  const a = 20;
   const b = 220;
   const c = 0.6;
   const divisions = Math.floor((width / b) ** c);
-  const margin = a / divisions;
-
-  const cardDimensionStyles = {
-    margin: margin * 0.75,
-    width: `calc(( 100% / ${divisions} ) - ${(a * 2) / divisions}px)`,
-  }
 
   return (
     <Card style={{
-      ...cardDimensionStyles,
+      width: `calc(( 100% / ${divisions} ) - ${(a * 2) / divisions}px)`,
       display: 'flex',
       alignItems: 'flex-start',
       justifyContent: 'center',
@@ -32,16 +26,14 @@ function ContactComponent({ contactMethod }) {
         boxSizing: 'border-box',
         overflow: 'hidden',
         border: 'solid',
-        borderRadius: '50%',
+        borderRadius: 20,
         flexDirection: 'column',
-        width: '100%',
-        aspectRatio: 1,
-        padding: margin * 0.25,
-        maxWidth: 300,
+        padding: a / divisions,
+        margin: a / divisions,
       }}>
         <div style={{
           aspectRatio: 1,
-          height: 60,
+          width: width * 0.06,
           borderRadius: '50%',
           backgroundColor: 'lightgrey',
           display: 'flex',

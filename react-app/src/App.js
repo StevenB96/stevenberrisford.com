@@ -78,6 +78,9 @@ function App() {
     dispatch(getContentRequest());
   }, []);
 
+  const [width, height] = useWindowSize();
+  const scrollY = useScrollPosition(30);
+
   const profileSectionRef = useRef(null);
   const projectsSectionRef = useRef(null);
   const articlesSectionRef = useRef(null);
@@ -87,15 +90,15 @@ function App() {
   const contactMap = [
     {
       text: profile?.phone,
-      icon: <HiOutlinePhoneIncoming size={40} />,
+      icon: <HiOutlinePhoneIncoming size={Math.min(width, 1400) * 0.04} />,
     },
     {
       text: profile?.email,
-      icon: <MdOutlineEmail size={40} />,
+      icon: <MdOutlineEmail size={Math.min(width, 1400) * 0.04} />,
     },
     {
       text: profile?.address,
-      icon: <PiAddressBook size={40} />,
+      icon: <PiAddressBook size={Math.min(width, 1400) * 0.04} />,
     },
   ];
 
@@ -121,9 +124,6 @@ function App() {
       ref: contactSectionRef,
     }
   ];
-
-  const [width, height] = useWindowSize();
-  const scrollY = useScrollPosition(30);
 
   const scrollToSection = (elementRef) => {
     window.scrollTo({

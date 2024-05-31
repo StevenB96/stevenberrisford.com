@@ -40,7 +40,7 @@ function Profile({ profile }) {
   return (
     <div
       style={{
-        margin: 20,
+        margin: 10,
         padding: 20,
         border: 'solid',
         width: width - 80,

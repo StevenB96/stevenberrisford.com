@@ -19,9 +19,8 @@ const NavBarRow = ({ navInputMap, scrollToSection }) => {
         backgroundColor: 'lightgrey',
         overflow: 'hidden',
         boxSizing: 'border-box',
-        paddingLeft: 10,
-        paddingRight: 10,
-        gap: 10,
+        paddingLeft: 30,
+        paddingRight: 30,
       }}>
       {navInputMap.map((item, index) => (
         <Nav.Item
@@ -38,6 +37,12 @@ const NavBarRow = ({ navInputMap, scrollToSection }) => {
             backgroundColor: highlightedItem === index ?
               'white' :
               'lightgrey',
+            borderLeft: navInputMap.length !== index ?
+              'solid' :
+              'none',
+            borderRight: navInputMap.length === index + 1 ?
+              'solid' :
+              'none',
           }}
           onClick={() => scrollToSection(item.ref)}>
           <h2>{item.title}</h2>
