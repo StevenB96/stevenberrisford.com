@@ -19,7 +19,7 @@ const corsOptions = {
 };
 
 module.exports = cors(
-  nodeEnv === production ?
+  nodeEnv === 'production' ?
     corsOptions :
     {}
 );
