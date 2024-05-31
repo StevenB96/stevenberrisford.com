@@ -1,10 +1,10 @@
 ::-webkit-scrollbar {
-    width: 0;
+    /* width: 0; */
     /* For Chrome, Safari, and Opera */
 }
 
 html {
-    scrollbar-width: none;
+    /* scrollbar-width: none; */
     /* For Firefox */
 }
 

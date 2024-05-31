@@ -12,7 +12,10 @@ exports.up = function(knex) {
     table.string('email').notNullable();
     table.string('address').notNullable();
     table.string('profile_picture_link').notNullable();
-    table.string('background_image_link').notNullable();
+    table.string('profile_background_link').notNullable();
+    table.string('projects_background_link').notNullable();
+    table.string('articles_background_link').notNullable();
+    table.string('hobbies_background_link').notNullable();
     table.string('cv_link').notNullable();
     table.timestamps(true, true);
   });

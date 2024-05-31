@@ -25,7 +25,10 @@ exports.seed = async function (knex) {
           email: 'stevenberrisford@gmail.com',
           address: '80 Thetford Road\nNew Malden\nSurrey\nKT3 5DT\nLondon UK',
           profile_picture_link: `${process.env.SERVER_URL || "http://localhost:3000"}/public/images/profile_picture.jpg`,
-          background_image_link: `${process.env.SERVER_URL || "http://localhost:3000"}/public/images/background_image.jpg`,
+          profile_background_link: `${process.env.SERVER_URL || "http://localhost:3000"}/public/images/profile_background.jpg`,
+          projects_background_link: `${process.env.SERVER_URL || "http://localhost:3000"}/public/images/projects_background.jpg`,
+          articles_background_link: `${process.env.SERVER_URL || "http://localhost:3000"}/public/images/articles_background.jpg`,
+          hobbies_background_link: `${process.env.SERVER_URL || "http://localhost:3000"}/public/images/hobbies_background.jpg`,
           cv_link: `${process.env.SERVER_URL}/public/documents/cv.pdf`,
           created_at: new Date(),
           updated_at: new Date()

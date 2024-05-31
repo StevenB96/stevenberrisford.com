@@ -62,6 +62,7 @@ const NavBarRow = ({ navInputMap, scrollToSection }) => {
       }}>
       {navInputMap.map((item, index) => (
         <Nav.Item
+          key={item.id}
           onMouseOver={() => setHighlightedItem(index)}
           style={{
             display: 'flex',
@@ -110,7 +111,7 @@ const NavBarColumn = ({ navInputMap, scrollToSection }) => {
       >
         <h2>Menu</h2>
         <div onClick={() => setIsMenuOpen(!isMenuOpen)}>
-          <ListToggle/>
+          <ListToggle />
         </div>
       </Nav.Item>
       {
@@ -134,6 +135,7 @@ const NavBarColumn = ({ navInputMap, scrollToSection }) => {
             {
               navInputMap.map((item, index) => (
                 <Nav.Item
+                  key={item.id}
                   onMouseOver={() => setHighlightedItem(index)}
                   style={{
                     ...navItemStyle,
@@ -181,7 +183,7 @@ const TopScrollElement = () => {
         borderBottomLeftRadius: '50%',
         borderBottomRightRadius: '50%',
       }}>
-      <h6 style={{ margin: 5, }}>Scroll to top</h6><FaArrowTurnUp />
+      <h3 style={{ margin: 5, }}>Scroll to top</h3><FaArrowTurnUp />
     </div>
   );
 }
@@ -287,9 +289,17 @@ function App() {
         flexDirection: 'column',
         alignItems: 'center',
         width: '100%',
-        // backgroundColor: 'yellow',
+        backgroundImage: `url(${profile?.profile_background_link})`,
+        objectFit: 'cover',
+        backgroundSize: '100% auto',
       }}>
-        <h1>My name is Steven Berrisford, <br></br>this is my website / portfolio</h1>
+        <h1 style={{
+          backgroundColor: 'white',
+          padding: 20,
+          borderRadius: 20,
+          border: 'solid',
+          textAlign: 'center',
+        }}>I am Steven Berrisford, <br></br>this is my website / portfolio.</h1>
         <Nav
           style={{
             width: 'calc(100% - 40px)',
@@ -314,7 +324,12 @@ function App() {
       <div ref={projectsSectionRef} style={{ ...contentGroupLabelStyle }}>
         <h2>Projects</h2>
       </div>
-      <div style={{ ...contentGroupStyle, backgroundColor: 'green', }}>
+      <div style={{
+        ...contentGroupStyle,
+        backgroundImage: `url(${profile?.projects_background_link})`,
+        objectFit: 'cover',
+        backgroundSize: '100% auto',
+      }}>
         {projects && projects.map(item =>
           <ProjectComponent key={item.id} project={item} />
         )}
@@ -322,7 +337,12 @@ function App() {
       <div ref={articlesSectionRef} style={{ ...contentGroupLabelStyle }}>
         <h2>Articles</h2>
       </div>
-      <div style={{ ...contentGroupStyle, backgroundColor: 'blue', }}>
+      <div style={{
+        ...contentGroupStyle,
+        backgroundImage: `url(${profile?.articles_background_link})`,
+        objectFit: 'cover',
+        backgroundSize: '100% auto',
+      }}>
         {articles && articles.map(item =>
           <PdfComponent key={item.id} article={item} />
         )}
@@ -330,7 +350,12 @@ function App() {
       <div ref={hobbiesSectionRef} style={{ ...contentGroupLabelStyle }}>
         <h2>Hobbies</h2>
       </div>
-      <div style={{ ...contentGroupStyle, backgroundColor: 'orange', }}>
+      <div style={{
+        ...contentGroupStyle,
+        backgroundImage: `url(${profile?.hobbies_background_link})`,
+        objectFit: 'cover',
+        backgroundSize: '100% auto',
+      }}>
         {hobbies && hobbies.map(item =>
           <YoutubeComponent key={item.id} hobby={item} />
         )}
