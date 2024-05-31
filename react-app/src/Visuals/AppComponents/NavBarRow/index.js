@@ -27,6 +27,7 @@ const NavBarRow = ({ navInputMap, scrollToSection }) => {
         <Nav.Item
           key={item.id}
           onMouseOver={() => setHighlightedItem(index)}
+          onMouseOut={() => setHighlightedItem(null)}
           style={{
             display: 'flex',
             flex: 1,

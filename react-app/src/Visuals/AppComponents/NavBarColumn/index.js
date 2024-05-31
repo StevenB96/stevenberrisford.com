@@ -55,6 +55,7 @@ const NavBarColumn = ({ navInputMap, scrollToSection }) => {
                 <Nav.Item
                   key={item.id}
                   onMouseOver={() => setHighlightedItem(index)}
+                  onMouseOut={() => setHighlightedItem(null)}
                   style={{
                     ...navItemStyle,
                     backgroundColor: highlightedItem === index ?
