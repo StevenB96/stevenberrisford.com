@@ -1,5 +1,5 @@
 const env = {
-    SERVER_URL: "http://localhost:3000",
+    SERVER_URL: "http://stevenberrisford.com",
 };
 
 export default env;
