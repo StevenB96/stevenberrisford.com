@@ -16,7 +16,9 @@ function ProjectComponent({ project }) {
           alignItems: 'center',
           display: 'inline-block',
         }}
-        href={project.link}>
+        href={project.link}
+        target="_blank"
+      >
         <img
           src={project.media_link}
           alt={project.title}

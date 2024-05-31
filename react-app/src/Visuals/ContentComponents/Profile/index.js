@@ -1,4 +1,6 @@
-import Card from 'react-bootstrap/Card';
+import {
+  useWindowSize,
+} from '@react-hook/window-size';
 
 const DownloadButton = ({ fileName, fileUrl }) => {
   const handleDownload = () => {
@@ -32,15 +34,18 @@ const DownloadButton = ({ fileName, fileUrl }) => {
 };
 
 function Profile({ profile }) {
+  let [width, height] = useWindowSize();
+  width = Math.min(width, 800);
+
   return (
     <div
       style={{
         margin: 20,
         padding: 20,
         border: 'solid',
-        width: 'calc(100% - 80px)',
+        width: width - 80,
         borderRadius: 20,
-        backgroundColor: 'lightgrey',
+        backgroundColor: 'white',
       }}>
       <h2 style={{ textAlign: 'center' }}>{profile?.job_title}</h2>
       <p

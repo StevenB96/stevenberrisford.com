@@ -4,15 +4,17 @@ import {
 import Card from 'react-bootstrap/Card';
 
 function PdfComponent({ children }) {
-  const [width, height] = useWindowSize();
+  let [width, height] = useWindowSize();
+  width = Math.min(width, 1400);
   const a = 50;
-  const b = 200;
-  const c = 0.5;
+  const b = 220;
+  const c = 0.6;
+  const divisions = Math.floor((width / b) ** c);
 
   const cardDimensionStyles = {
-    padding: a,
-    margin: a,
-    width: `calc(( 100% / ${Math.floor((width / b) ** c)} ) - ${a * 2}px)`,
+    padding: a / divisions,
+    margin: a / divisions,
+    width: `calc(( 100% / ${divisions} ) - ${(a * 2) / divisions}px)`,
   }
 
   return (
@@ -23,7 +25,7 @@ function PdfComponent({ children }) {
         boxSizing: 'border-box',
         border: 'solid',
         borderRadius: 20,
-        backgroundColor: 'lightgrey',
+        backgroundColor: 'white',
       }}>
       <Card.Body
         style={{
