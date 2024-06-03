@@ -9,6 +9,8 @@ var debug = require('debug')('express-boilerplate:server');
 var http = require('http');
 var defineEnv = require('../config/defineEnv');
 
+app.set('cache', false);
+
 /**
  * Set env variables for app.
  */
