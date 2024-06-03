@@ -20,7 +20,7 @@ exports.seed = async function (knex) {
       return knex('content').insert(
         [
           {
-            title: 'Bare Dating',
+            title: 'Dating App (production)',
             text: 'I was a junior working on this dating app, built using React Native (mobile framework) and Yii2 (backend framework). It was packed with features e.g. verification, animations, tutorials, user locations, "Bare Games".',
             link: null,
             media_link: `${process.env.SERVER_URL || "http://localhost:3000"}/public/images/bare_dating.png`,
@@ -30,7 +30,7 @@ exports.seed = async function (knex) {
             updated_at: new Date()
           },
           {
-            title: 'Oman FM',
+            title: 'Public Information App (production)',
             text: 'I took a leading role developing this app, built React Native (mobile framework) and Laravel (backend framework). It provided Omani news, delievered notificaitons, and displayed embassy locations.',
             link: null,
             media_link: `${process.env.SERVER_URL || "http://localhost:3000"}/public/images/oman_fm.png`,
@@ -40,7 +40,7 @@ exports.seed = async function (knex) {
             updated_at: new Date()
           },
           {
-            title: 'Movie Predictor',
+            title: 'Movie Predictor (prototype)',
             text: 'A Python web/ETL application deployed with Docker on AWS Infrastructure (ECS, Lambda, S3, CodePipeline). Built on Flask (web framework), Scikit Learn (ML library) and Matplotlib (graphing tool).',
             link: 'http://etl-project.stevenberrisford.com/',
             media_link: `${process.env.SERVER_URL || "http://localhost:3000"}/public/images/movie_predictor.jpg`,
@@ -50,7 +50,7 @@ exports.seed = async function (knex) {
             updated_at: new Date()
           },
           {
-            title: 'Diagram Optimiser',
+            title: 'Diagram Optimiser (prototype)',
             text: 'A React (JavaScript web framework) diagram builder/optimiser. The focus is the custom ML optimisation algorithm. The project is also a demonstration of animation and state management.',
             link: 'http://diagram-optimiser.stevenberrisford.com/',
             media_link: `${process.env.SERVER_URL || "http://localhost:3000"}/public/images/diagram_optimiser.png`,
@@ -60,7 +60,7 @@ exports.seed = async function (knex) {
             updated_at: new Date()
           },
           {
-            title: 'Web Library',
+            title: 'Web Library (prototype)',
             text: 'A scalable, comprehensively unit tested, MVC application built using Django (Python web framework). It is deployed on a Kubernetes cluster (DevOps tool), integrating with database microservices.',
             link: 'http://web-lib.stevenberrisford.com/',
             media_link: `${process.env.SERVER_URL || "http://localhost:3000"}/public/images/web_library.jpg`,
@@ -70,7 +70,7 @@ exports.seed = async function (knex) {
             updated_at: new Date()
           },
           {
-            title: 'Terraform Visualiser',
+            title: 'Terraform Visualiser (prototype)',
             text: 'A containerised full stack application built using Express and React (JavaScript web frameworks). It queries a Kubernetes API to visualise Clusters that have been deployed on AWS using Terraform.',
             link: 'http://terraform-visualiser.stevenberrisford.com/',
             media_link: `${process.env.SERVER_URL || "http://localhost:3000"}/public/images/terraform_visualiser.jpg`,
@@ -80,7 +80,7 @@ exports.seed = async function (knex) {
             updated_at: new Date()
           },
           {
-            title: 'Shared Whiteboard',
+            title: 'Shared Whiteboard (prototype)',
             text: 'A full stack application built using Express and React (JavaScript web frameworks). It implements Socket.IO (TCP sockets) and Konva (draw package) to stream line strokes between connected clients.',
             link: 'http://whiteboard-socket.stevenberrisford.com/',
             media_link: `${process.env.SERVER_URL || "http://localhost:3000"}/public/images/shared_whiteboard.jpg`,
