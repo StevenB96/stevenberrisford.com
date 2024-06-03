@@ -12,6 +12,8 @@ import {
   useWindowSize,
 } from '@react-hook/window-size';
 import useScrollPosition from '@react-hook/window-scroll';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   HiOutlinePhoneIncoming
 } from "react-icons/hi";
@@ -61,6 +63,19 @@ function ContentGroup({ children, backgroundImageUrl }) {
       </div>
     </div>
   );
+};
+
+function GeneralComponent({ item }) {
+  if (item.content_type === 1) {
+    return <ProjectComponent key={item.id} project={item} />;
+  }
+  if (item.content_type === 2) {
+    return <PdfComponent key={item.id} article={item} />;
+  }
+  if (item.content_type === 3) {
+    return <YoutubeComponent key={item.id} hobby={item} />;
+  }
+  return null;
 }
 
 function App() {
@@ -76,11 +91,24 @@ function App() {
   useEffect(() => {
     dispatch(getProfileRequest());
     dispatch(getContentRequest());
+    toast(
+      <p
+        style={{
+          whiteSpace: 'pre-wrap',
+          color: 'black',
+          fontFamily: 'Quicksand'
+        }}
+      >
+        {"Welcome to my website!\n\n" +
+          "Here you can discover more about me. " +
+          "By navigating through the various sections you can discover:\n\n" +
+          "> projects and prototypes\n> articles and notes\n> hobbies"}
+      </p>
+    );
   }, []);
 
   const [width, height] = useWindowSize();
   const scrollY = useScrollPosition(30);
-
   const profileSectionRef = useRef(null);
   const projectsSectionRef = useRef(null);
   const articlesSectionRef = useRef(null);
@@ -140,6 +168,10 @@ function App() {
     borderTop: 'solid',
     borderBottom: 'solid',
     textAlign: 'center',
+    height: 100,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   };
 
   const navBarIsRow = width > 1000;
@@ -161,11 +193,11 @@ function App() {
         backgroundSize: '100% auto',
       }}>
         <h1 style={{
-          backgroundColor: 'lightgrey',
           width: '100%',
           padding: 20,
           textAlign: 'center',
           margin: 0,
+          backgroundColor: 'silver',
         }}>Hi, I'm Steven Berrisford, <br></br>this is my website / portfolio.</h1>
         <Nav
           style={{
@@ -193,7 +225,7 @@ function App() {
       </div>
       <ContentGroup backgroundImageUrl={`url(${profile?.projects_background_link})`}>
         {projects && projects.map(item =>
-          <ProjectComponent key={item.id} project={item} />
+          <GeneralComponent item={item} key={item.id} />
         )}
       </ContentGroup>
       <div ref={articlesSectionRef} style={{ ...contentGroupLabelStyle }}>
@@ -201,7 +233,7 @@ function App() {
       </div>
       <ContentGroup backgroundImageUrl={`url(${profile?.articles_background_link})`}>
         {articles && articles.map(item =>
-          <PdfComponent key={item.id} article={item} />
+          <GeneralComponent item={item} key={item.id} />
         )}
       </ContentGroup>
       <div ref={hobbiesSectionRef} style={{ ...contentGroupLabelStyle }}>
@@ -209,7 +241,7 @@ function App() {
       </div>
       <ContentGroup backgroundImageUrl={`url(${profile?.hobbies_background_link})`}>
         {hobbies && hobbies.map(item =>
-          <YoutubeComponent key={item.id} hobby={item} />
+          <GeneralComponent item={item} key={item.id} />
         )}
       </ContentGroup>
       <div ref={contactSectionRef} style={{ ...contentGroupLabelStyle }}>
@@ -223,7 +255,14 @@ function App() {
       {scrollY > 20 && (
         <TopScrollElement />
       )}
-      <ProfilePictureElement profile={profile} />
+      <ProfilePictureElement
+        profile={profile}
+        onClick={() => scrollToSection(profileSectionRef)}
+      />
+      <ToastContainer
+        position="bottom-left"
+        autoClose={10000}
+      />
     </div>
   );
 }

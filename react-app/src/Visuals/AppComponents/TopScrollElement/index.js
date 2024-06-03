@@ -1,18 +1,18 @@
-import { 
-  FaArrowTurnUp 
+import {
+  FaArrowTurnUp
 } from "react-icons/fa6";
 
 const TopScrollElement = () => {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    })
+  };
+
   return (
     <div
-      onClick={
-        () => {
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-          })
-        }
-      }
+      onClick={scrollToTop}
       style={{
         top: 0,
         position: 'fixed',
