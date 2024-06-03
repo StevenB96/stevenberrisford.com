@@ -6,14 +6,14 @@ import Card from 'react-bootstrap/Card';
 function PdfComponent({ children }) {
   let [width, height] = useWindowSize();
   width = Math.min(width, 1400);
-  const a = 20;
+  const a = 40 * (width / 800);
   const b = 220;
   const c = 0.6;
   const divisions = Math.floor((width / b) ** c);
 
   const cardDimensionStyles = {
-    padding: a / divisions,
-    margin: a / divisions,
+    padding: (a * 1) / divisions,
+    margin: (a * 1) / divisions,
     width: `calc(( 100% / ${divisions} ) - ${(a * 2) / divisions}px)`,
   }
 

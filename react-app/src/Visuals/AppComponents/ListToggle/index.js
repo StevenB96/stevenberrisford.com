@@ -5,23 +5,24 @@ import {
   useWindowSize,
 } from '@react-hook/window-size';
 
-const ListToggle = () => {
+const ListToggle = ({ text, onClick }) => {
   let [width, height] = useWindowSize();
 
   return (
-    <div style={{
-      aspectRatio: 1,
-      height: width * 0.05,
-      backgroundColor: 'silver',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      border: 'solid',
-      marginLeft: 10,
-      cursor: 'pointer',
-    }}>
+    <button
+      onClick={onClick}
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        cursor: 'pointer',
+        gap: 10,
+        boxSizing: 'border-box',
+        padding: '0.83em',
+      }}>
+      <h2 style={{ margin: 0, }}>{text}</h2>
       <PiListBold size={width * 0.03} />
-    </div>
+    </button>
   );
 };
 

@@ -10,30 +10,38 @@ const NavBarColumn = ({ navInputMap, scrollToSection }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [highlightedItem, setHighlightedItem] = useState(null);
 
-  const navItemStyle = { paddingLeft: 20 };
+  const navItemStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderBottom: 'solid',
+    borderWidth: 1,
+  };
 
   return (
     <div
       style={{
         width: '100%',
         position: 'relative',
+        backgroundColor: 'silver',
       }}>
       <Nav.Item
         style={{
           display: 'flex',
-          justifyContent: 'flex-end',
+          justifyContent: 'center',
           alignItems: 'center',
           backgroundColor: 'lightgrey',
-          paddingRight: 20,
-          paddingLeft: 20,
           borderBottom: 'solid',
+          borderTop: 'solid',
           boxSizing: 'border-box',
           overflow: 'hidden',
         }}
       >
-        <h2>Menu</h2>
         <div onClick={() => setIsMenuOpen(!isMenuOpen)}>
-          <ListToggle />
+          <ListToggle
+            text={'Menu'}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          />
         </div>
       </Nav.Item>
       {
@@ -64,15 +72,19 @@ const NavBarColumn = ({ navInputMap, scrollToSection }) => {
                     textDecoration: highlightedItem === index ?
                       'underline' :
                       'none',
-                    borderBottom: 'solid',
-                    borderWidth: 1,
-                  }}
-                  onClick={() => {
-                    setIsMenuOpen(false);
-                    setHighlightedItem(null);
-                    scrollToSection(item.ref)}
-                  }>
-                  <h2>{item.title}</h2>
+                  }}>
+                  <button
+                    style={{
+                      width: '100%'
+                    }}
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      setHighlightedItem(null);
+                      scrollToSection(item.ref)
+                    }}
+                  >
+                    <h2>{item.title}</h2>
+                  </button>
                 </Nav.Item>
               ))
             }

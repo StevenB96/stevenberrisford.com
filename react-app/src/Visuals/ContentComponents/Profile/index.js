@@ -20,11 +20,10 @@ const DownloadButton = ({ fileName, fileUrl }) => {
         justifyContent: 'center',
       }}>
       <button
+        className={"standard-button"}
         style={{
-          margin: 20,
-          fontFamily: 'inherit',
+          cursor: 'pointer',
           fontSize: 'min(calc(4vw / (2 / 1.17)), 1.17em)',
-          marginBottom: 0,
         }}
         onClick={handleDownload}
       >Download {fileName}
@@ -40,12 +39,16 @@ function Profile({ profile }) {
   return (
     <div
       style={{
-        margin: 10,
-        padding: 20,
+        margin: 40 * (width / 800),
+        padding: 40 * (width / 800),
+        width: width - 80 * (width / 800),
         border: 'solid',
-        width: width - 80,
         borderRadius: 20,
         backgroundColor: 'white',
+        boxSizing: 'border-box',
+        gap: 30,
+        display: 'flex',
+        flexDirection: 'column',
       }}>
       <h2 style={{ textAlign: 'center' }}>{profile?.job_title}</h2>
       <p
