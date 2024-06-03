@@ -4,6 +4,7 @@ var router = express.Router();
 const db = require('../config/db');
 
 router.get('/profile', async (req, res, next) => {
+  res.set('Cache-Control', 'no-cache');
   try {
     const profile = await db.select().from('profile').first();
     res.json(profile);
@@ -13,6 +14,7 @@ router.get('/profile', async (req, res, next) => {
 });
 
 router.get('/content', async (req, res, next) => {
+  res.set('Cache-Control', 'no-cache');
   try {
     const content = await db.select().from('content');
     res.json(content);

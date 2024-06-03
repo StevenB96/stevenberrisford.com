@@ -1,4 +1,7 @@
 const knex = require('knex');
+
+knex.cache(false);
+
 const knexConfig = require('./knexfile');
 
 const environment = 'main';
