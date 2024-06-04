@@ -269,7 +269,7 @@ function App() {
         onClick={flashWelcomeToast}
       />
       <ToastContainer
-        position="top-right"
+        position="top-center"
         autoClose={10000}
       />
     </div>
