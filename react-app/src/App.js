@@ -88,23 +88,32 @@ function App() {
     hobbies,
   } = useSelector(state => state.app);
 
-  useEffect(() => {
-    dispatch(getProfileRequest());
-    dispatch(getContentRequest());
+  const flashWelcomeToast = () => {
     toast(
-      <p
+      <h3
         style={{
           whiteSpace: 'pre-wrap',
           color: 'black',
           fontFamily: 'Quicksand'
         }}
       >
-        {"Welcome to my website!\n\n" +
-          "Here you can discover more about me. " +
-          "By navigating through the various sections you can discover:\n\n" +
-          "> projects and prototypes\n> articles and notes\n> hobbies"}
-      </p>
+        <div style={{ textAlign: 'center', }}>Welcome to my website!</div><br/>
+        <div>Here you can learn more about me.</div><br/>
+        <div>By navigating through the various sections you can discover:</div>
+        <div style={{ textAlign: 'center', }}></div>
+        <ol>
+          <li>Projects and prototypes</li>
+          <li>Articles and notes</li>
+          <li>Hobbies</li>
+        </ol>
+      </h3>
     );
+  }
+
+  useEffect(() => {
+    dispatch(getProfileRequest());
+    dispatch(getContentRequest());
+    flashWelcomeToast();
   }, []);
 
   const [width, height] = useWindowSize();
@@ -257,10 +266,10 @@ function App() {
       )}
       <ProfilePictureElement
         profile={profile}
-        onClick={() => scrollToSection(profileSectionRef)}
+        onClick={flashWelcomeToast}
       />
       <ToastContainer
-        position="bottom-left"
+        position="top-right"
         autoClose={10000}
       />
     </div>
