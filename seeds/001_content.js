@@ -14,7 +14,7 @@ defineEnv('..');
 exports.seed = async function (knex) {
   // Deletes all existing entries
   return knex('content')
-    .del()
+    .truncate()
     .then(function () {
       // Inserts seed entries
       return knex('content').insert(
@@ -142,4 +142,13 @@ exports.seed = async function (knex) {
         ]
       );
     });
+};
+
+/**
+ * Rollback seed data
+ * @param { import("knex").Knex } knex
+ * @returns { Promise<void> } 
+ */
+exports.rollback = async function(knex) {
+  await knex('content').truncate();
 };
