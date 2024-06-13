@@ -1,6 +1,7 @@
 import {
   useWindowSize,
 } from '@react-hook/window-size';
+import env from '../../../env';
 
 const DownloadButton = ({ fileName, fileUrl }) => {
   const handleDownload = () => {
@@ -34,35 +35,40 @@ const DownloadButton = ({ fileName, fileUrl }) => {
 
 function Profile({ profile }) {
   let [width, height] = useWindowSize();
-  width = Math.min(width, 1000);
+  width = Math.min(width, (env.WIDTH_LIMIT || 1000));
 
   return (
     <div
       style={{
-        margin: 50 * (width / 1000),
-        padding: 50 * (width / 1000),
-        width: `calc(100% - (${100 * (width / 1000)}px))`,
-        border: 'solid',
-        borderRadius: 20,
-        backgroundColor: 'white',
+        padding: 50 * (width / (env.WIDTH_LIMIT || 1000)),
+        width: `100%`,
+        maxWidth: env.WIDTH_LIMIT || 1000,
         boxSizing: 'border-box',
-        gap: 30,
-        display: 'flex',
-        flexDirection: 'column',
       }}>
-      <h2 style={{ textAlign: 'center' }}>{profile?.job_title}</h2>
-      <p
+      <div
         style={{
-          textAlign: 'left',
-          margin: 0,
-          whiteSpace: 'pre-wrap',
-        }}
-      >{profile.description}</p>
-      <DownloadButton
-        fileName="CV"
-        fileUrl={profile?.cv_link}
-      />
-    </div >
+          display: 'flex',
+          flexDirection: 'column',
+          border: 'solid',
+          borderRadius: 20,
+          backgroundColor: 'white',
+          gap: 30,
+          padding: 50 * (width / (env.WIDTH_LIMIT || 1000)),
+        }}>
+        <h2 style={{ textAlign: 'center' }}>{profile?.job_title}</h2>
+        <p
+          style={{
+            textAlign: 'left',
+            margin: 0,
+            whiteSpace: 'pre-wrap',
+          }}
+        >{profile.description}</p>
+        <DownloadButton
+          fileName="CV"
+          fileUrl={profile?.cv_link}
+        />
+      </div >
+    </div>
   );
 }
 

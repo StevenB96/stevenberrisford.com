@@ -48,7 +48,7 @@ const ContentGroup = forwardRef(({ children, backgroundImageUrl, text }, ref) =>
     borderTop: 'solid',
     borderBottom: 'solid',
     textAlign: 'center',
-    height: 150,
+    minHeight: (env.MIN_MENU_HEIGHT * 3 || 150),
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',

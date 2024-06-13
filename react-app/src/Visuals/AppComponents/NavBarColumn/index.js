@@ -7,6 +7,7 @@ import {
   Nav
 } from 'react-bootstrap';
 import ListToggle from '../ListToggle';
+import env from '../../../env';
 
 const NavBarColumn = ({ navInputMap, scrollToSection }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -49,6 +50,7 @@ const NavBarColumn = ({ navInputMap, scrollToSection }) => {
           cursor: 'pointer',
           borderLeft: 'solid',
           borderRight: 'solid',
+          minHeight: (env.MIN_MENU_HEIGHT || 50),
         }}
       >
         <div>
@@ -91,6 +93,7 @@ const NavBarColumn = ({ navInputMap, scrollToSection }) => {
                 borderLeft: 'solid',
                 borderRight: 'solid',
                 height: isMenuOpen ? containerHeight : 0,
+                minHeight: isMenuOpen ? (env.MIN_MENU_HEIGHT || 50) : 0,
                 borderBottomLeftRadius: index === (navInputMap.length - 1) ? 20 : null,
                 borderBottomRightRadius: index === (navInputMap.length - 1) ? 20 : null,
               }}>

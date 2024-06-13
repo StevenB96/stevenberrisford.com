@@ -30,7 +30,6 @@ const NavBarRow = ({ navInputMap, scrollToSection }) => {
       <div
         style={{
           width: '100%',
-          maxWidth: env.WIDTH_LIMIT || 1000,
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'space-around',
@@ -56,6 +55,7 @@ const NavBarRow = ({ navInputMap, scrollToSection }) => {
               borderTop: 'solid',
               borderTopRightRadius: index === (navInputMap.length - 1) ? 20 : null,
               borderTopLeftRadius: index === 0 ? 20 : null,
+              minHeight: env.MIN_MENU_HEIGHT || 50,
             }}>
             <button
               style={{

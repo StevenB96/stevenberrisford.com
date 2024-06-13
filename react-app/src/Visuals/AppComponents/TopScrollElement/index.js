@@ -29,6 +29,7 @@ const TopScrollElement = () => {
         borderBottomLeftRadius: 20,
         borderBottomRightRadius: 20,
         cursor: 'pointer',
+        minHeight: env.MIN_MENU_HEIGHT || 50,
       }}>
       <h2 style={{ margin: 5, }}>Scroll to top</h2><FaArrowTurnUp size={20} />
     </div>

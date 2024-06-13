@@ -11,6 +11,7 @@ import {
 import {
   PiAddressBook
 } from "react-icons/pi";
+import env from '../../../env';
 
 function ContactComponent({ contactMethod }) {
   const { iconName, text } = contactMethod;
@@ -24,7 +25,7 @@ function ContactComponent({ contactMethod }) {
   const IconComponent = iconMap[iconName];
 
   let [width, height] = useWindowSize();
-  width = Math.min(width, 1000);
+  width = Math.min(width, (env.WIDTH_LIMIT || 1000));
   const a = 100;
   const b = 150;
   const c = 0.8;
