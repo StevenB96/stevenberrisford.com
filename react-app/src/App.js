@@ -2,6 +2,7 @@ import {
   useEffect,
   useState,
   useRef,
+  forwardRef,
 } from 'react';
 import {
   useDispatch,
@@ -12,17 +13,14 @@ import {
   useWindowSize,
 } from '@react-hook/window-size';
 import useScrollPosition from '@react-hook/window-scroll';
-import { ToastContainer, toast } from 'react-toastify';
+import {
+  FaArrowTurnDown
+} from "react-icons/fa6";
+import {
+  ToastContainer,
+  toast
+} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {
-  HiOutlinePhoneIncoming
-} from "react-icons/hi";
-import {
-  MdOutlineEmail
-} from "react-icons/md";
-import {
-  PiAddressBook
-} from "react-icons/pi";
 
 import ProjectComponent from './Visuals/ContentComponents/ProjectComponent';
 import PdfComponent from './Visuals/ContentComponents/PdfComponent';
@@ -40,30 +38,52 @@ import {
   getContentRequest
 } from './Redux/Actions/appActions';
 
-function ContentGroup({ children, backgroundImageUrl }) {
+const ContentGroup = forwardRef(({ children, backgroundImageUrl, text }, ref) => {
+  const contentGroupLabelStyle = {
+    backgroundColor: 'lightgrey',
+    width: '100%',
+    paddingLeft: 20,
+    boxSizing: 'border-box',
+    borderTop: 'solid',
+    borderBottom: 'solid',
+    textAlign: 'center',
+    height: 150,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  };
+
   return (
-    <div style={{
-      backgroundImage: backgroundImageUrl,
-      width: '100%',
-      objectFit: 'cover',
-      backgroundSize: '100% auto',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    }}>
-      <div style={{
-        display: 'flex',
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-        width: '100%',
-        maxWidth: 1400,
-      }}>
-        {children}
+    <>
+      <div
+        ref={ref}
+        style={{ ...contentGroupLabelStyle }}
+      >
+        <h2 style={{ margin: 5, marginTop: 0, }}>{text}</h2><FaArrowTurnDown />
       </div>
-    </div>
+      <div style={{
+        backgroundImage: backgroundImageUrl,
+        width: '100%',
+        objectFit: 'cover',
+        backgroundSize: '100% auto',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+          justifyContent: 'space-around',
+          width: '100%',
+          maxWidth: 1400,
+        }}>
+          {children}
+        </div>
+      </div>
+    </>
   );
-};
+});
 
 function GeneralComponent({ item }) {
   if (item.content_type === 1) {
@@ -78,6 +98,39 @@ function GeneralComponent({ item }) {
   return null;
 }
 
+function ToastContent() {
+  return (
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: '10%',
+      }}
+    >
+      <h3
+        style={{
+          whiteSpace: 'pre-wrap',
+          color: 'black',
+          fontFamily: 'Quicksand',
+          textAlign: 'left',
+        }}
+      >
+        <div><h2>Welcome to my website!</h2></div><br />
+        <div>Here you can learn more about me.</div><br />
+        <div>By navigating through the various sections you can discover:</div>
+        <div>
+          <ol style={{ paddingLeft: '10%', }}>
+            <li>Projects and prototypes</li>
+            <li>Articles and notes</li>
+            <li>Hobbies</li>
+          </ol>
+        </div>
+      </h3>
+    </div>
+  );
+};
+
 function App() {
   const dispatch = useDispatch();
 
@@ -89,25 +142,7 @@ function App() {
   } = useSelector(state => state.app);
 
   const flashWelcomeToast = () => {
-    toast(
-      <h3
-        style={{
-          whiteSpace: 'pre-wrap',
-          color: 'black',
-          fontFamily: 'Quicksand'
-        }}
-      >
-        <div style={{ textAlign: 'center', }}>Welcome to my website!</div><br/>
-        <div>Here you can learn more about me.</div><br/>
-        <div>By navigating through the various sections you can discover:</div>
-        <div style={{ textAlign: 'center', }}></div>
-        <ol>
-          <li>Projects and prototypes</li>
-          <li>Articles and notes</li>
-          <li>Hobbies</li>
-        </ol>
-      </h3>
-    );
+    toast(<ToastContent />);
   }
 
   useEffect(() => {
@@ -124,19 +159,10 @@ function App() {
   const hobbiesSectionRef = useRef(null);
   const contactSectionRef = useRef(null);
 
-  const contactMap = [
-    {
-      text: profile?.phone,
-      icon: <HiOutlinePhoneIncoming size={Math.min(width, 1400) * 0.04} />,
-    },
-    {
-      text: profile?.email,
-      icon: <MdOutlineEmail size={Math.min(width, 1400) * 0.04} />,
-    },
-    {
-      text: profile?.address,
-      icon: <PiAddressBook size={Math.min(width, 1400) * 0.04} />,
-    },
+  const contactItems = [
+    { iconName: 'phone', text: profile?.phone },
+    { iconName: 'email', text: profile?.email },
+    { iconName: 'address', text: profile?.address },
   ];
 
   const navInputMap = [
@@ -169,20 +195,6 @@ function App() {
     });
   };
 
-  const contentGroupLabelStyle = {
-    backgroundColor: 'lightgrey',
-    width: '100%',
-    paddingLeft: 20,
-    boxSizing: 'border-box',
-    borderTop: 'solid',
-    borderBottom: 'solid',
-    textAlign: 'center',
-    height: 100,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  };
-
   const navBarIsRow = width > 1000;
 
   return (
@@ -203,11 +215,15 @@ function App() {
       }}>
         <h1 style={{
           width: '100%',
-          padding: 20,
+          padding: 40,
           textAlign: 'center',
           margin: 0,
-          backgroundColor: 'silver',
-        }}>Hi, I'm Steven Berrisford, <br></br>this is my website / portfolio.</h1>
+          backgroundColor: 'white',
+          color: 'black',
+          fontFamily: 'Georgia',
+        }}>
+          Hi, I'm Steven Berrisford.<br></br>This is my website / portfolio.
+        </h1>
         <Nav
           style={{
             width: '100%',
@@ -229,35 +245,35 @@ function App() {
           }
         </div>
       </div>
-      <div ref={projectsSectionRef} style={{ ...contentGroupLabelStyle }}>
-        <h2>Projects</h2>
-      </div>
-      <ContentGroup backgroundImageUrl={`url(${profile?.projects_background_link})`}>
+      <ContentGroup
+        text={'Projects'}
+        ref={projectsSectionRef}
+        backgroundImageUrl={`url(${profile?.projects_background_link})`}>
         {projects && projects.map(item =>
           <GeneralComponent item={item} key={item.id} />
         )}
       </ContentGroup>
-      <div ref={articlesSectionRef} style={{ ...contentGroupLabelStyle }}>
-        <h2>Articles</h2>
-      </div>
-      <ContentGroup backgroundImageUrl={`url(${profile?.articles_background_link})`}>
+      <ContentGroup
+        text={'Articles'}
+        ref={articlesSectionRef}
+        backgroundImageUrl={`url(${profile?.articles_background_link})`}>
         {articles && articles.map(item =>
           <GeneralComponent item={item} key={item.id} />
         )}
       </ContentGroup>
-      <div ref={hobbiesSectionRef} style={{ ...contentGroupLabelStyle }}>
-        <h2>Hobbies</h2>
-      </div>
-      <ContentGroup backgroundImageUrl={`url(${profile?.hobbies_background_link})`}>
+      <ContentGroup
+        text={'Hobbies'}
+        ref={hobbiesSectionRef}
+        backgroundImageUrl={`url(${profile?.hobbies_background_link})`}>
         {hobbies && hobbies.map(item =>
           <GeneralComponent item={item} key={item.id} />
         )}
       </ContentGroup>
-      <div ref={contactSectionRef} style={{ ...contentGroupLabelStyle }}>
-        <h2>Contact Info</h2>
-      </div>
-      <ContentGroup backgroundImageUrl={`url(${profile?.profile_background_link})`}>
-        {contactMap.map(item =>
+      <ContentGroup
+        text={'Contact Info'}
+        ref={contactSectionRef}
+        backgroundImageUrl={`url(${profile?.profile_background_link})`}>
+        {contactItems.map(item =>
           <ContactComponent contactMethod={item} />
         )}
       </ContentGroup>
@@ -271,6 +287,7 @@ function App() {
       <ToastContainer
         position="top-center"
         autoClose={10000}
+        style={{ width: '50%', maxWidth: 600, }}
       />
     </div>
   );

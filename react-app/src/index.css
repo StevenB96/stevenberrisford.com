@@ -9,7 +9,7 @@ html {
 }
 
 body {
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Quicksand', 'sans-serif';
     padding: 0;
     margin: 0;
     overflow-x: hidden;
@@ -42,6 +42,12 @@ h6 {
 p {
     /* font-size: 1em; */
     font-size: min(calc(4vw / (2 / 1)), 1em);
+    user-select: none;
+}
+
+.small-p {
+    /* font-size: 1em; */
+    font-size: min(calc(4vw / (3 / 1)), 0.75em);
     user-select: none;
 }
 

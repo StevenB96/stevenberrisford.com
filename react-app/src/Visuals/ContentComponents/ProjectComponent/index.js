@@ -47,7 +47,7 @@ function ProjectComponent({ project }) {
                 '100%',
               aspectRatio: 1,
               objectFit: 'cover',
-              transition: 'width 0.25s ease-in-out',
+              transition: 'width 0.1s ease-in-out',
             }} />
           {
             project.link && (
@@ -66,11 +66,11 @@ function ProjectComponent({ project }) {
                 justifyContent: 'center',
                 alignItems: 'center',
                 backgroundColor: 'white',
-                borderColor: 'red',
+                borderColor: 'green',
               }}>
               <FaLocationCrosshairs
                 size={iconContainerRef?.current?.offsetWidth * 0.1}
-                color={'red'}
+                color={'green'}
                 style={{}}
               />
               </div>

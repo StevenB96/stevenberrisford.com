@@ -41,6 +41,7 @@ const NavBarRow = ({ navInputMap, scrollToSection }) => {
             backgroundColor: highlightedItem === index ?
               'white' :
               'lightgrey',
+            transition: 'all 0.1s ease-in-out',
           }}>
           <button
             style={{
