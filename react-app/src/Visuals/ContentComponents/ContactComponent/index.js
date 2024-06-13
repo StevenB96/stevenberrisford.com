@@ -33,8 +33,6 @@ function ContactComponent({ contactMethod }) {
   return (
     <Card style={{
       width: `calc(( 100% / ${divisions} ) - ${(a * 2) / divisions}px)`,
-      // aspectRatio: 1,
-      // padding: a / divisions,
       margin: a / divisions,
 
       display: 'flex',

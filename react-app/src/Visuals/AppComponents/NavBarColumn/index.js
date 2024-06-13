@@ -86,8 +86,8 @@ const NavBarColumn = ({ navInputMap, scrollToSection }) => {
                   'underline' :
                   'none',
                 transition: 'all 0.1s ease-in-out',
-                borderTop: index === 0 ? 'solid' : null,
-                borderBottom: 'solid',
+                borderTop: isMenuOpen ? 'solid' : null,
+                borderBottom: isMenuOpen && index === navInputMap.length - 1 ? 'solid' : null,
                 borderLeft: 'solid',
                 borderRight: 'solid',
                 height: isMenuOpen ? containerHeight : 0,

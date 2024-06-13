@@ -39,9 +39,9 @@ function Profile({ profile }) {
   return (
     <div
       style={{
-        margin: 40 * (width / 1000),
-        padding: 40 * (width / 1000),
-        width: width - 80 * (width / 1000),
+        margin: 50 * (width / 1000),
+        padding: 50 * (width / 1000),
+        width: `calc(100% - (${100 * (width / 1000)}px))`,
         border: 'solid',
         borderRadius: 20,
         backgroundColor: 'white',
