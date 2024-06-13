@@ -1,6 +1,9 @@
 const ProfilePictureElement = ({ profile, onClick }) => {
   return (
     <button
+      style={{
+        cursor: 'help',
+      }}
       onClick={onClick}
     >
       <img

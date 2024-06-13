@@ -14,13 +14,14 @@ import {
 } from '@react-hook/window-size';
 import useScrollPosition from '@react-hook/window-scroll';
 import {
-  FaArrowTurnDown
-} from "react-icons/fa6";
+  PiArrowFatDownFill
+} from "react-icons/pi";
 import {
   ToastContainer,
   toast
 } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import env from './env';
 
 import ProjectComponent from './Visuals/ContentComponents/ProjectComponent';
 import PdfComponent from './Visuals/ContentComponents/PdfComponent';
@@ -59,7 +60,7 @@ const ContentGroup = forwardRef(({ children, backgroundImageUrl, text }, ref) =>
         ref={ref}
         style={{ ...contentGroupLabelStyle }}
       >
-        <h2 style={{ margin: 5, marginTop: 0, }}>{text}</h2><FaArrowTurnDown />
+        <h2 style={{ margin: 5, marginTop: 0, }}>{text}</h2><PiArrowFatDownFill size={25} />
       </div>
       <div style={{
         backgroundImage: backgroundImageUrl,
@@ -105,7 +106,7 @@ function ToastContent() {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: '10%',
+        padding: '5%',
       }}
     >
       <h3
@@ -116,7 +117,13 @@ function ToastContent() {
           textAlign: 'left',
         }}
       >
-        <div><h2>Welcome to my website!</h2></div><br />
+        <div>
+          <h2
+            style={{
+              textAlign: 'center',
+            }}>Welcome to my website!
+          </h2>
+        </div><br />
         <div>Here you can learn more about me.</div><br />
         <div>By navigating through the various sections you can discover:</div>
         <div>
@@ -195,7 +202,7 @@ function App() {
     });
   };
 
-  const navBarIsRow = width > 1000;
+  const navBarIsRow = width > env.WIDTH_LIMIT || 1000;
 
   return (
     <div style={{
@@ -218,9 +225,8 @@ function App() {
           padding: 40,
           textAlign: 'center',
           margin: 0,
-          backgroundColor: 'white',
+          backgroundColor: 'silver',
           color: 'black',
-          fontFamily: 'Georgia',
         }}>
           Hi, I'm Steven Berrisford.<br></br>This is my website / portfolio.
         </h1>
@@ -287,7 +293,7 @@ function App() {
       <ToastContainer
         position="top-center"
         autoClose={10000}
-        style={{ width: '50%', maxWidth: 600, }}
+        style={{ width: '50%', maxWidth: (env.WIDTH_LIMIT || 1000) / 2, }}
       />
     </div>
   );

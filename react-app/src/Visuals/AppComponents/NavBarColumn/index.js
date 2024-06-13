@@ -27,8 +27,6 @@ const NavBarColumn = ({ navInputMap, scrollToSection }) => {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    borderBottom: 'solid',
-    borderWidth: 1,
   };
 
   return (
@@ -39,27 +37,24 @@ const NavBarColumn = ({ navInputMap, scrollToSection }) => {
         backgroundColor: 'silver',
       }}>
       <Nav.Item
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
         style={{
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
           backgroundColor: 'lightgrey',
-          borderBottom: 'solid',
-          borderTop: 'solid',
           boxSizing: 'border-box',
           overflow: 'hidden',
+          border: 'solid',
+          cursor: 'pointer',
         }}
       >
-        <div onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        <div>
           <ListToggle
             text={'Menu'}
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
           />
         </div>
       </Nav.Item>
-      {/* {
-        isMenuOpen &&
-        ( */}
       <div
         ref={containerRef}
         style={{
@@ -71,7 +66,6 @@ const NavBarColumn = ({ navInputMap, scrollToSection }) => {
           left: 0,
           width: '100%',
           boxSizing: 'border-box',
-          height: isMenuOpen ? containerHeight + 'px' : '0',
           transition: 'height 0.1s ease-in-out',
           overflow: 'hidden',
         }}>
@@ -90,6 +84,12 @@ const NavBarColumn = ({ navInputMap, scrollToSection }) => {
                   'underline' :
                   'none',
                 transition: 'all 0.1s ease-in-out',
+                borderBottom: 'solid',
+                borderLeft: 'solid',
+                borderRight: 'solid',
+                height: isMenuOpen ? containerHeight : 0,
+                borderBottomLeftRadius: index === (navInputMap.length - 1) ? 20 : null,
+                borderBottomRightRadius: index === (navInputMap.length - 1) ? 20 : null,
               }}>
               <button
                 style={{

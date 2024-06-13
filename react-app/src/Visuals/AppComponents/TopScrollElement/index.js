@@ -1,6 +1,7 @@
 import {
   FaArrowTurnUp
 } from "react-icons/fa6";
+import env from '../../../env';
 
 const TopScrollElement = () => {
   const scrollToTop = () => {
@@ -21,7 +22,7 @@ const TopScrollElement = () => {
         alignItems: 'center',
         justifyContent: 'center',
         width: '50%',
-        maxWidth: 700,
+        maxWidth: (env.WIDTH_LIMIT || 1000) / 2,
         backgroundColor: 'lightgrey',
         border: 'solid',
         borderTop: 0,
@@ -29,7 +30,7 @@ const TopScrollElement = () => {
         borderBottomRightRadius: 20,
         cursor: 'pointer',
       }}>
-      <h2 style={{ margin: 5, }}>Scroll to top</h2><FaArrowTurnUp />
+      <h2 style={{ margin: 5, }}>Scroll to top</h2><FaArrowTurnUp size={20} />
     </div>
   );
 };
