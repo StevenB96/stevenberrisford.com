@@ -202,7 +202,7 @@ function App() {
     });
   };
 
-  const navBarIsRow = width > env.WIDTH_LIMIT || 1000;
+  const navBarIsRow = width > (env.WIDTH_LIMIT || 1000);
 
   return (
     <div style={{
@@ -233,6 +233,7 @@ function App() {
         <Nav
           style={{
             width: '100%',
+            borderBottom: 'solid',
           }}
         >
           {

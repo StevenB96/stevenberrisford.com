@@ -34,14 +34,14 @@ const DownloadButton = ({ fileName, fileUrl }) => {
 
 function Profile({ profile }) {
   let [width, height] = useWindowSize();
-  width = Math.min(width, 800);
+  width = Math.min(width, 1000);
 
   return (
     <div
       style={{
-        margin: 40 * (width / 800),
-        padding: 40 * (width / 800),
-        width: width - 80 * (width / 800),
+        margin: 40 * (width / 1000),
+        padding: 40 * (width / 1000),
+        width: width - 80 * (width / 1000),
         border: 'solid',
         borderRadius: 20,
         backgroundColor: 'white',

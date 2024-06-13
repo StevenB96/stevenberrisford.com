@@ -3,10 +3,10 @@ import {
 } from '@react-hook/window-size';
 import Card from 'react-bootstrap/Card';
 
-function PdfComponent({ children }) {
+function BaseComponent({ children }) {
   let [width, height] = useWindowSize();
-  width = Math.min(width, 1400);
-  const a = 40 * (width / 800);
+  width = Math.min(width, 1000);
+  const a = 100 * (width / 1000);
   const b = 220;
   const c = 0.6;
   const divisions = Math.floor((width / b) ** c);
@@ -38,4 +38,4 @@ function PdfComponent({ children }) {
   );
 }
 
-export default PdfComponent;
+export default BaseComponent;

@@ -45,8 +45,10 @@ const NavBarColumn = ({ navInputMap, scrollToSection }) => {
           backgroundColor: 'lightgrey',
           boxSizing: 'border-box',
           overflow: 'hidden',
-          border: 'solid',
+          borderTop: 'solid',
           cursor: 'pointer',
+          borderLeft: 'solid',
+          borderRight: 'solid',
         }}
       >
         <div>
@@ -84,6 +86,7 @@ const NavBarColumn = ({ navInputMap, scrollToSection }) => {
                   'underline' :
                   'none',
                 transition: 'all 0.1s ease-in-out',
+                borderTop: index === 0 ? 'solid' : null,
                 borderBottom: 'solid',
                 borderLeft: 'solid',
                 borderRight: 'solid',

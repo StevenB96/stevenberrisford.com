@@ -24,8 +24,8 @@ function ContactComponent({ contactMethod }) {
   const IconComponent = iconMap[iconName];
 
   let [width, height] = useWindowSize();
-  width = Math.min(width, 1400);
-  const a = 80;
+  width = Math.min(width, 1000);
+  const a = 100;
   const b = 150;
   const c = 0.8;
   const divisions = Math.floor((width / b) ** c);
