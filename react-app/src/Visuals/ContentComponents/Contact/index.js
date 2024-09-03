@@ -13,7 +13,7 @@ import {
 } from "react-icons/pi";
 import env from '../../../env';
 
-function ContactComponent({ contactMethod }) {
+function Contact({ contactMethod }) {
   const { iconName, text } = contactMethod;
 
   const iconMap = {
@@ -82,4 +82,4 @@ function ContactComponent({ contactMethod }) {
   );
 }
 
-export default ContactComponent;
+export default Contact;

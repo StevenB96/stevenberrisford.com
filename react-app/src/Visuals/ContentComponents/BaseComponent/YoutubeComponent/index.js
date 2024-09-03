@@ -1,11 +1,10 @@
 import YouTube from 'react-youtube';
-import BaseComponent from '../BaseComponent';
-import Card from 'react-bootstrap/Card';
+import BaseComponent from '../../BaseComponent';
 
 function YoutubeComponent({ hobby }) {
   return (
     <BaseComponent>
-      <Card.Title><h3>{hobby.title}</h3></Card.Title>
+      <h3>{hobby.title}</h3>
       <YouTube
         // ref={playerRef}
         width='100%'
@@ -18,15 +17,13 @@ function YoutubeComponent({ hobby }) {
         }}
         style={{}}
       />
-      <Card.Text>
-        <p
-          style={{
-            textAlign: 'left',
-            margin: 0,
-            whiteSpace: 'pre-wrap',
-          }}
-        >{hobby.text}</p>
-      </Card.Text>
+      <p
+        style={{
+          textAlign: 'left',
+          margin: 0,
+          whiteSpace: 'pre-wrap',
+        }}
+      >{hobby.text}</p>
     </BaseComponent>
   );
 }

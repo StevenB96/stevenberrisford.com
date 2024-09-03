@@ -76,7 +76,7 @@ const NavBarColumn = ({ navInputMap, scrollToSection }) => {
         {
           navInputMap.map((item, index) => (
             <Nav.Item
-              key={item.id}
+              key={index}
               onMouseOver={() => setHighlightedItem(index)}
               onMouseOut={() => setHighlightedItem(null)}
               style={{

@@ -3,16 +3,16 @@ import {
   useRef,
 } from 'react';
 import { FaLocationCrosshairs } from "react-icons/fa6";
-import BaseComponent from '../BaseComponent';
-import Card from 'react-bootstrap/Card';
+import BaseComponent from '../../BaseComponent';
 
 function ProjectComponent({ project }) {
   const [isHighlighted, setIsHighlighted] = useState(false);
   const iconContainerRef = useRef(null);
+  const offsetWidth = iconContainerRef?.current?.offsetWidth;
 
   return (
     <BaseComponent>
-      <Card.Title><h3>{project.title}</h3></Card.Title>
+      <h3>{project.title}</h3>
       <a
         onMouseOver={() => setIsHighlighted(true)}
         onMouseOut={() => setIsHighlighted(false)}
@@ -52,41 +52,42 @@ function ProjectComponent({ project }) {
           {
             project.link && (
               <div
-              style={{
-                border: 'solid',
-                borderWidth: iconContainerRef?.current?.offsetWidth * 0.01,
-                aspectRatio: 1,
-                width: iconContainerRef?.current?.offsetWidth * 0.15,  
-                boxSizing: 'border-box', 
-                borderRadius: '50%',  
-                position: 'absolute',
-                top: 0,
-                right: 0,        
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                backgroundColor: 'white',
-                borderColor: 'green',
-              }}>
-              <FaLocationCrosshairs
-                size={iconContainerRef?.current?.offsetWidth * 0.1}
-                color={'green'}
-                style={{}}
-              />
+                style={{
+                  border: 'solid',
+                  borderWidth: offsetWidth ?
+                    iconContainerRef?.current?.offsetWidth * 0.01 : 1,
+                  aspectRatio: 1,
+                  width: offsetWidth ?
+                    iconContainerRef?.current?.offsetWidth * 0.15 : 1,
+                  boxSizing: 'border-box',
+                  borderRadius: '50%',
+                  position: 'absolute',
+                  top: 0,
+                  right: 0,
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  backgroundColor: 'white',
+                  borderColor: 'green',
+                }}>
+                <FaLocationCrosshairs
+                  size={offsetWidth ?
+                    iconContainerRef?.current?.offsetWidth * 0.1 : 1}
+                  color={'green'}
+                  style={{}}
+                />
               </div>
             )
           }
         </div>
       </a>
-      <Card.Text>
-        <p
-          style={{
-            textAlign: 'left',
-            margin: 0,
-            whiteSpace: 'pre-wrap',
-          }}
-        >{project.text}</p>
-      </Card.Text>
+      <p
+        style={{
+          textAlign: 'left',
+          margin: 0,
+          whiteSpace: 'pre-wrap',
+        }}
+      >{project.text}</p>
     </BaseComponent>
   );
 }
