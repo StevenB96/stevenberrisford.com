@@ -5,6 +5,8 @@ import {
   FaArrowTurnDown,
 } from "react-icons/fa6";
 
+import env from '../../../env';
+
 const ContentGroup = forwardRef(({
   children,
   backgroundImageUrl,
@@ -19,7 +21,7 @@ const ContentGroup = forwardRef(({
     borderTop: 'solid',
     borderBottom: 'solid',
     textAlign: 'center',
-    height: 150,
+    minHeight: (env.MIN_MENU_HEIGHT * 3 || 150),
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
