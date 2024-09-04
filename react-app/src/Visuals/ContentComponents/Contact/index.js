@@ -1,7 +1,9 @@
+import React, {
+  useMemo
+} from 'react';
 import {
-  useWindowSize,
+  useWindowSize
 } from '@react-hook/window-size';
-import Card from 'react-bootstrap/Card';
 import {
   HiOutlinePhoneIncoming
 } from "react-icons/hi";
@@ -11,7 +13,6 @@ import {
 import {
   PiAddressBook
 } from "react-icons/pi";
-import env from '../../../env';
 
 function Contact({ contactMethod }) {
   const { iconName, text } = contactMethod;
@@ -22,63 +23,33 @@ function Contact({ contactMethod }) {
     address: PiAddressBook,
   };
 
-  const IconComponent = iconMap[iconName];
+  const IconComponent = useMemo(() => iconMap[iconName], [iconName]);
 
-  let [width, height] = useWindowSize();
-  width = Math.min(width, (env.WIDTH_LIMIT || 1000));
-  const a = 100;
-  const b = 150;
-  const c = 0.8;
-  const divisions = Math.floor((width / b) ** c);
+  const [width] = useWindowSize();
+
+  // Calculate adjusted width
+  const adjustedWidth = useMemo(() => (width > 1400 ? 1400 : width) / 3 - 80, [width]);
 
   return (
-    <Card style={{
-      width: `calc(( 100% / ${divisions} ) - ${(a * 2) / divisions}px)`,
-      margin: a / divisions,
-
+    <div style={{
+      width: adjustedWidth,
       display: 'flex',
-      alignItems: 'flex-start',
-      justifyContent: 'center',
+      flexDirection: 'column',
+      alignItems: 'center',
+      margin: 40,
     }}>
-      <Card.Body style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        position: 'relative',
-        backgroundColor: 'white',
-        borderRadius: '50%',
-        aspectRatio: 1,
-        width: '100%',
-        boxSizing: 'border-box',
-        border: 'solid',
-      }}>
-        <div
-          style={{ width: '80%' }}
-        >
-          <IconComponent size={'100%'} />
-        </div>
-        <div
-          style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: `translate(-50%, -50%)`,
-            width: '80%',
-          }}
-        >
-          <p
-            style={{
-              whiteSpace: 'pre-wrap',
-              textAlign: 'center',
-              wordWrap: 'break-word',
-              background: 'rgba(255,255,255,0.9)',
-            }}>
-            {text}
-          </p>
-        </div>
-      </Card.Body>
-    </Card>
+      <IconComponent size={adjustedWidth / 2} color={'white'} />
+      <h2
+        style={{
+          whiteSpace: 'pre-wrap',
+          textAlign: 'center',
+          wordWrap: 'break-word',
+          color: 'white',
+          width: '100%',
+        }}>
+        {text}
+      </h2>
+    </div>
   );
 }
 

@@ -22,13 +22,13 @@ import {
 import 'react-toastify/dist/ReactToastify.css';
 import env from './env';
 
-import ProjectComponent from './Visuals/ContentComponents/BaseComponent/ProjectComponent';
-import PdfComponent from './Visuals/ContentComponents/BaseComponent/PdfComponent';
-import YoutubeComponent from './Visuals/ContentComponents/BaseComponent/YoutubeComponent';
+import ProjectComponent from './Visuals/ContentComponents/ProjectComponent';
+import PdfComponent from './Visuals/ContentComponents/PdfComponent';
+import YoutubeComponent from './Visuals/ContentComponents/YoutubeComponent';
 import Profile from './Visuals/ContentComponents/Profile';
 import Contact from './Visuals/ContentComponents/Contact';
 import ContentGroup from './Visuals/ContentComponents/ContentGroup';
-
+import BaseComponent from './Visuals/ContentComponents/BaseComponent';
 import NavBarColumn from './Visuals/AppComponents/NavBarColumn';
 import NavBarRow from './Visuals/AppComponents/NavBarRow';
 import ProfilePictureElement from './Visuals/AppComponents/ProfilePictureElement';
@@ -40,17 +40,56 @@ import {
   getContentRequest
 } from './Redux/Actions/appActions';
 
+const MultiTypeNav = ({ navInputMap, scrollToSection }) => {
+  const [width] = useWindowSize();
+  const isMobile = width > (env.MOBILE_WIDTH_BREAKPOINT || 1000);
+
+  return (
+    <Nav
+      style={{
+        width: '100%',
+      }}
+    >
+      {
+        isMobile ?
+          <NavBarRow
+            navInputMap={navInputMap}
+            scrollToSection={scrollToSection} /> :
+          <NavBarColumn
+            navInputMap={navInputMap}
+            scrollToSection={scrollToSection} />
+      }
+    </Nav>
+  );
+};
+
 const MultiTypeComponent = memo(({ item }) => {
+  let content = null;
   if (item.content_type === 1) {
-    return <ProjectComponent key={item.id} project={item} />;
+    content = <ProjectComponent key={item.id} project={item} />;
   }
-  if (item.content_type === 2) {
-    return <PdfComponent key={item.id} article={item} />;
+  else if (item.content_type === 2) {
+    content = <PdfComponent key={item.id} article={item} />;
   }
-  if (item.content_type === 3) {
-    return <YoutubeComponent key={item.id} hobby={item} />;
+  else if (item.content_type === 3) {
+    content = <YoutubeComponent key={item.id} hobby={item} />;
   }
-  return null;
+  return (
+    <BaseComponent>
+      <div>
+        <h3>{item.title}</h3>
+        <p
+          style={{
+            textAlign: 'left',
+            margin: 0,
+            whiteSpace: 'pre-wrap',
+            marginBottom: 10,
+          }}
+        >{item.text}</p>
+      </div>
+      {content}
+    </BaseComponent>
+  );
 });
 
 function App() {
@@ -207,8 +246,6 @@ function App() {
     { iconName: 'address', text: profile?.address },
   ];
 
-  const navBarIsRow = width > (env.WIDTH_LIMIT || 1000);
-
   return (
     <div style={{
       display: 'flex',
@@ -234,27 +271,12 @@ function App() {
                   padding: 40,
                   textAlign: 'center',
                   margin: 0,
-                  backgroundColor: 'white',
-                  color: 'black',
+                  color: 'white',
                   fontFamily: 'Georgia',
                 }}>
                   Hi, I'm Steven Berrisford.<br></br>This is my website / portfolio.
                 </h1>
-                <Nav
-                  style={{
-                    width: '100%',
-                  }}
-                >
-                  {
-                    navBarIsRow ?
-                      <NavBarRow
-                        navInputMap={navInputMap}
-                        scrollToSection={scrollToSection} /> :
-                      <NavBarColumn
-                        navInputMap={navInputMap}
-                        scrollToSection={scrollToSection} />
-                  }
-                </Nav>
+                <MultiTypeNav navInputMap={navInputMap} scrollToSection={scrollToSection} />
                 <div ref={profileSectionRef}>
                   {profile &&
                     <Profile profile={profile} />
@@ -267,7 +289,7 @@ function App() {
                   title={value.title}
                   text={value.text}
                   ref={value.ref}
-                  backgroundImageUrl={`url(${value.backgroundImageUrl})`}>
+                  backgroundImageUrl={value.backgroundImageUrl}>
                   {value.items && value.items.map((item, index) => {
                     return <MultiTypeComponent
                       item={item}
@@ -282,7 +304,9 @@ function App() {
                 title={'Contact Info'}
                 text={'contactInfo'}
                 ref={contactSectionRef}
-                backgroundImageUrl={`url(${profile?.profile_background_link})`}>
+                backgroundImageUrl={profile?.profile_background_link}
+                blur={4}
+              >
                 {contactItems.map(item =>
                   <Contact contactMethod={item} />
                 )}
@@ -316,8 +340,8 @@ function App() {
                 flexDirection: 'column',
               }}
             >
-              <h2 style={{ color: 'blue', }}>Loading Site Content</h2>
-              <ClockLoader color={'blue'} />
+              <h2 style={{ color: 'white', }}>Loading Site Content</h2>
+              <ClockLoader color={'white'} />
             </div>
           )
       }

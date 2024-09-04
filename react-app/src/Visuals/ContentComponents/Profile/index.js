@@ -25,9 +25,13 @@ const DownloadButton = ({ fileName, fileUrl }) => {
         style={{
           cursor: 'pointer',
           fontSize: 'min(calc(4vw / (2 / 1.17)), 1.17em)',
+          font: 'inherit',
         }}
         onClick={handleDownload}
-      >Download {fileName}
+      >
+        <h3 style={{margin: 5,}}>
+          Download {fileName}
+        </h3>
       </button>
     </div>
   );
@@ -35,14 +39,14 @@ const DownloadButton = ({ fileName, fileUrl }) => {
 
 function Profile({ profile }) {
   let [width, height] = useWindowSize();
-  width = Math.min(width, (env.WIDTH_LIMIT || 1000));
+  width = Math.min(width, (env.MOBILE_WIDTH_BREAKPOINT || 1000));
 
   return (
     <div
       style={{
-        padding: 50 * (width / (env.WIDTH_LIMIT || 1000)),
+        padding: 50 * (width / (env.MOBILE_WIDTH_BREAKPOINT || 1000)),
         width: `100%`,
-        maxWidth: env.WIDTH_LIMIT || 1000,
+        maxWidth: env.MOBILE_WIDTH_BREAKPOINT || 1000,
         boxSizing: 'border-box',
       }}>
       <div
@@ -53,7 +57,7 @@ function Profile({ profile }) {
           borderRadius: 20,
           backgroundColor: 'white',
           gap: 30,
-          padding: 50 * (width / (env.WIDTH_LIMIT || 1000)),
+          padding: 50 * (width / (env.MOBILE_WIDTH_BREAKPOINT || 1000)),
         }}>
         <h2 style={{ textAlign: 'center' }}>{profile?.job_title}</h2>
         <p

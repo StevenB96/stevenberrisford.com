@@ -1,42 +1,47 @@
+import React, { useMemo } from 'react';
 import {
   useWindowSize,
 } from '@react-hook/window-size';
-import Card from 'react-bootstrap/Card';
 import env from '../../../env';
 
-function BaseComponent({ children }) {
-  let [width, height] = useWindowSize();
-  width = Math.min(width, (env.WIDTH_LIMIT || 1000));
-  const a = 50 * (width / (env.WIDTH_LIMIT || 1000));
-  const b = 220;
-  const c = 0.6;
-  const divisions = Math.floor((width / b) ** c);
+const BaseComponent = ({ children }) => {
+  const [width] = useWindowSize();
 
-  const cardDimensionStyles = {
-    padding: (a * 1) / divisions,
-    margin: (a * 1) / divisions,
-    width: `calc(( 100% / ${divisions} ) - ${(a * 2) / divisions}px)`,
-  }
+  // Destructure environment variables if necessary
+  const mobileBreakpoint = env.MOBILE_WIDTH_BREAKPOINT || 1000;
+
+  // Check device conditions
+  const isMobile = width > mobileBreakpoint;
+  const isMax = width > 1400;
+
+  // Calculate adjusted width
+  const adjustedWidth = useMemo(() => {
+    if (isMax) {
+      return 1400 / 3 - 40;
+    }
+
+    return width / (isMobile ? 3 : 2) - 40;
+  }, [isMax, isMobile, width]);
+
+  // Define styles
+  const containerStyle = {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    boxSizing: 'border-box',
+    border: 'solid',
+    borderRadius: 20,
+    backgroundColor: 'white',
+    width: adjustedWidth,
+    padding: 20,
+    margin: 20,
+  };
 
   return (
-    <Card
-      style={{
-        display: 'flex',
-        ...cardDimensionStyles,
-        boxSizing: 'border-box',
-        border: 'solid',
-        borderRadius: 20,
-        backgroundColor: 'white',
-      }}>
-      <Card.Body
-        style={{
-          width: '100%',
-          boxSizing: 'border-box',
-        }}>
-          { children }
-      </Card.Body>
-    </Card>
+    <div style={containerStyle}>
+      {children}
+    </div>
   );
-}
+};
 
 export default BaseComponent;

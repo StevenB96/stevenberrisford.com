@@ -13,6 +13,7 @@ const ProfilePictureElement = ({ profile, onClick }) => {
           top: '1vw',
           left: '1vw',
           position: 'fixed',
+          zIndex: 2,
           display: 'flex',
           height: 'min(150px, 20vw)',
           aspectRatio: 1,

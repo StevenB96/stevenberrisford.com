@@ -9,6 +9,60 @@ import {
 import ListToggle from '../ListToggle';
 import env from '../../../env';
 
+const CustomNavItem = ({
+  item,
+  index,
+  navInputMap,
+  highlightedItem,
+  setHighlightedItem,
+  isMenuOpen,
+  setIsMenuOpen,
+  scrollToSection,
+  containerHeight
+}) => {
+  const navItemStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: highlightedItem === index ?
+      'white' :
+      'lightgrey',
+    textDecoration: highlightedItem === index ?
+      'underline' :
+      'none',
+    transition: 'all 0.1s ease-in-out',
+    borderTop: isMenuOpen ? 'solid' : null,
+    borderBottom: isMenuOpen && index === navInputMap.length - 1 ? 'solid' : null,
+    borderLeft: 'solid',
+    borderRight: 'solid',
+    height: isMenuOpen ? containerHeight : 0,
+    minHeight: isMenuOpen ? (env.MENU_HEIGHT || 50) : 0,
+    borderBottomLeftRadius: index === (navInputMap.length - 1) ? 20 : null,
+    borderBottomRightRadius: index === (navInputMap.length - 1) ? 20 : null,
+  };
+
+  return (
+    <Nav.Item
+      key={index}
+      onMouseOver={() => setHighlightedItem(index)}
+      onMouseOut={() => setHighlightedItem(null)}
+      style={navItemStyle}>
+      <button
+        style={{
+          width: '100%'
+        }}
+        onClick={() => {
+          setIsMenuOpen(false);
+          setHighlightedItem(null);
+          scrollToSection(item.ref)
+        }}
+      >
+        <h2>{item.title}</h2>
+      </button>
+    </Nav.Item>
+  );
+};
+
 const NavBarColumn = ({ navInputMap, scrollToSection }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [containerHeight, setContainerHeight] = useState(0);
@@ -23,12 +77,6 @@ const NavBarColumn = ({ navInputMap, scrollToSection }) => {
   }, [isMenuOpen]);
 
   const [highlightedItem, setHighlightedItem] = useState(null);
-
-  const navItemStyle = {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  };
 
   return (
     <div
@@ -50,7 +98,7 @@ const NavBarColumn = ({ navInputMap, scrollToSection }) => {
           cursor: 'pointer',
           borderLeft: 'solid',
           borderRight: 'solid',
-          minHeight: (env.MIN_MENU_HEIGHT || 50),
+          minHeight: (env.MENU_HEIGHT * 2 || 100),
         }}
       >
         <div>
@@ -75,41 +123,17 @@ const NavBarColumn = ({ navInputMap, scrollToSection }) => {
         }}>
         {
           navInputMap.map((item, index) => (
-            <Nav.Item
-              key={index}
-              onMouseOver={() => setHighlightedItem(index)}
-              onMouseOut={() => setHighlightedItem(null)}
-              style={{
-                ...navItemStyle,
-                backgroundColor: highlightedItem === index ?
-                  'white' :
-                  'lightgrey',
-                textDecoration: highlightedItem === index ?
-                  'underline' :
-                  'none',
-                transition: 'all 0.1s ease-in-out',
-                borderTop: isMenuOpen ? 'solid' : null,
-                borderBottom: isMenuOpen && index === navInputMap.length - 1 ? 'solid' : null,
-                borderLeft: 'solid',
-                borderRight: 'solid',
-                height: isMenuOpen ? containerHeight : 0,
-                minHeight: isMenuOpen ? (env.MIN_MENU_HEIGHT || 50) : 0,
-                borderBottomLeftRadius: index === (navInputMap.length - 1) ? 20 : null,
-                borderBottomRightRadius: index === (navInputMap.length - 1) ? 20 : null,
-              }}>
-              <button
-                style={{
-                  width: '100%'
-                }}
-                onClick={() => {
-                  setIsMenuOpen(false);
-                  setHighlightedItem(null);
-                  scrollToSection(item.ref)
-                }}
-              >
-                <h2>{item.title}</h2>
-              </button>
-            </Nav.Item>
+            <CustomNavItem
+              item={item}
+              index={index}
+              navInputMap={navInputMap}
+              highlightedItem={highlightedItem}
+              setHighlightedItem={setHighlightedItem}
+              isMenuOpen={isMenuOpen}
+              setIsMenuOpen={setIsMenuOpen}
+              scrollToSection={scrollToSection}
+              containerHeight={containerHeight}
+            />
           ))
         }
       </div>

@@ -1,58 +1,75 @@
-import {
-  forwardRef,
-} from 'react';
-import {
-  FaArrowTurnDown,
-} from "react-icons/fa6";
-
+import { forwardRef } from 'react';
+import { FaArrowTurnDown } from "react-icons/fa6";
 import env from '../../../env';
 
 const ContentGroup = forwardRef(({
   children,
   backgroundImageUrl,
   title,
+  blur,
 }, ref) => {
-
-  const contentGroupLabelStyle = {
+  
+  // Styles
+  const headerStyle = {
     backgroundColor: 'lightgrey',
     width: '100%',
-    paddingLeft: 20,
+    padding: '20px 0',
     boxSizing: 'border-box',
     borderTop: 'solid',
     borderBottom: 'solid',
     textAlign: 'center',
-    minHeight: (env.MIN_MENU_HEIGHT * 3 || 150),
+    minHeight: env.MENU_HEIGHT || 75,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
   };
 
+  const backgroundStyle = {
+    backgroundImage: `url(${backgroundImageUrl})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    filter: blur ? `blur(${blur}px)` : 'none',
+    zIndex: 0,
+  };
+
+  const contentContainerStyle = {
+    width: '100%',
+    position: 'relative',
+    zIndex: 1,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  };
+
+  const childrenContainerStyle = {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    width: '100%',
+    maxWidth: 1400,
+  };
+
   return (
     <>
-      <div
-        ref={ref}
-        style={{ ...contentGroupLabelStyle }}
-      >
-        <h2 style={{ margin: 5, marginTop: 0, }}>{title}</h2><FaArrowTurnDown />
+      <div ref={ref} style={headerStyle}>
+        <h2 style={{ margin: 5, marginTop: 0 }}>{title}</h2>
+        <FaArrowTurnDown />
       </div>
-      <div style={{
-        backgroundImage: backgroundImageUrl,
-        width: '100%',
-        objectFit: 'cover',
-        backgroundSize: '100% auto',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-          justifyContent: 'space-around',
-          width: '100%',
-          maxWidth: 1400,
-        }}>
-          {children}
+
+      <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden' }}>
+        <div style={backgroundStyle} />
+        
+        {/* Content Wrapper */}
+        <div style={contentContainerStyle}>
+          <div style={childrenContainerStyle}>
+            {children}
+          </div>
         </div>
       </div>
     </>
