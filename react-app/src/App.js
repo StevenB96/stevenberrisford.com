@@ -19,6 +19,7 @@ import {
   toast
 } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import tabIcon from './Assets/tab_icon.png';
 
 import ProjectComponent from './Visuals/ContentComponents/ProjectComponent';
 import PdfComponent from './Visuals/ContentComponents/PdfComponent';
@@ -211,6 +212,19 @@ function App() {
   useEffect(() => {
     dispatch(getProfileRequest());
     dispatch(getContentRequest());
+  }, []);
+
+  useEffect(() => {
+    // Create a link element for the favicon
+    const link = document.createElement('link');
+    link.rel = 'icon';
+    link.href = tabIcon; // Set the href to your imported image
+    document.head.appendChild(link); // Append the link to the head
+
+    // Cleanup function to remove the favicon when the component unmounts
+    return () => {
+      document.head.removeChild(link);
+    };
   }, []);
 
   const contactItems = [
