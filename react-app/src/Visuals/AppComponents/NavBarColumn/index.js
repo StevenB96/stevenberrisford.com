@@ -36,7 +36,7 @@ const CustomNavItem = ({
     borderLeft: 'solid',
     borderRight: 'solid',
     height: isMenuOpen ? containerHeight : 0,
-    minHeight: isMenuOpen ? (env.MENU_HEIGHT || 50) : 0,
+    height: isMenuOpen ? (env.MENU_HEIGHT || 50) : 0,
     borderBottomLeftRadius: index === (navInputMap.length - 1) ? 20 : null,
     borderBottomRightRadius: index === (navInputMap.length - 1) ? 20 : null,
   };
@@ -70,7 +70,7 @@ const CustomDropDownButton = ({ isMenuOpen, setIsMenuOpen }) => {
     alignItems: 'center',
 
     backgroundColor: 'silver',
-    minHeight: (env.MENU_HEIGHT * 2 || 100),
+    height: (env.MENU_HEIGHT * 1.5 || 75),
     borderTop: 'solid',
     borderLeft: 'solid',
     borderRight: 'solid',

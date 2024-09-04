@@ -32,6 +32,7 @@ const AboutMeOverlay = ({ setIsOverlayOpen, profile }) => {
       maxWidth: 1400 / 1.5,
       flexDirection: 'column',
       backgroundColor: 'white',
+      padding: 10,
     }}>
       <button
         onClick={() => setIsOverlayOpen(false)}
@@ -40,7 +41,7 @@ const AboutMeOverlay = ({ setIsOverlayOpen, profile }) => {
           justifyContent: 'flex-end',
           alignItems: 'center',
         }}>
-        <IoCloseCircleOutline size={60} />
+        <IoCloseCircleOutline size={Math.min(60, width / 20)} />
       </button>
 
       <div

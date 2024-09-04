@@ -11,14 +11,14 @@ const ContentGroup = forwardRef(({
   
   // Styles
   const headerStyle = {
-    backgroundColor: 'lightgrey',
+    backgroundColor: 'white',
     width: '100%',
     padding: '20px 0',
     boxSizing: 'border-box',
     borderTop: 'solid',
     borderBottom: 'solid',
     textAlign: 'center',
-    minHeight: env.MENU_HEIGHT || 75,
+    height: env.MENU_HEIGHT * 1 || 50,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',

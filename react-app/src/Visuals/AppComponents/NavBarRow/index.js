@@ -32,7 +32,7 @@ const CustomNavItem = ({
     borderTop: 'solid',
     borderTopRightRadius: index === (navInputMap.length - 1) ? 20 : null,
     borderTopLeftRadius: index === 0 ? 20 : null,
-    minHeight: (env.MENU_HEIGHT * 2 || 100),
+    height: (env.MENU_HEIGHT * 1.5 || 75),
   };
 
   return (
