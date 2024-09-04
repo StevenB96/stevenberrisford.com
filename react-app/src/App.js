@@ -180,7 +180,7 @@ function App() {
 
   useEffect(() => {
     if (allContentLoaded) {
-      flashWelcomeToast();
+      // flashWelcomeToast();
     }
   }, [allContentLoaded]);
 
@@ -266,14 +266,21 @@ function App() {
                 )}
               </ContentGroup>
 
-              {scrollY > 20 && (
-                <TopScrollElement />
-              )}
-              <AboutMeSection profile={profile} />
-              <CVDownloadButton
-                fileName="CV"
-                fileUrl={profile?.cv_link}
-              />
+              {scrollY > 20 ?
+                (
+                  <TopScrollElement />
+                ) :
+                (
+                  <>
+                    <AboutMeSection profile={profile} />
+                    <CVDownloadButton
+                      fileName="CV"
+                      fileUrl={profile?.cv_link}
+                    />
+                  </>
+                )
+
+              }
               <ToastContainer
                 position="top-center"
                 autoClose={10000}
