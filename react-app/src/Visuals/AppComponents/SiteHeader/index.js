@@ -63,7 +63,7 @@ const SiteHeader = ({
     padding: 30,
     textAlign: 'center',
     margin: 0,
-    color: 'white',
+    color: 'whitesmoke',
   };
 
   const backgroundStyle = {

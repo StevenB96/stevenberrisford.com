@@ -25,7 +25,7 @@ const CustomNavItem = ({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: highlightedItem === index ?
-      'white' :
+      'whitesmoke' :
       'silver',
     textDecoration: highlightedItem === index ?
       'underline' :

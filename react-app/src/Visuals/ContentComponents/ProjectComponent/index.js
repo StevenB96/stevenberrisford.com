@@ -65,7 +65,7 @@ function ProjectComponent({ project }) {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                backgroundColor: 'white',
+                backgroundColor: 'whitesmoke',
                 borderColor: 'green',
               }}>
               <FaLocationCrosshairs

@@ -23,7 +23,7 @@ const TopScrollElement = () => {
         justifyContent: 'center',
         width: '75%',
         maxWidth: (env.TABLET_WIDTH_BREAKPOINT || 1000) / 1.5,
-        backgroundColor: 'lightgrey',
+        backgroundColor: 'whitesmoke',
         border: 'solid',
         borderTop: 0,
         borderBottomLeftRadius: 20,

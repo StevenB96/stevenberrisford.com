@@ -316,8 +316,8 @@ function App() {
                 flexDirection: 'column',
               }}
             >
-              <h2 style={{ color: 'white', }}>Loading Site Content</h2>
-              <ClockLoader color={'white'} />
+              <h2 style={{ color: 'whitesmoke', }}>Loading Site Content</h2>
+              <ClockLoader color={'whitesmoke'} />
             </div>
           )
       }

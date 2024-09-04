@@ -11,7 +11,7 @@ const ContentGroup = forwardRef(({
   
   // Styles
   const headerStyle = {
-    backgroundColor: 'white',
+    backgroundColor: 'whitesmoke',
     width: '100%',
     padding: '20px 0',
     boxSizing: 'border-box',

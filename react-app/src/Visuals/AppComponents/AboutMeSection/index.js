@@ -31,18 +31,27 @@ const AboutMeOverlay = ({ setIsOverlayOpen, profile }) => {
       width: width / 1.5,
       maxWidth: 1400 / 1.5,
       flexDirection: 'column',
-      backgroundColor: 'white',
+      backgroundColor: 'whitesmoke',
       padding: 10,
     }}>
-      <button
-        onClick={() => setIsOverlayOpen(false)}
+      <div
         style={{
           display: 'flex',
           justifyContent: 'flex-end',
           alignItems: 'center',
         }}>
-        <IoCloseCircleOutline size={Math.min(60, width / 20)} />
-      </button>
+        <button
+          onClick={() => setIsOverlayOpen(false)}
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderRadius: '50%',
+          }}>
+          <IoCloseCircleOutline size={Math.min(60, width / 20)} />
+        </button>
+
+      </div>
 
       <div
         style={{
@@ -111,12 +120,19 @@ const AboutMeSection = ({ profile }) => {
           paddingBottom: isMobile ? 15 : 0,
           borderRadius: 15,
           border: 'solid',
-          backgroundColor: '#FFFFFF',
+          backgroundColor: 'whitesmoke',
         }}
         onClick={() => setIsOverlayOpen(true)}
       >
         <h3>About Me</h3>
-        <CgProfile size={Math.min(40, width / 30)} />
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          borderRadius: '50%',
+        }}>
+          <CgProfile size={Math.min(40, width / 30)} />
+        </div>
       </button>
       {isOverlayOpen && (
         <AboutMeOverlay

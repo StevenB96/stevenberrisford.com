@@ -24,7 +24,7 @@ const CustomNavItem = ({
       'underline' :
       'none',
     backgroundColor: highlightedItem === index ?
-      'white' :
+      'whitesmoke' :
       'silver',
     transition: 'all 0.1s ease-in-out',
     borderLeft: index === 0 ? 'solid' : null,

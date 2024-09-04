@@ -32,7 +32,7 @@ const BaseComponent = ({ children }) => {
     boxSizing: 'border-box',
     border: 'solid',
     borderRadius: 20,
-    backgroundColor: 'white',
+    backgroundColor: 'whitesmoke',
     width: adjustedWidth,
     padding: 20,
     margin: 20,

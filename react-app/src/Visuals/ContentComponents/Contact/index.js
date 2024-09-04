@@ -38,13 +38,13 @@ function Contact({ contactMethod }) {
       alignItems: 'center',
       margin: 40,
     }}>
-      <IconComponent size={adjustedWidth / 3} color={'white'} />
+      <IconComponent size={adjustedWidth / 3} color={'whitesmoke'} />
       <div>
         <h2
           style={{
             whiteSpace: 'pre-wrap',
             wordWrap: 'break-word',
-            color: 'white',
+            color: 'whitesmoke',
             width: '100%',
             textAlign: 'left',
           }}>

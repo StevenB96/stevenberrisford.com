@@ -1,4 +1,7 @@
 import {
+  useCallback
+} from 'react';
+import {
   useWindowSize,
 } from '@react-hook/window-size';
 import {
@@ -12,14 +15,14 @@ const CVDownloadButton = ({ profile, fileName, fileUrl }) => {
   const isMobile = width < (env.MOBILE_WIDTH_BREAKPOINT || 600);
   const isTablet = !isMobile && width < (env.TABLET_WIDTH_BREAKPOINT || 1000);
 
-  const handleDownload = () => {
+  const handleDownload = useCallback((fileUrl, fileName) => {
     const link = document.createElement('a');
     link.href = fileUrl;
     link.download = fileName;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-  };
+  }, []);
 
   return (
     <>
@@ -39,12 +42,19 @@ const CVDownloadButton = ({ profile, fileName, fileUrl }) => {
           paddingBottom: isMobile ? 15 : 0,
           borderRadius: 15,
           border: 'solid',
-          backgroundColor: '#FFFFFF',
+          backgroundColor: 'whitesmoke',
         }}
-        onClick={() => handleDownload()}
+        onClick={() => handleDownload(fileUrl, fileName)}
       >
         <h3>Download CV</h3>
-        <PiReadCvLogoBold size={Math.min(40, width / 30)} />
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          borderRadius: '50%',
+        }}>
+          <PiReadCvLogoBold size={Math.min(40, width / 30)} />
+        </div>
       </button>
     </>
   );
