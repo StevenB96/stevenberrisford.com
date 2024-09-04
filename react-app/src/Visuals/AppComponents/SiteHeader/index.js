@@ -13,7 +13,8 @@ const MultiTypeNav = ({
   scrollToSection
 }) => {
   const [width] = useWindowSize();
-  const isMobile = width > (env.MOBILE_WIDTH_BREAKPOINT || 1000);
+  const isMobile = width < (env.MOBILE_WIDTH_BREAKPOINT || 600);
+  const isTablet = !isMobile && width < (env.TABLET_WIDTH_BREAKPOINT || 1000);
 
   return (
     <Nav
@@ -23,10 +24,10 @@ const MultiTypeNav = ({
     >
       {
         isMobile ?
-          <NavBarRow
+          <NavBarColumn
             navInputMap={navInputMap}
             scrollToSection={scrollToSection} /> :
-          <NavBarColumn
+          <NavBarRow
             navInputMap={navInputMap}
             scrollToSection={scrollToSection} />
       }
@@ -39,6 +40,7 @@ const SiteHeader = ({
   scrollToSection,
   profile
 }) => {
+  const [width] = useWindowSize();
 
   // Styles
   const headerContainerStyle = {
@@ -58,11 +60,10 @@ const SiteHeader = ({
 
   const textStyle = {
     width: '50%',
-    padding: 40,
+    padding: 30,
     textAlign: 'center',
     margin: 0,
     color: 'white',
-    fontSize: 46,
   };
 
   const backgroundStyle = {
@@ -75,7 +76,7 @@ const SiteHeader = ({
     right: 0,
     bottom: 0,
     zIndex: 0,
-    
+
     filter: 'blur(4px)',
   };
 
@@ -86,7 +87,7 @@ const SiteHeader = ({
       {/* Content Wrapper */}
       <div style={contentContainerStyle}>
         <h1 style={textStyle}>
-          Hi, I'm Steven Berrisford.<br/>Welcome to my website!
+          Hi, I'm Steven Berrisford.<br />Welcome to my website!
         </h1>
         <MultiTypeNav
           navInputMap={navInputMap}

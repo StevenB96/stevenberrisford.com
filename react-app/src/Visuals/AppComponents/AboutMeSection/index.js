@@ -15,20 +15,21 @@ import env from '../../../env';
 
 const AboutMeOverlay = ({ setIsOverlayOpen, profile }) => {
   const [width] = useWindowSize();
-  const isMobile = width < (env.MOBILE_WIDTH_BREAKPOINT || 1000);
+  const isMobile = width < (env.MOBILE_WIDTH_BREAKPOINT || 600);
+  const isTablet = !isMobile && width < (env.TABLET_WIDTH_BREAKPOINT || 1000);
 
   return (
     <div style={{
-      position: 'absolute',
-      top: '25%',
+      position: 'fixed',
+      top: '6vw',
       left: '50%',
-      transform: 'translate(-50%, -50%)',
+      transform: 'translate(-50%, 0%)',
       zIndex: 3,
       display: 'flex',
       borderRadius: 20,
       border: 'solid',
-      width: width / 2,
-      maxWidth: 1400 / 2,
+      width: width / 1.5,
+      maxWidth: 1400 / 1.5,
       flexDirection: 'column',
       backgroundColor: 'white',
     }}>
@@ -88,6 +89,8 @@ const AboutMeOverlay = ({ setIsOverlayOpen, profile }) => {
 
 const AboutMeSection = ({ profile }) => {
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
+  const [width] = useWindowSize();
+  const isMobile = width < (env.MOBILE_WIDTH_BREAKPOINT || 600);
 
   return (
     <>
@@ -98,19 +101,21 @@ const AboutMeSection = ({ profile }) => {
           position: 'fixed',
           zIndex: 2,
           display: 'flex',
+          flexDirection: isMobile ? 'column' : 'row',
           justifyContent: 'space-around',
-          alignItems: 'center',
-          gap: 20,
-          paddingLeft: 20,
-          paddingRight: 20,
+          alignItems: isMobile ? 'flex-end' : 'center',
+          gap: isMobile ? 0 : 20,
+          paddingLeft: 10,
+          paddingRight: 10,
+          paddingBottom: isMobile ? 10 : 0,
           borderRadius: 20,
           border: 'solid',
           backgroundColor: '#FFFFFF',
         }}
         onClick={() => setIsOverlayOpen(true)}
       >
-        <h2>About Me</h2>
-        <CgProfile size={40} />
+        <h3>About Me</h3>
+        <CgProfile size={Math.min(40, width / 30)} />
       </button>
       {isOverlayOpen && (
         <AboutMeOverlay

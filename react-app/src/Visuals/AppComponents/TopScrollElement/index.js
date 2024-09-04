@@ -21,16 +21,16 @@ const TopScrollElement = () => {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        width: '50%',
-        maxWidth: (env.MOBILE_WIDTH_BREAKPOINT || 1000) / 2,
+        width: '75%',
+        maxWidth: (env.MOBILE_WIDTH_BREAKPOINT || 600) / 1.5,
         backgroundColor: 'lightgrey',
         border: 'solid',
         borderTop: 0,
         borderBottomLeftRadius: 20,
         borderBottomRightRadius: 20,
         cursor: 'pointer',
-        minHeight: env.MENU_HEIGHT || 50,
-        zIndex: 2,
+        minHeight: env.MENU_HEIGHT * 1.5 || 75,
+        zIndex: 3,
       }}>
       <h2 style={{ margin: 5, }}>Scroll to top</h2><FaArrowTurnUp size={20} />
     </div>
