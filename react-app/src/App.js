@@ -26,7 +26,8 @@ import YoutubeComponent from './Visuals/ContentComponents/YoutubeComponent';
 import Contact from './Visuals/ContentComponents/Contact';
 import ContentGroup from './Visuals/ContentComponents/ContentGroup';
 import BaseComponent from './Visuals/ContentComponents/BaseComponent';
-import ProfilePictureElement from './Visuals/AppComponents/ProfilePictureElement';
+import AboutMeSection from './Visuals/AppComponents/AboutMeSection';
+import CVDownloadButton from './Visuals/AppComponents/CVDownloadButton';
 import ToastContent from './Visuals/AppComponents/ToastContent';
 import TopScrollElement from './Visuals/AppComponents/TopScrollElement';
 import SiteHeader from './Visuals/AppComponents/SiteHeader';
@@ -242,7 +243,7 @@ function App() {
                   ref={value.ref}
                   backgroundImageUrl={value.backgroundImageUrl}
                   blur={4}
-                  >
+                >
                   {value.items && value.items.map((item, index) => {
                     return <MultiTypeComponent
                       item={item}
@@ -268,9 +269,10 @@ function App() {
               {scrollY > 20 && (
                 <TopScrollElement />
               )}
-              <ProfilePictureElement
-                profile={profile}
-                onClick={flashWelcomeToast}
+              <AboutMeSection profile={profile} />
+              <CVDownloadButton
+                fileName="CV"
+                fileUrl={profile?.cv_link}
               />
               <ToastContainer
                 position="top-center"
@@ -285,7 +287,7 @@ function App() {
                 width,
                 height,
                 position: 'absolute',
-                zIndex: 2,
+                zIndex: 4,
                 backgroundColor: 'black',
                 display: 'flex',
                 alignItems: 'center',

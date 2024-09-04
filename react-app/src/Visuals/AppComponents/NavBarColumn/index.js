@@ -93,7 +93,7 @@ const CustomDropDownButton = ({ isMenuOpen, setIsMenuOpen }) => {
 }
 
 const NavBarColumn = ({ navInputMap, scrollToSection }) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [containerHeight, setContainerHeight] = useState(0);
   const containerRef = useRef(null);
 

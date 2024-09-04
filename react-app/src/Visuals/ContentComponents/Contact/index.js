@@ -43,7 +43,6 @@ function Contact({ contactMethod }) {
         <h2
           style={{
             whiteSpace: 'pre-wrap',
-            textAlign: 'center',
             wordWrap: 'break-word',
             color: 'white',
             width: '100%',

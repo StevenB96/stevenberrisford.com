@@ -3,7 +3,6 @@ import {
 } from '@react-hook/window-size';
 import Nav from 'react-bootstrap/Nav';
 
-import Profile from '../../ContentComponents/Profile';
 import NavBarColumn from '../NavBarColumn';
 import NavBarRow from '../NavBarRow';
 

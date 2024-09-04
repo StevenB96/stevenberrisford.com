@@ -50,7 +50,7 @@ const ContentGroup = forwardRef(({
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-around',
+    justifyContent: 'flex-start',
     width: '100%',
     maxWidth: 1400,
   };
