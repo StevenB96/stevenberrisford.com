@@ -38,17 +38,20 @@ function Contact({ contactMethod }) {
       alignItems: 'center',
       margin: 40,
     }}>
-      <IconComponent size={adjustedWidth / 2} color={'white'} />
-      <h2
-        style={{
-          whiteSpace: 'pre-wrap',
-          textAlign: 'center',
-          wordWrap: 'break-word',
-          color: 'white',
-          width: '100%',
-        }}>
-        {text}
-      </h2>
+      <IconComponent size={adjustedWidth / 3} color={'white'} />
+      <div>
+        <h2
+          style={{
+            whiteSpace: 'pre-wrap',
+            textAlign: 'center',
+            wordWrap: 'break-word',
+            color: 'white',
+            width: '100%',
+            textAlign: 'left',
+          }}>
+          {text}
+        </h2>        
+      </div>
     </div>
   );
 }

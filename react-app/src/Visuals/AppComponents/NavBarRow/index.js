@@ -25,7 +25,7 @@ const CustomNavItem = ({
       'none',
     backgroundColor: highlightedItem === index ?
       'white' :
-      'lightgrey',
+      'silver',
     transition: 'all 0.1s ease-in-out',
     borderLeft: index === 0 ? 'solid' : null,
     borderRight: 'solid',
@@ -56,36 +56,28 @@ const CustomNavItem = ({
 const NavBarRow = ({ navInputMap, scrollToSection }) => {
   const [highlightedItem, setHighlightedItem] = useState(null);
 
+  const dropDownContainerStyle = {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    overflow: 'hidden',
+    boxSizing: 'border-box',
+  };
+
   return (
     <div
-      style={{
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        backgroundColor: 'silver',
-      }}>
-      <div
-        style={{
-          width: '100%',
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-around',
-          overflow: 'hidden',
-          boxSizing: 'border-box',
-        }}>
-        {navInputMap.map((item, index) => (
-          <CustomNavItem
-            item={item}
-            index={index}
-            navInputMap={navInputMap}
-            highlightedItem={highlightedItem}
-            setHighlightedItem={setHighlightedItem}
-            scrollToSection={scrollToSection}
-          />
-        ))}
-      </div>
+      style={dropDownContainerStyle}>
+      {navInputMap.map((item, index) => (
+        <CustomNavItem
+          item={item}
+          index={index}
+          navInputMap={navInputMap}
+          highlightedItem={highlightedItem}
+          setHighlightedItem={setHighlightedItem}
+          scrollToSection={scrollToSection}
+        />
+      ))}
     </div>
   );
 };

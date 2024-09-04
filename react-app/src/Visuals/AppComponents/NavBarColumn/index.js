@@ -26,7 +26,7 @@ const CustomNavItem = ({
     alignItems: 'center',
     backgroundColor: highlightedItem === index ?
       'white' :
-      'lightgrey',
+      'silver',
     textDecoration: highlightedItem === index ?
       'underline' :
       'none',
@@ -63,8 +63,37 @@ const CustomNavItem = ({
   );
 };
 
+const CustomDropDownButton = ({ isMenuOpen, setIsMenuOpen }) => {
+  const dropDownStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+
+    backgroundColor: 'silver',
+    minHeight: (env.MENU_HEIGHT * 2 || 100),
+    borderTop: 'solid',
+    borderLeft: 'solid',
+    borderRight: 'solid',
+
+    cursor: 'pointer',
+    boxSizing: 'border-box',
+    overflow: 'hidden',
+  };
+
+  return (
+    <Nav.Item
+      onClick={() => setIsMenuOpen(!isMenuOpen)}
+      style={dropDownStyle}
+    >
+      <ListToggle
+        text={'Menu'}
+      />
+    </Nav.Item>
+  );
+}
+
 const NavBarColumn = ({ navInputMap, scrollToSection }) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(true);
   const [containerHeight, setContainerHeight] = useState(0);
   const containerRef = useRef(null);
 
@@ -78,49 +107,31 @@ const NavBarColumn = ({ navInputMap, scrollToSection }) => {
 
   const [highlightedItem, setHighlightedItem] = useState(null);
 
+  const dropDownContainerStyle = {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    position: 'absolute',
+    top: 'calc(100% - 0px)',
+    left: 0,
+    width: '100%',
+    boxSizing: 'border-box',
+    transition: 'height 0.1s ease-in-out',
+    overflow: 'hidden',
+  };
+
   return (
     <div
       style={{
         width: '100%',
-        position: 'relative',
-        backgroundColor: 'silver',
       }}>
-      <Nav.Item
-        onClick={() => setIsMenuOpen(!isMenuOpen)}
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          backgroundColor: 'lightgrey',
-          boxSizing: 'border-box',
-          overflow: 'hidden',
-          borderTop: 'solid',
-          cursor: 'pointer',
-          borderLeft: 'solid',
-          borderRight: 'solid',
-          minHeight: (env.MENU_HEIGHT * 2 || 100),
-        }}
-      >
-        <div>
-          <ListToggle
-            text={'Menu'}
-          />
-        </div>
-      </Nav.Item>
+      <CustomDropDownButton
+        isMenuOpen={isMenuOpen}
+        setIsMenuOpen={setIsMenuOpen}
+      />
       <div
         ref={containerRef}
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-around',
-          position: 'absolute',
-          top: 'calc(100% - 0px)',
-          left: 0,
-          width: '100%',
-          boxSizing: 'border-box',
-          transition: 'height 0.1s ease-in-out',
-          overflow: 'hidden',
-        }}>
+        style={dropDownContainerStyle}>
         {
           navInputMap.map((item, index) => (
             <CustomNavItem
@@ -137,8 +148,6 @@ const NavBarColumn = ({ navInputMap, scrollToSection }) => {
           ))
         }
       </div>
-      {/* )
-      } */}
     </div>
   );
 };

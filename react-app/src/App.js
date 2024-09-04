@@ -9,7 +9,6 @@ import {
   useDispatch,
   useSelector
 } from 'react-redux';
-import Nav from 'react-bootstrap/Nav';
 import {
   useWindowSize,
 } from '@react-hook/window-size';
@@ -20,48 +19,22 @@ import {
   toast
 } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import env from './env';
 
 import ProjectComponent from './Visuals/ContentComponents/ProjectComponent';
 import PdfComponent from './Visuals/ContentComponents/PdfComponent';
 import YoutubeComponent from './Visuals/ContentComponents/YoutubeComponent';
-import Profile from './Visuals/ContentComponents/Profile';
 import Contact from './Visuals/ContentComponents/Contact';
 import ContentGroup from './Visuals/ContentComponents/ContentGroup';
 import BaseComponent from './Visuals/ContentComponents/BaseComponent';
-import NavBarColumn from './Visuals/AppComponents/NavBarColumn';
-import NavBarRow from './Visuals/AppComponents/NavBarRow';
 import ProfilePictureElement from './Visuals/AppComponents/ProfilePictureElement';
-import TopScrollElement from './Visuals/AppComponents/TopScrollElement';
 import ToastContent from './Visuals/AppComponents/ToastContent';
+import TopScrollElement from './Visuals/AppComponents/TopScrollElement';
+import SiteHeader from './Visuals/AppComponents/SiteHeader';
 
 import {
   getProfileRequest,
   getContentRequest
 } from './Redux/Actions/appActions';
-
-const MultiTypeNav = ({ navInputMap, scrollToSection }) => {
-  const [width] = useWindowSize();
-  const isMobile = width > (env.MOBILE_WIDTH_BREAKPOINT || 1000);
-
-  return (
-    <Nav
-      style={{
-        width: '100%',
-      }}
-    >
-      {
-        isMobile ?
-          <NavBarRow
-            navInputMap={navInputMap}
-            scrollToSection={scrollToSection} /> :
-          <NavBarColumn
-            navInputMap={navInputMap}
-            scrollToSection={scrollToSection} />
-      }
-    </Nav>
-  );
-};
 
 const MultiTypeComponent = memo(({ item }) => {
   let content = null;
@@ -97,7 +70,6 @@ function App() {
 
   const [width, height] = useWindowSize();
   const scrollY = useScrollPosition(30);
-  const profileSectionRef = useRef(null);
   const projectsSectionRef = useRef(null);
   const articlesSectionRef = useRef(null);
   const hobbiesSectionRef = useRef(null);
@@ -257,39 +229,20 @@ function App() {
         allContentLoaded ?
           (
             <>
-              <div style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                width: '100%',
-                backgroundImage: `url(${profile?.profile_background_link})`,
-                objectFit: 'cover',
-                backgroundSize: '100% auto',
-              }}>
-                <h1 style={{
-                  width: '100%',
-                  padding: 40,
-                  textAlign: 'center',
-                  margin: 0,
-                  color: 'white',
-                  fontFamily: 'Georgia',
-                }}>
-                  Hi, I'm Steven Berrisford.<br></br>This is my website / portfolio.
-                </h1>
-                <MultiTypeNav navInputMap={navInputMap} scrollToSection={scrollToSection} />
-                <div ref={profileSectionRef}>
-                  {profile &&
-                    <Profile profile={profile} />
-                  }
-                </div>
-              </div>
+              <SiteHeader
+                profile={profile}
+                navInputMap={navInputMap}
+                scrollToSection={scrollToSection}
+              />
 
               {content.map(value => (
                 <ContentGroup
                   title={value.title}
                   text={value.text}
                   ref={value.ref}
-                  backgroundImageUrl={value.backgroundImageUrl}>
+                  backgroundImageUrl={value.backgroundImageUrl}
+                  blur={4}
+                  >
                   {value.items && value.items.map((item, index) => {
                     return <MultiTypeComponent
                       item={item}
@@ -322,7 +275,7 @@ function App() {
               <ToastContainer
                 position="top-center"
                 autoClose={10000}
-                style={{ width: '50%', maxWidth: 600, zIndex: 1, }}
+                style={{ width: '50%', maxWidth: 600, zIndex: 2, }}
               />
             </>
           ) :
