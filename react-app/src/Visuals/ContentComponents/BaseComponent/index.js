@@ -18,10 +18,10 @@ const BaseComponent = ({ children }) => {
   // Calculate adjusted width
   const adjustedWidth = useMemo(() => {
     if (isMax) {
-      return 1400 / 3 - 40;
+      return 1400 / 4 - 40;
     }
 
-    return width / (isMobile ? 1 : (isTablet ? 2 : 3)) - 40;
+    return width / (isMobile ? 2 : (isTablet ? 3 : 4)) - 40;
   }, [isMax, isMobile, width]);
 
   // Define styles

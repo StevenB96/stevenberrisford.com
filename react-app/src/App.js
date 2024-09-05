@@ -29,6 +29,7 @@ import ContentGroup from './Visuals/ContentComponents/ContentGroup';
 import BaseComponent from './Visuals/ContentComponents/BaseComponent';
 import AboutMeSection from './Visuals/AppComponents/AboutMeSection';
 import CVDownloadButton from './Visuals/AppComponents/CVDownloadButton';
+import BaseOptionsButton from './Visuals/AppComponents/BaseOptionsButton';
 import ToastContent from './Visuals/AppComponents/ToastContent';
 import TopScrollElement from './Visuals/AppComponents/TopScrollElement';
 import SiteHeader from './Visuals/AppComponents/SiteHeader';
@@ -37,6 +38,31 @@ import {
   getProfileRequest,
   getContentRequest
 } from './Redux/Actions/appActions';
+
+const OptionsMenu = memo(({ profile }) => {
+  return (
+    <div
+      style={{
+        top: 10,
+        left: 10,
+        position: 'fixed',
+        zIndex: 2,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 5,
+      }}>
+      <BaseOptionsButton>
+        <AboutMeSection profile={profile} />
+      </BaseOptionsButton>
+      <BaseOptionsButton>
+        <CVDownloadButton
+          fileName="CV"
+          fileUrl={profile?.cv_link}
+        />
+      </BaseOptionsButton>
+    </div>
+  );
+});
 
 const MultiTypeComponent = memo(({ item }) => {
   let content = null;
@@ -280,21 +306,12 @@ function App() {
                 )}
               </ContentGroup>
 
-              {scrollY > 20 ?
+              {scrollY > 200 &&
                 (
                   <TopScrollElement />
-                ) :
-                (
-                  <>
-                    <AboutMeSection profile={profile} />
-                    <CVDownloadButton
-                      fileName="CV"
-                      fileUrl={profile?.cv_link}
-                    />
-                  </>
                 )
-
               }
+              <OptionsMenu profile={profile} />
               <ToastContainer
                 position="top-center"
                 autoClose={10000}
@@ -308,7 +325,7 @@ function App() {
                 width,
                 height,
                 position: 'absolute',
-                zIndex: 4,
+                zIndex: 5,
                 backgroundColor: 'black',
                 display: 'flex',
                 alignItems: 'center',

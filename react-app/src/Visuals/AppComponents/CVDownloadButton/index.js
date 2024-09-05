@@ -26,36 +26,25 @@ const CVDownloadButton = ({ profile, fileName, fileUrl }) => {
 
   return (
     <>
-      <button
+      <div
         style={{
-          top: '1vw',
-          right: '1vw',
-          position: 'fixed',
-          zIndex: 2,
           display: 'flex',
-          justifyContent: 'space-around',
-          flexDirection: isMobile ? 'column' : 'row',
+          justifyContent: 'flex-start',
           alignItems: 'center',
-          gap: isMobile ? 0 : 20,
-          paddingLeft: 15,
-          paddingRight: 15,
-          paddingBottom: isMobile ? 15 : 0,
-          borderRadius: 15,
-          border: 'solid',
-          backgroundColor: 'whitesmoke',
+          gap: '5%',
         }}
         onClick={() => handleDownload(fileUrl, fileName)}
       >
-        <h3>Download CV</h3>
+        <h3 style={{ margin: 0, }}>Download CV</h3>
         <div style={{
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
           borderRadius: '50%',
         }}>
-          <PiReadCvLogoBold size={Math.min(40, width / 30)} />
+          <PiReadCvLogoBold size={Math.min(60, width / 20)} />
         </div>
-      </button>
+      </div>
     </>
   );
 };

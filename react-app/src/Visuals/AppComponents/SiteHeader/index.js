@@ -87,7 +87,9 @@ const SiteHeader = ({
       {/* Content Wrapper */}
       <div style={contentContainerStyle}>
         <h1 style={textStyle}>
-          Hi, I'm Steven Berrisford.<br />Welcome to my website!
+          <u>
+            Hi, I'm Steven Berrisford.<br />Welcome to my website!
+          </u>
         </h1>
         <MultiTypeNav
           navInputMap={navInputMap}

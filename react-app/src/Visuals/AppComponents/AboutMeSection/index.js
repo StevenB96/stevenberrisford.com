@@ -104,36 +104,25 @@ const AboutMeSection = ({ profile }) => {
 
   return (
     <>
-      <button
+      <div
         style={{
-          top: '1vw',
-          left: '1vw',
-          position: 'fixed',
-          zIndex: 2,
           display: 'flex',
-          flexDirection: isMobile ? 'column' : 'row',
-          justifyContent: 'space-around',
+          justifyContent: 'flex-start',
           alignItems: 'center',
-          gap: isMobile ? 0 : 20,
-          paddingLeft: 15,
-          paddingRight: 15,
-          paddingBottom: isMobile ? 15 : 0,
-          borderRadius: 15,
-          border: 'solid',
-          backgroundColor: 'whitesmoke',
+          gap: '5%',
         }}
-        onClick={() => setIsOverlayOpen(true)}
-      >
-        <h3>About Me</h3>
+        onClick={() => setIsOverlayOpen(true)}>
+        <h3 style={{ margin: 0, }}>About Me</h3>
         <div style={{
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
           borderRadius: '50%',
         }}>
-          <CgProfile size={Math.min(40, width / 30)} />
+          <CgProfile size={Math.min(60, width / 20)} />
         </div>
-      </button>
+      </div>
+
       {isOverlayOpen && (
         <AboutMeOverlay
           setIsOverlayOpen={setIsOverlayOpen}
