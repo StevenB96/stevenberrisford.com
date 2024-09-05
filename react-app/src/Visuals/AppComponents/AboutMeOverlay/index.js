@@ -1,8 +1,3 @@
-
-import {
-  useEffect,
-  useRef,
-} from 'react';
 import {
   useWindowSize,
 } from '@react-hook/window-size';
@@ -17,27 +12,8 @@ const AboutMeOverlay = ({ setIsAboutModalOpen, profile }) => {
   const isMobile = width < (env.MOBILE_WIDTH_BREAKPOINT || 600);
   const isTablet = !isMobile && width < (env.TABLET_WIDTH_BREAKPOINT || 1000);
 
-  // Close the modal if clicked outside
-  const modalRef = useRef();
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (modalRef.current && !modalRef.current.contains(event.target)) {
-        setIsAboutModalOpen(false);
-      }
-    };
-
-    // Bind the event listener
-    document.addEventListener('mousedown', handleClickOutside);
-
-    // Clean up the event listener
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [setIsAboutModalOpen]);
-
   return (
     <div
-      ref={modalRef}
       style={{
         position: 'absolute',
         top: '6vw',
@@ -81,7 +57,6 @@ const AboutMeOverlay = ({ setIsAboutModalOpen, profile }) => {
           gap: 20,
           padding: 20,
         }}
-      // onClick={() => setIsOverlayOpen(true)}
       >
         <img
           src={profile?.profile_picture_link}
