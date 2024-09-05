@@ -95,11 +95,30 @@ const CustomDropDownButton = ({ isMenuOpen, setIsMenuOpen }) => {
 const NavBarColumn = ({ navInputMap, scrollToSection }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [containerHeight, setContainerHeight] = useState(0);
-  const containerRef = useRef(null);
 
+  // Close the modal if clicked outside
+  const containerRef = useRef();
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (containerRef.current && !containerRef.current.contains(event.target)) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    // Bind the event listener
+    document.addEventListener('mousedown', handleClickOutside);
+
+    // Clean up the event listener
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [setIsMenuOpen]);
+
+  // Set menu height
+  const menuRef = useRef(null);
   useEffect(() => {
     if (isMenuOpen) {
-      setContainerHeight(containerRef.current.scrollHeight);
+      setContainerHeight(menuRef.current.scrollHeight);
     } else {
       setContainerHeight(0);
     }
@@ -122,6 +141,7 @@ const NavBarColumn = ({ navInputMap, scrollToSection }) => {
 
   return (
     <div
+      ref={containerRef}
       style={{
         width: '100%',
       }}>
@@ -130,7 +150,7 @@ const NavBarColumn = ({ navInputMap, scrollToSection }) => {
         setIsMenuOpen={setIsMenuOpen}
       />
       <div
-        ref={containerRef}
+        ref={menuRef}
         style={dropDownContainerStyle}>
         {
           navInputMap.map((item, index) => (

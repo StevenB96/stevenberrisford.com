@@ -7,6 +7,7 @@ import {
 import {
   PiReadCvLogoBold
 } from "react-icons/pi";
+import BaseOptionsButton from '../BaseOptionsButton';
 
 import env from '../../../env';
 
@@ -16,16 +17,11 @@ const CVDownloadButton = ({ profile, fileName, fileUrl }) => {
   const isTablet = !isMobile && width < (env.TABLET_WIDTH_BREAKPOINT || 1000);
 
   const handleDownload = useCallback((fileUrl, fileName) => {
-    const link = document.createElement('a');
-    link.href = fileUrl;
-    link.download = fileName;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    window.open(fileUrl, '_blank');
   }, []);
 
   return (
-    <>
+    <BaseOptionsButton>
       <div
         style={{
           display: 'flex',
@@ -45,7 +41,7 @@ const CVDownloadButton = ({ profile, fileName, fileUrl }) => {
           <PiReadCvLogoBold size={Math.min(60, width / 20)} />
         </div>
       </div>
-    </>
+    </BaseOptionsButton>
   );
 };
 

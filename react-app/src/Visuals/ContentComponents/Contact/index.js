@@ -38,15 +38,15 @@ function Contact({ contactMethod }) {
       alignItems: 'center',
       margin: 40,
     }}>
-      <IconComponent size={adjustedWidth / 3} color={'whitesmoke'} />
+      <IconComponent size={adjustedWidth / 2} color={'whitesmoke'} />
       <div>
         <h2
           style={{
             whiteSpace: 'pre-wrap',
             wordWrap: 'break-word',
             color: 'whitesmoke',
-            width: '100%',
-            textAlign: 'left',
+            width: '90%',
+            textAlign: 'center',
           }}>
           {text}
         </h2>        

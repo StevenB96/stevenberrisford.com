@@ -14,52 +14,53 @@ import {
 } from '@react-hook/window-size';
 import useScrollPosition from '@react-hook/window-scroll';
 import ClockLoader from "react-spinners/FadeLoader";
-import {
-  ToastContainer,
-  toast
-} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import tabIcon from './Assets/tab_icon.png';
 
-import ProjectComponent from './Visuals/ContentComponents/ProjectComponent';
-import PdfComponent from './Visuals/ContentComponents/PdfComponent';
-import YoutubeComponent from './Visuals/ContentComponents/YoutubeComponent';
-import Contact from './Visuals/ContentComponents/Contact';
-import ContentGroup from './Visuals/ContentComponents/ContentGroup';
-import BaseComponent from './Visuals/ContentComponents/BaseComponent';
-import AboutMeSection from './Visuals/AppComponents/AboutMeSection';
-import CVDownloadButton from './Visuals/AppComponents/CVDownloadButton';
-import BaseOptionsButton from './Visuals/AppComponents/BaseOptionsButton';
-import ToastContent from './Visuals/AppComponents/ToastContent';
-import TopScrollElement from './Visuals/AppComponents/TopScrollElement';
-import SiteHeader from './Visuals/AppComponents/SiteHeader';
+import {
+  ProjectComponent,
+  PdfComponent,
+  YoutubeComponent,
+  Contact,
+  ContentGroup,
+  BaseComponent
+} from './Visuals/ContentComponents';
+
+import {
+  AboutMeOverlay,
+  AboutMeSection,
+  CVDownloadButton,
+  TopScrollElement,
+  SiteHeader
+} from './Visuals/AppComponents';
 
 import {
   getProfileRequest,
   getContentRequest
 } from './Redux/Actions/appActions';
 
-const OptionsMenu = memo(({ profile }) => {
+const OptionsMenu = memo(({
+  profile,
+  setIsAboutModalOpen,
+  isAboutModalOpen }) => {
   return (
     <div
       style={{
         top: 10,
         left: 10,
         position: 'fixed',
-        zIndex: 2,
+        zIndex: 3,
         display: 'flex',
         flexDirection: 'column',
         gap: 5,
       }}>
-      <BaseOptionsButton>
-        <AboutMeSection profile={profile} />
-      </BaseOptionsButton>
-      <BaseOptionsButton>
-        <CVDownloadButton
-          fileName="CV"
-          fileUrl={profile?.cv_link}
-        />
-      </BaseOptionsButton>
+      <AboutMeSection
+        setIsAboutModalOpen={setIsAboutModalOpen}
+        isAboutModalOpen={isAboutModalOpen}
+      />
+      <CVDownloadButton
+        fileName="CV"
+        fileUrl={profile?.cv_link}
+      />
     </div>
   );
 });
@@ -94,15 +95,20 @@ const MultiTypeComponent = memo(({ item }) => {
 });
 
 function App() {
+  // Hook to access Redux dispatch function
   const dispatch = useDispatch();
 
+  // Custom hooks to get window size and scroll position
   const [width, height] = useWindowSize();
   const scrollY = useScrollPosition(30);
+
+  // References for different sections of the page
   const projectsSectionRef = useRef(null);
   const articlesSectionRef = useRef(null);
   const hobbiesSectionRef = useRef(null);
   const contactSectionRef = useRef(null);
 
+  // Accessing application state from Redux store
   const {
     profile,
     projects,
@@ -110,35 +116,13 @@ function App() {
     hobbies,
   } = useSelector(state => state.app);
 
-  const [content, setContent] = useState([
-    {
-      backgroundImageUrl: profile?.projects_background_link,
-      items: projects,
-      ref: projectsSectionRef,
-      title: 'Projects',
-      text: 'projects',
-      contentLoaded: false,
-    },
-    {
-      backgroundImageUrl: profile?.articles_background_link,
-      items: articles,
-      ref: articlesSectionRef,
-      title: 'Articles',
-      text: 'articles',
-      contentLoaded: false,
-    },
-    {
-      backgroundImageUrl: profile?.hobbies_background_link,
-      items: hobbies,
-      ref: hobbiesSectionRef,
-      title: 'Hobbies',
-      text: 'hobbies',
-      contentLoaded: false,
-    },
-  ]);
+  // Local state to manage various content and modal visibility
+  const [content, setContent] = useState([]);
+  const [isAboutModalOpen, setIsAboutModalOpen] = useState(false);
 
+  // useEffect to handle content updates and image loading
   useEffect(() => {
-    // Step A: Update content state
+    // Step A: Build updatedContent array with sections' details
     const updatedContent = [
       {
         backgroundImageUrl: profile?.projects_background_link,
@@ -171,23 +155,23 @@ function App() {
     // Step B: Load images right after updating content
     updatedContent.forEach(value => {
       if (value.backgroundImageUrl) {
-        // console.log('Loading image:', value.backgroundImageUrl);
         const image = new Image();
         image.src = value.backgroundImageUrl;
 
+        // Handler for successful image load
         const handleLoad = () => {
-          // console.log('Image loaded:', value.backgroundImageUrl);
           setContent(prevState =>
             prevState.map(prevValue =>
               prevValue.text === value.text
-                ? { ...prevValue, contentLoaded: true }
+                ? { ...prevValue, contentLoaded: true } // Mark content as loaded
                 : prevValue
             )
           );
         };
 
+        // Handler for error while loading image
         const handleError = () => {
-          // console.log('Image failed to load:', value.backgroundImageUrl);
+          // Handle error if needed
         };
 
         image.onload = handleLoad;
@@ -202,30 +186,24 @@ function App() {
     });
   }, [profile, projects, articles, hobbies]);
 
+  // Check if all content has been loaded
   const allContentLoaded = content.length > 0 && Object.values(content).every((value) => value.contentLoaded);
 
-
-  useEffect(() => {
-    if (allContentLoaded) {
-      // flashWelcomeToast();
+  // Create a mapping for navigation
+  const navInputMap = [
+    ...content.map(value => {
+      return {
+        title: value.title,
+        ref: value.ref,
+      }
+    }),
+    {
+      title: 'Contact Information',
+      ref: contactSectionRef,
     }
-  }, [allContentLoaded]);
+  ];
 
-  const navInputMap = [...content.map(value => {
-    return {
-      title: value.title,
-      ref: value.ref,
-    }
-  }),
-  {
-    title: 'Contact Information',
-    ref: contactSectionRef,
-  }];
-
-  const flashWelcomeToast = () => {
-    toast(<ToastContent />);
-  }
-
+  // Function to smoothly scroll to a section
   const scrollToSection = useCallback((elementRef) => {
     if (elementRef.current) {
       window.scrollTo({
@@ -235,28 +213,36 @@ function App() {
     }
   }, []);
 
+  // useEffect to fetch profile and content when component mounts
   useEffect(() => {
     dispatch(getProfileRequest());
     dispatch(getContentRequest());
   }, []);
 
+  // useEffect to close modal if scroll position is greater than 300
   useEffect(() => {
-    // Create a link element for the favicon
+    if (scrollY > 300) {
+      setIsAboutModalOpen(false);
+    }
+  }, [scrollY > 300]);
+
+  // useEffect to set and clean up a favicon
+  useEffect(() => {
     const link = document.createElement('link');
     link.rel = 'icon';
-    link.href = tabIcon; // Set the href to your imported image
-    document.head.appendChild(link); // Append the link to the head
+    link.href = tabIcon;
+    document.head.appendChild(link);
 
-    // Cleanup function to remove the favicon when the component unmounts
     return () => {
       document.head.removeChild(link);
     };
   }, []);
 
+  // Contact items that will be displayed, with their icons
   const contactItems = [
-    { iconName: 'phone', text: profile?.phone },
-    { iconName: 'email', text: profile?.email },
-    { iconName: 'address', text: profile?.address },
+    { iconName: 'phone', text: profile?.phone }, // Phone contact
+    { iconName: 'email', text: profile?.email }, // Email contact
+    { iconName: 'address', text: profile?.address }, // Address contact
   ];
 
   return (
@@ -311,12 +297,19 @@ function App() {
                   <TopScrollElement />
                 )
               }
-              <OptionsMenu profile={profile} />
-              <ToastContainer
-                position="top-center"
-                autoClose={10000}
-                style={{ width: '50%', maxWidth: 600, zIndex: 2, }}
+              <OptionsMenu
+                profile={profile}
+                isAboutModalOpen={isAboutModalOpen}
+                setIsAboutModalOpen={setIsAboutModalOpen}
               />
+              {isAboutModalOpen &&
+                (
+                  <AboutMeOverlay
+                    setIsAboutModalOpen={setIsAboutModalOpen}
+                    profile={profile}
+                  />
+                )
+              }
             </>
           ) :
           (
