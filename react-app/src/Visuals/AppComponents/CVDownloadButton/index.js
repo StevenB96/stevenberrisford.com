@@ -2,20 +2,12 @@ import {
   useCallback
 } from 'react';
 import {
-  useWindowSize,
-} from '@react-hook/window-size';
-import {
   PiReadCvLogoBold
 } from "react-icons/pi";
 import BaseOptionsButton from '../BaseOptionsButton';
 
-import env from '../../../env';
 
 const CVDownloadButton = ({ profile, fileName, fileUrl }) => {
-  const [width] = useWindowSize();
-  const isMobile = width < (env.MOBILE_WIDTH_BREAKPOINT || 600);
-  const isTablet = !isMobile && width < (env.TABLET_WIDTH_BREAKPOINT || 1000);
-
   const handleDownload = useCallback((fileUrl, fileName) => {
     window.open(fileUrl, '_blank');
   }, []);

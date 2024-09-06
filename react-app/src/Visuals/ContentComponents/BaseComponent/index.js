@@ -22,7 +22,7 @@ const BaseComponent = ({ children }) => {
     }
 
     return width / (isMobile ? 2 : (isTablet ? 3 : 4)) - 40 - 1;
-  }, [isMax, isMobile, width]);
+  }, [isMax, isMobile, isTablet, width]);
 
   // Define styles
   const containerStyle = {

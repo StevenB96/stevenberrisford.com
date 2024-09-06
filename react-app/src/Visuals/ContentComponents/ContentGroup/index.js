@@ -1,9 +1,5 @@
 import { forwardRef } from 'react';
-import {
-  useWindowSize,
-} from '@react-hook/window-size';
 import { FaArrowTurnDown } from "react-icons/fa6";
-import env from '../../../env';
 
 const ContentGroup = forwardRef(({
   children,
@@ -11,7 +7,6 @@ const ContentGroup = forwardRef(({
   title,
   blur,
 }, ref) => {
-  const [width] = useWindowSize();
   
   // Styles
   const headerStyle = {

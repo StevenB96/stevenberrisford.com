@@ -40,8 +40,6 @@ const SiteHeader = ({
   scrollToSection,
   profile
 }) => {
-  const [width] = useWindowSize();
-
   // Styles
   const headerContainerStyle = {
     position: 'relative',

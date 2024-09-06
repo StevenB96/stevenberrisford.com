@@ -4,7 +4,6 @@ import {
 import {
   Nav
 } from 'react-bootstrap';
-import env from '../../../env';
 
 const CustomNavItem = ({
   item,

@@ -14,7 +14,6 @@ const AboutMeOverlay = forwardRef(({
 }, ref) => {
   const [width] = useWindowSize();
   const isMobile = width < (env.MOBILE_WIDTH_BREAKPOINT || 600);
-  const isTablet = !isMobile && width < (env.TABLET_WIDTH_BREAKPOINT || 1000);
 
   return (
     <div

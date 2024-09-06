@@ -1,13 +1,8 @@
 import {
   PiListBold
 } from "react-icons/pi";
-import {
-  useWindowSize,
-} from '@react-hook/window-size';
 
 const ListToggle = ({ text, onClick }) => {
-  let [width, height] = useWindowSize();
-
   return (
     <button
       onClick={onClick}

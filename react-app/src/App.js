@@ -218,14 +218,14 @@ function App() {
   useEffect(() => {
     dispatch(getProfileRequest());
     dispatch(getContentRequest());
-  }, []);
+  }, [dispatch]);
 
   // useEffect to close modal if scroll position is greater than height
   useEffect(() => {
     if (scrollY > height) {
       setIsAboutModalOpen(false);
     }
-  }, [scrollY > height]);
+  }, [scrollY, height]);
 
   // useEffect to set and clean up a favicon
   useEffect(() => {
@@ -244,7 +244,7 @@ function App() {
     if (isAboutModalOpen) {
       scrollToSection(aboutOverlayRef);
     }
-  }, [isAboutModalOpen]);
+  }, [isAboutModalOpen, scrollToSection]);
 
   // Contact items that will be displayed, with their icons
   const contactItems = [
@@ -270,18 +270,19 @@ function App() {
                 scrollToSection={scrollToSection}
               />
 
-              {content.map(value => (
+              {content.map((value, indexA) => (
                 <ContentGroup
                   title={value.title}
                   text={value.text}
                   ref={value.ref}
                   backgroundImageUrl={value.backgroundImageUrl}
                   blur={4}
+                  key={`${value.title}_${indexA}`}
                 >
-                  {value.items && value.items.map((item, index) => {
+                  {value.items && value.items.map((item, indexB) => {
                     return <MultiTypeComponent
                       item={item}
-                      key={item.id + value.text}
+                      key={`${item.id}_${indexA}_${indexB}`}
                     />;
                   }
                   )}

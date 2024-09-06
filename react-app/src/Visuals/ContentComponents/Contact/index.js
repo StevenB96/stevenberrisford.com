@@ -17,13 +17,15 @@ import {
 function Contact({ contactMethod }) {
   const { iconName, text } = contactMethod;
 
-  const iconMap = {
-    phone: HiOutlinePhoneIncoming,
-    email: MdOutlineEmail,
-    address: PiAddressBook,
-  };
+  const IconComponent = useMemo(() => {
+    const iconMap = {
+      phone: HiOutlinePhoneIncoming,
+      email: MdOutlineEmail,
+      address: PiAddressBook,
+    };
 
-  const IconComponent = useMemo(() => iconMap[iconName], [iconName]);
+    return iconMap[iconName];
+  }, [iconName]);
 
   const [width] = useWindowSize();
 
@@ -48,7 +50,7 @@ function Contact({ contactMethod }) {
             textAlign: 'center',
           }}>
           {text}
-        </h3>        
+        </h3>
       </div>
     </div>
   );

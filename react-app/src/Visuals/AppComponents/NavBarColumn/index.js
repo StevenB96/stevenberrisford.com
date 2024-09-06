@@ -7,7 +7,6 @@ import {
   Nav
 } from 'react-bootstrap';
 import ListToggle from '../ListToggle';
-import env from '../../../env';
 
 const CustomNavItem = ({
   item,
@@ -152,6 +151,7 @@ const NavBarColumn = ({ navInputMap, scrollToSection }) => {
         {
           navInputMap.map((item, index) => (
             <CustomNavItem
+              key={index}
               item={item}
               index={index}
               navInputMap={navInputMap}

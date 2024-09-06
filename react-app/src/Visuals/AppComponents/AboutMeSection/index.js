@@ -1,17 +1,9 @@
 import {
-  useWindowSize,
-} from '@react-hook/window-size';
-import {
   CgProfile
 } from "react-icons/cg";
 import BaseOptionsButton from '../BaseOptionsButton';
 
-import env from '../../../env';
-
 const AboutMeSection = ({ isAboutModalOpen, setIsAboutModalOpen }) => {
-  const [width] = useWindowSize();
-  const isMobile = width < (env.MOBILE_WIDTH_BREAKPOINT || 600);
-
   return (
     <BaseOptionsButton>
       <div

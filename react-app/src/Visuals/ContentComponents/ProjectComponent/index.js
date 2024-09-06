@@ -3,7 +3,6 @@ import {
   useRef,
 } from 'react';
 import { FaLocationCrosshairs } from "react-icons/fa6";
-import BaseComponent from '../BaseComponent';
 
 function ProjectComponent({ project }) {
   const [isHighlighted, setIsHighlighted] = useState(false);
@@ -25,6 +24,7 @@ function ProjectComponent({ project }) {
       }}
       href={project.link}
       target="_blank"
+      rel="noreferrer"
     >
       <div
         ref={iconContainerRef}
@@ -53,8 +53,6 @@ function ProjectComponent({ project }) {
               style={{
                 border: 'solid',
                 borderWidth: 'max(0.4vw, 3px)',
-                borderWidth: offsetWidth ?
-                  iconContainerRef?.current?.offsetWidth * 0.01 : 1,
                 aspectRatio: 1,
                 width: offsetWidth ?
                   iconContainerRef?.current?.offsetWidth * 0.15 : 1,
