@@ -222,9 +222,15 @@ function App() {
 
   // useEffect to close modal if scroll position is greater than height
   useEffect(() => {
-    if (scrollY > height) {
-      setIsAboutModalOpen(false);
-    }
+    const timeoutId = setTimeout(() => {
+      if (scrollY > height) {
+        setIsAboutModalOpen(false);
+      }
+    }, 1000);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
   }, [scrollY, height]);
 
   // useEffect to set and clean up a favicon

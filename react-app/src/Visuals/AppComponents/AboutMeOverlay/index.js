@@ -48,7 +48,7 @@ const AboutMeOverlay = forwardRef(({
             alignItems: 'center',
             borderRadius: '50%',
           }}>
-          <IoCloseCircleOutline size={'max(5vw, 50px)'} />
+          <IoCloseCircleOutline size={'max(4.5vw, 45px)'} />
         </button>
 
       </div>
@@ -67,7 +67,8 @@ const AboutMeOverlay = forwardRef(({
           src={profile?.profile_picture_link}
           alt={profile?.profile_picture_link}
           style={{
-            width: '30%',
+            width: '25%',
+            minWidth: 150,
             aspectRatio: 1,
             objectFit: 'cover',
             borderRadius: '50%',
