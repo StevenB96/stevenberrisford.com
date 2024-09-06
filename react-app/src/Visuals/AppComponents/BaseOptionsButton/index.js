@@ -9,6 +9,7 @@ const BaseOptionsButton = memo(({ children }) => {
         padding: '7%',
         borderRadius: 15,
         border: 'solid',
+        borderWidth: 'max(0.4vw, 3px)',
         backgroundColor: 'whitesmoke',
       }}
     >

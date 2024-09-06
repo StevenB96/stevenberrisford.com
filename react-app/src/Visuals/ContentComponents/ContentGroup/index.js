@@ -13,12 +13,11 @@ const ContentGroup = forwardRef(({
   const headerStyle = {
     backgroundColor: 'whitesmoke',
     width: '100%',
-    padding: '20px 0',
     boxSizing: 'border-box',
     borderTop: 'solid',
     borderBottom: 'solid',
+    borderWidth: 'max(0.4vw, 3px)',
     textAlign: 'center',
-    height: env.MENU_HEIGHT * 1 || 50,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -58,7 +57,7 @@ const ContentGroup = forwardRef(({
   return (
     <>
       <div ref={ref} style={headerStyle}>
-        <h2 style={{ margin: 5, marginTop: 0 }}>{title}</h2>
+        <h2 style={{}}>{title}</h2>
         <FaArrowTurnDown />
       </div>
 

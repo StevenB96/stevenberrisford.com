@@ -31,6 +31,7 @@ const BaseComponent = ({ children }) => {
     justifyContent: 'space-between',
     boxSizing: 'border-box',
     border: 'solid',
+    borderWidth: 'max(0.4vw, 3px)',
     borderRadius: 20,
     backgroundColor: 'whitesmoke',
     width: adjustedWidth,

@@ -107,6 +107,7 @@ function App() {
   const articlesSectionRef = useRef(null);
   const hobbiesSectionRef = useRef(null);
   const contactSectionRef = useRef(null);
+  const aboutOverlayRef = useRef(null);
 
   // Accessing application state from Redux store
   const {
@@ -238,6 +239,13 @@ function App() {
     };
   }, []);
 
+  // useEffect to scroll to the about modal
+  useEffect(() => {
+    if (isAboutModalOpen) {
+      scrollToSection(aboutOverlayRef);
+    }
+  }, [isAboutModalOpen]);
+
   // Contact items that will be displayed, with their icons
   const contactItems = [
     { iconName: 'phone', text: profile?.phone }, // Phone contact
@@ -292,7 +300,7 @@ function App() {
                 )}
               </ContentGroup>
 
-              {scrollY > 200 &&
+              {scrollY > height &&
                 (
                   <TopScrollElement />
                 )
@@ -305,6 +313,7 @@ function App() {
               {isAboutModalOpen &&
                 (
                   <AboutMeOverlay
+                    ref={aboutOverlayRef}
                     setIsAboutModalOpen={setIsAboutModalOpen}
                     profile={profile}
                   />

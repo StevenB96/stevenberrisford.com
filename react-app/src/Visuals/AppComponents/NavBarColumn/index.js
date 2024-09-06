@@ -33,10 +33,8 @@ const CustomNavItem = ({
     transition: 'all 0.1s ease-in-out',
     borderTop: isMenuOpen ? 'solid' : null,
     borderBottom: isMenuOpen && index === navInputMap.length - 1 ? 'solid' : null,
-    borderLeft: 'solid',
-    borderRight: 'solid',
+    borderWidth: 'max(0.4vw, 3px)',
     height: isMenuOpen ? containerHeight : 0,
-    height: isMenuOpen ? (env.MENU_HEIGHT || 50) : 0,
     borderBottomLeftRadius: index === (navInputMap.length - 1) ? 20 : null,
     borderBottomRightRadius: index === (navInputMap.length - 1) ? 20 : null,
   };
@@ -72,8 +70,7 @@ const CustomDropDownButton = ({ isMenuOpen, setIsMenuOpen }) => {
     backgroundColor: 'silver',
     height: (env.MENU_HEIGHT * 1.5 || 75),
     borderTop: 'solid',
-    borderLeft: 'solid',
-    borderRight: 'solid',
+    borderWidth: 'max(0.4vw, 3px)',
 
     cursor: 'pointer',
     boxSizing: 'border-box',
@@ -118,7 +115,7 @@ const NavBarColumn = ({ navInputMap, scrollToSection }) => {
   const menuRef = useRef(null);
   useEffect(() => {
     if (isMenuOpen) {
-      setContainerHeight(menuRef.current.scrollHeight);
+      setContainerHeight(menuRef.current.scrollHeight * 2);
     } else {
       setContainerHeight(0);
     }

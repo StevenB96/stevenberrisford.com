@@ -52,6 +52,7 @@ function ProjectComponent({ project }) {
             <div
               style={{
                 border: 'solid',
+                borderWidth: 'max(0.4vw, 3px)',
                 borderWidth: offsetWidth ?
                   iconContainerRef?.current?.offsetWidth * 0.01 : 1,
                 aspectRatio: 1,

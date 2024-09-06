@@ -23,7 +23,7 @@ const MultiTypeNav = ({
       }}
     >
       {
-        isMobile ?
+        isMobile || isTablet ?
           <NavBarColumn
             navInputMap={navInputMap}
             scrollToSection={scrollToSection} /> :

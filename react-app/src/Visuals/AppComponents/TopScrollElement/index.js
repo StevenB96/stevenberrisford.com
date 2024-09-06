@@ -25,6 +25,7 @@ const TopScrollElement = () => {
         maxWidth: (env.TABLET_WIDTH_BREAKPOINT || 1000) / 2,
         backgroundColor: 'silver',
         border: 'solid',
+        borderWidth: 'max(0.4vw, 3px)',
         borderTop: 0,
         borderBottomLeftRadius: 20,
         borderBottomRightRadius: 20,

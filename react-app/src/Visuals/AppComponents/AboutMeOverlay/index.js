@@ -1,3 +1,4 @@
+import { forwardRef } from 'react';
 import {
   useWindowSize,
 } from '@react-hook/window-size';
@@ -7,13 +8,17 @@ import {
 
 import env from '../../../env';
 
-const AboutMeOverlay = ({ setIsAboutModalOpen, profile }) => {
+const AboutMeOverlay = forwardRef(({
+  setIsAboutModalOpen,
+  profile,
+}, ref) => {
   const [width] = useWindowSize();
   const isMobile = width < (env.MOBILE_WIDTH_BREAKPOINT || 600);
   const isTablet = !isMobile && width < (env.TABLET_WIDTH_BREAKPOINT || 1000);
 
   return (
     <div
+      ref={ref}
       style={{
         position: 'absolute',
         top: '6vw',
@@ -23,6 +28,7 @@ const AboutMeOverlay = ({ setIsAboutModalOpen, profile }) => {
         display: 'flex',
         borderRadius: 20,
         border: 'solid',
+        borderWidth: 'max(0.4vw, 3px)',
         width: width / 1.5,
         maxWidth: 1400 / 1.5,
         flexDirection: 'column',
@@ -68,6 +74,7 @@ const AboutMeOverlay = ({ setIsAboutModalOpen, profile }) => {
             borderRadius: '50%',
             backgroundColor: '#FFFFFF',
             border: 'solid',
+            borderWidth: 'max(0.4vw, 3px)',
             boxShadow:
               `1px 1px 1px rgba(0,0,0,0.08),` +
               `2px 2px 2px rgba(0,0,0,0.08),` +
@@ -89,6 +96,6 @@ const AboutMeOverlay = ({ setIsAboutModalOpen, profile }) => {
       </div>
     </div>
   );
-}
+});
 
 export default AboutMeOverlay;
