@@ -28,7 +28,7 @@ function Contact({ contactMethod }) {
   const [width] = useWindowSize();
 
   // Calculate adjusted width
-  const adjustedWidth = useMemo(() => (width > 1400 ? 1400 : width) / 3 - 80, [width]);
+  const adjustedWidth = useMemo(() => (width > 1400 ? 1400 : width) / 3 - 40, [width]);
 
   return (
     <div style={{
@@ -36,20 +36,19 @@ function Contact({ contactMethod }) {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      margin: 40,
+      margin: 20,
     }}>
-      <IconComponent size={adjustedWidth / 2} color={'whitesmoke'} />
+      <IconComponent size={adjustedWidth / 4} color={'whitesmoke'} />
       <div>
-        <h2
+        <h3
           style={{
             whiteSpace: 'pre-wrap',
             wordWrap: 'break-word',
             color: 'whitesmoke',
-            width: '90%',
             textAlign: 'center',
           }}>
           {text}
-        </h2>        
+        </h3>        
       </div>
     </div>
   );

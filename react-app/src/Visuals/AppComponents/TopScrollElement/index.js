@@ -1,9 +1,14 @@
 import {
+  useWindowSize,
+} from '@react-hook/window-size';
+import {
   FaArrowTurnUp
 } from "react-icons/fa6";
 import env from '../../../env';
 
 const TopScrollElement = () => {
+  let [width, height] = useWindowSize();
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -30,10 +35,9 @@ const TopScrollElement = () => {
         borderBottomLeftRadius: 20,
         borderBottomRightRadius: 20,
         cursor: 'pointer',
-        height: env.MENU_HEIGHT * 1 || 50,
         zIndex: 4,
       }}>
-      <h2 style={{ margin: 5, }}>Scroll to top</h2><FaArrowTurnUp size={20} />
+      <h2 style={{ margin: 5, }}>Scroll to top</h2><FaArrowTurnUp size={'max(0.03vw, 15px)'} />
     </div>
   );
 };

@@ -68,9 +68,9 @@ const CustomDropDownButton = ({ isMenuOpen, setIsMenuOpen }) => {
     alignItems: 'center',
 
     backgroundColor: 'silver',
-    height: (env.MENU_HEIGHT * 1.5 || 75),
     borderTop: 'solid',
     borderWidth: 'max(0.4vw, 3px)',
+    gap: 10,
 
     cursor: 'pointer',
     boxSizing: 'border-box',

@@ -38,7 +38,7 @@ const CVDownloadButton = ({ profile, fileName, fileUrl }) => {
           alignItems: 'center',
           borderRadius: '50%',
         }}>
-          <PiReadCvLogoBold size={Math.min(60, width / 20)} />
+          <PiReadCvLogoBold size={'max(3vw, 30px)'} />
         </div>
       </div>
     </BaseOptionsButton>

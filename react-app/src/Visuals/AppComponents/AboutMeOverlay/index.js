@@ -29,8 +29,8 @@ const AboutMeOverlay = forwardRef(({
         borderRadius: 20,
         border: 'solid',
         borderWidth: 'max(0.4vw, 3px)',
-        width: width / 1.5,
-        maxWidth: 1400 / 1.5,
+        width: width / 1.2,
+        maxWidth: 1400 / 1.2,
         flexDirection: 'column',
         backgroundColor: 'whitesmoke',
         padding: 10,
@@ -49,7 +49,7 @@ const AboutMeOverlay = forwardRef(({
             alignItems: 'center',
             borderRadius: '50%',
           }}>
-          <IoCloseCircleOutline size={Math.min(60, width / 20)} />
+          <IoCloseCircleOutline size={'max(5vw, 50px)'} />
         </button>
 
       </div>
@@ -68,7 +68,7 @@ const AboutMeOverlay = forwardRef(({
           src={profile?.profile_picture_link}
           alt={profile?.profile_picture_link}
           style={{
-            width: '35%',
+            width: '30%',
             aspectRatio: 1,
             objectFit: 'cover',
             borderRadius: '50%',
@@ -87,7 +87,7 @@ const AboutMeOverlay = forwardRef(({
           style={{
             whiteSpace: 'pre-wrap',
             wordWrap: 'break-word',
-            width: isMobile ? '100%' : '65%',
+            width: isMobile ? '100%' : '70%',
             textAlign: 'left',
           }}
         >

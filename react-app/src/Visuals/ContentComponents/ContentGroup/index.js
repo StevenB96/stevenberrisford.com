@@ -1,4 +1,7 @@
 import { forwardRef } from 'react';
+import {
+  useWindowSize,
+} from '@react-hook/window-size';
 import { FaArrowTurnDown } from "react-icons/fa6";
 import env from '../../../env';
 
@@ -8,6 +11,7 @@ const ContentGroup = forwardRef(({
   title,
   blur,
 }, ref) => {
+  const [width] = useWindowSize();
   
   // Styles
   const headerStyle = {
@@ -21,6 +25,7 @@ const ContentGroup = forwardRef(({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    gap: 10,
   };
 
   const backgroundStyle = {
@@ -58,7 +63,7 @@ const ContentGroup = forwardRef(({
     <>
       <div ref={ref} style={headerStyle}>
         <h2 style={{}}>{title}</h2>
-        <FaArrowTurnDown />
+        <FaArrowTurnDown size={'max(2vw, 20px)'} />
       </div>
 
       <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden' }}>

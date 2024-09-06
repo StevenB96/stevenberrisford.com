@@ -29,7 +29,7 @@ const AboutMeSection = ({ isAboutModalOpen, setIsAboutModalOpen }) => {
           alignItems: 'center',
           borderRadius: '50%',
         }}>
-          <CgProfile size={Math.min(60, width / 20)} />
+          <CgProfile size={'max(3vw, 30px)'} />
         </div>
       </div>
     </BaseOptionsButton>

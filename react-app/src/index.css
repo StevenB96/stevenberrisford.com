@@ -18,36 +18,36 @@ body {
 
 h1 {
     /* font-size: 2em; */
-    font-size: calc(max(calc(4vw), 2em) / 1.5);
+    font-size: max(calc(4vw / (3 / 2)), calc(2 * 10px));
     user-select: none;
 }
 
 h2 {
     /* font-size: 1.5em; */
-    font-size: calc(max(calc(4vw / (2 / 1.5)), 1.5em) / 1.5);
+    font-size: max(calc(4vw / (3 / 1.5)), calc(1.5 * 10px));
     user-select: none;
 }
 
 h3 {
     /* font-size: 1.17em; */
-    font-size: calc(max(calc(4vw / (2 / 1.17)), 1.17em) / 1.5);
+    font-size: max(calc(4vw / (3 / 1.17)), calc(1.17 * 10px));
     user-select: none;
 }
 
 h6 {
-    font-size: calc(max(calc(4vw / (2 / 1)), 1em) / 1.5);
+    font-size: max(calc(4vw / (3 / 1)), 10px);
     user-select: none;
 }
 
 p {
     /* font-size: 1em; */
-    font-size: calc(max(calc(4vw / (2 / 1)), 1em) / 1.5);
+    font-size: max(calc(4vw / (3 / 1)), 10px);
     user-select: none;
 }
 
 .small-p {
     /* font-size: 1em; */
-    font-size: calc(max(calc(4vw / (3 / 1)), 0.75em) / 1.5);
+    font-size: max(calc(4vw / (3 / 0.75)), calc(0.75 * 10px));
     user-select: none;
 }
 

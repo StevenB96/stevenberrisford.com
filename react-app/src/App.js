@@ -220,12 +220,12 @@ function App() {
     dispatch(getContentRequest());
   }, []);
 
-  // useEffect to close modal if scroll position is greater than 300
+  // useEffect to close modal if scroll position is greater than height
   useEffect(() => {
-    if (scrollY > 300) {
+    if (scrollY > height) {
       setIsAboutModalOpen(false);
     }
-  }, [scrollY > 300]);
+  }, [scrollY > height]);
 
   // useEffect to set and clean up a favicon
   useEffect(() => {

@@ -21,7 +21,7 @@ const BaseComponent = ({ children }) => {
       return 1400 / 4 - 40;
     }
 
-    return width / (isMobile ? 2 : (isTablet ? 3 : 4)) - 40;
+    return width / (isMobile ? 2 : (isTablet ? 3 : 4)) - 40 - 1;
   }, [isMax, isMobile, width]);
 
   // Define styles

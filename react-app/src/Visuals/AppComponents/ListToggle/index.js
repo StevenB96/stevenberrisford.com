@@ -21,7 +21,7 @@ const ListToggle = ({ text, onClick }) => {
         padding: '0.83em',
       }}>
       <h2 style={{ margin: 0, }}>{text}</h2>
-      <PiListBold size={width * 0.03} />
+      <PiListBold size={'max(2.5vw, 25px)'} />
     </button>
   );
 };

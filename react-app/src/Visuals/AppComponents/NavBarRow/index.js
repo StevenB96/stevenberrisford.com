@@ -33,7 +33,6 @@ const CustomNavItem = ({
     borderWidth: 'max(0.4vw, 3px)',
     borderTopRightRadius: index === (navInputMap.length - 1) ? 20 : null,
     borderTopLeftRadius: index === 0 ? 20 : null,
-    height: (env.MENU_HEIGHT * 1.5 || 75),
   };
 
   return (
