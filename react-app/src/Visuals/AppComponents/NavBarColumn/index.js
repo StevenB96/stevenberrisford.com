@@ -19,8 +19,8 @@ const CustomNavItem = ({
   scrollToSection,
   containerHeight
 }) => {
-  const borderStyle = isMenuOpen ? 'solid' : undefined;
-  const borderWidthValue = isMenuOpen && index === navInputMap.length - 1 ? 'max(0.4vw, 3px)' : undefined;
+  // const borderStyle = isMenuOpen ? 'solid' : undefined;
+  const borderWidthValue = (isMenuOpen && index !== navInputMap.length - 1) ? 'max(0.4vw, 3px)' : undefined;
 
   const navItemStyle = {
     display: 'flex',
@@ -33,9 +33,11 @@ const CustomNavItem = ({
       'underline' :
       'none',
     transition: 'all 0.1s ease-in-out',
-    borderTopStyle: borderStyle,
-    borderBottomStyle: isMenuOpen && index === navInputMap.length - 1 ? 'solid' : undefined,
-    borderWidth: isMenuOpen && index === navInputMap.length - 1 ? borderWidthValue : undefined,
+
+    borderTopStyle: (isMenuOpen && index === 0) ? 'solid' : undefined,
+    borderBottomStyle: (isMenuOpen) ? 'solid' : undefined,
+    borderWidth: 'max(0.4vw, 3px)',
+    
     height: isMenuOpen ? containerHeight : 0,
     borderBottomLeftRadius: index === (navInputMap.length - 1) ? 20 : undefined,
     borderBottomRightRadius: index === (navInputMap.length - 1) ? 20 : undefined,
@@ -70,7 +72,7 @@ const CustomDropDownButton = ({ isMenuOpen, setIsMenuOpen }) => {
     alignItems: 'center',
 
     backgroundColor: 'silver',
-    borderTop: 'solid',
+    borderTopStyle: 'solid',
     borderWidth: 'max(0.4vw, 3px)',
     gap: 10,
 

@@ -7,7 +7,7 @@ function PdfComponent({ article }) {
       title="PDF Viewer"
       width="100%"
       style={{
-        border: "none",
+        borderStyle: 'none',
         aspectRatio: 1,
         display: 'flex',
       }}

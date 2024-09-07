@@ -51,7 +51,7 @@ function ProjectComponent({ project }) {
           project.link && (
             <div
               style={{
-                border: 'solid',
+                borderStyle: 'solid',
                 borderWidth: 'max(0.4vw, 3px)',
                 aspectRatio: 1,
                 width: offsetWidth ?

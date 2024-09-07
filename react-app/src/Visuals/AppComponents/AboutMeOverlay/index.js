@@ -26,7 +26,7 @@ const AboutMeOverlay = forwardRef(({
         zIndex: 2,
         display: 'flex',
         borderRadius: 20,
-        border: 'solid',
+        borderStyle: 'solid',
         borderWidth: 'max(0.4vw, 3px)',
         width: width / 1.2,
         maxWidth: 1400 / 1.2,
@@ -73,7 +73,7 @@ const AboutMeOverlay = forwardRef(({
             objectFit: 'cover',
             borderRadius: '50%',
             backgroundColor: '#FFFFFF',
-            border: 'solid',
+            borderStyle: 'solid',
             borderWidth: 'max(0.4vw, 3px)',
             boxShadow:
               `1px 1px 1px rgba(0,0,0,0.08),` +
