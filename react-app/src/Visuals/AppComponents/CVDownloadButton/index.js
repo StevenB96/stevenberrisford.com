@@ -7,13 +7,19 @@ import {
 import BaseOptionsButton from '../BaseOptionsButton';
 
 
-const CVDownloadButton = ({ profile, fileName, fileUrl }) => {
+const CVDownloadButton = ({
+  profile,
+  fileName,
+  fileUrl
+}) => {
   const handleDownload = useCallback((fileUrl, fileName) => {
     window.open(fileUrl, '_blank');
   }, []);
 
   return (
-    <BaseOptionsButton>
+    <BaseOptionsButton
+      onClick={() => handleDownload(fileUrl, fileName)}
+    >
       <div
         style={{
           display: 'flex',
@@ -21,7 +27,6 @@ const CVDownloadButton = ({ profile, fileName, fileUrl }) => {
           alignItems: 'center',
           gap: '5%',
         }}
-        onClick={() => handleDownload(fileUrl, fileName)}
       >
         <h3 style={{ margin: 0, }}>Download CV</h3>
         <div style={{

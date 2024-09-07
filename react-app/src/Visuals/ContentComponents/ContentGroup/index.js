@@ -58,7 +58,7 @@ const ContentGroup = forwardRef(({
     <>
       <div ref={ref} style={headerStyle}>
         <h2 style={{}}>{title}</h2>
-        <FaArrowTurnDown size={'max(2vw, 20px)'} />
+        <FaArrowTurnDown size={'max(1.5vw, 15px)'} />
       </div>
 
       <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden' }}>

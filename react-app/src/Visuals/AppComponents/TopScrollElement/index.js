@@ -35,7 +35,7 @@ const TopScrollElement = () => {
       <h2 style={{ margin: 5, }}>
         Scroll to top
       </h2>
-      <FaArrowTurnUp size={'max(0.03vw, 15px)'} />
+      <FaArrowTurnUp size={'max(1.5vw, 15px)'} />
     </div>
   );
 };

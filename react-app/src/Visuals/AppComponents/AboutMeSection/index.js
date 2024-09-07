@@ -3,17 +3,19 @@ import {
 } from "react-icons/cg";
 import BaseOptionsButton from '../BaseOptionsButton';
 
-const AboutMeSection = ({ isAboutModalOpen, setIsAboutModalOpen }) => {
+const AboutMeSection = ({ 
+  isAboutModalOpen, 
+  setIsAboutModalOpen 
+}) => {
   return (
-    <BaseOptionsButton>
+    <BaseOptionsButton onClick={() => setIsAboutModalOpen(!isAboutModalOpen)}>
       <div
         style={{
           display: 'flex',
           justifyContent: 'flex-start',
           alignItems: 'center',
           gap: '5%',
-        }}
-        onClick={() => setIsAboutModalOpen(!isAboutModalOpen)}>
+        }}>
         <h3 style={{ margin: 0, }}>About Me</h3>
         <div style={{
           display: 'flex',

@@ -2,9 +2,10 @@ import {
   memo,
 } from 'react';
 
-const BaseOptionsButton = memo(({ children }) => {
+const BaseOptionsButton = memo(({ children, onClick }) => {
   return (
     <button
+      onClick={onClick}
       style={{
         padding: '7%',
         borderRadius: 15,
