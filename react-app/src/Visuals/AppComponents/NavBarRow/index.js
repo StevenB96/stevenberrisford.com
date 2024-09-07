@@ -26,12 +26,12 @@ const CustomNavItem = ({
       'whitesmoke' :
       'silver',
     transition: 'all 0.1s ease-in-out',
-    borderLeft: index === 0 ? 'solid' : null,
+    borderLeft: index === 0 ? 'solid' : undefined,
     borderRight: 'solid',
     borderTop: 'solid',
     borderWidth: 'max(0.4vw, 3px)',
-    borderTopRightRadius: index === (navInputMap.length - 1) ? 20 : null,
-    borderTopLeftRadius: index === 0 ? 20 : null,
+    borderTopRightRadius: index === (navInputMap.length - 1) ? 20 : undefined,
+    borderTopLeftRadius: index === 0 ? 20 : undefined,
   };
 
   return (

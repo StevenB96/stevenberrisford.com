@@ -19,6 +19,9 @@ const CustomNavItem = ({
   scrollToSection,
   containerHeight
 }) => {
+  const borderStyle = isMenuOpen ? 'solid' : undefined;
+  const borderWidthValue = isMenuOpen && index === navInputMap.length - 1 ? 'max(0.4vw, 3px)' : undefined;
+
   const navItemStyle = {
     display: 'flex',
     justifyContent: 'center',
@@ -30,12 +33,12 @@ const CustomNavItem = ({
       'underline' :
       'none',
     transition: 'all 0.1s ease-in-out',
-    borderTop: isMenuOpen ? 'solid' : null,
-    borderBottom: isMenuOpen && index === navInputMap.length - 1 ? 'solid' : null,
-    borderWidth: 'max(0.4vw, 3px)',
+    borderTopStyle: borderStyle,
+    borderBottomStyle: isMenuOpen && index === navInputMap.length - 1 ? 'solid' : undefined,
+    borderWidth: isMenuOpen && index === navInputMap.length - 1 ? borderWidthValue : undefined,
     height: isMenuOpen ? containerHeight : 0,
-    borderBottomLeftRadius: index === (navInputMap.length - 1) ? 20 : null,
-    borderBottomRightRadius: index === (navInputMap.length - 1) ? 20 : null,
+    borderBottomLeftRadius: index === (navInputMap.length - 1) ? 20 : undefined,
+    borderBottomRightRadius: index === (navInputMap.length - 1) ? 20 : undefined,
   };
 
   return (

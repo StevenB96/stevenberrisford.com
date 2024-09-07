@@ -126,6 +126,7 @@ function App() {
     // Step A: Build updatedContent array with sections' details
     const updatedContent = [
       {
+        id: 1,
         backgroundImageUrl: profile?.projects_background_link,
         items: projects,
         ref: projectsSectionRef,
@@ -134,6 +135,7 @@ function App() {
         contentLoaded: false,
       },
       {
+        id: 2,
         backgroundImageUrl: profile?.articles_background_link,
         items: articles,
         ref: articlesSectionRef,
@@ -142,6 +144,7 @@ function App() {
         contentLoaded: false,
       },
       {
+        id: 3,
         backgroundImageUrl: profile?.hobbies_background_link,
         items: hobbies,
         ref: hobbiesSectionRef,
@@ -283,12 +286,12 @@ function App() {
                   ref={value.ref}
                   backgroundImageUrl={value.backgroundImageUrl}
                   blur={4}
-                  key={`${value.title}_${indexA}`}
+                  key={`${value.id}}`}
                 >
                   {value.items && value.items.map((item, indexB) => {
                     return <MultiTypeComponent
                       item={item}
-                      key={`${item.id}_${indexA}_${indexB}`}
+                      key={`${value.id}_${item.id}`}
                     />;
                   }
                   )}
