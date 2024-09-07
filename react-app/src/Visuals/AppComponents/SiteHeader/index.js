@@ -75,7 +75,7 @@ const SiteHeader = ({
     bottom: 0,
     zIndex: 0,
 
-    filter: 'blur(4px)',
+    filter: 'blur(3px)',
   };
 
   return (

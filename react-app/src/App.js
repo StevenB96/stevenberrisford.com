@@ -285,7 +285,7 @@ function App() {
                   text={value.text}
                   ref={value.ref}
                   backgroundImageUrl={value.backgroundImageUrl}
-                  blur={4}
+                  blur={3}
                   key={`${value.id}}`}
                 >
                   {value.items && value.items.map((item, indexB) => {
@@ -303,7 +303,7 @@ function App() {
                 text={'contactInfo'}
                 ref={contactSectionRef}
                 backgroundImageUrl={profile?.profile_background_link}
-                blur={4}
+                blur={3}
               >
                 {contactItems.map(item =>
                   <Contact contactMethod={item} />
