@@ -1,19 +1,14 @@
 import { forwardRef } from 'react';
-import {
-  useWindowSize,
-} from '@react-hook/window-size';
+import useResponsive from '../../../Hooks/useResponsive';
 import {
   IoCloseCircleOutline
 } from "react-icons/io5";
-
-import env from '../../../env';
 
 const AboutMeOverlay = forwardRef(({
   setIsAboutModalOpen,
   profile,
 }, ref) => {
-  const [width] = useWindowSize();
-  const isMobile = width < (env.MOBILE_WIDTH_BREAKPOINT || 600);
+  const { isMobile, width } = useResponsive();
 
   return (
     <div

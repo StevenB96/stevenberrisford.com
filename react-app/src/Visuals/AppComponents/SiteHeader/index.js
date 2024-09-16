@@ -1,20 +1,15 @@
-import {
-  useWindowSize,
-} from '@react-hook/window-size';
 import Nav from 'react-bootstrap/Nav';
 
 import NavBarColumn from '../NavBarColumn';
 import NavBarRow from '../NavBarRow';
 
-import env from '../../../env';
+import useResponsive from '../../../Hooks/useResponsive';
 
 const MultiTypeNav = ({
   navInputMap,
   scrollToSection
 }) => {
-  const [width] = useWindowSize();
-  const isMobile = width < (env.MOBILE_WIDTH_BREAKPOINT || 600);
-  const isTablet = !isMobile && width < (env.TABLET_WIDTH_BREAKPOINT || 1000);
+  const { isMobile, isTablet } = useResponsive();
 
   return (
     <Nav

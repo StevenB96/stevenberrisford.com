@@ -1,13 +1,13 @@
 import {
   useState,
-  useRef,
 } from 'react';
 import { FaLocationCrosshairs } from "react-icons/fa6";
 
+import useResponsive from '../../../Hooks/useResponsive';
+
 function ProjectComponent({ project }) {
+  const { isTablet, isMobile } = useResponsive();
   const [isHighlighted, setIsHighlighted] = useState(false);
-  const iconContainerRef = useRef(null);
-  const offsetWidth = iconContainerRef?.current?.offsetWidth;
 
   return (
     <a
@@ -27,7 +27,6 @@ function ProjectComponent({ project }) {
       rel="noreferrer"
     >
       <div
-        ref={iconContainerRef}
         style={{
           position: 'relative',
           justifyContent: 'center',
@@ -52,10 +51,9 @@ function ProjectComponent({ project }) {
             <div
               style={{
                 borderStyle: 'solid',
-                borderWidth: 'max(0.4vw, 3px)',
+                borderWidth: (isTablet ? 2 : (isMobile ? 2 : 4)),
                 aspectRatio: 1,
-                width: offsetWidth ?
-                  iconContainerRef?.current?.offsetWidth * 0.15 : 1,
+                width: '16%',
                 boxSizing: 'border-box',
                 borderRadius: '50%',
                 position: 'absolute',
@@ -68,8 +66,7 @@ function ProjectComponent({ project }) {
                 borderColor: 'green',
               }}>
               <FaLocationCrosshairs
-                size={offsetWidth ?
-                  iconContainerRef?.current?.offsetWidth * 0.1 : 1}
+                size={'70%'}
                 color={'green'}
                 style={{}}
               />

@@ -1,18 +1,9 @@
 import React, { useMemo } from 'react';
-import {
-  useWindowSize,
-} from '@react-hook/window-size';
-import env from '../../../env';
+import useResponsive from '../../../Hooks/useResponsive';
+
 
 const BaseComponent = ({ children }) => {
-  const [width] = useWindowSize();
-
-  // Destructure environment variables if necessary
-  const mobileBreakpoint = env.MOBILE_WIDTH_BREAKPOINT || 600;
-
-  // Check device conditions
-  const isMobile = width < mobileBreakpoint;
-  const isTablet = !isMobile && width < (env.TABLET_WIDTH_BREAKPOINT || 1000);
+  const { isMobile, isTablet, width } = useResponsive();
   const isMax = width > 1400;
 
   // Calculate adjusted width
