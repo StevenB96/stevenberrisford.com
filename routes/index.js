@@ -16,7 +16,7 @@ router.get('/profile', async (req, res, next) => {
 router.get('/content', async (req, res, next) => {
   res.set('Cache-Control', 'no-cache');
   try {
-    const content = await db.select().from('content');
+    const content = await db.select().from('content').orderBy('order');
     res.json(content);
   } catch (error) {
     next(error);
