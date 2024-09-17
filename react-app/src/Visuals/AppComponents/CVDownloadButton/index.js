@@ -4,6 +4,7 @@ import {
 import {
   PiReadCvLogoBold
 } from "react-icons/pi";
+import useResponsive from '../../../Hooks/useResponsive';
 import BaseOptionsButton from '../BaseOptionsButton';
 
 
@@ -12,6 +13,8 @@ const CVDownloadButton = ({
   fileName,
   fileUrl
 }) => {
+  const { isTablet, isMobile, width } = useResponsive();
+
   const handleDownload = useCallback((fileUrl, fileName) => {
     window.open(fileUrl, '_blank');
   }, []);
@@ -23,9 +26,10 @@ const CVDownloadButton = ({
       <div
         style={{
           display: 'flex',
-          justifyContent: 'flex-start',
+          justifyContent: 'space-between',
           alignItems: 'center',
-          gap: '5%',
+          gap: width * 0.005,
+          flexDirection: (isTablet || isMobile) ? 'row' : 'column',
         }}
       >
         <h3 style={{ margin: 0, }}>Download CV</h3>

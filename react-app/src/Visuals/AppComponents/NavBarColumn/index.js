@@ -19,16 +19,13 @@ const CustomNavItem = ({
   scrollToSection,
   containerHeight
 }) => {
-  // const borderStyle = isMenuOpen ? 'solid' : undefined;
-  const borderWidthValue = (isMenuOpen && index !== navInputMap.length - 1) ? 'max(0.4vw, 3px)' : undefined;
-
   const navItemStyle = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: highlightedItem === index ?
-      'whitesmoke' :
-      'silver',
+      'silver' :
+      'whitesmoke',
     textDecoration: highlightedItem === index ?
       'underline' :
       'none',

@@ -58,14 +58,14 @@ p {
     width: 100%;
 }
 
-button:not([class="standard-button"]), 
-input[type="submit"]:not([class="standard-button"]), 
+button:not([class="standard-button"]),
+input[type="submit"]:not([class="standard-button"]),
 input[type="reset"]:not([class="standard-button"]) {
-	background: none;
-	color: inherit;
-	border: none;
-	padding: 0;
-	font: inherit;
-	cursor: pointer;
-	outline: inherit;
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
 }

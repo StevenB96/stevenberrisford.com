@@ -1,22 +1,30 @@
 import {
   CgProfile
 } from "react-icons/cg";
+import useResponsive from '../../../Hooks/useResponsive';
 import BaseOptionsButton from '../BaseOptionsButton';
 
-const AboutMeSection = ({ 
-  isAboutModalOpen, 
-  setIsAboutModalOpen 
+const AboutMeSection = ({
+  isAboutModalOpen,
+  setIsAboutModalOpen
 }) => {
+  const { isTablet, isMobile,  width } = useResponsive();
+
   return (
-    <BaseOptionsButton onClick={() => setIsAboutModalOpen(!isAboutModalOpen)}>
+    <BaseOptionsButton
+      onClick={() => setIsAboutModalOpen(!isAboutModalOpen)}
+    >
       <div
         style={{
           display: 'flex',
-          justifyContent: 'flex-start',
+          justifyContent: 'space-between',
           alignItems: 'center',
-          gap: '5%',
+          gap: width * 0.005,
+          flexDirection: (isTablet || isMobile) ? 'row' : 'column',
         }}>
-        <h3 style={{ margin: 0, }}>About Me</h3>
+        <h3 style={{
+          margin: 0,
+        }}>About Me</h3>
         <div style={{
           display: 'flex',
           justifyContent: 'center',

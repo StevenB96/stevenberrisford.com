@@ -9,12 +9,10 @@ import {
   useDispatch,
   useSelector
 } from 'react-redux';
-import {
-  useWindowSize,
-} from '@react-hook/window-size';
 import useScrollPosition from '@react-hook/window-scroll';
 import ClockLoader from "react-spinners/FadeLoader";
 import tabIcon from './Assets/tab_icon.png';
+import useResponsive from './Hooks/useResponsive';
 
 import {
   ProjectComponent,
@@ -38,10 +36,13 @@ import {
   getContentRequest
 } from './Redux/Actions/appActions';
 
-const OptionsMenu = memo(({
+const OptionsMenu = ({
   profile,
   setIsAboutModalOpen,
-  isAboutModalOpen }) => {
+  isAboutModalOpen 
+}) => {
+  const { isTablet, isMobile } = useResponsive();
+
   return (
     <div
       style={{
@@ -50,7 +51,7 @@ const OptionsMenu = memo(({
         position: 'fixed',
         zIndex: 3,
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection: (isTablet || isMobile) ? 'column' : 'row',
         gap: 5,
       }}>
       <AboutMeSection
@@ -63,7 +64,7 @@ const OptionsMenu = memo(({
       />
     </div>
   );
-});
+};
 
 const MultiTypeComponent = memo(({ item }) => {
   let content = null;
@@ -99,7 +100,7 @@ function App() {
   const dispatch = useDispatch();
 
   // Custom hooks to get window size and scroll position
-  const [width, height] = useWindowSize();
+  const { width, height } = useResponsive();
   const scrollY = useScrollPosition(30);
 
   // References for different sections of the page

@@ -1,22 +1,28 @@
 import {
   memo,
 } from 'react';
+import useResponsive from '../../../Hooks/useResponsive';
 
-const BaseOptionsButton = memo(({ children, onClick }) => {
+const BaseOptionsButton = ({
+  children,
+  onClick,
+}) => {
+  const { width, isTablet, isMobile } = useResponsive();
+
   return (
     <button
       onClick={onClick}
       style={{
-        padding: '7%',
+        padding: width * ((isTablet || isMobile) ? 0.015 : 0.01),
         borderRadius: 15,
         borderStyle: 'solid',
         borderWidth: 'max(0.4vw, 3px)',
         backgroundColor: 'whitesmoke',
       }}
     >
-      { children }
+      {children}
     </button>
   );
-});
+};
 
 export default BaseOptionsButton;
