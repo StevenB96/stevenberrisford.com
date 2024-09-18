@@ -1,19 +1,15 @@
 import {
   FaArrowTurnUp
 } from "react-icons/fa6";
+import useCommonFunctions from '../../../Hooks/useCommonFunctions';
 import env from '../../../env';
 
 const TopScrollElement = () => {
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    })
-  };
+  const commonFunctions = useCommonFunctions();
 
   return (
     <div
-      onClick={scrollToTop}
+      onClick={commonFunctions.scrollToTop}
       style={{
         top: 0,
         position: 'fixed',
@@ -32,7 +28,7 @@ const TopScrollElement = () => {
         cursor: 'pointer',
         zIndex: 4,
       }}>
-      <h2 style={{ margin: 5, }}>
+      <h2>
         Scroll to top
       </h2>
       <FaArrowTurnUp size={'max(1.5vw, 15px)'} />

@@ -5,7 +5,7 @@ import {
 } from "react-icons/io5";
 
 const AboutMeOverlay = forwardRef(({
-  setIsAboutModalOpen,
+  userSetIsAboutModalOpen,
   profile,
 }, ref) => {
   const { isMobile, width } = useResponsive();
@@ -36,7 +36,7 @@ const AboutMeOverlay = forwardRef(({
           alignItems: 'center',
         }}>
         <button
-          onClick={() => setIsAboutModalOpen(false)}
+          onClick={() => userSetIsAboutModalOpen(false)}
           style={{
             display: 'flex',
             justifyContent: 'center',

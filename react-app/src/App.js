@@ -13,6 +13,7 @@ import useScrollPosition from '@react-hook/window-scroll';
 import ClockLoader from "react-spinners/FadeLoader";
 import tabIcon from './Assets/tab_icon.png';
 import useResponsive from './Hooks/useResponsive';
+import useCommonFunctions from './Hooks/useCommonFunctions';
 
 import {
   ProjectComponent,
@@ -38,8 +39,8 @@ import {
 
 const OptionsMenu = ({
   profile,
-  setIsAboutModalOpen,
-  isAboutModalOpen 
+  userSetIsAboutModalOpen,
+  isAboutModalOpen
 }) => {
   const { isTablet, isMobile } = useResponsive();
 
@@ -55,7 +56,7 @@ const OptionsMenu = ({
         gap: 5,
       }}>
       <AboutMeSection
-        setIsAboutModalOpen={setIsAboutModalOpen}
+        userSetIsAboutModalOpen={userSetIsAboutModalOpen}
         isAboutModalOpen={isAboutModalOpen}
       />
       <CVDownloadButton
@@ -96,6 +97,7 @@ const MultiTypeComponent = memo(({ item }) => {
 });
 
 function App() {
+  const commonFunctions = useCommonFunctions();
   // Hook to access Redux dispatch function
   const dispatch = useDispatch();
 
@@ -218,6 +220,13 @@ function App() {
     }
   }, []);
 
+  const userSetIsAboutModalOpen = (bool) => {
+    if (bool === false) {
+      commonFunctions.scrollToTop();
+    }
+    setIsAboutModalOpen(bool);
+  }
+
   // useEffect to fetch profile and content when component mounts
   useEffect(() => {
     dispatch(getProfileRequest());
@@ -319,13 +328,13 @@ function App() {
               <OptionsMenu
                 profile={profile}
                 isAboutModalOpen={isAboutModalOpen}
-                setIsAboutModalOpen={setIsAboutModalOpen}
+                userSetIsAboutModalOpen={userSetIsAboutModalOpen}
               />
               {isAboutModalOpen &&
                 (
                   <AboutMeOverlay
                     ref={aboutOverlayRef}
-                    setIsAboutModalOpen={setIsAboutModalOpen}
+                    userSetIsAboutModalOpen={userSetIsAboutModalOpen}
                     profile={profile}
                   />
                 )

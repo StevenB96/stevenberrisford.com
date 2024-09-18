@@ -6,13 +6,13 @@ import BaseOptionsButton from '../BaseOptionsButton';
 
 const AboutMeSection = ({
   isAboutModalOpen,
-  setIsAboutModalOpen
+  userSetIsAboutModalOpen
 }) => {
   const { isTablet, isMobile,  width } = useResponsive();
 
   return (
     <BaseOptionsButton
-      onClick={() => setIsAboutModalOpen(!isAboutModalOpen)}
+      onClick={() => userSetIsAboutModalOpen(!isAboutModalOpen)}
     >
       <div
         style={{
