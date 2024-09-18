@@ -9,9 +9,8 @@ import BaseOptionsButton from '../BaseOptionsButton';
 
 
 const CVDownloadButton = ({
-  profile,
   fileName,
-  fileUrl
+  fileUrl,
 }) => {
   const { isTablet, isMobile, width } = useResponsive();
 
@@ -32,7 +31,7 @@ const CVDownloadButton = ({
           flexDirection: (isTablet || isMobile) ? 'row' : 'column',
         }}
       >
-        <h3 style={{ margin: 0, }}>Download CV</h3>
+        <h3 style={{ margin: 0, }}>Download {fileName}</h3>
         <div style={{
           display: 'flex',
           justifyContent: 'center',
