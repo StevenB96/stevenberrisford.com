@@ -12,21 +12,21 @@ const CustomNavItem = ({
   item,
   index,
   navInputMap,
-  highlightedItem,
-  setHighlightedItem,
   isMenuOpen,
   setIsMenuOpen,
   scrollToSection,
   containerHeight
 }) => {
+  const [isHighlighted, setIsHighlighted] = useState(false);
+
   const navItemStyle = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: highlightedItem === index ?
+    backgroundColor: isHighlighted ?
       'silver' :
       'whitesmoke',
-    textDecoration: highlightedItem === index ?
+    textDecoration: isHighlighted ?
       'underline' :
       'none',
     transition: 'all 0.1s ease-in-out',
@@ -34,7 +34,7 @@ const CustomNavItem = ({
     borderTopStyle: (isMenuOpen && index === 0) ? 'solid' : undefined,
     borderBottomStyle: (isMenuOpen) ? 'solid' : undefined,
     borderWidth: 'max(0.4vw, 3px)',
-    
+
     height: isMenuOpen ? containerHeight : 0,
     borderBottomLeftRadius: index === (navInputMap.length - 1) ? 20 : undefined,
     borderBottomRightRadius: index === (navInputMap.length - 1) ? 20 : undefined,
@@ -42,9 +42,9 @@ const CustomNavItem = ({
 
   return (
     <Nav.Item
-      key={index}
-      onMouseOver={() => setHighlightedItem(index)}
-      onMouseOut={() => setHighlightedItem(null)}
+      key={item.id}
+      onMouseOver={() => setIsHighlighted(true)}
+      onMouseOut={() => setIsHighlighted(false)}
       style={navItemStyle}>
       <button
         style={{
@@ -52,7 +52,6 @@ const CustomNavItem = ({
         }}
         onClick={() => {
           setIsMenuOpen(false);
-          setHighlightedItem(null);
           scrollToSection(item.ref)
         }}
       >
@@ -62,7 +61,10 @@ const CustomNavItem = ({
   );
 };
 
-const CustomDropDownButton = ({ isMenuOpen, setIsMenuOpen }) => {
+const CustomDropDownButton = ({
+  isMenuOpen,
+  setIsMenuOpen
+}) => {
   const dropDownStyle = {
     display: 'flex',
     justifyContent: 'center',
@@ -90,7 +92,10 @@ const CustomDropDownButton = ({ isMenuOpen, setIsMenuOpen }) => {
   );
 }
 
-const NavBarColumn = ({ navInputMap, scrollToSection }) => {
+const NavBarColumn = ({
+  navInputMap,
+  scrollToSection
+}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [containerHeight, setContainerHeight] = useState(0);
 
@@ -122,8 +127,6 @@ const NavBarColumn = ({ navInputMap, scrollToSection }) => {
     }
   }, [isMenuOpen]);
 
-  const [highlightedItem, setHighlightedItem] = useState(null);
-
   const dropDownContainerStyle = {
     display: 'flex',
     flexDirection: 'column',
@@ -153,12 +156,10 @@ const NavBarColumn = ({ navInputMap, scrollToSection }) => {
         {
           navInputMap.map((item, index) => (
             <CustomNavItem
-              key={index}
+              key={item.id}
               item={item}
               index={index}
               navInputMap={navInputMap}
-              highlightedItem={highlightedItem}
-              setHighlightedItem={setHighlightedItem}
               isMenuOpen={isMenuOpen}
               setIsMenuOpen={setIsMenuOpen}
               scrollToSection={scrollToSection}

@@ -200,11 +200,13 @@ function App() {
   const navInputMap = [
     ...content.map(value => {
       return {
+        id: value.id,
         title: value.title,
         ref: value.ref,
       }
     }),
     {
+      id: 4,
       title: 'Contact Information',
       ref: contactSectionRef,
     }
