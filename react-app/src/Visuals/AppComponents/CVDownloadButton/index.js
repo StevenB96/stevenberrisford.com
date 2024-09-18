@@ -44,7 +44,10 @@ const CVDownloadButton = ({
         }}>
           <PiReadCvLogoBold
             size={'max(3vw, 30px)'}
-            color={isHighlighted ? 'black' : 'darkgrey'}
+            color={isHighlighted ? 'black' : '#555555'}
+            iconStyle={{
+              transition: 'all 0.1s ease-in-out',
+            }}
           />
         </div>
       </div>

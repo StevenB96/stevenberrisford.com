@@ -222,11 +222,11 @@ function App() {
     }
   }, []);
 
-  const userSetIsAboutModalOpen = (bool) => {
-    if (bool === false) {
+  const userSetIsAboutModalOpen = (isOpen) => {
+    if (isOpen === false && scrollY > height) {
       commonFunctions.scrollToTop();
     }
-    setIsAboutModalOpen(bool);
+    setIsAboutModalOpen(isOpen);
   }
 
   // useEffect to fetch profile and content when component mounts

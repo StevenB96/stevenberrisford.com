@@ -23,8 +23,10 @@ const BaseOptionsButton = ({
         borderRadius: 15,
         borderStyle: 'solid',
         borderWidth: 'max(0.4vw, 3px)',
-        borderColor: isHighlighted ? 'black' : 'darkgrey',
+        borderColor: isHighlighted ? 'black' : '#555555',
+        color: isHighlighted ? 'black' : '#555555',
         backgroundColor: 'whitesmoke',
+        transition: 'all 0.1s ease-in-out',
       }}
     >
       {children}

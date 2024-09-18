@@ -39,7 +39,7 @@ const AboutMeSection = ({
         }}>
           <CgProfile
             size={'max(3vw, 30px)'}
-            color={isHighlighted ? 'black' : 'darkgrey'}
+            color={isHighlighted ? 'black' : '#555555'}
           />
         </div>
       </div>

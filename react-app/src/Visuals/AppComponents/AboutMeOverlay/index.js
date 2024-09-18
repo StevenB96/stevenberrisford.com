@@ -22,6 +22,7 @@ const AboutMeOverlay = forwardRef(({
         display: 'flex',
         borderRadius: 20,
         borderStyle: 'solid',
+        borderColor: '#555555',
         borderWidth: 'max(0.4vw, 3px)',
         width: width / 1.2,
         maxWidth: 1400 / 1.2,
@@ -43,7 +44,10 @@ const AboutMeOverlay = forwardRef(({
             alignItems: 'center',
             borderRadius: '50%',
           }}>
-          <IoCloseCircleOutline size={'max(4.5vw, 45px)'} />
+          <IoCloseCircleOutline
+            size={'max(4.5vw, 45px)'}
+            color={'#555555'}
+          />
         </button>
 
       </div>
