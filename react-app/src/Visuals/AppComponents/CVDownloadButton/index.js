@@ -1,5 +1,6 @@
 import {
-  useCallback
+  useCallback,
+  useState
 } from 'react';
 import {
   PiReadCvLogoBold
@@ -12,6 +13,7 @@ const CVDownloadButton = ({
   fileName,
   fileUrl,
 }) => {
+  const [isHighlighted, setIsHighlighted] = useState(false);
   const { isTablet, isMobile, width } = useResponsive();
 
   const handleDownload = useCallback((fileUrl, fileName) => {
@@ -20,6 +22,8 @@ const CVDownloadButton = ({
 
   return (
     <BaseOptionsButton
+      isHighlighted={isHighlighted}
+      setIsHighlighted={setIsHighlighted}
       onClick={() => handleDownload(fileUrl, fileName)}
     >
       <div
@@ -38,7 +42,10 @@ const CVDownloadButton = ({
           alignItems: 'center',
           borderRadius: '50%',
         }}>
-          <PiReadCvLogoBold size={'max(3vw, 30px)'} />
+          <PiReadCvLogoBold
+            size={'max(3vw, 30px)'}
+            color={isHighlighted ? 'black' : 'darkgrey'}
+          />
         </div>
       </div>
     </BaseOptionsButton>

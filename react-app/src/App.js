@@ -42,7 +42,7 @@ const OptionsMenu = ({
   userSetIsAboutModalOpen,
   isAboutModalOpen
 }) => {
-  const { isTablet, isMobile } = useResponsive();
+  const { isTablet, isMobile, width } = useResponsive();
 
   return (
     <div
@@ -53,7 +53,7 @@ const OptionsMenu = ({
         zIndex: 3,
         display: 'flex',
         flexDirection: (isTablet || isMobile) ? 'column' : 'row',
-        gap: 5,
+        gap: width * 0.01,
       }}>
       <AboutMeSection
         userSetIsAboutModalOpen={userSetIsAboutModalOpen}

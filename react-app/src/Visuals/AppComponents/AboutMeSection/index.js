@@ -1,4 +1,7 @@
 import {
+  useState
+} from 'react';
+import {
   CgProfile
 } from "react-icons/cg";
 import useResponsive from '../../../Hooks/useResponsive';
@@ -8,10 +11,13 @@ const AboutMeSection = ({
   isAboutModalOpen,
   userSetIsAboutModalOpen
 }) => {
-  const { isTablet, isMobile,  width } = useResponsive();
+  const [isHighlighted, setIsHighlighted] = useState(false);
+  const { isTablet, isMobile, width } = useResponsive();
 
   return (
     <BaseOptionsButton
+      isHighlighted={isHighlighted}
+      setIsHighlighted={setIsHighlighted}
       onClick={() => userSetIsAboutModalOpen(!isAboutModalOpen)}
     >
       <div
@@ -31,7 +37,10 @@ const AboutMeSection = ({
           alignItems: 'center',
           borderRadius: '50%',
         }}>
-          <CgProfile size={'max(3vw, 30px)'} />
+          <CgProfile
+            size={'max(3vw, 30px)'}
+            color={isHighlighted ? 'black' : 'darkgrey'}
+          />
         </div>
       </div>
     </BaseOptionsButton>

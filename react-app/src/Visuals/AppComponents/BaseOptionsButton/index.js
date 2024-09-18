@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import useResponsive from '../../../Hooks/useResponsive';
 
 
-const BaseOptionsButton = ({ children, onClick }) => {
-  const [isHighlighted, setIsHighlighted] = useState(false);
+const BaseOptionsButton = ({ 
+  children, 
+  onClick,
+  isHighlighted = false,
+  setIsHighlighted = (isHighlighted) => {},
+}) => {
   const { width, isTablet, isMobile } = useResponsive();
 
   const handleMouseOver = () => setIsHighlighted(true);
@@ -19,7 +23,7 @@ const BaseOptionsButton = ({ children, onClick }) => {
         borderRadius: 15,
         borderStyle: 'solid',
         borderWidth: 'max(0.4vw, 3px)',
-        borderColor: isHighlighted ? 'black' : 'silver',
+        borderColor: isHighlighted ? 'black' : 'darkgrey',
         backgroundColor: 'whitesmoke',
       }}
     >
