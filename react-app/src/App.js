@@ -26,7 +26,7 @@ import {
 
 import {
   AboutMeOverlay,
-  AboutMeSection,
+  AboutMeButton,
   CVDownloadButton,
   TopScrollElement,
   SiteHeader
@@ -55,7 +55,7 @@ const OptionsMenu = ({
         flexDirection: (isTablet || isMobile) ? 'column' : 'row',
         gap: width * 0.01,
       }}>
-      <AboutMeSection
+      <AboutMeButton
         userSetIsAboutModalOpen={userSetIsAboutModalOpen}
         isAboutModalOpen={isAboutModalOpen}
       />
@@ -136,6 +136,7 @@ function App() {
         title: 'Projects',
         text: 'projects',
         contentLoaded: false,
+        icon: 'MdOutlineComputer',
       },
       {
         id: 2,
@@ -145,6 +146,7 @@ function App() {
         title: 'Articles',
         text: 'articles',
         contentLoaded: false,
+        icon: 'MdNewspaper',
       },
       {
         id: 3,
@@ -154,6 +156,7 @@ function App() {
         title: 'Hobbies',
         text: 'hobbies',
         contentLoaded: false,
+        icon: 'MdOutlineSportsKabaddi',
       },
     ];
 
@@ -203,12 +206,14 @@ function App() {
         id: value.id,
         title: value.title,
         ref: value.ref,
+        icon: value.icon
       }
     }),
     {
       id: 4,
       title: 'Contact Information',
       ref: contactSectionRef,
+      icon: 'MdOutlineContactPhone',
     }
   ];
 
@@ -295,6 +300,7 @@ function App() {
                 <ContentGroup
                   title={value.title}
                   text={value.text}
+                  icon={value.icon}
                   ref={value.ref}
                   backgroundImageUrl={value.backgroundImageUrl}
                   blur={3}
@@ -313,6 +319,7 @@ function App() {
               <ContentGroup
                 title={'Contact Info'}
                 text={'contactInfo'}
+                icon={'MdOutlineContactPhone'}
                 ref={contactSectionRef}
                 backgroundImageUrl={profile?.profile_background_link}
                 blur={3}

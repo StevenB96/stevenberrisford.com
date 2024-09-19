@@ -7,6 +7,7 @@ import {
   Nav
 } from 'react-bootstrap';
 import ListToggle from '../ListToggle';
+import useCommonFunctions from '../../../Hooks/useCommonFunctions';
 
 const CustomNavItem = ({
   item,
@@ -15,47 +16,66 @@ const CustomNavItem = ({
   isMenuOpen,
   setIsMenuOpen,
   scrollToSection,
-  containerHeight
+  containerHeight,
 }) => {
   const [isHighlighted, setIsHighlighted] = useState(false);
+  const commonFunctions = useCommonFunctions();
 
-  const navItemStyle = {
+  const icon = commonFunctions.getMenuIcon({
+    iconName: item.icon,
+    isHighlighted
+  });
+
+  const containerStyle = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: isHighlighted ?
-      'silver' :
-      'whitesmoke',
-    textDecoration: isHighlighted ?
-      'underline' :
-      'none',
+    backgroundColor: 'whitesmoke',
     transition: 'all 0.1s ease-in-out',
-
     borderTopStyle: (isMenuOpen && index === 0) ? 'solid' : undefined,
     borderBottomStyle: (isMenuOpen) ? 'solid' : undefined,
     borderWidth: 'max(0.4vw, 3px)',
-
     height: isMenuOpen ? containerHeight : 0,
     borderBottomLeftRadius: index === (navInputMap.length - 1) ? 20 : undefined,
     borderBottomRightRadius: index === (navInputMap.length - 1) ? 20 : undefined,
   };
+
+  const innerContainerStyle = {
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
+
+  const contentContainerStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    gap: 10,
+  }
+
+  const textStyle = {
+    color: isHighlighted ? 'black' : '#555555',
+    transition: 'color 0.1s ease-in-out',
+  }
 
   return (
     <Nav.Item
       key={item.id}
       onMouseOver={() => setIsHighlighted(true)}
       onMouseOut={() => setIsHighlighted(false)}
-      style={navItemStyle}>
+      style={containerStyle}>
       <button
-        style={{
-          width: '100%'
-        }}
+        style={innerContainerStyle}
         onClick={() => {
           setIsMenuOpen(false);
           scrollToSection(item.ref)
         }}
       >
-        <h2>{item.title}</h2>
+        <div style={contentContainerStyle}>
+          <h2 style={textStyle}>{item.title}</h2>
+          {icon}
+        </div>
       </button>
     </Nav.Item>
   );
@@ -136,7 +156,6 @@ const NavBarColumn = ({
     left: 0,
     width: '100%',
     boxSizing: 'border-box',
-    transition: 'height 0.1s ease-in-out',
     overflow: 'hidden',
   };
 

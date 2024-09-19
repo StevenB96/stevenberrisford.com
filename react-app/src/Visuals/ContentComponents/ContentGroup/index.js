@@ -1,13 +1,15 @@
 import { forwardRef } from 'react';
-import { FaArrowTurnDown } from "react-icons/fa6";
+import useCommonFunctions from '../../../Hooks/useCommonFunctions';
 
 const ContentGroup = forwardRef(({
   children,
   backgroundImageUrl,
   title,
+  icon,
   blur,
 }, ref) => {
-  
+  const commonFunctions = useCommonFunctions();
+
   // Styles
   const headerStyle = {
     backgroundColor: 'whitesmoke',
@@ -58,12 +60,17 @@ const ContentGroup = forwardRef(({
     <>
       <div ref={ref} style={headerStyle}>
         <h2 style={{}}>{title}</h2>
-        <FaArrowTurnDown size={'max(1.5vw, 15px)'} />
+        {
+        commonFunctions.getMenuIcon({
+          iconName: icon,
+          isHighlighted: true
+        })
+        }
       </div>
 
       <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden' }}>
         <div style={backgroundStyle} />
-        
+
         {/* Content Wrapper */}
         <div style={contentContainerStyle}>
           <div style={childrenContainerStyle}>

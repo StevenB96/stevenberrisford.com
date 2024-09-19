@@ -1,4 +1,7 @@
-import { forwardRef } from 'react';
+import { 
+  useState,
+  forwardRef,
+} from 'react';
 import useResponsive from '../../../Hooks/useResponsive';
 import {
   IoCloseCircleOutline
@@ -8,7 +11,11 @@ const AboutMeOverlay = forwardRef(({
   userSetIsAboutModalOpen,
   profile,
 }, ref) => {
+  const [isHighlighted, setIsHighlighted] = useState(false);
   const { isMobile, width } = useResponsive();
+
+  const handleMouseOver = () => setIsHighlighted(true);
+  const handleMouseOut = () => setIsHighlighted(false);
 
   return (
     <div
@@ -22,7 +29,6 @@ const AboutMeOverlay = forwardRef(({
         display: 'flex',
         borderRadius: 20,
         borderStyle: 'solid',
-        borderColor: '#555555',
         borderWidth: 'max(0.4vw, 3px)',
         width: width / 1.2,
         maxWidth: 1400 / 1.2,
@@ -38,6 +44,8 @@ const AboutMeOverlay = forwardRef(({
         }}>
         <button
           onClick={() => userSetIsAboutModalOpen(false)}
+          onMouseOver={handleMouseOver}
+          onMouseOut={handleMouseOut}
           style={{
             display: 'flex',
             justifyContent: 'center',
@@ -46,7 +54,7 @@ const AboutMeOverlay = forwardRef(({
           }}>
           <IoCloseCircleOutline
             size={'max(4.5vw, 45px)'}
-            color={'#555555'}
+            color={isHighlighted ? 'black' : '#555555'}
           />
         </button>
 
@@ -73,6 +81,7 @@ const AboutMeOverlay = forwardRef(({
             borderRadius: '50%',
             backgroundColor: '#FFFFFF',
             borderStyle: 'solid',
+            borderColor: '#555555',
             borderWidth: 'max(0.4vw, 3px)',
             boxShadow:
               `1px 1px 1px rgba(0,0,0,0.08),` +
@@ -88,6 +97,7 @@ const AboutMeOverlay = forwardRef(({
             wordWrap: 'break-word',
             width: isMobile ? '100%' : '70%',
             textAlign: 'left',
+            color: 'black',
           }}
         >
           {profile.description}

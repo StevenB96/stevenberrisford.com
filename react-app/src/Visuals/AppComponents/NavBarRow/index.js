@@ -19,13 +19,10 @@ const CustomNavItem = ({
     justifyContent: 'center',
     cursor: 'pointer',
     alignItems: 'center',
-    textDecoration: highlightedItem === index ?
-      'underline' :
-      'none',
     backgroundColor: highlightedItem === index ?
       'whitesmoke' :
       'silver',
-    transition: 'all 0.1s ease-in-out',
+    transition: 'background-color 0.1s ease-in-out, text-decoration 0.1s ease-in-out',
     borderLeft: index === 0 ? 'solid' : undefined,
     borderRight: 'solid',
     borderTop: 'solid',
@@ -33,6 +30,9 @@ const CustomNavItem = ({
     borderTopRightRadius: index === (navInputMap.length - 1) ? 20 : undefined,
     borderTopLeftRadius: index === 0 ? 20 : undefined,
   };
+
+  const textStyle = {
+  }
 
   return (
     <Nav.Item
@@ -46,7 +46,7 @@ const CustomNavItem = ({
         }}
         onClick={() => scrollToSection(item.ref)}
       >
-        <h2>{item.title}</h2>
+        <h2 style={textStyle}>{item.title}</h2>
       </button>
     </Nav.Item>
   );

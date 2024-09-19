@@ -57,6 +57,7 @@ const SiteHeader = ({
     textAlign: 'center',
     margin: 0,
     color: 'whitesmoke',
+    fontSize: 'calc(max(calc(4vw / (3 / 3)), calc(3 * 10px)) / 1.2)'
   };
 
   const backgroundStyle = {
@@ -80,9 +81,7 @@ const SiteHeader = ({
       {/* Content Wrapper */}
       <div style={contentContainerStyle}>
         <h1 style={textStyle}>
-          <u>
-            Hi, I'm Steven Berrisford.<br />Welcome to my website!
-          </u>
+          Welcome to my website!
         </h1>
         <MultiTypeNav
           navInputMap={navInputMap}
