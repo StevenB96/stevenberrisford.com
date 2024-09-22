@@ -2,7 +2,6 @@ import {
   useEffect,
   useState,
   useRef,
-  memo,
   useCallback,
 } from 'react';
 import {
@@ -13,91 +12,28 @@ import useScrollPosition from '@react-hook/window-scroll';
 import ClockLoader from "react-spinners/FadeLoader";
 import tabIcon from './Assets/tab_icon.png';
 import useResponsive from './Hooks/useResponsive';
-import useCommonFunctions from './Hooks/useCommonFunctions';
+import { commonFunctions } from './Hooks';
+import ContentContainer from './Visuals/Containers/ContentContainer'
 
 import {
-  ProjectComponent,
-  PdfComponent,
-  YoutubeComponent,
-  Contact,
-  ContentGroup,
-  BaseComponent
-} from './Visuals/ContentComponents';
-
-import {
-  AboutMeOverlay,
-  AboutMeButton,
-  CVDownloadButton,
+  ProfileOverlayElement,
   TopScrollElement,
-  SiteHeader
-} from './Visuals/AppComponents';
+  Contact
+} from './Visuals/Elements';
+import {
+  ContentGroup,
+  SiteHeader,
+} from './Visuals/Layouts';
+import {
+  SiteOptionsContainer
+} from './Visuals/Containers';
 
 import {
   getProfileRequest,
   getContentRequest
 } from './Redux/Actions/appActions';
 
-const OptionsMenu = ({
-  profile,
-  userSetIsAboutModalOpen,
-  isAboutModalOpen
-}) => {
-  const { isTablet, isMobile, width } = useResponsive();
-
-  return (
-    <div
-      style={{
-        top: 10,
-        left: 10,
-        position: 'fixed',
-        zIndex: 3,
-        display: 'flex',
-        flexDirection: (isTablet || isMobile) ? 'column' : 'row',
-        gap: width * 0.01,
-      }}>
-      <AboutMeButton
-        userSetIsAboutModalOpen={userSetIsAboutModalOpen}
-        isAboutModalOpen={isAboutModalOpen}
-      />
-      <CVDownloadButton
-        fileName="CV"
-        fileUrl={profile?.cv_link}
-      />
-    </div>
-  );
-};
-
-const MultiTypeComponent = memo(({ item }) => {
-  let content = null;
-  if (item.content_type === 1) {
-    content = <ProjectComponent key={item.id} project={item} />;
-  }
-  else if (item.content_type === 2) {
-    content = <PdfComponent key={item.id} article={item} />;
-  }
-  else if (item.content_type === 3) {
-    content = <YoutubeComponent key={item.id} hobby={item} />;
-  }
-  return (
-    <BaseComponent>
-      <div>
-        <h3>{item.title}</h3>
-        <p
-          style={{
-            textAlign: 'left',
-            margin: 0,
-            whiteSpace: 'pre-wrap',
-            marginBottom: 10,
-          }}
-        >{item.text}</p>
-      </div>
-      {content}
-    </BaseComponent>
-  );
-});
-
 function App() {
-  const commonFunctions = useCommonFunctions();
   // Hook to access Redux dispatch function
   const dispatch = useDispatch();
 
@@ -298,16 +234,13 @@ function App() {
 
               {content.map((value, indexA) => (
                 <ContentGroup
-                  title={value.title}
-                  text={value.text}
-                  icon={value.icon}
-                  ref={value.ref}
-                  backgroundImageUrl={value.backgroundImageUrl}
+                  value={value}
                   blur={3}
+                  ref={value.ref}
                   key={`${value.id}}`}
                 >
                   {value.items && value.items.map((item, indexB) => {
-                    return <MultiTypeComponent
+                    return <ContentContainer
                       item={item}
                       key={`${value.id}_${item.id}`}
                     />;
@@ -334,14 +267,14 @@ function App() {
                   <TopScrollElement />
                 )
               }
-              <OptionsMenu
+              <SiteOptionsContainer
                 profile={profile}
                 isAboutModalOpen={isAboutModalOpen}
                 userSetIsAboutModalOpen={userSetIsAboutModalOpen}
               />
               {isAboutModalOpen &&
                 (
-                  <AboutMeOverlay
+                  <ProfileOverlayElement
                     ref={aboutOverlayRef}
                     userSetIsAboutModalOpen={userSetIsAboutModalOpen}
                     profile={profile}
