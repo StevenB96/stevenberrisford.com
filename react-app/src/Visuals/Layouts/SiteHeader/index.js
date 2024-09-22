@@ -6,7 +6,8 @@ import NavContainer from '../../Containers/NavContainer';
 const SiteHeader = ({
   navInputMap,
   scrollToSection,
-  profile
+  profile,
+  blur = 3,
 }) => {
   const headerContainerStyle = {
     position: 'relative',
@@ -42,7 +43,7 @@ const SiteHeader = ({
     right: 0,
     bottom: 0,
     zIndex: 0,
-    filter: 'blur(3px)',
+    filter: `blur(${blur}px)`,
   };
 
   return (

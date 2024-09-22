@@ -5,7 +5,7 @@ import {
   PiListBold
 } from "react-icons/pi";
 
-const ListToggle = ({
+const NavToggle = ({
   text,
   onClick
 }) => {
@@ -27,4 +27,4 @@ const ListToggle = ({
   );
 };
 
-export default memo(ListToggle);
+export default memo(NavToggle);

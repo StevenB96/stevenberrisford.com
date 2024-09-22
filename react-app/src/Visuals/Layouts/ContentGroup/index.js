@@ -7,9 +7,8 @@ import { commonFunctions } from '../../../Hooks';
 const ContentGroup = forwardRef(({
   children,
   value,
-  blur,
+  blur = 3,
 }, ref) => {
-  console.log(value);
   const headerStyle = {
     backgroundColor: 'whitesmoke',
     width: '100%',

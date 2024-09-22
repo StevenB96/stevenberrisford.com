@@ -1,7 +1,7 @@
 import {
   useState,
 } from 'react';
-import { FaLocationCrosshairs } from "react-icons/fa6";
+import { FaHandPointLeft  } from "react-icons/fa6";
 
 import useResponsive from '../../../Hooks/useResponsive';
 
@@ -34,17 +34,18 @@ function ProjectElement({ project }) {
           display: 'flex',
           width: '100%',
           aspectRatio: 1,
+          overflow: 'hidden',
+          borderRadius: 10,
         }}>
         <img
           src={project.media_link}
           alt={project.title}
           style={{
-            width: isHighlighted && project.link ?
-              '95%' :
-              '100%',
+            width: '100%',
             aspectRatio: 1,
             objectFit: 'cover',
-            transition: 'width 0.1s ease-in-out',
+            transform: isHighlighted ? 'scale(1.1)' : undefined,
+            transition: 'transform 0.1s ease-in-out',
           }} />
         {
           project.link && (
@@ -63,11 +64,12 @@ function ProjectElement({ project }) {
                 justifyContent: 'center',
                 alignItems: 'center',
                 backgroundColor: 'whitesmoke',
-                borderColor: 'green',
+                borderColor: isHighlighted ? 'black' : '#555555',
+                rotate: '-20deg',
               }}>
-              <FaLocationCrosshairs
+              <FaHandPointLeft 
                 size={'70%'}
-                color={'green'}
+                color={isHighlighted ? 'black' : '#555555'}
                 style={{}}
               />
             </div>

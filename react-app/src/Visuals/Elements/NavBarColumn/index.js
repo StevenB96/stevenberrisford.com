@@ -3,10 +3,9 @@ import {
   useRef,
   useEffect,
 } from 'react';
-import {
-  Nav
-} from 'react-bootstrap';
-import ListToggle from '../../Buttons/ListToggle';
+import { useWindowSize } from '@react-hook/window-size';
+import useScrollPosition from '@react-hook/window-scroll';
+import NavToggle from '../../Buttons/NavToggle';
 import { commonFunctions } from '../../../Hooks';
 
 const CustomNavItem = ({
@@ -59,7 +58,7 @@ const CustomNavItem = ({
   }
 
   return (
-    <Nav.Item
+    <div
       key={item.id}
       onMouseOver={() => setIsHighlighted(true)}
       onMouseOut={() => setIsHighlighted(false)}
@@ -76,7 +75,7 @@ const CustomNavItem = ({
           {icon}
         </div>
       </button>
-    </Nav.Item>
+    </div>
   );
 };
 
@@ -100,14 +99,14 @@ const CustomDropDownButton = ({
   };
 
   return (
-    <Nav.Item
+    <div
       onClick={() => setIsMenuOpen(!isMenuOpen)}
       style={dropDownStyle}
     >
-      <ListToggle
+      <NavToggle
         text={'Menu'}
       />
-    </Nav.Item>
+    </div>
   );
 }
 
@@ -115,6 +114,8 @@ const NavBarColumn = ({
   navInputMap,
   scrollToSection
 }) => {
+  const scrollY = useScrollPosition(0);
+  const [height] = useWindowSize();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [containerHeight, setContainerHeight] = useState(0);
 
@@ -145,6 +146,19 @@ const NavBarColumn = ({
       setContainerHeight(0);
     }
   }, [isMenuOpen]);
+
+  // useEffect to close menu if scroll position is greater than height
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (scrollY > height) {
+        setIsMenuOpen(false);
+      }
+    }, 100);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [scrollY, height]);
 
   const dropDownContainerStyle = {
     display: 'flex',

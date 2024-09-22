@@ -1,9 +1,6 @@
 import {
   useState,
 } from 'react';
-import {
-  Nav
-} from 'react-bootstrap';
 
 const CustomNavItem = ({
   item,
@@ -35,7 +32,7 @@ const CustomNavItem = ({
   }
 
   return (
-    <Nav.Item
+    <div
       key={item.id}
       onMouseOver={() => setHighlightedItem(index)}
       onMouseOut={() => setHighlightedItem(null)}
@@ -48,7 +45,7 @@ const CustomNavItem = ({
       >
         <h2 style={textStyle}>{item.title}</h2>
       </button>
-    </Nav.Item>
+    </div>
   );
 };
 

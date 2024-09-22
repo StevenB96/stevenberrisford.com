@@ -39,14 +39,13 @@ function App() {
 
   // Custom hooks to get window size and scroll position
   const { width, height } = useResponsive();
-  const scrollY = useScrollPosition(30);
+  const scrollY = useScrollPosition(0);
 
   // References for different sections of the page
   const projectsSectionRef = useRef(null);
   const articlesSectionRef = useRef(null);
   const hobbiesSectionRef = useRef(null);
   const contactSectionRef = useRef(null);
-  const aboutOverlayRef = useRef(null);
 
   // Accessing application state from Redux store
   const {
@@ -182,7 +181,7 @@ function App() {
       if (scrollY > height) {
         setIsAboutModalOpen(false);
       }
-    }, 1000);
+    }, 100);
 
     return () => {
       clearTimeout(timeoutId);
@@ -204,7 +203,7 @@ function App() {
   // useEffect to scroll to the about modal
   useEffect(() => {
     if (isAboutModalOpen) {
-      scrollToSection(aboutOverlayRef);
+      commonFunctions.scrollToTop();
     }
   }, [isAboutModalOpen, scrollToSection]);
 
@@ -230,6 +229,7 @@ function App() {
                 profile={profile}
                 navInputMap={navInputMap}
                 scrollToSection={scrollToSection}
+                blur={3}
               />
 
               {content.map((value, indexA) => (
@@ -250,11 +250,13 @@ function App() {
               ))}
 
               <ContentGroup
-                title={'Contact Info'}
-                text={'contactInfo'}
-                icon={'MdOutlineContactPhone'}
                 ref={contactSectionRef}
-                backgroundImageUrl={profile?.profile_background_link}
+                value={{
+                  title: 'Contact Info',
+                  text: 'contactInfo',
+                  icon: 'MdOutlineContactPhone',
+                  backgroundImageUrl: profile?.profile_background_link,
+                }}
                 blur={3}
               >
                 {contactItems.map(item =>
@@ -262,20 +264,23 @@ function App() {
                 )}
               </ContentGroup>
 
-              {scrollY > height &&
-                (
-                  <TopScrollElement />
-                )
+              {
+                (scrollY > height) ?
+                  (
+                    <TopScrollElement />
+                  )
+                  :
+                  (
+                    <SiteOptionsContainer
+                      profile={profile}
+                      isAboutModalOpen={isAboutModalOpen}
+                      userSetIsAboutModalOpen={userSetIsAboutModalOpen}
+                    />
+                  )
               }
-              <SiteOptionsContainer
-                profile={profile}
-                isAboutModalOpen={isAboutModalOpen}
-                userSetIsAboutModalOpen={userSetIsAboutModalOpen}
-              />
               {isAboutModalOpen &&
                 (
                   <ProfileOverlayElement
-                    ref={aboutOverlayRef}
                     userSetIsAboutModalOpen={userSetIsAboutModalOpen}
                     profile={profile}
                   />
