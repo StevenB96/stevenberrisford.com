@@ -19,7 +19,8 @@ const ProfileOverlayElement = forwardRef(({
     display: 'flex',
     borderRadius: 20,
     borderStyle: 'solid',
-    borderWidth: 'max(0.4vw, 3px)',
+    borderWidth: 'max(0.3vw, 2.25px)',
+    boxSizing: 'border-box',
     width: width / 1.2,
     maxWidth: 1400 / 1.2,
     flexDirection: 'column',
@@ -36,7 +37,8 @@ const ProfileOverlayElement = forwardRef(({
     backgroundColor: '#FFFFFF',
     borderStyle: 'solid',
     borderColor: 'black',
-    borderWidth: 'max(0.4vw, 3px)',
+    borderWidth: 'max(0.3vw, 2.25px)',
+    boxSizing: 'border-box',
     boxShadow:
       `1px 1px 1px rgba(0,0,0,0.08),` +
       `2px 2px 2px rgba(0,0,0,0.08),` +

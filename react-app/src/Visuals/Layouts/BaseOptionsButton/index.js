@@ -1,7 +1,6 @@
 import React, {
   memo,
 } from 'react';
-import useResponsive from '../../../Hooks/useResponsive';
 
 
 const BaseOptionsButton = ({ 
@@ -9,8 +8,6 @@ const BaseOptionsButton = ({
   onClick,
   setIsHighlighted,
 }) => {
-  const { width, isTablet, isMobile } = useResponsive();
-
   const handleMouseOver = () => setIsHighlighted(true);
   const handleMouseOut = () => setIsHighlighted(false);
 
@@ -20,10 +17,11 @@ const BaseOptionsButton = ({
       onMouseOut={handleMouseOut}
       onClick={onClick}
       style={{
-        padding: width * (isTablet || isMobile ? 0.015 : 0.01),
+        padding: 10,
         borderRadius: 15,
         borderStyle: 'solid',
-        borderWidth: 'max(0.4vw, 3px)',
+        borderWidth: 'max(0.3vw, 2.25px)',
+        boxSizing: 'border-box',
         backgroundColor: 'whitesmoke',
       }}
     >

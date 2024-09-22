@@ -12,18 +12,21 @@ const SiteOptionsContainer = ({
   userSetIsAboutModalOpen,
   isAboutModalOpen
 }) => {
-  const { isTablet, isMobile, width } = useResponsive();
+  const {
+    isTablet,
+    isMobile
+  } = useResponsive();
 
   return (
     <div
       style={{
-        top: 10,
-        left: 10,
+        top: 5,
+        left: 5,
         position: 'fixed',
         zIndex: 3,
         display: 'flex',
         flexDirection: (isTablet || isMobile) ? 'column' : 'row',
-        gap: width * 0.01,
+        gap: 5,
       }}>
       <ProfileButton
         onClick={userSetIsAboutModalOpen}

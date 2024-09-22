@@ -15,7 +15,7 @@ const ContentGroup = forwardRef(({
     boxSizing: 'border-box',
     borderTop: 'solid',
     borderBottom: 'solid',
-    borderWidth: 'max(0.4vw, 3px)',
+    borderWidth: 'max(0.3vw, 2.25px)',
     textAlign: 'center',
     display: 'flex',
     alignItems: 'center',

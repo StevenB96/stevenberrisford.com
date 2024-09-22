@@ -23,7 +23,7 @@ const BaseContentElement = ({ children }) => {
     justifyContent: 'space-between',
     boxSizing: 'border-box',
     borderStyle: 'solid',
-    borderWidth: 'max(0.4vw, 3px)',
+    borderWidth: 'max(0.3vw, 2.25px)',
     borderRadius: 20,
     backgroundColor: 'whitesmoke',
     width: adjustedWidth,

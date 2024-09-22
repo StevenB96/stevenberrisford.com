@@ -32,7 +32,8 @@ const CustomNavItem = ({
     transition: 'all 0.1s ease-in-out',
     borderTopStyle: (isMenuOpen && index === 0) ? 'solid' : undefined,
     borderBottomStyle: (isMenuOpen) ? 'solid' : undefined,
-    borderWidth: 'max(0.4vw, 3px)',
+    borderWidth: 'max(0.3vw, 2.25px)',
+    boxSizing: 'border-box',
     height: isMenuOpen ? containerHeight : 0,
     borderBottomLeftRadius: index === (navInputMap.length - 1) ? 20 : undefined,
     borderBottomRightRadius: index === (navInputMap.length - 1) ? 20 : undefined,
@@ -90,7 +91,7 @@ const CustomDropDownButton = ({
 
     backgroundColor: 'silver',
     borderTopStyle: 'solid',
-    borderWidth: 'max(0.4vw, 3px)',
+    borderWidth: 'max(0.3vw, 2.25px)',
     gap: 10,
 
     cursor: 'pointer',

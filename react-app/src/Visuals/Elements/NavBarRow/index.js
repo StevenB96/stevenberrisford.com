@@ -23,7 +23,8 @@ const CustomNavItem = ({
     borderLeft: index === 0 ? 'solid' : undefined,
     borderRight: 'solid',
     borderTop: 'solid',
-    borderWidth: 'max(0.4vw, 3px)',
+    borderWidth: 'max(0.3vw, 2.25px)',
+    boxSizing: 'border-box',
     borderTopRightRadius: index === (navInputMap.length - 1) ? 20 : undefined,
     borderTopLeftRadius: index === 0 ? 20 : undefined,
   };

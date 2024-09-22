@@ -3,10 +3,7 @@ import {
 } from 'react';
 import { FaHandPointLeft  } from "react-icons/fa6";
 
-import useResponsive from '../../../Hooks/useResponsive';
-
 function ProjectElement({ project }) {
-  const { isTablet, isMobile } = useResponsive();
   const [isHighlighted, setIsHighlighted] = useState(false);
 
   return (
@@ -21,6 +18,9 @@ function ProjectElement({ project }) {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        overflow: 'hidden',
+        borderRadius: 10,
+        boxSizing: 'border-box',
       }}
       href={project.link}
       target="_blank"
@@ -34,8 +34,6 @@ function ProjectElement({ project }) {
           display: 'flex',
           width: '100%',
           aspectRatio: 1,
-          overflow: 'hidden',
-          borderRadius: 10,
         }}>
         <img
           src={project.media_link}
@@ -52,7 +50,7 @@ function ProjectElement({ project }) {
             <div
               style={{
                 borderStyle: 'solid',
-                borderWidth: (isTablet ? 2 : (isMobile ? 2 : 4)),
+                borderWidth: 'max(0.3vw, 2.25px)',
                 aspectRatio: 1,
                 width: '16%',
                 boxSizing: 'border-box',
