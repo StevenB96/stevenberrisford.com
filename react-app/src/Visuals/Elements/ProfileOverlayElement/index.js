@@ -60,8 +60,8 @@ const ProfileOverlayElement = forwardRef(({
           justifyContent: 'space-around',
           alignItems: isMobile ? 'center' : 'flex-start',
           flexDirection: isMobile ? 'column' : 'row',
-          gap: 20,
-          padding: 20,
+          gap: 10,
+          padding: 10,
         }}
       >
         <img
@@ -76,6 +76,7 @@ const ProfileOverlayElement = forwardRef(({
             width: isMobile ? '100%' : '70%',
             textAlign: 'left',
             color: 'black',
+            marginTop: isMobile ? undefined : 40,
           }}
         >
           {profile.description}

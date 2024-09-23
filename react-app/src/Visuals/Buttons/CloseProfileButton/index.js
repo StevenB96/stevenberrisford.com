@@ -15,28 +15,20 @@ const CloseProfileButton = ({
   const handleMouseOut = () => setIsHighlighted(false);
 
   return (
-    <div
+    <button
+      onClick={() => onClick(false)}
+      onMouseOver={handleMouseOver}
+      onMouseOut={handleMouseOut}
       style={{
-        display: 'flex',
-        justifyContent: 'flex-end',
-        alignItems: 'center',
+        position: 'absolute',
+        top: 10,
+        right: 10,
       }}>
-      <button
-        onClick={() => onClick(false)}
-        onMouseOver={handleMouseOver}
-        onMouseOut={handleMouseOut}
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          borderRadius: '50%',
-        }}>
-        <IoCloseCircleOutline
-          size={'max(4.5vw, 45px)'}
-          color={isHighlighted ? 'black' : '#555555'}
-        />
-      </button>
-    </div>
+      <IoCloseCircleOutline
+        size={'max(4.5vw, 45px)'}
+        color={isHighlighted ? 'black' : '#555555'}
+      />
+    </button>
   );
 };
 
