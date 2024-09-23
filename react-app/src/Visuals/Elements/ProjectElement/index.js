@@ -42,11 +42,11 @@ function ProjectElement({ project }) {
             width: '100%',
             aspectRatio: 1,
             objectFit: 'cover',
-            transform: isHighlighted ? 'scale(1.1)' : undefined,
+            transform: (isHighlighted && !!project.link) ? 'scale(1.1)' : undefined,
             transition: 'transform 0.1s ease-in-out',
           }} />
         {
-          project.link && (
+          !!project.link && (
             <div
               style={{
                 borderStyle: 'solid',
