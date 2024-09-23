@@ -76,7 +76,7 @@ const ProfileOverlayElement = forwardRef(({
             width: isMobile ? '100%' : '70%',
             textAlign: 'left',
             color: 'black',
-            marginTop: isMobile ? undefined : 40,
+            marginTop: isMobile ? undefined : 'max(4vw, min(40px))',
           }}
         >
           {profile.description}
