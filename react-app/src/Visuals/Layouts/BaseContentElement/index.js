@@ -10,11 +10,15 @@ const BaseContentElement = ({ children }) => {
   const isMax = width > 1400;
 
   const adjustedWidth = useMemo(() => {
+    let adjustedWidth = null;
+
     if (isMax) {
-      return 1400 / 4 - 20;
+      adjustedWidth = 1400 / 4 - 20;
     }
 
-    return width / (isMobile ? 2 : (isTablet ? 3 : 4)) - 20;
+    adjustedWidth = width / (isMobile ? 2 : (isTablet ? 3 : 4)) - 20;
+
+    return Math.min(adjustedWidth - 1);
   }, [isMax, isMobile, isTablet, width]);
 
   const containerStyle = {
