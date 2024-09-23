@@ -5,6 +5,8 @@ import { FaHandPointLeft  } from "react-icons/fa6";
 
 function ProjectElement({ project }) {
   const [isHighlighted, setIsHighlighted] = useState(false);
+  const highlightColour = 'darkgreen';
+  const colour = 'forestgreen';
 
   return (
     <a
@@ -62,12 +64,12 @@ function ProjectElement({ project }) {
                 justifyContent: 'center',
                 alignItems: 'center',
                 backgroundColor: 'whitesmoke',
-                borderColor: isHighlighted ? 'black' : '#555555',
-                rotate: '-20deg',
+                borderColor: colour,
+                rotate: '-30deg',
               }}>
               <FaHandPointLeft 
                 size={'70%'}
-                color={isHighlighted ? 'black' : '#555555'}
+                color={isHighlighted ? highlightColour : colour}
                 style={{}}
               />
             </div>
