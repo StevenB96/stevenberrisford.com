@@ -30,7 +30,7 @@ function Contact({ contactMethod }) {
   const [width] = useWindowSize();
 
   // Calculate adjusted width
-  const adjustedWidth = useMemo(() => (width > 1400 ? 1400 : width) / 3 - 40, [width]);
+  const adjustedWidth = useMemo(() => Math.min(((width > 1400 ? 1400 : width) / 3 - 40) - 1), [width]);
 
   return (
     <div style={{
