@@ -14,9 +14,9 @@ const BaseContentElement = ({ children }) => {
 
     if (isMax) {
       adjustedWidth = 1400 / 4 - 20;
+    } else {
+      adjustedWidth = width / (isMobile ? 2 : (isTablet ? 3 : 4)) - 20;
     }
-
-    adjustedWidth = width / (isMobile ? 2 : (isTablet ? 3 : 4)) - 20;
 
     return Math.min(adjustedWidth - 1);
   }, [isMax, isMobile, isTablet, width]);

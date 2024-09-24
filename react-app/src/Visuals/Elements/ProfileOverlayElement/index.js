@@ -1,8 +1,8 @@
-import { 
+import {
   forwardRef,
 } from 'react';
 import useResponsive from '../../../Hooks/useResponsive';
-import {CloseProfileButton} from '../../Buttons';
+import { CloseProfileButton } from '../../Buttons';
 
 const ProfileOverlayElement = forwardRef(({
   userSetIsAboutModalOpen,
@@ -45,13 +45,14 @@ const ProfileOverlayElement = forwardRef(({
       `3px 3px 3px rgba(0,0,0,0.08),` +
       `4px 4px 4px rgba(0,0,0,0.08),` +
       `16px 16px 16px rgba(0,0,0,0.08)`,
+    marginTop: isMobile ? undefined : 'max(4.5vw, 45px)',
   }
 
   return (
     <div
       ref={ref}
       style={containerStyle}>
-      <CloseProfileButton 
+      <CloseProfileButton
         onClick={userSetIsAboutModalOpen}
       />
       <div
