@@ -17,6 +17,7 @@ import ContentContainer from './Visuals/Containers/ContentContainer'
 
 import {
   ProfileOverlayElement,
+  SupportOverlayElement,
   TopScrollElement,
   Contact
 } from './Visuals/Elements';
@@ -24,9 +25,8 @@ import {
   ContentGroup,
   SiteHeader,
 } from './Visuals/Layouts';
-import {
-  SiteOptionsContainer
-} from './Visuals/Containers';
+import LeftSiteOptionsContainer from './Visuals/Containers/LeftSiteOptionsContainer';
+import RightSiteOptionsContainer from './Visuals/Containers/RightSiteOptionsContainer';
 
 import {
   getProfileRequest,
@@ -57,7 +57,7 @@ function App() {
 
   // Local state to manage various content and modal visibility
   const [content, setContent] = useState([]);
-  const [isAboutModalOpen, setIsAboutModalOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(null);
 
   // useEffect to handle content updates and image loading
   useEffect(() => {
@@ -162,11 +162,11 @@ function App() {
     }
   }, []);
 
-  const userSetIsAboutModalOpen = (isOpen) => {
+  const handleSetModal = (isOpen) => {
     if (isOpen === false && scrollY > height) {
       commonFunctions.scrollToTop();
     }
-    setIsAboutModalOpen(isOpen);
+    setModalOpen(isOpen);
   }
 
   // useEffect to fetch profile and content when component mounts
@@ -179,7 +179,7 @@ function App() {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       if (scrollY > height) {
-        setIsAboutModalOpen(false);
+        setModalOpen(null);
       }
     }, 100);
 
@@ -202,10 +202,10 @@ function App() {
 
   // useEffect to scroll to the about modal
   useEffect(() => {
-    if (isAboutModalOpen) {
+    if (modalOpen) {
       commonFunctions.scrollToTop();
     }
-  }, [isAboutModalOpen, scrollToSection]);
+  }, [modalOpen, scrollToSection]);
 
   // Contact items that will be displayed, with their icons
   const contactItems = [
@@ -226,7 +226,6 @@ function App() {
           (
             <>
               <SiteHeader
-                profile={profile}
                 navInputMap={navInputMap}
                 scrollToSection={scrollToSection}
                 blur={3}
@@ -271,18 +270,31 @@ function App() {
                   )
                   :
                   (
-                    <SiteOptionsContainer
-                      profile={profile}
-                      isAboutModalOpen={isAboutModalOpen}
-                      userSetIsAboutModalOpen={userSetIsAboutModalOpen}
-                    />
+                    <>
+                      <LeftSiteOptionsContainer
+                        modalOpen={modalOpen}
+                        handleSetModal={handleSetModal}
+                      />
+                      <RightSiteOptionsContainer
+                        modalOpen={modalOpen}
+                        handleSetModal={handleSetModal}
+                      />
+                    </>
                   )
               }
-              {isAboutModalOpen &&
+              {
+                modalOpen === 'profile' &&
                 (
                   <ProfileOverlayElement
-                    userSetIsAboutModalOpen={userSetIsAboutModalOpen}
-                    profile={profile}
+                    handleClose={() => handleSetModal(null)}
+                  />
+                )
+              }
+              {
+                modalOpen === 'support' &&
+                (
+                  <SupportOverlayElement
+                    handleClose={() => handleSetModal(null)}
                   />
                 )
               }

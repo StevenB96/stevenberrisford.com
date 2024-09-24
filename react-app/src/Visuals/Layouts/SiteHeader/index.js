@@ -1,14 +1,21 @@
 import {
   memo
 } from 'react';
+import {
+  useSelector
+} from 'react-redux';
 import NavContainer from '../../Containers/NavContainer';
 
 const SiteHeader = ({
   navInputMap,
   scrollToSection,
-  profile,
   blur = 3,
 }) => {
+  // Accessing application state from Redux store
+  const {
+    profile,
+  } = useSelector(state => state.app);
+
   const headerContainerStyle = {
     position: 'relative',
     width: '100%',

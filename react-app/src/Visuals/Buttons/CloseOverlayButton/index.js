@@ -6,7 +6,7 @@ import {
   IoCloseCircleOutline
 } from "react-icons/io5";
 
-const CloseProfileButton = ({
+const CloseOverlayButton = ({
   onClick,
 }) => {
   const [isHighlighted, setIsHighlighted] = useState(false);
@@ -16,7 +16,7 @@ const CloseProfileButton = ({
 
   return (
     <button
-      onClick={() => onClick(false)}
+      onClick={onClick}
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
       style={{
@@ -32,4 +32,4 @@ const CloseProfileButton = ({
   );
 };
 
-export default memo(CloseProfileButton);
+export default memo(CloseOverlayButton);

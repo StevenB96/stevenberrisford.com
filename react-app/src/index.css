@@ -9,7 +9,7 @@ html {
 }
 
 body {
-    font-family: 'Quicksand', 'sans-serif';
+    font-family: 'Quicksand', 'sans-serif' !important;
     padding: 0;
     margin: 0;
     overflow-x: hidden;
@@ -68,4 +68,8 @@ input[type="reset"]:not([class="standard-button"]) {
     font: inherit;
     cursor: pointer;
     outline: inherit;
+}
+
+.paypal-buttons {
+    width: 100% !important;
 }

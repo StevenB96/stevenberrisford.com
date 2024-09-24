@@ -9,7 +9,6 @@ import useResponsive from '../../../Hooks/useResponsive';
 import BaseOptionsButton from '../../Layouts/BaseOptionsButton';
 
 const ProfileButton = ({
-  isAboutModalOpen,
   onClick
 }) => {
   const [isHighlighted, setIsHighlighted] = useState(false);
@@ -19,7 +18,7 @@ const ProfileButton = ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    gap: 10,
+    gap: 5,
     flexDirection: (isTablet || isMobile) ? 'row' : 'column',
   }
 
@@ -32,7 +31,7 @@ const ProfileButton = ({
   return (
     <BaseOptionsButton
       setIsHighlighted={setIsHighlighted}
-      onClick={() => onClick(!isAboutModalOpen)}
+      onClick={onClick}
     >
       <div style={containerStyle}>
         <h3 style={textStyle}>About Me</h3>

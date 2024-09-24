@@ -2,15 +2,13 @@ import {
   memo
 } from 'react';
 import {
-  ProfileButton,
-  DownloadCVButton,
+  SupportButton,
 } from '../../Buttons';
 import useResponsive from '../../../Hooks/useResponsive';
 
-const SiteOptionsContainer = ({
-  profile,
-  userSetIsAboutModalOpen,
-  isAboutModalOpen
+const RightSiteOptionsContainer = ({
+  modalOpen,
+  handleSetModal
 }) => {
   const {
     isTablet,
@@ -21,23 +19,18 @@ const SiteOptionsContainer = ({
     <div
       style={{
         top: 5,
-        left: 5,
+        right: 5,
         position: 'fixed',
         zIndex: 3,
         display: 'flex',
         flexDirection: (isTablet || isMobile) ? 'column' : 'row',
         gap: 5,
       }}>
-      <ProfileButton
-        onClick={userSetIsAboutModalOpen}
-        isAboutModalOpen={isAboutModalOpen}
-      />
-      <DownloadCVButton
-        fileName="CV"
-        fileUrl={profile?.cv_link}
+      <SupportButton
+        onClick={() => handleSetModal(modalOpen === 'support' ? null : 'support')}
       />
     </div>
   );
 };
 
-export default memo(SiteOptionsContainer);
+export default memo(RightSiteOptionsContainer);

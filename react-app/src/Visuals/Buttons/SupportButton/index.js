@@ -1,27 +1,19 @@
 import {
+  useState,
   memo
 } from 'react';
 import {
-  useCallback,
-  useState
-} from 'react';
-import {
-  PiReadCvLogoBold
-} from "react-icons/pi";
+  HiOutlineCurrencyPound
+} from "react-icons/hi";
 import useResponsive from '../../../Hooks/useResponsive';
 import BaseOptionsButton from '../../Layouts/BaseOptionsButton';
 
 
-const DownloadCVButton = ({
-  fileName,
-  fileUrl,
+const SupportButton = ({
+  onClick,
 }) => {
   const [isHighlighted, setIsHighlighted] = useState(false);
   const { isTablet, isMobile } = useResponsive();
-
-  const handleDownload = useCallback((fileUrl, fileName) => {
-    window.open(fileUrl, '_blank');
-  }, []);
 
   const containerStyle = {
     display: 'flex',
@@ -40,24 +32,26 @@ const DownloadCVButton = ({
   return (
     <BaseOptionsButton
       setIsHighlighted={setIsHighlighted}
-      onClick={() => handleDownload(fileUrl, fileName)}
+      onClick={onClick}
+      bgColour={'#ffcc33 '}
+      padding={8.5}
     >
       <div style={containerStyle}>
-        <h3 style={textStyle}>Download {fileName}</h3>
         <div style={{
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
           borderRadius: '50%',
         }}>
-          <PiReadCvLogoBold
-            size={'max(3vw, 30px)'}
+          <HiOutlineCurrencyPound
+            size={'max(3.3vw, 33px)'}
             color={isHighlighted ? 'black' : '#555555'}
           />
-        </div>
+        </div>        
+        <h3 style={textStyle}>Support Me</h3>
       </div>
     </BaseOptionsButton>
   );
 };
 
-export default memo(DownloadCVButton);
+export default memo(SupportButton);

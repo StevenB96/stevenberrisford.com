@@ -1,18 +1,25 @@
 import {
   forwardRef,
 } from 'react';
+import {
+  useSelector
+} from 'react-redux';
 import useResponsive from '../../../Hooks/useResponsive';
-import { CloseProfileButton } from '../../Buttons';
+import { CloseOverlayButton } from '../../Buttons';
 
 const ProfileOverlayElement = forwardRef(({
-  userSetIsAboutModalOpen,
-  profile,
+  handleClose,
 }, ref) => {
+  // Accessing application state from Redux store
+  const {
+    profile,
+  } = useSelector(state => state.app);
+
   const { isMobile, width } = useResponsive();
 
   const containerStyle = {
     position: 'absolute',
-    top: '6vw',
+    top: 120,
     left: '50%',
     transform: 'translate(-50%, 0%)',
     zIndex: 2,
@@ -52,8 +59,8 @@ const ProfileOverlayElement = forwardRef(({
     <div
       ref={ref}
       style={containerStyle}>
-      <CloseProfileButton
-        onClick={userSetIsAboutModalOpen}
+      <CloseOverlayButton
+        onClick={handleClose}
       />
       <div
         style={{
