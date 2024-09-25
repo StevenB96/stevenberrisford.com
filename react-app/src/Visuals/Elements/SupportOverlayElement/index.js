@@ -37,12 +37,12 @@ const SupportOverlayElement = forwardRef(({
     <div
       ref={ref}
       style={containerStyle}>
-      {/* <div
+      <div
         style={{
           width: '100%',
           height: '100%',
           position: 'absolute',
-          // zIndex: 15,
+          zIndex: 2,
           top: 0,
           backgroundColor: 'black',
           opacity: '0.7',
@@ -53,7 +53,7 @@ const SupportOverlayElement = forwardRef(({
         }}
       >
         <h2 style={{ color: 'whitesmoke', }}>PayPal integrated, but not active.</h2>
-      </div> */}
+      </div>
       <h2
         style={textStyle}
       >

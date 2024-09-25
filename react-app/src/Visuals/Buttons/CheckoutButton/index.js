@@ -65,7 +65,7 @@ function Button() {
 
 const PaypalPayment = () => {
   const paypalScriptOptions = {
-    "client-id": "",
+    "client-id": "test",
     currency: "GBP",
     intent: "capture",
   };
