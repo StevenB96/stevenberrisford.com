@@ -53,6 +53,11 @@ const SupportOverlayElement = forwardRef(({
         }}
       >
         <h2 style={{ color: 'whitesmoke', }}>PayPal integrated, but not active.</h2>
+        <CloseOverlayButton
+          onClick={handleClose}
+          baseColour='white'
+          highlightColour='white'
+        />
       </div>
       <h2
         style={textStyle}
@@ -60,9 +65,6 @@ const SupportOverlayElement = forwardRef(({
         Please support me (and this website).<br /><br />
         Would you please contribute 20p.
       </h2>
-      <CloseOverlayButton
-        onClick={handleClose}
-      />
       <CheckoutButton />
     </div>
   );

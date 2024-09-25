@@ -8,6 +8,8 @@ import {
 
 const CloseOverlayButton = ({
   onClick,
+  highlightColour = 'black',
+  baseColour = '#555555',
 }) => {
   const [isHighlighted, setIsHighlighted] = useState(false);
 
@@ -26,7 +28,7 @@ const CloseOverlayButton = ({
       }}>
       <IoCloseCircleOutline
         size={'max(4.5vw, 45px)'}
-        color={isHighlighted ? 'black' : '#555555'}
+        color={isHighlighted ? highlightColour : baseColour}
       />
     </button>
   );
