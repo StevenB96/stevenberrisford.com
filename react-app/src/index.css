@@ -70,6 +70,6 @@ input[type="reset"]:not([class="standard-button"]) {
     outline: inherit;
 }
 
-.paypal-buttons {
-    width: 100% !important;
-}
+/* #zoid-paypal-buttons-uid_a6a3514cb8_mtu6ntg6mtg {
+    z-index: 5;
+} */

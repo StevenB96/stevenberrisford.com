@@ -2,10 +2,6 @@ import {
   forwardRef,
 } from 'react';
 import {
-  PayPalScriptProvider,
-} from "@paypal/react-paypal-js";
-import useResponsive from '../../../Hooks/useResponsive';
-import {
   CloseOverlayButton,
   CheckoutButton
 } from '../../Buttons';
@@ -13,8 +9,6 @@ import {
 const SupportOverlayElement = forwardRef(({
   handleClose,
 }, ref) => {
-  const { isMobile, width } = useResponsive();
-
   const containerStyle = {
     position: 'absolute',
     top: 120,
@@ -30,7 +24,8 @@ const SupportOverlayElement = forwardRef(({
     flexDirection: 'column',
     backgroundColor: 'whitesmoke',
     gap: 20,
-    padding: 10,
+    padding: 20,
+    overflow: 'hidden',
   }
 
   const textStyle = {
@@ -38,27 +33,37 @@ const SupportOverlayElement = forwardRef(({
     paddingTop: 'max(4.5vw, 45px)',
   }
 
-  const initialOptions = {
-    clientId: "test",
-    currency: "GDP",
-    intent: "capture",
-  };
-
   return (
     <div
       ref={ref}
       style={containerStyle}>
+      {/* <div
+        style={{
+          width: '100%',
+          height: '100%',
+          position: 'absolute',
+          // zIndex: 15,
+          top: 0,
+          backgroundColor: 'black',
+          opacity: '0.7',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          flexDirection: 'column',
+        }}
+      >
+        <h2 style={{ color: 'whitesmoke', }}>PayPal integrated, but not active.</h2>
+      </div> */}
       <h2
         style={textStyle}
       >
-        Would you please support this website?
+        Please support me (and this website).<br /><br />
+        Would you please contribute 20p.
       </h2>
       <CloseOverlayButton
         onClick={handleClose}
       />
-      {/* <PayPalScriptProvider options={initialOptions}> */}
-        <CheckoutButton />
-      {/* </PayPalScriptProvider> */}
+      <CheckoutButton />
     </div>
   );
 });
