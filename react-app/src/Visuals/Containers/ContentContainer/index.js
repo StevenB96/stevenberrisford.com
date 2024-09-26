@@ -36,18 +36,30 @@ const ContentContainer = ({ item }) => {
       break;
   }
 
+  const containerStyle = {
+    display: 'flex',
+    gap: 'max(1vw, 5px)',
+    flexDirection: 'column',
+  }
+
   return (
     <BaseContentElement>
-      <div>
-        <h3>{item.title}</h3>
-        <p
-          style={{
-            textAlign: 'left',
-            margin: 0,
-            whiteSpace: 'pre-wrap',
-            marginBottom: 10,
-          }}
-        >{item.text}</p>
+      <div style={containerStyle}>
+        <h3 style={{
+          margin: 0,
+          marginTop: 'min(max(1vw, 5px), 10px)',
+        }}>{item.title}</h3>
+        {item?.text &&
+          <p
+            style={{
+              textAlign: 'left',
+              margin: 0,
+              whiteSpace: 'pre-wrap',
+              marginBottom: 10,
+            }}
+          >{item.text}
+          </p>
+        }
       </div>
       {content}
     </BaseContentElement>

@@ -52,7 +52,7 @@ function ProjectElement({ project }) {
             <div
               style={{
                 borderStyle: 'solid',
-                borderWidth: 'max(0.4vw, 3px)',
+                borderWidth: 3,
                 aspectRatio: 1,
                 width: '16%',
                 boxSizing: 'border-box',

@@ -82,6 +82,8 @@ function App() {
         text: 'articles',
         contentLoaded: false,
         icon: 'MdNewspaper',
+        contrast: 0.5,
+        brightness: 1.2,
       },
       {
         id: 3,
@@ -230,13 +232,14 @@ function App() {
                 scrollToSection={scrollToSection}
                 blur={3}
               />
-
               {content.map((value, indexA) => (
                 <ContentGroup
                   value={value}
-                  blur={3}
                   ref={value.ref}
                   key={`${value.id}}`}
+                  contrast={value?.contrast}
+                  brightness={value?.brightness}
+                  blur={value?.blur}
                 >
                   {value.items && value.items.map((item, indexB) => {
                     return <ContentContainer

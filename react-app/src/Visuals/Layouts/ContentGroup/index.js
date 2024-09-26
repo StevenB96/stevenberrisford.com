@@ -1,13 +1,15 @@
 import {
   memo,
-  forwardRef 
+  forwardRef
 } from 'react';
 import { commonFunctions } from '../../../Hooks';
 
 const ContentGroup = forwardRef(({
   children,
   value,
-  blur = 3,
+  blur = 2,
+  contrast,
+  brightness,
 }, ref) => {
   const headerStyle = {
     backgroundColor: 'whitesmoke',
@@ -23,6 +25,17 @@ const ContentGroup = forwardRef(({
     gap: 10,
   };
 
+  const filter = [];
+  if (blur) {
+    filter.push(`blur(${blur}px)`)
+  }
+  if (contrast) {
+    filter.push(`contrast(${contrast})`)
+  }
+  if (brightness) {
+    filter.push(`brightness(${brightness})`)
+  }
+
   const backgroundStyle = {
     backgroundImage: `url(${value?.backgroundImageUrl})`,
     backgroundSize: 'cover',
@@ -32,7 +45,7 @@ const ContentGroup = forwardRef(({
     left: 0,
     right: 0,
     bottom: 0,
-    filter: blur ? `blur(${blur}px)` : 'none',
+    filter: filter.join(' '),
     zIndex: 0,
   };
 
@@ -59,10 +72,10 @@ const ContentGroup = forwardRef(({
       <div ref={ref} style={headerStyle}>
         <h2 style={{}}>{value?.title}</h2>
         {
-        commonFunctions.getMenuIcon({
-          iconName: value?.icon,
-          isHighlighted: true
-        })
+          commonFunctions.getMenuIcon({
+            iconName: value?.icon,
+            isHighlighted: true
+          })
         }
       </div>
 
