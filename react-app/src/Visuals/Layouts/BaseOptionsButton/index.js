@@ -7,8 +7,7 @@ const BaseOptionsButton = ({
   children, 
   onClick,
   setIsHighlighted,
-  bgColour = false,
-  padding = false,
+  styleOveride,
 }) => {
   const handleMouseOver = () => setIsHighlighted(true);
   const handleMouseOut = () => setIsHighlighted(false);
@@ -19,12 +18,13 @@ const BaseOptionsButton = ({
       onMouseOut={handleMouseOut}
       onClick={onClick}
       style={{
-        padding: !!padding ? padding : 10,
+        padding: 10,
         borderRadius: 15,
         borderStyle: 'solid',
         borderWidth: 'max(0.3vw, 2.25px)',
         boxSizing: 'border-box',
-        backgroundColor: !!bgColour ? bgColour : 'whitesmoke',
+        backgroundColor: 'whitesmoke',
+        ...styleOveride,
       }}
     >
       {children}

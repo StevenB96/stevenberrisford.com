@@ -3,7 +3,7 @@ import {
 } from 'react';
 import {
   CloseOverlayButton,
-  CheckoutButton
+  PaypalPayment
 } from '../../Buttons';
 
 const DisabledContinater = ({
@@ -82,7 +82,7 @@ const SupportOverlayElement = forwardRef(({
         Please support me (and this website).<br /><br />
         Would you please contribute 20p.
       </h2>
-      <CheckoutButton />
+      <PaypalPayment />
     </div>
   );
 });

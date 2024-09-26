@@ -20,7 +20,7 @@ const SupportButton = ({
     justifyContent: 'space-between',
     alignItems: 'center',
     gap: 5,
-    flexDirection: (isTablet || isMobile) ? 'row' : 'column',
+    flexDirection: (isTablet || isMobile) ? 'row-reverse' : 'column',
   }
 
   const textStyle = {
@@ -33,10 +33,13 @@ const SupportButton = ({
     <BaseOptionsButton
       setIsHighlighted={setIsHighlighted}
       onClick={onClick}
-      bgColour={'#ffcc33 '}
-      padding={8.5}
+      styleOveride={{
+        backgroundColor: '#ffcc33',
+        padding: 8.5,
+      }}
     >
       <div style={containerStyle}>
+        <h3 style={textStyle}>Support Me</h3>
         <div style={{
           display: 'flex',
           justifyContent: 'center',
@@ -47,8 +50,7 @@ const SupportButton = ({
             size={'max(3.3vw, 33px)'}
             color={isHighlighted ? 'black' : '#555555'}
           />
-        </div>        
-        <h3 style={textStyle}>Support Me</h3>
+        </div>
       </div>
     </BaseOptionsButton>
   );
