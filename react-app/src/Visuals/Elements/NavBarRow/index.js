@@ -20,9 +20,9 @@ const CustomNavItem = ({
       'whitesmoke' :
       'silver',
     transition: 'background-color 0.1s ease-in-out, text-decoration 0.1s ease-in-out',
-    borderLeft: index === 0 ? 'solid' : undefined,
-    borderRight: 'solid',
-    borderTop: 'solid',
+    borderLeftStyle: index === 0 ? 'solid' : undefined,
+    borderRightStyle: 'solid',
+    borderTopStyle: 'solid',
     borderWidth: 'max(0.3vw, 2.25px)',
     boxSizing: 'border-box',
     borderTopRightRadius: index === (navInputMap.length - 1) ? 20 : undefined,

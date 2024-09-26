@@ -8,14 +8,15 @@ import useResponsive from '../../../Hooks/useResponsive';
 const BaseContentElement = ({ children }) => {
   const { isMobile, isTablet, width } = useResponsive();
   const isMax = width > 1400;
+  const padding = 30;
 
   const adjustedWidth = useMemo(() => {
     let adjustedWidth = null;
 
     if (isMax) {
-      adjustedWidth = 1400 / 4 - 20;
+      adjustedWidth = 1400 / 4 - padding;
     } else {
-      adjustedWidth = width / (isMobile ? 2 : (isTablet ? 3 : 4)) - 20;
+      adjustedWidth = width / (isMobile ? 2 : (isTablet ? 3 : 4)) - padding;
     }
 
     return Math.min(adjustedWidth - 1);
@@ -31,8 +32,8 @@ const BaseContentElement = ({ children }) => {
     borderRadius: 20,
     backgroundColor: 'whitesmoke',
     width: adjustedWidth,
-    padding: 10,
-    margin: 10,
+    padding: padding / 2,
+    margin: padding / 2,
   };
 
   return (
