@@ -6,6 +6,29 @@ import {
   CheckoutButton
 } from '../../Buttons';
 
+const DisabledContinater = ({
+  children
+}) => {
+  return (
+    <div
+      style={{
+        width: '100%',
+        height: '100%',
+        position: 'absolute',
+        zIndex: 2,
+        top: 0,
+        backgroundColor: 'rgba(85, 85, 85, 0.7)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'column',
+      }}
+    >
+      {children}
+    </div>
+  );
+};
+
 const SupportOverlayElement = forwardRef(({
   handleClose,
 }, ref) => {
@@ -33,32 +56,26 @@ const SupportOverlayElement = forwardRef(({
     paddingTop: 'max(4.5vw, 45px)',
   }
 
+  const disabledText = {
+    color: 'whitesmoke',
+    textAlign: 'center',
+    rotate: '-20deg',
+  };
+
   return (
     <div
       ref={ref}
       style={containerStyle}>
-      <div
-        style={{
-          width: '100%',
-          height: '100%',
-          position: 'absolute',
-          zIndex: 2,
-          top: 0,
-          backgroundColor: 'black',
-          opacity: '0.7',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexDirection: 'column',
-        }}
-      >
-        <h2 style={{ color: 'whitesmoke', }}>PayPal integrated, but not active.</h2>
+      <DisabledContinater>
+        <h1
+          style={disabledText}
+        >
+          PayPal integrated, but not active.
+        </h1>
         <CloseOverlayButton
           onClick={handleClose}
-          baseColour='white'
-          highlightColour='white'
         />
-      </div>
+      </DisabledContinater>
       <h2
         style={textStyle}
       >
