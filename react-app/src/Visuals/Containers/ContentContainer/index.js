@@ -49,17 +49,15 @@ const ContentContainer = ({ item }) => {
           margin: 0,
           marginTop: 'min(max(1vw, 5px), 10px)',
         }}>{item.title}</h3>
-        {item?.text &&
-          <p
-            style={{
-              textAlign: 'left',
-              margin: 0,
-              whiteSpace: 'pre-wrap',
-              marginBottom: 10,
-            }}
-          >{item.text}
-          </p>
-        }
+        <p
+          style={{
+            textAlign: 'left',
+            margin: 0,
+            whiteSpace: 'pre-wrap',
+            marginBottom: 10,
+          }}
+        >{item.text}
+        </p>
       </div>
       {content}
     </BaseContentElement>
