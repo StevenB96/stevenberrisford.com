@@ -9,13 +9,15 @@ import { CloseOverlayButton } from '../../Buttons';
 
 const ProfileOverlayElement = forwardRef(({
   handleClose,
+  isOpen,
 }, ref) => {
   // Accessing application state from Redux store
   const {
     profile,
   } = useSelector(state => state.app);
-
   const { isMobile, width } = useResponsive();
+
+  if (!isOpen) return null;
 
   const containerStyle = {
     position: 'absolute',

@@ -285,22 +285,14 @@ function App() {
                     </>
                   )
               }
-              {
-                modalOpen === 'profile' &&
-                (
-                  <ProfileOverlayElement
-                    handleClose={() => handleSetModal(null)}
-                  />
-                )
-              }
-              {
-                modalOpen === 'support' &&
-                (
-                  <SupportOverlayElement
-                    handleClose={() => handleSetModal(null)}
-                  />
-                )
-              }
+              <ProfileOverlayElement
+                isOpen={modalOpen === 'profile'}
+                handleClose={() => handleSetModal(null)}
+              />
+              <SupportOverlayElement
+                isOpen={modalOpen === 'support'}
+                handleClose={() => handleSetModal(null)}
+              />
             </>
           ) :
           (

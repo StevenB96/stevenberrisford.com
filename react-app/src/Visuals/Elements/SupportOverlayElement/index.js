@@ -30,8 +30,11 @@ const DisabledContinater = ({
 };
 
 const SupportOverlayElement = forwardRef(({
+  isOpen,
   handleClose,
 }, ref) => {
+  if (!isOpen) return null;
+
   const containerStyle = {
     position: 'absolute',
     top: 120,
