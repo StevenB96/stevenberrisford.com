@@ -31,8 +31,8 @@ function* getProfile(action) {
       method: 'GET',
       url: `${env.SERVER_URL || "http://localhost:3000"}/`,
       path: 'profile/',
-      qParams: '',
-      payload: action.payload
+      // qParams: '',
+      // payload: action.payload
     });
 
     yield put(getProfileSuccess(data));
@@ -47,8 +47,8 @@ function* getContent(action) {
       method: 'GET',
       url: `${env.SERVER_URL || "http://localhost:3000"}/`,
       path: 'content/',
-      qParams: '',
-      payload: action.payload
+      // qParams: '',
+      // payload: action.payload
     });
 
     yield put(getContentSuccess(data));
@@ -59,15 +59,17 @@ function* getContent(action) {
 
 function* getChatbotResponse(action) {
   try {
-    // const data = yield call(fetchDataFromApi, {
-    //   method: 'GET',
-    //   url: `${env.SERVER_URL || "http://localhost:3000"}/`,
-    //   path: 'content/',
-    //   qParams: '',
-    //   payload: action.payload
-    // });
+    const data = yield call(fetchDataFromApi, {
+      method: 'POST',
+      url: `${env.SERVER_URL || "http://localhost:3000"}/`,
+      path: 'chatbotResponse/',
+      qParams: '',
+      payload: {
+        message: action.params,
+      }
+    });
 
-    yield put(getChatbotResponseSuccess('data'));
+    yield put(getChatbotResponseSuccess(data));
   } catch (error) {
     yield put(getChatbotResponseFailure(error.message));
   }

@@ -23,6 +23,17 @@ router.get('/content', async (req, res, next) => {
   }
 });
 
+router.post('/chatbotResponse', async (req, res, next) => {
+  res.set('Cache-Control', 'no-cache');
+  try {
+    // const { message } = req.body;
+    console.log(req.body.message);
+    res.json(req.body.message);
+  } catch (error) {
+    next(error);
+  }
+});
+
 // Serve React App
 const reactBuildDir = path.join(__dirname, '..', 'react-app', 'build');
 router.use(express.static(reactBuildDir));
