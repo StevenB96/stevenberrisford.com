@@ -2,8 +2,15 @@ import {
   useState
 } from 'react';
 import {
+  useDispatch,
+  useSelector
+} from 'react-redux';
+import {
   MdSend
 } from "react-icons/md";
+import {
+  getChatbotResponseRequest,
+} from '../../../Redux/Actions/appActions';
 
 function Message({
   message
@@ -13,17 +20,16 @@ function Message({
     flexDirection: 'row',
     justifyContent: message.author === 'chatbot' ?
       'flex-start' : 'flex-end',
-    padding: 10,
     boxSizing: 'border-box',
   }
 
   const textContainerStyle = {
     backgroundColor: 'silver',
-    borderRadius: 20,
+    borderRadius: 10,
     borderStyle: 'solid',
     borderWidth: 'max(0.3vw, 2.25px)',
-    width: '80%',
-    padding: 10,
+    maxWidth: '80%',
+    padding: 5,
     boxSizing: 'border-box',
   }
 
@@ -53,6 +59,10 @@ function MessageList({
     minWidth: '25vw',
     overflowY: 'scroll',
     overflowX: 'hidden',
+    display: 'flex',
+    flexDirection: 'column',
+    padding: 10,
+    gap: 10,
   }
 
   return (
@@ -111,7 +121,7 @@ function ChatInput({
 }) {
   const containerStyle = {
     width: '100%',
-    backgroundColor: 'whitesmoke',
+    backgroundColor: 'silver',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -149,16 +159,14 @@ function ChatInput({
 function ChatElement({
 
 }) {
-  const [messages, setMessages] = useState([
-    {
-      author: "chatbot",
-      text: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-    },
-    {
-      author: "self",
-      text: 'bbbbbbbbbbbbbbbbbbbbbbbbb',
-    },
-  ]);
+  // Hook to access Redux dispatch function
+  const dispatch = useDispatch();
+
+  // Accessing application state from Redux store
+  const {
+    chatbotMessages,
+  } = useSelector(state => state.app);
+
   const [currentInput, setCurrentInput] = useState('');
 
   return (
@@ -168,26 +176,20 @@ function ChatElement({
       right: 20,
       backgroundColor: 'whitesmoke',
       zIndex: 3,
-      borderRadius: 20,
+      borderRadius: 10,
       overflow: 'hidden',
       boxSizing: 'border-box',
       borderStyle: 'solid',
       borderWidth: 'max(0.3vw, 2.25px)',
     }}>
       <MessageList
-        messages={messages}
+        messages={chatbotMessages}
       />
       <ChatInput
         currentInput={currentInput}
         setMessages={() => {
           if (currentInput) {
-            setMessages([
-              ...messages,
-              {
-                author: "self",
-                text: currentInput,
-              },
-            ]);
+            dispatch(getChatbotResponseRequest(currentInput));
             setCurrentInput('');
           }
         }}
