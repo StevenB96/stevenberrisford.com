@@ -19,7 +19,8 @@ import {
   ProfileOverlayElement,
   SupportOverlayElement,
   TopScrollElement,
-  Contact
+  Contact,
+  ChatElement
 } from './Visuals/Elements';
 import {
   ContentGroup,
@@ -282,6 +283,7 @@ function App() {
                         modalOpen={modalOpen}
                         handleSetModal={handleSetModal}
                       />
+                      <ChatElement />
                     </>
                   )
               }

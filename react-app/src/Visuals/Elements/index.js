@@ -7,3 +7,4 @@ export { default as NavBarColumn } from './NavBarColumn';
 export { default as NavBarRow } from './NavBarRow';
 export { default as ProfileOverlayElement } from './ProfileOverlayElement';
 export { default as SupportOverlayElement } from './SupportOverlayElement';
+export { default as ChatElement } from './ChatElement';

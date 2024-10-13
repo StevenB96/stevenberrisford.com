@@ -45,6 +45,13 @@ p {
     user-select: none;
 }
 
+input {
+    /* font-size: 1.17em; */
+    font-size: calc(max(calc(4vw / (3 / 1.17)), calc(1.17 * 10px)) / 1.2);
+    user-select: none;
+    font-weight: bold;
+}
+
 .small-p {
     /* font-size: 1em; */
     font-size: calc(max(calc(4vw / (3 / 0.75)), calc(0.75 * 10px)) / 1.2);
