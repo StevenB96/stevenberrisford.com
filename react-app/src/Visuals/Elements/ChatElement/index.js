@@ -23,7 +23,7 @@ function Message({
     borderStyle: 'solid',
     borderWidth: 'max(0.3vw, 2.25px)',
     width: '80%',
-    padding: 20,
+    padding: 10,
     boxSizing: 'border-box',
   }
 
@@ -35,8 +35,9 @@ function Message({
   return (
     <div style={containerStyle}>
       <div style={textContainerStyle}>
-      <h2 style={textStyle}>{message.author === 'chatbot' ?
-      'Chatbot' : 'Myself'}</h2>
+        {(message.author === 'chatbot') && (
+          <h2 style={textStyle}>Chatbot</h2>
+        )}
         <h3 style={textStyle}>{message.text}</h3>
       </div>
     </div>
@@ -71,23 +72,34 @@ function Button({
   currentInput,
   setMessages
 }) {
+  const [isHighlighted, setIsHighlighted] = useState(false);
+  const handleMouseOver = () => setIsHighlighted(true);
+  const handleMouseOut = () => setIsHighlighted(false);
+
+  const isClickable = isHighlighted && currentInput;
+
   return (
     <div
+      onMouseOver={handleMouseOver}
+      onMouseOut={handleMouseOut}
       style={{
         borderRadius: '50%',
         borderStyle: 'solid',
-        borderWidth: 'max(0.3vw, 2.25px)',        
-        padding: 5,
-        display: 'flex',
-        aspectRatio: 1,
+        borderWidth: 'max(0.3vw, 2.25px)',
+        borderColor: isClickable ? 'black' : '#555555',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 10,
-        backgroundColor: currentInput ? 'transparent' : '#ccc',
+        backgroundColor: 'whitesmoke',
+        height: 'max(3vw, 20px)',
+        aspectRatio: 1,
+        boxSizing: 'border-box',
       }}
       onClick={setMessages}>
-      <MdSend size={'max(3vw, 20px)'} />
+      <MdSend
+        size={'max(1.5vw, 10px)'}
+        color={isClickable ? 'black' : '#555555'}
+      />
     </div>
   );
 }
@@ -115,6 +127,7 @@ function ChatInput({
     <div style={containerStyle}>
       <input style={{
         flex: 1,
+        height: 'max(3vw, 20px)',
         padding: 10,
         fontFamily: 'inherit',
         borderStyle: 'solid',
