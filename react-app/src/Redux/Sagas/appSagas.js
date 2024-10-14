@@ -2,7 +2,8 @@ import {
   takeLatest,
   takeEvery,
   call,
-  put
+  put,
+  select,
 } from 'redux-saga/effects';
 
 import {
@@ -59,13 +60,16 @@ function* getContent(action) {
 
 function* getChatbotResponse(action) {
   try {
+    const uuid = yield select((state) => state.app.uuid);
+
     const data = yield call(fetchDataFromApi, {
       method: 'POST',
       url: `${env.SERVER_URL || "http://localhost:3000"}/`,
       path: 'chatbotResponse/',
       qParams: '',
       payload: {
-        message: action.params,
+        uuid,
+        query: action.params,
       }
     });
 

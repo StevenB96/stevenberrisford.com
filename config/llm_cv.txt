@@ -1,0 +1,105 @@
+﻿---
+This is my contact information:
+Steven Berrisford
+Email: stevenberrisford@gmail.com
+Phone: (+44) 07891078922
+GitHub: github.com/StevenB96
+Website: stevenberrisford.com
+LinkedIn: linkedin.com/in/steven-berrisford-55061a134/  
+---
+---
+This is a high-level overview of my experiences, personal qualities and aims:
+I am a highly motivated and hardworking software developer, eager to contribute my skills to a mid-level software development position or related role. With 3 years of solid experience in building software products, I have the expertise to adapt quickly and make a positive impact on a diverse range of projects. 
+
+This is a mid-level overview of my experiences, skills and teamworking abilities:
+3 years professional full stack experience as a: React developer, React Native developer, and Laravel developer.
+2+ years experience as a: Python developer, Node developer including: Django framework, Express framework.
+Excellent skills in Amazon Web Services, Docker Containers, Kubernetes, and Terraform Infrastructure as Code.
+Skilled in mentoring juniors, fostering collaboration and building connections with internal stakeholders.
+---
+---
+These are detailed descriptions of my roles and specific responsibilities experiences within those roles:
+
+Company - Scorchsoft Ltd, Role - Mid-Level Developer, Dates – (July 2022 – September 2023)
+
+In July 2022, I was promoted to mid-level developer. In this role, I contributed to approximately 3 projects. Key responsibilities included participating in client meetings, mentoring junior staff, assigning work packages, and making decisions about implementation specifications. I collaborated closely with leads, junior team members, and project staff to ensure effective delivery.
+
+Selected experiences as a Mid-Level Developer at Scorchsoft Ltd
+
+Type – Project, Sector – Medical, Duration - 5 months, Contribution - As primary developer for a new development phase of an existing mobile application and new full stack web application. I adapted to new technologies, learned to work with Java and adjusted to new internal processes. Additionally, the opportunity to deploy the full stack application on AWS EC2 expanded my knowledge of Cloud deployment.
+
+Type – Project, Sector – Diplomacy, Duration - 7 months, Contribution - As the primary developer from inception, I developed the MVP. I was challenged with working with a new junior developer and a junior project assistant. I mentored both, assigned tasks, provided guidance, and clarified requirements. The project required me to perform ETL operations on data from an external API and integrate geolocation services. The app is available on major platforms.
+
+Company - Scorchsoft Ltd, Role - Junior Developer, Dates – (September 2020 – July 2022)
+
+As a junior in a dynamic small business, I contributed to ca. 6 projects for a diverse range of customers. My responsibilities included clarifying requirements, estimating work packages, developing full-stack web/mobile applications, and testing prior to QA. Using Kanban I was able to further develop my understanding of the SDLC.
+---
+---
+These are condensed lists of some of my additional skills and knowledge without specific information:
+
+Programming Languages: Python, JavaScript, PHP, HTML, CSS, SQL, Bash, Java, MATLAB.
+Packages: Django, Flask, Pytest, Unittest, React, React Native, Express, Jest, Mocha, Laravel, Yii2, Socket.IO.
+Databases (Brands): MySQL, PostgreSQL, DynamoDB, MongoDB, Cassandra.
+Data Science/Engineering: NumPy, Pandas, SciPy, Scikit Learn, Matplotlib, Beautiful Soup, Kafka, Airflow.
+DevOps Tools: Git, Docker, Kubernetes, Terraform, Bitbucket, Jira, OpenVPN.
+Cloud Tools: Route53, ECS, EC2, CodePipeline, ECR, CloudFormation.
+---
+---
+These are detailed descriptions of my software development related training:
+
+Type - Bootcamp, Title - Skills Bootcamp in Cloud (AWS), Institution - Cenit College, Dates – (October 2023 – February 2024), Experiences - Gained a detailed understanding of the AWS Cloud, covering concepts such as shared responsibility, access management, security, deployment, operations, billing, and activities including quizzes and practical tasks. Undertook a major personal project and gave a presentation to the group.
+
+Type - Bootcamp, Title - Full Stack Web Development Course, Institution - Futureproof, Dates – (March 2020 – June 2020), Experiences - Developed comprehensive understanding of databases, programming languages, frameworks, APIs, and machine learning. Worked on several mini-projects and presented final projects to potential employers, enhancing employability skills.
+---
+---
+These are condensed lists of my IT Qualifications without specific information:
+
+AWS Certifications: 
+AWS Cloud Practitioner.
+
+IBM Certifications:
+Django Application Development.
+Backend Apps with Node.js.
+Development using Microservices & Serverless.
+Python for Data Science.
+Introduction to NoSQL Databases.
+ETL & Data Pipelines with Shell, Airflow & Kafka.
+Introduction to Containers with Docker, Kubernetes & OpenShift.
+Monitoring & Observability for Development.
+Application Security for Developers.
+
+BCS Certifications:
+Intermediate Certificate in Enterprise and Solution Architecture.
+Foundation Certificate in Architecture Concepts and Domains.
+
+LPI Certifications:
+LE-1 Linux Essentials.
+---
+---
+These are detailed descriptions of some of my personal projects for private interest (visit my website stevenberrisford.com for live demonstrations):
+
+Title - Movie Predictor, Description - A Python web/ETL application deployed with Docker on AWS Infrastructure (ECS, Lambda, S3, CodePipeline). Built using Flask (web framework), Scikit Learn (ML library), and Matplotlib (graphing tool). 
+
+Title - Web Library, Description - A scalable, fully unit tested MVC application built using Django (Python web framework). Deployed on a Kubernetes cluster (DevOps tool) and integrates with database microservices. 
+
+Title - Terraform Visualiser, Description - A containerised full stack application built using Express and React (JavaScript web frameworks). Queries a Kubernetes API to visualise clusters deployed on AWS using Terraform. 
+---
+---
+These are detailed descriptions of some of my university experiences:
+
+Institution - University of Exeter, Title - 1st Class Master’s Degree in Mechanical Engineering, Dates – (2015 – 2019), Description - The basis for my final project was studying the thermal impact of phase change materials in buildings using computational modelling and applied machine learning. The degree also included advanced mathematics and business studies, providing me with a strong foundation for diverse career opportunities. I received a dean’s commendation.
+
+Institution - University of Exeter, Title - Research Bursary, Dates – (May 2018 – August 2018), Description - Working with a small group of researchers, I helped to develop a system for generating extreme weather for use in building simulation. The work involved Imputation, Copula statistics, Fast Fourier Transforms and Genetic Algorithms, which were applied using MATLAB. The Research Bursary enhanced my basic coding and problem-solving abilities.
+---
+---
+These are short extracts from testimonials provided by my colleagues:
+
+Company – Scorchsoft Ltd, Name - Audrius Dobrovolskis, Role - Lead Developer, Extract - "Steven made an impression with his exceptional proficiency."
+
+Company – Scorchsoft Ltd, Name - Jordan Smith, Role - Mid-level Developer, Extract - "Steven is very easy to get along with and a great presence." 
+---
+---
+These are condensed lists of my interests outside work:
+
+Hobbies: Running, Dancing (Salsa, Bachata, and Swing), Singing (Choir).
+Languages: Norwegian, German (B1), Swedish (A2), French, Portuguese (A1).

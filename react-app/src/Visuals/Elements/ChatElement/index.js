@@ -1,4 +1,5 @@
 import {
+  useEffect,
   useState
 } from 'react';
 import {
@@ -169,6 +170,10 @@ function ChatElement({
 
   const [currentInput, setCurrentInput] = useState('');
 
+  useEffect(() => {
+    dispatch(getChatbotResponseRequest('Clear chat history'));
+  }, []);
+
   return (
     <div style={{
       position: 'fixed',
@@ -181,6 +186,7 @@ function ChatElement({
       boxSizing: 'border-box',
       borderStyle: 'solid',
       borderWidth: 'max(0.3vw, 2.25px)',
+      maxWidth: '50%',
     }}>
       <MessageList
         messages={chatbotMessages}

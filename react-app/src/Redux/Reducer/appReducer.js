@@ -12,21 +12,19 @@ import {
   GET_CHATBOT_RESPONSE_FAILURE,
 } from '../Actions/appActions';
 
+import {
+  commonFunctions
+} from '../../Hooks';
+
+const uuid = commonFunctions.getPersistentUUID();
+
 const initialState = {
+  uuid,
   profile: {},
   projects: [],
   articles: [],
   hobbies: [],
-  chatbotMessages: [
-    {
-      author: "chatbot",
-      text: 'a',
-    },
-    {
-      author: "self",
-      text: 'b',
-    },
-  ],
+  chatbotMessages: [],
   loading: false,
   error: null,
 };
@@ -79,26 +77,36 @@ const app = (state = initialState, action) => {
         error: true
       };
 
-    case GET_CHATBOT_RESPONSE_REQUEST:
+    case GET_CHATBOT_RESPONSE_REQUEST: {
+      const newChatbotMessages = action.params === 'Clear chat history' ?
+        state.chatbotMessages :
+        [...state.chatbotMessages, {
+          author: "user",
+          text: action.params
+        }];
+
       return {
         ...state,
-        chatbotMessages: [...state.chatbotMessages, {
-          author: "self",
-          text: action.params
-        }],
+        chatbotMessages: newChatbotMessages,
         loading: true,
         error: null
       };
-    case GET_CHATBOT_RESPONSE_SUCCESS:
-      return {
-        ...state,
-        chatbotMessages: [...state.chatbotMessages, {
+    }
+    case GET_CHATBOT_RESPONSE_SUCCESS: {
+      const newChatbotMessages = action.payload === 'Chat history successfully cleared.' ?
+        state.chatbotMessages :
+        [...state.chatbotMessages, {
           author: "chatbot",
           text: action.payload
-        }],
+        }];
+
+      return {
+        ...state,
+        chatbotMessages: newChatbotMessages,
         loading: false,
         error: false
       };
+    }
     case GET_CHATBOT_RESPONSE_FAILURE:
       return {
         ...state,
