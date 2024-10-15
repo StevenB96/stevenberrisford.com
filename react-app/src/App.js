@@ -283,7 +283,6 @@ function App() {
                         modalOpen={modalOpen}
                         handleSetModal={handleSetModal}
                       />
-                      <ChatElement />
                     </>
                   )
               }
@@ -295,6 +294,7 @@ function App() {
                 isOpen={modalOpen === 'support'}
                 handleClose={() => handleSetModal(null)}
               />
+              <ChatElement />
             </>
           ) :
           (

@@ -40,16 +40,6 @@ router.get('/content', async (req, res, next) => {
 let chatHistory = {};
 
 function addMessageToChat(uuid, message) {
-  // Check if the chatHistory for the given UUID exists
-  if (!chatHistory[uuid]) {
-    // If it doesn't exist, create an empty array
-    chatHistory[uuid] = {
-      messages: [],
-      updateTime: new Date(),
-    };
-  }
-
-  // Add the new message to the chatHistory array for this UUID
   chatHistory[uuid] = {
     messages: [...chatHistory[uuid].messages, message],
     updateTime: new Date(),
@@ -61,29 +51,31 @@ router.post('/chatbotResponse', async (req, res, next) => {
   try {
     const cv_data = fs.readFileSync('config/llm_cv.txt', 'utf8');
     const { uuid, query } = req.body;
+    const now = new Date();
 
+    // Clear the user's chat history on reload.
     if (query === 'Clear chat history') {
       delete chatHistory[uuid];
       res.json('Chat history successfully cleared.');
       return;
     }
 
-    const messageIndexA = (chatHistory[uuid]?.messages.length || 0) + 1;
-    const messageA = `${messageIndexA} - Message from user to chatbot "${query}"`;
-
-    const now = new Date();
-
+    // If there are no messages for the current user's conversation.
     if (!chatHistory[uuid]) {
       chatHistory[uuid] = {
-        messages: [],
+        messages: [`1 - Message from chatbot to user "Use this Chatbot to make equiries about me. E.g. how can you can be contacted? or when did you use teamwork skills?"`],
         updateTime: now,
       };
     }
 
-    const isRateLimitExceeded = now !== chatHistory[uuid].updateTime && now - chatHistory[uuid].updateTime < 10000;
+    // Prepare chat history version of the message.
+    const messageIndexA = (chatHistory[uuid]?.messages.length || 0) + 1;
+    const messageA = `${messageIndexA} - Message from user to chatbot "${query}"`;
 
+    // Handle query rate limit
+    const isRateLimitExceeded = now !== chatHistory[uuid].updateTime && now - chatHistory[uuid].updateTime < 10000;
     if (isRateLimitExceeded) {
-      const errorMessage = 'Message from chatbot to user Rate limit exceeded. Wait a few seconds.';
+      const errorMessage = 'Message from chatbot to user "Rate limit exceeded. Wait a few seconds."';
       addMessageToChat(uuid, `${messageIndexA} - ${errorMessage}`);
       res.json(errorMessage);
       return;
@@ -98,9 +90,11 @@ router.post('/chatbotResponse', async (req, res, next) => {
       `Your role is "chatbot," and you are responding to a "user."`,
       `The user may use personal pronouns (e.g., I, me) and refer to you with possessive pronouns (e.g., your, yours).`,
       `Do not mix up different experiences in your response.`,
+      `Encourage the user to ask questions relating to Steven Berrisford.`,
       `Limit your response to 100 words.`,
     ];
 
+    // Make the API call using OpenAI Client
     const stream = openaiClient.beta.chat.completions.stream({
       model: 'gpt-4o-mini',
       messages: [{
@@ -109,10 +103,10 @@ router.post('/chatbotResponse', async (req, res, next) => {
       }],
       stream: true,
     });
-
     const botResponse = await stream.finalChatCompletion();
     const responseText = botResponse.choices[0].message.content;
 
+    // Add messages to the chat history.
     addMessageToChat(uuid, messageA);
     const messageIndexB = (chatHistory[uuid]?.messages.length || 0) + 1;
     const messageB = `${messageIndexB} - Message from chatbot to user "${responseText}"`;

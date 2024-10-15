@@ -24,7 +24,12 @@ const initialState = {
   projects: [],
   articles: [],
   hobbies: [],
-  chatbotMessages: [],
+  chatbotMessages: [
+    {
+      author: 'chatbot',
+      text: "Use this Chatbot to make equiries about me. E.g. how can you can be contacted? or when did you use teamwork skills?",
+    }
+  ],
   loading: false,
   error: null,
 };
