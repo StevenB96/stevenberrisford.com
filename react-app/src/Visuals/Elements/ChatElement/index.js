@@ -162,32 +162,29 @@ function ChatInput({
 }) {
   const textareaRef = useRef(null);
 
-  // Function to calculate the number of lines in a textarea
-  function getNumberOfLines(textarea) {
-    // Getting the computed styles of the textarea
-    const computedStyle = window.getComputedStyle(textarea);
-
-    // Calculating line height
+  function calculateLineHeight(computedStyle) {
     let lineHeight = computedStyle.lineHeight;
-    if (lineHeight === 'normal') {
-      // If line-height is set to normal, use font size with a multiplier
-      lineHeight = parseFloat(computedStyle.fontSize) * 1.2; // You can adjust multiplier if necessary
-    } else {
-      lineHeight = parseFloat(lineHeight);
-    }
+    lineHeight = parseFloat(lineHeight);
+    return lineHeight;
+  }
 
-    // Getting the scrollHeight and calculating the number of lines
+  function calculateNumLines(textarea, lineHeight) {
     const scrollHeight = textarea.scrollHeight;
     const numberOfLines = Math.floor(scrollHeight / lineHeight);
-
     return numberOfLines;
   }
 
   const autoResize = () => {
     const textarea = textareaRef.current;
-    console.log(getNumberOfLines(textarea));
+    textarea.style.height = 'auto';
+
+    const textareaComputedStyle = window.getComputedStyle(textarea);
+    const lineHeight = calculateLineHeight(textareaComputedStyle);
+    const numLines = calculateNumLines(textarea, lineHeight);
+    const value = textarea.value;
+
     if (textarea) {
-      textarea.style.height = `calc(max(3vw, 20px) * ${getNumberOfLines(textarea)} + 4px)`;
+      textarea.style.height = `calc(max(3vw, 20px) * ${numLines} + 4px)`;
     }
   };
 
@@ -245,8 +242,9 @@ function ChatInput({
         }}
         onInput={(e) => {
           setCurrentInput(e);
-          autoResize();
+          // autoResize();
         }}
+        onKeyDown={autoResize}
         value={currentInput}
       />
       <Button
