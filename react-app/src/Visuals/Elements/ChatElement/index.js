@@ -48,13 +48,14 @@ function Message({
   const textStyle = {
     margin: 0,
     wordWrap: 'break-word',
+    whiteSpace: 'pre-wrap',
   }
 
   return (
     <div style={containerStyle}>
       <div style={textContainerStyle}>
         {(message.author === 'chatbot') && (
-          <h2 style={textStyle}>Query Assistant</h2>
+          <h2 style={textStyle}>My Bot</h2>
         )}
         <h3 style={textStyle}>{message.text}</h3>
       </div>
@@ -124,7 +125,7 @@ function Button({
   const isClickable = isHighlighted && currentInput;
 
   return (
-    <div
+    <button
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
       style={{
@@ -143,13 +144,14 @@ function Button({
         aspectRatio: 1,
         // Box Model Properties
         boxSizing: 'border-box',
+        cursor: isClickable ? undefined : 'not-allowed'
       }}
       onClick={setMessages}>
       <MdSend
         size={'max(1.5vw, 10px)'}
         color={isClickable ? 'black' : '#555555'}
       />
-    </div>
+    </button>
   );
 }
 
@@ -158,6 +160,42 @@ function ChatInput({
   setMessages,
   setCurrentInput
 }) {
+  const textareaRef = useRef(null);
+
+  // Function to calculate the number of lines in a textarea
+  function getNumberOfLines(textarea) {
+    // Getting the computed styles of the textarea
+    const computedStyle = window.getComputedStyle(textarea);
+
+    // Calculating line height
+    let lineHeight = computedStyle.lineHeight;
+    if (lineHeight === 'normal') {
+      // If line-height is set to normal, use font size with a multiplier
+      lineHeight = parseFloat(computedStyle.fontSize) * 1.2; // You can adjust multiplier if necessary
+    } else {
+      lineHeight = parseFloat(lineHeight);
+    }
+
+    // Getting the scrollHeight and calculating the number of lines
+    const scrollHeight = textarea.scrollHeight;
+    const numberOfLines = Math.floor(scrollHeight / lineHeight);
+
+    return numberOfLines;
+  }
+
+  const autoResize = () => {
+    const textarea = textareaRef.current;
+    console.log(getNumberOfLines(textarea));
+    if (textarea) {
+      textarea.style.height = `calc(max(3vw, 20px) * ${getNumberOfLines(textarea)} + 4px)`;
+    }
+  };
+
+  const handleSetMessages = () => {
+    setMessages();
+    textareaRef.current.style.height = `calc(max(3vw, 20px) + 4px)`;
+  };
+
   const containerStyle = {
     // Background and Appearance
     backgroundColor: 'silver',
@@ -167,7 +205,7 @@ function ChatInput({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     // Spacing Properties
     padding: 10,
     gap: 10,
@@ -179,26 +217,42 @@ function ChatInput({
 
   return (
     <div style={containerStyle}>
-      <input style={{
-        // Sizing Properties
-        flex: 1,
-        height: 'max(3vw, 20px)',
-        // Background and Appearance
-        borderStyle: 'solid',
-        borderWidth: 'max(0.3vw, 2.25px)',
-        borderColor: 'black',
-        borderRadius: 10,
-        fontFamily: 'inherit',
-        // Box Model Properties
-        padding: 10,
-        boxSizing: 'border-box',
-      }}
-        onInput={setCurrentInput}
+      <textarea
+        ref={textareaRef}
+        style={{
+          // Sizing Properties
+          flex: 1,
+          height: 'calc(max(3vw, 20px) + 4px)',
+          lineHeight: 'max(3vw, 20px)',
+          minWidth: 0,
+          // Background and Appearance
+          borderStyle: 'solid',
+          borderWidth: 'max(0.3vw, 2.25px)',
+          borderColor: 'black',
+          borderRadius: 10,
+          fontFamily: 'inherit',
+          // Box Model Properties
+          boxSizing: 'border-box',
+          // Overflow properties
+          overflow: 'hidden',
+          resize: 'none',
+          // Font properties
+          fontSize: 'calc(max(calc(4vw / (3 / 1.5)), calc(1.5 * 10px)) / 1.2)',
+          userSelect: 'none',
+          fontWeight: 700,
+          whiteSpace: 'pre-wrap',
+          wordWrap: 'break-word',
+        }}
+        onInput={(e) => {
+          setCurrentInput(e);
+          autoResize();
+        }}
         value={currentInput}
       />
       <Button
         currentInput={currentInput}
-        setMessages={setMessages} />
+        setMessages={handleSetMessages}
+      />
     </div>
   );
 }
@@ -230,16 +284,16 @@ function CloseButton({ onClick }) {
   }
 
   return (
-    <div
+    <button
       onClick={onClick}
       onMouseOver={() => setIsHighlighted(true)}
       onMouseOut={() => setIsHighlighted(false)}
       style={containerStyle}>
       <MdCloseFullscreen
-        size={'75%'}
+        size={'65%'}
         color={isHighlighted ? 'black' : '#555555'}
       />
-    </div>
+    </button>
   );
 }
 
@@ -275,7 +329,7 @@ function OpenButton({ onClick }) {
       }}
     >
       <div style={containerStyle}>
-        <h3 style={textStyle}>Query Assistant</h3>
+        <h3 style={textStyle}>Ask My Bot</h3>
         <div style={{
           display: 'flex',
           justifyContent: 'center',

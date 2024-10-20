@@ -63,7 +63,7 @@ router.post('/chatbotResponse', async (req, res, next) => {
     // If there are no messages for the current user's conversation.
     if (!chatHistory[uuid]) {
       chatHistory[uuid] = {
-        messages: [`1 - Message from chatbot to user "Use this Chatbot to make equiries about me. E.g. how can you can be contacted? or when did you use teamwork skills?"`],
+        messages: [`1 - Message from chatbot to user "Use this chatbot to ask me questions. E.g.\nWhich project are you most proud of?\nHow can you can be contacted?"`],
         updateTime: now,
       };
     }
