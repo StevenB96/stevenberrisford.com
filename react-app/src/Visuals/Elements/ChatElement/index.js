@@ -161,6 +161,7 @@ function ChatInput({
   setCurrentInput
 }) {
   const textareaRef = useRef(null);
+  const lineHeightString = 'max(3vw, 20px)';
 
   function calculateLineHeight(computedStyle) {
     let lineHeight = computedStyle.lineHeight;
@@ -184,13 +185,13 @@ function ChatInput({
     const value = textarea.value;
 
     if (textarea) {
-      textarea.style.height = `calc(max(3vw, 20px) * ${numLines} + 4px)`;
+      textarea.style.height = `calc(${lineHeightString} * ${numLines} + 4px)`;
     }
   };
 
   const handleSetMessages = () => {
     setMessages();
-    textareaRef.current.style.height = `calc(max(3vw, 20px) + 4px)`;
+    textareaRef.current.style.height = `calc(${lineHeightString} + 4px)`;
   };
 
   const containerStyle = {
@@ -219,8 +220,9 @@ function ChatInput({
         style={{
           // Sizing Properties
           flex: 1,
-          height: 'calc(max(3vw, 20px) + 4px)',
-          lineHeight: 'max(3vw, 20px)',
+          height: `calc(${lineHeightString} + 4px)`,
+          maxHeight: `calc(${lineHeightString} * 5 + 4px)`,
+          lineHeight: lineHeightString,
           minWidth: 0,
           // Background and Appearance
           borderStyle: 'solid',
@@ -370,6 +372,7 @@ function ChatElement({
     bottom: elementOffset,
     right: elementOffset,
     zIndex: 3,
+    // Size-related properties
     width: `calc(40% - ${elementOffset}px)`,
   };
 
