@@ -8,12 +8,10 @@ import {
   useSelector
 } from 'react-redux';
 import {
-  MdSend,
-  MdOpenInFull,
-  MdCloseFullscreen,
-} from "react-icons/md";
-import useResponsive from '../../../Hooks/useResponsive';
-import BaseOptionsButton from '../../Layouts/BaseOptionsButton';
+  CloseChatElementButton,
+  OpenChatElementButton,
+  SubmitChatMessageButton,
+} from '../../Buttons';
 import {
   getChatbotResponseRequest,
 } from '../../../Redux/Actions/appActions';
@@ -114,47 +112,6 @@ function MessageList({
   );
 }
 
-function Button({
-  currentInput,
-  setMessages
-}) {
-  const [isHighlighted, setIsHighlighted] = useState(false);
-  const handleMouseOver = () => setIsHighlighted(true);
-  const handleMouseOut = () => setIsHighlighted(false);
-
-  const isClickable = isHighlighted && currentInput;
-
-  return (
-    <button
-      onMouseOver={handleMouseOver}
-      onMouseOut={handleMouseOut}
-      style={{
-        // Background and Appearance
-        backgroundColor: 'whitesmoke',
-        borderStyle: 'solid',
-        borderWidth: 'max(0.3vw, 2.25px)',
-        borderColor: isClickable ? 'black' : '#555555',
-        borderRadius: '50%',
-        // Layout Properties
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        // Sizing Properties
-        height: 'max(3vw, 20px)',
-        aspectRatio: 1,
-        // Box Model Properties
-        boxSizing: 'border-box',
-        cursor: isClickable ? undefined : 'not-allowed'
-      }}
-      onClick={setMessages}>
-      <MdSend
-        size={'max(1.5vw, 10px)'}
-        color={isClickable ? 'black' : '#555555'}
-      />
-    </button>
-  );
-}
-
 function ChatInput({
   currentInput,
   setMessages,
@@ -169,20 +126,24 @@ function ChatInput({
     return lineHeight;
   }
 
-  function calculateNumLines(textarea, lineHeight) {
+  function calculateNumLines(textarea, lineHeight, value) {
     const scrollHeight = textarea.scrollHeight;
-    const numberOfLines = Math.floor(scrollHeight / lineHeight);
-    return numberOfLines;
+    let numberOfLines = Math.floor(scrollHeight / lineHeight);
+    // Check the conditions for modifying the scrollHeight
+    if (value.includes('\n')) {
+      numberOfLines += 1;
+    }
+    return numberOfLines < 2 ? 2 : numberOfLines;
   }
 
   const autoResize = () => {
     const textarea = textareaRef.current;
+    const value = textarea.value;
     textarea.style.height = 'auto';
 
     const textareaComputedStyle = window.getComputedStyle(textarea);
     const lineHeight = calculateLineHeight(textareaComputedStyle);
-    const numLines = calculateNumLines(textarea, lineHeight);
-    const value = textarea.value;
+    const numLines = calculateNumLines(textarea, lineHeight, value);
 
     if (textarea) {
       textarea.style.height = `calc(${lineHeightString} * ${numLines} + 4px)`;
@@ -244,105 +205,15 @@ function ChatInput({
         }}
         onInput={(e) => {
           setCurrentInput(e);
-          // autoResize();
         }}
         onKeyDown={autoResize}
         value={currentInput}
       />
-      <Button
+      <SubmitChatMessageButton
         currentInput={currentInput}
         setMessages={handleSetMessages}
       />
     </div>
-  );
-}
-
-function CloseButton({ onClick }) {
-  const [isHighlighted, setIsHighlighted] = useState(false);
-
-  const containerStyle = {
-    // Positioning Properties
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    transform: 'translate(-50%, -50%)',
-    // Sizing Properties
-    width: 'calc(max(3vw, 30px) + 10px)',
-    aspectRatio: 1,
-    // Background and Appearance
-    backgroundColor: 'whitesmoke',
-    borderStyle: 'solid',
-    borderWidth: 'max(0.3vw, 2.25px)',
-    borderColor: 'black',
-    borderRadius: '50%',
-    // Layout Properties
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    // Box Model Properties
-    padding: 0,
-  }
-
-  return (
-    <button
-      onClick={onClick}
-      onMouseOver={() => setIsHighlighted(true)}
-      onMouseOut={() => setIsHighlighted(false)}
-      style={containerStyle}>
-      <MdCloseFullscreen
-        size={'65%'}
-        color={isHighlighted ? 'black' : '#555555'}
-      />
-    </button>
-  );
-}
-
-function OpenButton({ onClick }) {
-  const [isHighlighted, setIsHighlighted] = useState(false);
-  const { isTablet, isMobile } = useResponsive();
-
-  const containerStyle = {
-    // Flex Container Properties
-    display: 'flex',
-    flexDirection: (isTablet || isMobile) ? 'row-reverse' : 'column',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    // Layout Spacing
-    gap: 5,
-  }
-
-  const textStyle = {
-    margin: 0,
-    color: isHighlighted ? 'black' : '#555555',
-    transition: 'color 0.1s ease-in-out',
-  }
-
-  return (
-    <BaseOptionsButton
-      onClick={onClick}
-      setIsHighlighted={setIsHighlighted}
-      styleOveride={{
-        position: 'fixed',
-        bottom: elementOffset,
-        right: elementOffset,
-        zIndex: 3,
-      }}
-    >
-      <div style={containerStyle}>
-        <h3 style={textStyle}>Ask My Bot</h3>
-        <div style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          borderRadius: '50%',
-        }}>
-          <MdOpenInFull
-            size={'max(3vw, 30px)'}
-            color={isHighlighted ? 'black' : '#555555'}
-          />
-        </div>
-      </div>
-    </BaseOptionsButton>
   );
 }
 
@@ -379,13 +250,13 @@ function ChatElement({
   return (
     <div>
       {(!isOpen) ? (
-        <OpenButton
+        <OpenChatElementButton
           onClick={() => setIsOpen(true)} />
       ) : (
         <div
           style={containerStyle}
         >
-          <CloseButton
+          <CloseChatElementButton
             onClick={() => setIsOpen(false)} />
           <MessageList
             messages={chatbotMessages}
