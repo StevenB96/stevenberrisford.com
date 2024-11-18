@@ -9,3 +9,4 @@ export { default as ProfileOverlayElement } from './ProfileOverlayElement';
 export { default as SupportOverlayElement } from './SupportOverlayElement';
 export { default as ChatMessageListElement } from './ChatMessageListElement';
 export { default as ChatInputElement } from './ChatInputElement';
+export { default as ReferenceMarquee } from './ReferenceMarquee';

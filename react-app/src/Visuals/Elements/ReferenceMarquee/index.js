@@ -3,18 +3,20 @@ import {
   useSelector
 } from 'react-redux';
 import Marquee from "react-fast-marquee";
+import useResponsive from '../../../Hooks/useResponsive';
 
 const ReferenceMarquee = ({ }) => {
   const {
     references,
   } = useSelector(state => state.app);
 
+  const { width } = useResponsive();
+
   return (
     <Marquee
-      pauseOnHover={true}
-      speed={150}
-      gradientColor='grey'
-      gradientWidth={200}
+      speed={width * 0.05}
+      gradient={true}
+      gradientWidth={'20%'}
       style={{
         backgroundColor: 'whitesmoke',
         borderBottomStyle: 'solid',
@@ -28,10 +30,10 @@ const ReferenceMarquee = ({ }) => {
             flexDirection: 'row',
             padding: '5px 20px 0px 20px',
             gap: 10,
-            background: `linear-gradient(90deg, grey 0%, whitesmoke 100%)`,
+            // background: `linear-gradient(90deg, grey 0%, whitesmoke 100%)`,
           }}>
             <h2>
-              <u>{reference.author}, {reference.role} at {reference.organisation}:</u>
+              <u>{reference.author}, {reference.role} at {reference.organisation}</u>
             </h2>
             <h2
               >{reference.text}

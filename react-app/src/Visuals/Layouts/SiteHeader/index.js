@@ -5,7 +5,9 @@ import {
   useSelector
 } from 'react-redux';
 import NavContainer from '../../Containers/NavContainer';
-import ReferenceMarquee from '../../Elements/ReferenceMarquee';
+import {
+  ReferenceMarquee
+} from '../../Elements';
 
 const SiteHeader = ({
   navInputMap,
