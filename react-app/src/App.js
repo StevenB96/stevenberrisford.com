@@ -26,8 +26,11 @@ import {
   ContentGroup,
   SiteHeader,
 } from './Visuals/Layouts';
-import LeftSiteOptionsContainer from './Visuals/Containers/LeftSiteOptionsContainer';
-import RightSiteOptionsContainer from './Visuals/Containers/RightSiteOptionsContainer';
+import {
+  LeftSiteOptionsContainer,
+  RightSiteOptionsContainer,
+  ChatElementContainer
+} from './Visuals/Containers';
 
 import {
   getProfileRequest,
@@ -296,7 +299,7 @@ function App() {
                 isOpen={modalOpen === 'support'}
                 handleClose={() => handleSetModal(null)}
               />
-              <ChatElement />
+              <ChatElementContainer />
             </>
           ) :
           (

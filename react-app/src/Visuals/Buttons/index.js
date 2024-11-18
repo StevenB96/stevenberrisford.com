@@ -4,3 +4,6 @@ export { default as NavToggle } from './NavToggle';
 export { default as CloseOverlayButton } from './CloseOverlayButton';
 export { default as SupportButton } from './SupportButton';
 export { default as PaypalPayment } from './PaypalPayment';
+export { default as CloseChatElementButton } from './CloseChatElementButton';
+export { default as OpenChatElementButton } from './OpenChatElementButton';
+export { default as SubmitChatMessageButton } from './SubmitChatMessageButton';

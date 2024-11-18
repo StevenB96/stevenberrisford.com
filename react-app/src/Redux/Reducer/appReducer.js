@@ -32,7 +32,7 @@ const initialState = {
   chatbotMessages: [
     {
       author: 'chatbot',
-      text: "Use this Chatbot to make equiries about me. E.g. how can you can be contacted? or when did you use teamwork skills?",
+      text: "Use this chatbot to ask me questions. E.g.\nWhich project are you most proud of?\nHow can you can be contacted?",
     }
   ],
   loading: false,
