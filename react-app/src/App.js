@@ -31,7 +31,8 @@ import RightSiteOptionsContainer from './Visuals/Containers/RightSiteOptionsCont
 
 import {
   getProfileRequest,
-  getContentRequest
+  getContentRequest,
+  getReferencesRequest,
 } from './Redux/Actions/appActions';
 
 function App() {
@@ -176,6 +177,7 @@ function App() {
   useEffect(() => {
     dispatch(getProfileRequest());
     dispatch(getContentRequest());
+    dispatch(getReferencesRequest());
   }, [dispatch]);
 
   // useEffect to close modal if scroll position is greater than height

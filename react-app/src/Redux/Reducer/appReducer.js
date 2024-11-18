@@ -10,6 +10,10 @@ import {
   GET_CHATBOT_RESPONSE_REQUEST,
   GET_CHATBOT_RESPONSE_SUCCESS,
   GET_CHATBOT_RESPONSE_FAILURE,
+
+  GET_REFERENCES_REQUEST,
+  GET_REFERENCES_SUCCESS,
+  GET_REFERENCES_FAILURE,
 } from '../Actions/appActions';
 
 import {
@@ -24,6 +28,7 @@ const initialState = {
   projects: [],
   articles: [],
   hobbies: [],
+  references: [],
   chatbotMessages: [
     {
       author: 'chatbot',
@@ -113,6 +118,26 @@ const app = (state = initialState, action) => {
       };
     }
     case GET_CHATBOT_RESPONSE_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: true
+      };
+
+    case GET_REFERENCES_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null
+      };
+    case GET_REFERENCES_SUCCESS:
+      return {
+        ...state,
+        references: action.payload,
+        loading: false,
+        error: false
+      };
+    case GET_REFERENCES_FAILURE:
       return {
         ...state,
         loading: false,

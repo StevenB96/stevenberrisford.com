@@ -48,3 +48,22 @@ export const getChatbotResponseFailure = (error) => ({
   type: GET_CHATBOT_RESPONSE_FAILURE,
   payload: error,
 });
+
+export const GET_REFERENCES_REQUEST = 'GET_REFERENCES_REQUEST';
+export const GET_REFERENCES_SUCCESS = 'GET_REFERENCES_SUCCESS';
+export const GET_REFERENCES_FAILURE = 'GET_REFERENCES_FAILURE';
+
+export const getReferencesRequest = (params) => ({
+  type: GET_REFERENCES_REQUEST,
+  params,
+});
+
+export const getReferencesSuccess = (data) => ({
+  type: GET_REFERENCES_SUCCESS,
+  payload: data,
+});
+
+export const getReferencesFailure = (error) => ({
+  type: GET_REFERENCES_FAILURE,
+  payload: error,
+});

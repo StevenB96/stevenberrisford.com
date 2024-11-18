@@ -5,6 +5,7 @@ import {
   useSelector
 } from 'react-redux';
 import NavContainer from '../../Containers/NavContainer';
+import ReferenceMarquee from '../../Elements/ReferenceMarquee';
 
 const SiteHeader = ({
   navInputMap,
@@ -57,8 +58,9 @@ const SiteHeader = ({
     <div style={headerContainerStyle}>
       <div style={backgroundStyle} />
       <div style={contentContainerStyle}>
+        <ReferenceMarquee />
         <h1 style={textStyle}>
-          Welcome to my website!
+          Welcome to My Portfolio!
         </h1>
         <NavContainer
           navInputMap={navInputMap}

@@ -15,12 +15,16 @@ import {
 
   getChatbotResponseSuccess,
   getChatbotResponseFailure,
+
+  getReferencesSuccess,
+  getReferencesFailure,
 } from '../Actions/appActions';
 
 import {
   GET_PROFILE_REQUEST,
   GET_CONTENT_REQUEST,
   GET_CHATBOT_RESPONSE_REQUEST,
+  GET_REFERENCES_REQUEST,
 } from '../Actions/appActions';
 
 import { fetchDataFromApi } from '../api';
@@ -79,8 +83,25 @@ function* getChatbotResponse(action) {
   }
 }
 
+function* getReferences(action) {
+  try {
+    const data = yield call(fetchDataFromApi, {
+      method: 'GET',
+      url: `${env.SERVER_URL || "http://localhost:3000"}/`,
+      path: 'references/',
+      // qParams: '',
+      // payload: action.payload
+    });
+
+    yield put(getReferencesSuccess(data));
+  } catch (error) {
+    yield put(getReferencesFailure(error.message));
+  }
+}
+
 export default function* appSagas() {
   yield takeLatest(GET_PROFILE_REQUEST, getProfile);
   yield takeLatest(GET_CONTENT_REQUEST, getContent);
   yield takeLatest(GET_CHATBOT_RESPONSE_REQUEST, getChatbotResponse);
+  yield takeLatest(GET_REFERENCES_REQUEST, getReferences);
 }
