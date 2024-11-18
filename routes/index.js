@@ -36,6 +36,16 @@ router.get('/content', async (req, res, next) => {
   }
 });
 
+router.get('/references', async (req, res, next) => {
+  res.set('Cache-Control', 'no-cache');
+  try {
+    const content = await db.select().from('reference').orderBy('order', 'asc').orderByRaw('CASE WHEN "order" IS NULL THEN 1 ELSE 0 END');
+    res.json(content);
+  } catch (error) {
+    next(error);
+  }
+});
+
 // In-memory storage for chat history
 let chatHistory = {};
 

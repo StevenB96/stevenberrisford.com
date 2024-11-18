@@ -20,7 +20,6 @@ import {
   SupportOverlayElement,
   TopScrollElement,
   Contact,
-  ChatElement
 } from './Visuals/Elements';
 import {
   ContentGroup,

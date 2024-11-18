@@ -4,7 +4,7 @@
  */
 exports.up = function(knex) {
   return knex.schema.alterTable('content', function (table) {
-    table.string('order').after('media_link');
+    table.integer('order').after('media_link');
   });
 };
 
