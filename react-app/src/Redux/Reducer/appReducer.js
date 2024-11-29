@@ -14,6 +14,10 @@ import {
   GET_REFERENCES_REQUEST,
   GET_REFERENCES_SUCCESS,
   GET_REFERENCES_FAILURE,
+
+  SET_APP_MODAL_OPEN_REQUEST,
+  SET_APP_MODAL_OPEN_SUCCESS,
+  SET_APP_MODAL_OPEN_FAILURE,
 } from '../Actions/appActions';
 
 import {
@@ -35,12 +39,15 @@ const initialState = {
       text: "Use this chatbot to ask me questions. E.g.\nWhich project are you most proud of?\nHow can you can be contacted?",
     }
   ],
+  appModalOpen: null,
   loading: false,
   error: null,
 };
 
 const app = (state = initialState, action) => {
   switch (action.type) {
+
+    // Profile actions
     case GET_PROFILE_REQUEST:
       return {
         ...state,
@@ -61,6 +68,7 @@ const app = (state = initialState, action) => {
         error: true
       };
 
+    // Content actions
     case GET_CONTENT_REQUEST:
       return {
         ...state,
@@ -87,6 +95,7 @@ const app = (state = initialState, action) => {
         error: true
       };
 
+    // Chatbot response actions
     case GET_CHATBOT_RESPONSE_REQUEST: {
       const newChatbotMessages = action.params === 'Clear chat history' ?
         state.chatbotMessages :
@@ -124,6 +133,7 @@ const app = (state = initialState, action) => {
         error: true
       };
 
+    // References actions
     case GET_REFERENCES_REQUEST:
       return {
         ...state,
@@ -144,6 +154,28 @@ const app = (state = initialState, action) => {
         error: true
       };
 
+    // App modal open actions
+    case SET_APP_MODAL_OPEN_REQUEST:
+      return {
+        ...state,
+        appModalOpen: action.params,
+        loading: true,
+        error: null
+      };
+    case SET_APP_MODAL_OPEN_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: false
+      };
+    case SET_APP_MODAL_OPEN_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: true
+      };
+
+    // Default case returns the current state unchanged if no actions match
     default:
       return state;
   }

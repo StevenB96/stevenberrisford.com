@@ -67,3 +67,22 @@ export const getReferencesFailure = (error) => ({
   type: GET_REFERENCES_FAILURE,
   payload: error,
 });
+
+export const SET_APP_MODAL_OPEN_REQUEST = 'SET_APP_MODAL_OPEN_REQUEST';
+export const SET_APP_MODAL_OPEN_SUCCESS = 'SET_APP_MODAL_OPEN_SUCCESS';
+export const SET_APP_MODAL_OPEN_FAILURE = 'SET_APP_MODAL_OPEN_FAILURE';
+
+export const setAppModalOpenRequest = (params) => ({
+  type: SET_APP_MODAL_OPEN_REQUEST,
+  params,
+});
+
+export const setAppModalOpenSuccess = (data) => ({
+  type: SET_APP_MODAL_OPEN_SUCCESS,
+  payload: data,
+});
+
+export const setAppModalOpenFailure = (error) => ({
+  type: SET_APP_MODAL_OPEN_FAILURE,
+  payload: error,
+});

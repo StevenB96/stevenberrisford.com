@@ -2,18 +2,37 @@ import {
   memo
 } from 'react';
 import {
+  useDispatch,
+  useSelector,
+} from 'react-redux';
+import {
   SupportButton,
 } from '../../Buttons';
 import useResponsive from '../../../Hooks/useResponsive';
 
-const RightSiteOptionsContainer = ({
-  modalOpen,
-  handleSetModal
-}) => {
+import {
+  setAppModalOpenRequest,
+} from '../../../Redux/Actions/appActions';
+
+const RightSiteOptionsContainer = ({}) => {
+  // Hook to access Redux dispatch function
+  const dispatch = useDispatch();
+
+  // Accessing application state from Redux store
+  const {
+    appModalOpen
+  } = useSelector(state => state.app);
+
   const {
     isTablet,
     isMobile
   } = useResponsive();
+
+  const handleOnClick = () => {
+    dispatch(
+      setAppModalOpenRequest(appModalOpen === 'support' ? null : 'support')
+    );
+  }
 
   return (
     <div
@@ -27,7 +46,7 @@ const RightSiteOptionsContainer = ({
         gap: 5,
       }}>
       <SupportButton
-        onClick={() => handleSetModal(modalOpen === 'support' ? null : 'support')}
+        onClick={handleOnClick}
       />
     </div>
   );

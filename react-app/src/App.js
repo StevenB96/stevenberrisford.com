@@ -35,6 +35,7 @@ import {
   getProfileRequest,
   getContentRequest,
   getReferencesRequest,
+  setAppModalOpenRequest,
 } from './Redux/Actions/appActions';
 
 function App() {
@@ -57,11 +58,11 @@ function App() {
     projects,
     articles,
     hobbies,
+    appModalOpen,
   } = useSelector(state => state.app);
 
   // Local state to manage various content and modal visibility
   const [content, setContent] = useState([]);
-  const [modalOpen, setModalOpen] = useState(null);
 
   // useEffect to handle content updates and image loading
   useEffect(() => {
@@ -160,6 +161,8 @@ function App() {
 
   // Function to smoothly scroll to a section
   const scrollToSection = useCallback((elementRef) => {
+    dispatch(setAppModalOpenRequest(null));
+    
     if (elementRef.current) {
       window.scrollTo({
         top: elementRef.current.offsetTop - 20,
@@ -167,13 +170,6 @@ function App() {
       });
     }
   }, []);
-
-  const handleSetModal = (isOpen) => {
-    if (isOpen === false && scrollY > height) {
-      commonFunctions.scrollToTop();
-    }
-    setModalOpen(isOpen);
-  }
 
   // useEffect to fetch profile and content when component mounts
   useEffect(() => {
@@ -186,7 +182,7 @@ function App() {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       if (scrollY > height) {
-        setModalOpen(null);
+        dispatch(setAppModalOpenRequest(null));
       }
     }, 100);
 
@@ -209,10 +205,10 @@ function App() {
 
   // useEffect to scroll to the about modal
   useEffect(() => {
-    if (modalOpen) {
+    if (appModalOpen) {
       commonFunctions.scrollToTop();
     }
-  }, [modalOpen, scrollToSection]);
+  }, [appModalOpen, scrollToSection]);
 
   // Contact items that will be displayed, with their icons
   const contactItems = [
@@ -279,25 +275,13 @@ function App() {
                   :
                   (
                     <>
-                      <LeftSiteOptionsContainer
-                        modalOpen={modalOpen}
-                        handleSetModal={handleSetModal}
-                      />
-                      <RightSiteOptionsContainer
-                        modalOpen={modalOpen}
-                        handleSetModal={handleSetModal}
-                      />
+                      <LeftSiteOptionsContainer />
+                      <RightSiteOptionsContainer />
                     </>
                   )
               }
-              <ProfileOverlayElement
-                isOpen={modalOpen === 'profile'}
-                handleClose={() => handleSetModal(null)}
-              />
-              <SupportOverlayElement
-                isOpen={modalOpen === 'support'}
-                handleClose={() => handleSetModal(null)}
-              />
+              <ProfileOverlayElement/>
+              <SupportOverlayElement />
               <ChatElementContainer />
             </>
           ) :

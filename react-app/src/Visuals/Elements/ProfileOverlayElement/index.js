@@ -2,26 +2,38 @@ import {
   forwardRef,
 } from 'react';
 import {
+  useDispatch,
   useSelector
 } from 'react-redux';
 import useResponsive from '../../../Hooks/useResponsive';
 import { CloseOverlayButton } from '../../Buttons';
 
-const ProfileOverlayElement = forwardRef(({
-  handleClose,
-  isOpen,
-}, ref) => {
+import {
+  setAppModalOpenRequest,
+} from '../../../Redux/Actions/appActions';
+
+const ProfileOverlayElement = forwardRef(({ }, ref) => {
+  // Hook to access Redux dispatch function
+  const dispatch = useDispatch();
+
   // Accessing application state from Redux store
   const {
     profile,
+    appModalOpen
   } = useSelector(state => state.app);
-  const { isMobile, width } = useResponsive();
+  const { isMobile, isTablet, isHandHeld } = useResponsive();
 
-  if (!isOpen) return null;
+  if (appModalOpen !== 'profile') return null;
+
+  const handleOnClick = () => {
+    dispatch(
+      setAppModalOpenRequest(null)
+    );
+  }
 
   const containerStyle = {
     position: 'absolute',
-    top: 120,
+    top: 100,
     left: '50%',
     transform: 'translate(-50%, 0%)',
     zIndex: 2,
@@ -30,7 +42,7 @@ const ProfileOverlayElement = forwardRef(({
     borderStyle: 'solid',
     borderWidth: 'max(0.3vw, 2.25px)',
     boxSizing: 'border-box',
-    width: width / 1.2,
+    width: `calc(${isMobile ? 80 : isTablet ? 60 : 70}%)`,
     maxWidth: 1400 / 1.2,
     flexDirection: 'column',
     backgroundColor: 'whitesmoke',
@@ -54,7 +66,7 @@ const ProfileOverlayElement = forwardRef(({
       `3px 3px 3px rgba(0,0,0,0.08),` +
       `4px 4px 4px rgba(0,0,0,0.08),` +
       `16px 16px 16px rgba(0,0,0,0.08)`,
-    marginTop: isMobile ? undefined : 'max(4.5vw, 45px)',
+    marginTop: isHandHeld ? undefined : 'max(4.5vw, 45px)',
   }
 
   return (
@@ -62,14 +74,14 @@ const ProfileOverlayElement = forwardRef(({
       ref={ref}
       style={containerStyle}>
       <CloseOverlayButton
-        onClick={handleClose}
+        onClick={handleOnClick}
       />
       <div
         style={{
           display: 'flex',
           justifyContent: 'space-around',
-          alignItems: isMobile ? 'center' : 'flex-start',
-          flexDirection: isMobile ? 'column' : 'row',
+          alignItems: isHandHeld ? 'center' : 'flex-start',
+          flexDirection: isHandHeld ? 'column' : 'row',
           gap: 10,
           padding: 10,
         }}
@@ -83,10 +95,10 @@ const ProfileOverlayElement = forwardRef(({
           style={{
             whiteSpace: 'pre-wrap',
             wordWrap: 'break-word',
-            width: isMobile ? '100%' : '70%',
+            width: isHandHeld ? '100%' : '70%',
             textAlign: 'left',
             color: 'black',
-            marginTop: isMobile ? undefined : 'max(4.5vw, 45px)',
+            marginTop: isHandHeld ? undefined : 'max(4.5vw, 45px)',
           }}
         >
           {profile.description}

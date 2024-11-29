@@ -10,7 +10,7 @@ const NavContainer = ({
   navInputMap,
   scrollToSection
 }) => {
-  const { isMobile, isTablet } = useResponsive();
+  const { isHandHeld } = useResponsive();
 
   return (
     <div
@@ -19,7 +19,7 @@ const NavContainer = ({
       }}
     >
       {
-        isMobile || isTablet ?
+        isHandHeld ?
           <NavBarColumn
             navInputMap={navInputMap}
             scrollToSection={scrollToSection} /> :

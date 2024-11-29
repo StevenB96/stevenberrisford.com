@@ -3,10 +3,17 @@ import {
   useRef,
   useEffect,
 } from 'react';
+import {
+  useDispatch,
+} from 'react-redux';
 import { useWindowSize } from '@react-hook/window-size';
 import useScrollPosition from '@react-hook/window-scroll';
 import NavToggle from '../../Buttons/NavToggle';
 import { commonFunctions } from '../../../Hooks';
+
+import {
+  setAppModalOpenRequest,
+} from '../../../Redux/Actions/appActions';
 
 const CustomNavItem = ({
   item,
@@ -115,17 +122,25 @@ const NavBarColumn = ({
   navInputMap,
   scrollToSection
 }) => {
+  // Hook to access Redux dispatch function
+  const dispatch = useDispatch();
+
   const scrollY = useScrollPosition(0);
   const [height] = useWindowSize();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [containerHeight, setContainerHeight] = useState(0);
+
+  const handleSetIsMenuOpen = (isOpen) => {
+    dispatch(setAppModalOpenRequest(null));
+    setIsMenuOpen(isOpen);
+  }
 
   // Close the modal if clicked outside
   const containerRef = useRef();
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (containerRef.current && !containerRef.current.contains(event.target)) {
-        setIsMenuOpen(false);
+        handleSetIsMenuOpen(false);
       }
     };
 
@@ -136,7 +151,7 @@ const NavBarColumn = ({
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [setIsMenuOpen]);
+  }, [handleSetIsMenuOpen]);
 
   // Set menu height
   const menuRef = useRef(null);
@@ -152,7 +167,7 @@ const NavBarColumn = ({
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       if (scrollY > height) {
-        setIsMenuOpen(false);
+        handleSetIsMenuOpen(false);
       }
     }, 100);
 
@@ -181,7 +196,7 @@ const NavBarColumn = ({
       }}>
       <CustomDropDownButton
         isMenuOpen={isMenuOpen}
-        setIsMenuOpen={setIsMenuOpen}
+        setIsMenuOpen={handleSetIsMenuOpen}
       />
       <div
         ref={menuRef}
@@ -194,7 +209,7 @@ const NavBarColumn = ({
               index={index}
               navInputMap={navInputMap}
               isMenuOpen={isMenuOpen}
-              setIsMenuOpen={setIsMenuOpen}
+              setIsMenuOpen={handleSetIsMenuOpen}
               scrollToSection={scrollToSection}
               containerHeight={containerHeight}
             />

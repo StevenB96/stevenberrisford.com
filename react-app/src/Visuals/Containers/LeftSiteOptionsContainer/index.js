@@ -2,6 +2,7 @@ import {
   memo
 } from 'react';
 import {
+  useDispatch,
   useSelector
 } from 'react-redux';
 import {
@@ -10,19 +11,30 @@ import {
 } from '../../Buttons';
 import useResponsive from '../../../Hooks/useResponsive';
 
-const LeftSiteOptionsContainer = ({
-  handleSetModal,
-  modalOpen
-}) => {
+import {
+  setAppModalOpenRequest,
+} from '../../../Redux/Actions/appActions';
+
+const LeftSiteOptionsContainer = ({}) => {
+  // Hook to access Redux dispatch function
+  const dispatch = useDispatch();
+
   // Accessing application state from Redux store
   const {
     profile,
+    appModalOpen
   } = useSelector(state => state.app);
 
   const {
     isTablet,
     isMobile
   } = useResponsive();
+
+  const handleOnClick = () => {
+    dispatch(
+      setAppModalOpenRequest(appModalOpen === 'profile' ? null : 'profile')
+    );
+  }
 
   return (
     <div
@@ -36,7 +48,7 @@ const LeftSiteOptionsContainer = ({
         gap: 5,
       }}>
       <ProfileButton
-        onClick={() => handleSetModal(modalOpen === 'profile' ? null : 'profile')}
+        onClick={handleOnClick}
       />
       <DownloadCVButton
         fileName="CV"

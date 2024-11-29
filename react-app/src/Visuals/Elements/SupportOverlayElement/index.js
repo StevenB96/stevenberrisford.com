@@ -2,9 +2,17 @@ import {
   forwardRef,
 } from 'react';
 import {
+  useDispatch,
+  useSelector
+} from 'react-redux';
+import {
   CloseOverlayButton,
   PaypalPayment
 } from '../../Buttons';
+
+import {
+  setAppModalOpenRequest,
+} from '../../../Redux/Actions/appActions';
 
 const DisabledContinater = ({
   children
@@ -29,30 +37,45 @@ const DisabledContinater = ({
   );
 };
 
-const SupportOverlayElement = forwardRef(({
-  isOpen,
-  handleClose,
-}, ref) => {
-  if (!isOpen) return null;
+const SupportOverlayElement = forwardRef(({ }, ref) => {
+  // Hook to access Redux dispatch function
+  const dispatch = useDispatch();
+
+  // Accessing application state from Redux store
+  const {
+    appModalOpen
+  } = useSelector(state => state.app);
+
+  if (appModalOpen !== 'support') return null;
+
+  const handleOnClick = () => {
+    dispatch(
+      setAppModalOpenRequest(null)
+    );
+  }
 
   const containerStyle = {
+    // Positioning and Layout
     position: 'absolute',
     top: 120,
     left: '50%',
     transform: 'translate(-50%, 0%)',
     zIndex: 2,
     display: 'flex',
+    flexDirection: 'column',
     alignItems: 'center',
+    overflow: 'hidden',
+    // Sizing and Spacing
+    gap: 20,
+    padding: 20,
+    // Borders and Background
     borderRadius: 20,
     borderStyle: 'solid',
     borderWidth: 'max(0.3vw, 2.25px)',
-    boxSizing: 'border-box',
-    flexDirection: 'column',
     backgroundColor: 'whitesmoke',
-    gap: 20,
-    padding: 20,
-    overflow: 'hidden',
-  }
+    // Box Model
+    boxSizing: 'border-box',
+  };
 
   const textStyle = {
     textAlign: 'center',
@@ -76,13 +99,13 @@ const SupportOverlayElement = forwardRef(({
           PayPal integrated, but not active.
         </h1>
         <CloseOverlayButton
-          onClick={handleClose}
+          onClick={handleOnClick}
         />
       </DisabledContinater>
       <h2
         style={textStyle}
       >
-        Please support me (and this website).<br /><br />
+        Please support me (and this website).<br />
         Would you please contribute 20p.
       </h2>
       <PaypalPayment />
