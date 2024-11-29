@@ -32,9 +32,6 @@ const ReferenceMarquee = ({ }) => {
             gap: 10,
             // background: `linear-gradient(90deg, grey 0%, whitesmoke 100%)`,
           }}>
-            <h2>
-              <u>{reference.author}, {reference.role} at {reference.organisation}</u>
-            </h2>
             <h2
               >{reference.text}
             </h2>

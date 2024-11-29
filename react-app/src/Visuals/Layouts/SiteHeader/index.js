@@ -60,7 +60,7 @@ const SiteHeader = ({
     <div style={headerContainerStyle}>
       <div style={backgroundStyle} />
       <div style={contentContainerStyle}>
-        <ReferenceMarquee />
+        {/* <ReferenceMarquee /> */}
         <h1 style={textStyle}>
           Welcome to My Portfolio!
         </h1>
