@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useResponsive } from '../../../Hooks';
 import {
   CloseChatElementButton,
   OpenChatElementButton,
@@ -14,6 +15,7 @@ import { getChatbotResponseRequest } from '../../../Redux/Actions/appActions';
 const elementOffset = 10;
 
 function ChatElementContainer() {
+  const { isMobile, isTablet } = useResponsive();
   const dispatch = useDispatch();
   const { chatbotMessages } = useSelector(state => state.app);
 
@@ -36,7 +38,7 @@ function ChatElementContainer() {
     right: elementOffset,
     zIndex: 3,
     // Size-related Properties
-    width: `calc(40% - ${elementOffset}px)`,
+    width: `calc(${isMobile ? 80: isTablet ? 70 : 60 }% - ${elementOffset}px)`,
   };
 
   return (
