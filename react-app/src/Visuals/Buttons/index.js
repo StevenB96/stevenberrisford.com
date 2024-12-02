@@ -7,3 +7,4 @@ export { default as PaypalPayment } from './PaypalPayment';
 export { default as CloseChatElementButton } from './CloseChatElementButton';
 export { default as OpenChatElementButton } from './OpenChatElementButton';
 export { default as SubmitChatMessageButton } from './SubmitChatMessageButton';
+export { default as ReferenceButton } from './ReferenceButton';

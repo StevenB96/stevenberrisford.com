@@ -1,7 +1,4 @@
 import {
-  forwardRef,
-} from 'react';
-import {
   useDispatch,
   useSelector
 } from 'react-redux';
@@ -37,7 +34,7 @@ const DisabledContinater = ({
   );
 };
 
-const SupportOverlayElement = forwardRef(({ }, ref) => {
+function SupportOverlayElement({}) {
   // Hook to access Redux dispatch function
   const dispatch = useDispatch();
 
@@ -52,7 +49,7 @@ const SupportOverlayElement = forwardRef(({ }, ref) => {
     dispatch(
       setAppModalOpenRequest(null)
     );
-  }
+  };
 
   const containerStyle = {
     // Positioning and Layout
@@ -86,11 +83,11 @@ const SupportOverlayElement = forwardRef(({ }, ref) => {
     color: 'whitesmoke',
     textAlign: 'center',
     rotate: '-20deg',
+    padding: 20,
   };
 
   return (
     <div
-      ref={ref}
       style={containerStyle}>
       <DisabledContinater>
         <h1
@@ -111,6 +108,6 @@ const SupportOverlayElement = forwardRef(({ }, ref) => {
       <PaypalPayment />
     </div>
   );
-});
+};
 
 export default SupportOverlayElement;

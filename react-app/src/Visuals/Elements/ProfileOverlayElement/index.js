@@ -1,7 +1,4 @@
 import {
-  forwardRef,
-} from 'react';
-import {
   useDispatch,
   useSelector
 } from 'react-redux';
@@ -12,7 +9,7 @@ import {
   setAppModalOpenRequest,
 } from '../../../Redux/Actions/appActions';
 
-const ProfileOverlayElement = forwardRef(({ }, ref) => {
+function ProfileOverlayElement({}) {
   // Hook to access Redux dispatch function
   const dispatch = useDispatch();
 
@@ -29,7 +26,7 @@ const ProfileOverlayElement = forwardRef(({ }, ref) => {
     dispatch(
       setAppModalOpenRequest(null)
     );
-  }
+  };
 
   const containerStyle = {
     position: 'absolute',
@@ -71,7 +68,6 @@ const ProfileOverlayElement = forwardRef(({ }, ref) => {
 
   return (
     <div
-      ref={ref}
       style={containerStyle}>
       <CloseOverlayButton
         onClick={handleOnClick}
@@ -106,6 +102,6 @@ const ProfileOverlayElement = forwardRef(({ }, ref) => {
       </div>
     </div>
   );
-});
+};
 
 export default ProfileOverlayElement;

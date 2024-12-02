@@ -7,6 +7,7 @@ import {
 } from 'react-redux';
 import {
   SupportButton,
+  ReferenceButton,
 } from '../../Buttons';
 import useResponsive from '../../../Hooks/useResponsive';
 
@@ -14,7 +15,7 @@ import {
   setAppModalOpenRequest,
 } from '../../../Redux/Actions/appActions';
 
-const RightSiteOptionsContainer = ({}) => {
+const RightSiteOptionsContainer = ({ }) => {
   // Hook to access Redux dispatch function
   const dispatch = useDispatch();
 
@@ -28,9 +29,15 @@ const RightSiteOptionsContainer = ({}) => {
     isMobile
   } = useResponsive();
 
-  const handleOnClick = () => {
+  const handleSupportOnClick = () => {
     dispatch(
       setAppModalOpenRequest(appModalOpen === 'support' ? null : 'support')
+    );
+  }
+
+  const handleReferenceOnClick = () => {
+    dispatch(
+      setAppModalOpenRequest(appModalOpen === 'reference' ? null : 'reference')
     );
   }
 
@@ -45,8 +52,11 @@ const RightSiteOptionsContainer = ({}) => {
         flexDirection: (isTablet || isMobile) ? 'column' : 'row',
         gap: 5,
       }}>
+      <ReferenceButton
+        onClick={handleReferenceOnClick}
+      />
       <SupportButton
-        onClick={handleOnClick}
+        onClick={handleSupportOnClick}
       />
     </div>
   );

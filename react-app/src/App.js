@@ -17,6 +17,7 @@ import ContentContainer from './Visuals/Containers/ContentContainer'
 
 import {
   ProfileOverlayElement,
+  ReferenceOverlayElement,
   SupportOverlayElement,
   TopScrollElement,
   Contact,
@@ -283,6 +284,7 @@ function App() {
               <ProfileOverlayElement/>
               <SupportOverlayElement />
               <ChatElementContainer />
+              <ReferenceOverlayElement />
             </>
           ) :
           (
