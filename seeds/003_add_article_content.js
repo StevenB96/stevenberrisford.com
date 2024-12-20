@@ -15,9 +15,9 @@ exports.seed = async function (knex) {
   await knex('content').insert([
     {
       title: 'My Full Stack Development Portfolio 2023',
-      text: '',
-      link: '',
-      media_link: `${process.env.SERVER_URL || "http://localhost:3000"}/public/documents/full_stack_development_portfolio_2023.pdf`,
+      text: null,
+      link: null,
+      media_link: `${process.env.SERVER_URL || "http://localhost:3000"}/public/documents/Full_Stack_Development_Portfolio_2023.pdf`,
       media_type: types.PDF_MEDIA_TYPE,
       content_type: types.ARTICLE_CONTENT_TYPE,
       created_at: new Date(),
@@ -25,9 +25,9 @@ exports.seed = async function (knex) {
     },
     {
       title: 'Extract From My Masters Project Individual Report',
-      text: '',
-      link: '',
-      media_link: `${process.env.SERVER_URL || "http://localhost:3000"}/public/documents/individual_report_extract_06_05_2019.pdf`,
+      text: null,
+      link: null,
+      media_link: `${process.env.SERVER_URL || "http://localhost:3000"}/public/documents/Individual_Report_Extract_06_05_2019.pdf`,
       media_type: types.PDF_MEDIA_TYPE,
       content_type: types.ARTICLE_CONTENT_TYPE,
       created_at: new Date(),

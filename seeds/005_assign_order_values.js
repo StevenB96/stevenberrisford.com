@@ -11,7 +11,7 @@ exports.seed = async function (knex) {
       title: 'Dating App (production)',
       content_type: types.PROJECT_CONTENT_TYPE
     })
-    .update({ 
+    .update({
       order: 2
     });
 
@@ -20,8 +20,8 @@ exports.seed = async function (knex) {
       title: 'Public Information App (production)',
       content_type: types.PROJECT_CONTENT_TYPE
     })
-    .update({ 
-      order: 1 
+    .update({
+      order: 1
     });
 
   await knex('content')
@@ -29,7 +29,7 @@ exports.seed = async function (knex) {
       title: 'Movie Predictor (prototype)',
       content_type: types.PROJECT_CONTENT_TYPE
     })
-    .update({ 
+    .update({
       order: 4
     });
 
@@ -38,7 +38,7 @@ exports.seed = async function (knex) {
       title: 'Diagram Optimiser (prototype)',
       content_type: types.PROJECT_CONTENT_TYPE
     })
-    .update({ 
+    .update({
       order: 5
     });
 
@@ -47,7 +47,7 @@ exports.seed = async function (knex) {
       title: 'Web Library (prototype)',
       content_type: types.PROJECT_CONTENT_TYPE
     })
-    .update({ 
+    .update({
       order: 6
     });
 
@@ -56,7 +56,7 @@ exports.seed = async function (knex) {
       title: 'Terraform Visualiser (prototype)',
       content_type: types.PROJECT_CONTENT_TYPE
     })
-    .update({ 
+    .update({
       order: 7
     });
 
@@ -65,7 +65,7 @@ exports.seed = async function (knex) {
       title: 'Shared Whiteboard (prototype)',
       content_type: types.PROJECT_CONTENT_TYPE
     })
-    .update({ 
+    .update({
       order: 8
     });
 
@@ -74,7 +74,7 @@ exports.seed = async function (knex) {
       title: 'React/Express Boilerplate',
       content_type: types.PROJECT_CONTENT_TYPE
     })
-    .update({ 
+    .update({
       order: 3
     });
 
@@ -83,7 +83,7 @@ exports.seed = async function (knex) {
       title: 'Choir',
       content_type: types.HOBBY_CONTENT_TYPE
     })
-    .update({ 
+    .update({
       order: 1
     });
 
@@ -92,7 +92,7 @@ exports.seed = async function (knex) {
       title: 'Dance',
       content_type: types.HOBBY_CONTENT_TYPE
     })
-    .update({ 
+    .update({
       order: 2
     });
 
@@ -101,7 +101,7 @@ exports.seed = async function (knex) {
       title: 'Piano',
       content_type: types.HOBBY_CONTENT_TYPE
     })
-    .update({ 
+    .update({
       order: 3
     });
 
@@ -110,7 +110,7 @@ exports.seed = async function (knex) {
       title: 'Robot Combat',
       content_type: types.HOBBY_CONTENT_TYPE
     })
-    .update({ 
+    .update({
       order: 4
     });
 
@@ -119,7 +119,7 @@ exports.seed = async function (knex) {
       title: 'Decision Tree Guide',
       content_type: types.ARTICLE_CONTENT_TYPE
     })
-    .update({ 
+    .update({
       order: 3
     });
 
@@ -128,7 +128,7 @@ exports.seed = async function (knex) {
       title: 'My Full Stack Development Portfolio 2023',
       content_type: types.ARTICLE_CONTENT_TYPE
     })
-    .update({ 
+    .update({
       order: 1
     });
 
@@ -137,8 +137,35 @@ exports.seed = async function (knex) {
       title: 'Extract From My Masters Project Individual Report',
       content_type: types.ARTICLE_CONTENT_TYPE
     })
-    .update({ 
+    .update({
       order: 2
+    });
+
+  await knex('content')
+    .where({
+      title: '2PD Article',
+      content_type: types.WEB_CONTENT_TYPE
+    })
+    .update({
+      order: 1
+    });
+
+  await knex('content')
+    .where({
+      title: 'BARE Dating Article',
+      content_type: types.WEB_CONTENT_TYPE
+    })
+    .update({
+      order: 2
+    });
+
+  await knex('content')
+    .where({
+      title: 'Foreign Ministry of Oman Google Play',
+      content_type: types.WEB_CONTENT_TYPE
+    })
+    .update({
+      order: 3
     });
 };
 
