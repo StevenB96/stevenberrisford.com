@@ -11,3 +11,7 @@
 - pm2 reload app_name/pid
 - pm2 stop app_name/pid
 - pm2 delete app_name/pid
+
+# Docker
+
+- docker build --no-cache -t stevenberrisford.com:1.0.0 ./
