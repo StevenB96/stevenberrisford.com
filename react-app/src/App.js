@@ -87,11 +87,6 @@ const App = ({
         dispatch(getReferencesRequest());
     }, [dispatch]);
 
-    console.log({ images });
-    console.log({ pdfs });
-    console.log({ videos });
-    console.log({ webPages });
-
 
     // var settings = {
     //     dots: true,
