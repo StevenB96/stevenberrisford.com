@@ -117,7 +117,7 @@ exports.seed = async function (knex) {
   await knex('content')
     .where({
       title: 'Decision Tree Guide',
-      content_type: types.ARTICLE_CONTENT_TYPE
+      content_type: types.PROJECT_CONTENT_TYPE
     })
     .update({
       order: 3
@@ -126,7 +126,7 @@ exports.seed = async function (knex) {
   await knex('content')
     .where({
       title: 'My Full Stack Development Portfolio 2023',
-      content_type: types.ARTICLE_CONTENT_TYPE
+      content_type: types.PROJECT_CONTENT_TYPE
     })
     .update({
       order: 1
@@ -135,7 +135,7 @@ exports.seed = async function (knex) {
   await knex('content')
     .where({
       title: 'Extract From My Masters Project Individual Report',
-      content_type: types.ARTICLE_CONTENT_TYPE
+      content_type: types.PROJECT_CONTENT_TYPE
     })
     .update({
       order: 2
@@ -144,7 +144,7 @@ exports.seed = async function (knex) {
   await knex('content')
     .where({
       title: '2PD Article',
-      content_type: types.WEB_CONTENT_TYPE
+      content_type: types.PROJECT_CONTENT_TYPE
     })
     .update({
       order: 1
@@ -153,7 +153,7 @@ exports.seed = async function (knex) {
   await knex('content')
     .where({
       title: 'BARE Dating Article',
-      content_type: types.WEB_CONTENT_TYPE
+      content_type: types.PROJECT_CONTENT_TYPE
     })
     .update({
       order: 2
@@ -162,7 +162,7 @@ exports.seed = async function (knex) {
   await knex('content')
     .where({
       title: 'Foreign Ministry of Oman Google Play',
-      content_type: types.WEB_CONTENT_TYPE
+      content_type: types.PROJECT_CONTENT_TYPE
     })
     .update({
       order: 3

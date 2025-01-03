@@ -24,6 +24,13 @@ import {
   commonFunctions
 } from '../../Hooks';
 
+import {
+  IMAGE_MEDIA_TYPE,
+  PDF_MEDIA_TYPE,
+  VIDEO_MEDIA_TYPE,
+  WEB_PAGE_MEDIA_TYPE,
+} from '../../constants/types';
+
 const uuid = commonFunctions.getPersistentUUID();
 
 const initialState = {
@@ -31,7 +38,7 @@ const initialState = {
   profile: {},
   projects: [],
   articles: [],
-  hobbies: [],
+  youtube: [],
   references: [],
   chatbotMessages: [
     {
@@ -76,15 +83,17 @@ const app = (state = initialState, action) => {
         error: null
       };
     case GET_CONTENT_SUCCESS:
-      const projects = action.payload?.filter(item => item.content_type === 1);
-      const articles = action.payload?.filter(item => item.content_type === 2);
-      const hobbies = action.payload?.filter(item => item.content_type === 3);
+      const images = action.payload?.filter(item => item.media_type === IMAGE_MEDIA_TYPE);
+      const pdfs = action.payload?.filter(item => item.media_type === PDF_MEDIA_TYPE);
+      const videos = action.payload?.filter(item => item.media_type === VIDEO_MEDIA_TYPE);
+      const webPages = action.payload?.filter(item => item.media_type === WEB_PAGE_MEDIA_TYPE);
 
       return {
         ...state,
-        projects,
-        articles,
-        hobbies,
+        images,
+        pdfs,
+        videos,
+        webPages,
         loading: false,
         error: false
       };

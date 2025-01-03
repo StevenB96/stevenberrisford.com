@@ -4,7 +4,7 @@ const nodeEnv = process.env.NODE_ENV;
 
 // Define allowed origins
 const allowedOrigins = [
-  process.env.SERVER_URL || "http://localhost:3000" || "http://localhost:3001",
+  process.env.SERVER_URL,
 ];
 
 // Configure CORS options

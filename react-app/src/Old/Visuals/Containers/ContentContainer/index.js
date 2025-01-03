@@ -15,7 +15,7 @@ import {
 const ContentContainer = ({ item }) => {
   let content = null;
 
-  switch (item.content_type) {
+  switch (item.media_type) {
     case 1:
       content = <ProjectElement
         key={item.id}
