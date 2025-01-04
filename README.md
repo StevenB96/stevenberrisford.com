@@ -47,10 +47,10 @@ Table of Contents
 3. Docker Commands
 
 - Build an Image:
-  docker build -t <image_name>:<tag> <path>
+  docker build -t <image_name>:<image_tag> <pathimage_>
 
 - Run a Container:
-  docker run <options> <image_name>:<tag>  
+  docker run <options> <image_name>:<image_tag>  
 
 - List Images:
   docker images
@@ -65,7 +65,7 @@ Table of Contents
   docker start <container_name_or_id>
 
 - Remove an Image
-  docker rmi <image_name>:<tag>
+  docker rmi <image_name>:<image_tag>
 
 - Remove a Container:
   docker rm <container_name_or_id>
