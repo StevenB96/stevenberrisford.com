@@ -47,7 +47,7 @@ Table of Contents
 3. Docker Commands
 
 - Build an Image:
-  docker build -t <image_name>:<image_tag> <pathimage_>
+  docker build -t <image_name>:<image_tag> <image_path>
 
 - Run a Container:
   docker run <options> <image_name>:<image_tag>  
