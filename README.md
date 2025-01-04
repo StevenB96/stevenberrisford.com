@@ -1,119 +1,92 @@
-# Node Boilerplate
+Node Boilerplate Command Reference
 
-## Knex commands
-- npx knex migrate:latest --knexfile ./config/knexfile.js --env main
-- npx knex migrate:make [x] --knexfile ./config/knexfile.js --env main
-- npx knex seed:make [x] --knexfile ./config/knexfile.js --env main
-- npx knex seed:run --knexfile ./config/knexfile.js --env main
+This README provides a comprehensive command reference for managing a Node.js boilerplate application, including database
+ migrations with Knex, process management with PM2, and Docker commands for containerization.
 
-## pm2 commands
-- pm2 restart app_name/pid
-- pm2 reload app_name/pid
-- pm2 stop app_name/pid
-- pm2 delete app_name/pid
+Table of Contents
 
-## Docker commands
+1. Knex Commands
+2. PM2 Commands
+3. Docker Commands
+4. Docker Compose Commands
 
-### Docker Image Commands
+---
 
-1. **Build an Image**: 
-   docker build -t <image_name>:<tag> <path>
-   Builds a Docker image from a Dockerfile located at the specified path.
+1. Knex Commands
 
-2. **List Images**:
-   docker images
-   Lists all the images available on your local Docker engine.
+- Run Migrations:
+  npx knex migrate:latest --knexfile ./config/knexfile.js --env main
 
-3. **Remove an Image**:
-   docker rmi <image_name>:<tag>
-   Deletes a specified image from your local storage.
+- Create a Migration:
+  npx knex migrate:make [migration_name] --knexfile ./config/knexfile.js --env main
 
-4. **Tag an Image**:
-   docker tag <source_image>:<tag> <target_image>:<tag>
-   Creates a new tag for an existing image.
+- Create a Seed File:
+  npx knex seed:make [seed_name] --knexfile ./config/knexfile.js --env main
 
-### Docker Container Commands
-5. **Run a Container**:
-   docker run <options> <image_name>:<tag>
-   Runs a new container from a specified image.
+- Run Seeds:
+  npx knex seed:run --knexfile ./config/knexfile.js --env main
 
-6. **List Running Containers**:
-   docker ps
-   Shows all currently running containers.
+---
 
-7. **List All Containers**:
-   docker ps -a
-   Shows all containers, including stopped ones.
+2. PM2 Commands
 
-8. **Stop a Running Container**:
-   docker stop <container_name_or_id>
-   Stops a specified running container gracefully.
+- Restart an Application:
+  pm2 restart <app_name|pid>
 
-9. **Start a Stopped Container**:
-   docker start <container_name_or_id>
-   Starts a previously stopped container.
+- Reload an Application:
+  pm2 reload <app_name|pid>
 
-10. **Remove a Container**:
-    docker rm <container_name_or_id>
-    Deletes a specified container.
+- Stop an Application:
+  pm2 stop <app_name|pid>
 
-11. **View Container Logs**:
-    docker logs <container_name_or_id>
-    Displays logs from a specific container.
+- Delete an Application:
+  pm2 delete <app_name|pid>
 
-12. **Execute a Command in a Running Container**:
-    docker exec -it <container_name_or_id> <command>
-    Runs a command in a running container (e.g., starting a shell).
+---
 
-### Docker Network Commands
-13. **List Networks**:
-    docker network ls
-    Lists all Docker networks available on your system.
+3. Docker Commands
 
-14. **Create a Network**:
-    docker network create <network_name>
-    Creates a new Docker network.
+- Build an Image:
+  docker build -t <image_name>:<tag> <path>
 
-15. **Connect a Container to a Network**:
-    docker network connect <network_name> <container_name_or_id>
-    Connects a container to an existing network.
+- Run a Container:
+  docker run <options> <image_name>:<tag>  
 
-### Docker Volume Commands
-16. **List Volumes**:
-    docker volume ls
-    Lists all Docker volumes available on your system.
+- List Images:
+  docker images
 
-17. **Create a Volume**:
-    docker volume create <volume_name>
-    Creates a new Docker volume.
+- List All Containers:
+  docker ps -a
 
-18. **Remove a Volume**:
-    docker volume rm <volume_name>
-    Deletes a specified volume.
+- Stop a Running Container:
+  docker stop <container_name_or_id>
 
-### Docker Compose (if used)
-19. **Start Services**:
-    docker-compose up
-    Starts the services defined in a `docker-compose.yml` file.
+- Start a Stopped Container:
+  docker start <container_name_or_id>
 
-20. **Stop Services**:
-    docker-compose down
-    Stops and removes all services defined in the `docker-compose.yml` file.
+- Remove an Image
+  docker rmi <image_name>:<tag>
 
-### Other Useful Commands
-21. **View Docker System Information**:
-    docker info
-    Displays system-wide information about Docker.
+- Remove a Container:
+  docker rm <container_name_or_id>
 
-22. **Check Docker Version**:
-    docker --version
-    Shows the version of Docker installed.
+- Inspect a Container/Image/Network:
+  docker inspect <container_name_or_id|image_name|network_name>
 
-23. **Prune Unused Objects**:
-    docker system prune
-    Cleans up unused containers, networks, images, and optionally, volumes.
+- Prune Unused Objects
+  docker system prune
 
-24. **Inspect a Container/Image/Network**:
-    docker inspect <container_name_or_id|image_name|network_name>
-    Returns detailed information about a specified container, image, or network.
-- docker build --no-cache -t stevenberrisford.com:test ./
+---
+
+4. Docker Compose Commands
+
+- Start Services:
+  docker-compose up
+
+- Stop Services:
+  docker-compose down
+
+---
+
+This README is intended to assist developers in understanding and using the essential commands for managing a Node.js
+ application efficiently. Feel free to modify or extend this document as necessary for your specific application needs.
