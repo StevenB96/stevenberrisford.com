@@ -7,7 +7,10 @@ const fetchDataFromApi = async ({
     qParams,
     payload
 }) => {
-    let fullUrlString = url + path;
+    const trimmedUrl = url.endsWith('/') ? url.slice(0, -1) : url;
+    const trimmedPath = path.startsWith('/') ? path.slice(1) : path;
+    let fullUrlString = `${trimmedUrl}/${trimmedPath}`;
+
     if (qParams?.length > 0) {
         fullUrlString += `?${qParams.map((param) => `${param.key}=${param.value}`).join('&')}`;
     }
