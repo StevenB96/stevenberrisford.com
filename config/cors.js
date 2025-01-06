@@ -3,9 +3,7 @@ const cors = require('cors');
 const nodeEnv = process.env.NODE_ENV;
 
 // Define allowed origins
-const allowedOrigins = [
-  process.env.SERVER_URL,
-];
+const allowedOrigins = process.env.ALLOWED_ORIGINS.split(',');
 
 // Configure CORS options
 const corsOptions = {

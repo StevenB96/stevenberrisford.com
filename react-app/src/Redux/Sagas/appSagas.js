@@ -34,7 +34,7 @@ function* getProfile(action) {
   try {
     const data = yield call(fetchDataFromApi, {
       method: 'GET',
-      url: `${env.SERVER_URL}/`,
+      url: `${env.IP_DOMAIN}/`,
       path: 'profile/',
       // qParams: '',
       // payload: action.payload
@@ -50,7 +50,7 @@ function* getContent(action) {
   try {
     const data = yield call(fetchDataFromApi, {
       method: 'GET',
-      url: `${env.SERVER_URL}/`,
+      url: `${env.IP_DOMAIN}/`,
       path: 'content/',
       // qParams: '',
       // payload: action.payload
@@ -68,7 +68,7 @@ function* getChatbotResponse(action) {
 
     const data = yield call(fetchDataFromApi, {
       method: 'POST',
-      url: `${env.SERVER_URL}/`,
+      url: `${env.IP_DOMAIN}/`,
       path: 'chatbotResponse/',
       qParams: '',
       payload: {
@@ -87,7 +87,7 @@ function* getReferences(action) {
   try {
     const data = yield call(fetchDataFromApi, {
       method: 'GET',
-      url: `${env.SERVER_URL}/`,
+      url: `${env.IP_DOMAIN}/`,
       path: 'references/',
       // qParams: '',
       // payload: action.payload
