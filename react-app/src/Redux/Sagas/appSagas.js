@@ -7,101 +7,54 @@ import {
 } from 'redux-saga/effects';
 
 import {
-  getProfileSuccess,
-  getProfileFailure,
+  getSiteSuccess,
+  getSiteFailure,
 
-  getContentSuccess,
-  getContentFailure,
-
-  getChatbotResponseSuccess,
-  getChatbotResponseFailure,
-
-  getReferencesSuccess,
-  getReferencesFailure,
+  getProfilesSuccess,
+  getProfilesFailure,
 } from '../Actions/appActions';
 
 import {
-  GET_PROFILE_REQUEST,
-  GET_CONTENT_REQUEST,
-  GET_CHATBOT_RESPONSE_REQUEST,
-  GET_REFERENCES_REQUEST,
+  GET_SITE_REQUEST,
+  GET_PROFILES_REQUEST,
 } from '../Actions/appActions';
 
 import { fetchDataFromApi } from '../api';
 import env from '../../env';
 
-function* getProfile(action) {
+function* getSite(action) {
   try {
     const data = yield call(fetchDataFromApi, {
       method: 'GET',
       url: `${env.IP_DOMAIN}/`,
-      path: 'profile/',
+      path: 'site/',
       // qParams: '',
       // payload: action.payload
     });
 
-    yield put(getProfileSuccess(data));
+    yield put(getSiteSuccess(data));
   } catch (error) {
-    yield put(getProfileFailure(error.message));
+    yield put(getSiteFailure(error.message));
   }
 }
 
-function* getContent(action) {
+function* getProfiles(action) {
   try {
     const data = yield call(fetchDataFromApi, {
       method: 'GET',
       url: `${env.IP_DOMAIN}/`,
-      path: 'content/',
+      path: 'profiles/',
       // qParams: '',
       // payload: action.payload
     });
 
-    yield put(getContentSuccess(data));
+    yield put(getProfilesSuccess(data));
   } catch (error) {
-    yield put(getContentFailure(error.message));
-  }
-}
-
-function* getChatbotResponse(action) {
-  try {
-    const uuid = yield select((state) => state.app.uuid);
-
-    const data = yield call(fetchDataFromApi, {
-      method: 'POST',
-      url: `${env.IP_DOMAIN}/`,
-      path: 'chatbotResponse/',
-      qParams: '',
-      payload: {
-        uuid,
-        query: action.params,
-      }
-    });
-
-    yield put(getChatbotResponseSuccess(data));
-  } catch (error) {
-    yield put(getChatbotResponseFailure(error.message));
-  }
-}
-
-function* getReferences(action) {
-  try {
-    const data = yield call(fetchDataFromApi, {
-      method: 'GET',
-      url: `${env.IP_DOMAIN}/`,
-      path: 'references/',
-      // qParams: '',
-      // payload: action.payload
-    });
-
-    yield put(getReferencesSuccess(data));
-  } catch (error) {
-    yield put(getReferencesFailure(error.message));
+    yield put(getProfilesFailure(error.message));
   }
 }
 
 export default function* appSagas() {
-  yield takeLatest(GET_PROFILE_REQUEST, getProfile);
-  yield takeLatest(GET_CONTENT_REQUEST, getContent);
-  yield takeLatest(GET_CHATBOT_RESPONSE_REQUEST, getChatbotResponse);
-  yield takeLatest(GET_REFERENCES_REQUEST, getReferences);
+  yield takeLatest(GET_SITE_REQUEST, getSite);
+  yield takeLatest(GET_PROFILES_REQUEST, getProfiles);
 }

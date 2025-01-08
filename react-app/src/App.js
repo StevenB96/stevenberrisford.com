@@ -9,22 +9,27 @@ import {
 import Slider from "react-slick";
 import YouTube from 'react-youtube';
 import {
-    getProfileRequest,
-    getContentRequest,
-    getReferencesRequest,
+    getSiteRequest,
+    getProfilesRequest,
 } from './Redux/Actions/appActions';
+import {
+    IMAGE_MEDIA_TYPE,
+    PDF_MEDIA_TYPE,
+    VIDEO_MEDIA_TYPE,
+    WEB_PAGE_MEDIA_TYPE,
+} from './constants/types';
 
 const WebPage = ({
     webPage
 }) => {
     return (
-        <div style={{ borderStyle: 'solid', width: 500, }}>
+        <div style={{ borderStyle: 'solid', width: 200, aspectRatio: 1, }}>
             <h2>{webPage.title}</h2>
             <iframe
                 src={webPage.media_link}
                 title={webPage.title}
                 width={'100%'}
-                height={500}
+                height={'100%'}
             >
             </iframe>
         </div>
@@ -33,14 +38,14 @@ const WebPage = ({
 
 const ImageElement = ({ image }) => {
     return (
-        <div style={{ borderStyle: 'solid', width: 500, }}>
+        <div style={{ borderStyle: 'solid', width: 200, aspectRatio: 1, }}>
             <h2>{image.title}</h2>
             <p>{image.text}</p>
             <img
                 src={image.media_link}
                 alt={image.title}
                 width={'100%'}
-                // height={500}
+                height={'100%'}
                 style={{ objectFit: 'cover' }}
             />
         </div>
@@ -49,7 +54,7 @@ const ImageElement = ({ image }) => {
 
 const VideoElement = ({ video }) => {
     return (
-        <div style={{ borderStyle: 'solid', width: 500, }}>
+        <div style={{ borderStyle: 'solid', width: 200, aspectRatio: 1, }}>
             <h2>{video.title}</h2>
             <p>{video.text}</p>
             <YouTube
@@ -57,7 +62,7 @@ const VideoElement = ({ video }) => {
                 // width={squareSize}
                 // height={squareSize}
                 className="youtube_video"
-                videoId={video.media_link}
+                videoId={video.media_id}
                 opts={{
                     playerVars: {
                         autoplay: 0,
@@ -67,87 +72,59 @@ const VideoElement = ({ video }) => {
             />
         </div>
     );
-}
+};
+
+const GeneralElement = ({ val }) => {
+    if (val.type = WEB_PAGE_MEDIA_TYPE) {
+        return (
+            <WebPage webPage={val} />
+        );
+    };
+    if (val.type = WEB_PAGE_MEDIA_TYPE) {
+        return (
+            <WebPage webPage={val} />
+        );
+    };
+    if (val.type = WEB_PAGE_MEDIA_TYPE) {
+        return (
+            <ImageElement image={val} />
+        );
+    };
+    if (val.type = WEB_PAGE_MEDIA_TYPE) {
+        return (
+            <VideoElement video={val} />
+        );
+    };
+};
 
 const App = ({
 }) => {
     const dispatch = useDispatch();
 
     const {
-        profile,
-        images,
-        pdfs,
-        videos,
-        webPages,
+        site,
+        profiles,
     } = useSelector(state => state.app);
 
     useEffect(() => {
-        dispatch(getProfileRequest());
-        dispatch(getContentRequest());
-        dispatch(getReferencesRequest());
+        dispatch(getSiteRequest());
+        dispatch(getProfilesRequest());
     }, [dispatch]);
-
-
-    // var settings = {
-    //     dots: true,
-    //     infinite: true,
-    //     speed: 500,
-    //     slidesToShow: 1,
-    //     slidesToScroll: 1,
-    // };
-
-    // <Slider {...settings}>
-    //     <div>
-    //         <h3>1</h3>
-    //     </div>
-    //     <div>
-    //         <h3>2</h3>
-    //     </div>
-    //     <div>
-    //         <h3>3</h3>
-    //     </div>
-    //     <div>
-    //         <h3>4</h3>
-    //     </div>
-    //     <div>
-    //         <h3>5</h3>
-    //     </div>
-    //     <div>
-    //         <h3>6</h3>
-    //     </div>
-    // </Slider>
 
     return (
         <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', }}>
-            {
-
-                webPages?.map((webPage) => {
-                    return (
-                        <WebPage webPage={webPage} />
-                    );
-                })
-            }
-            {
-                pdfs?.map((webPage) => {
-                    return (
-                        <WebPage webPage={webPage} />
-                    );
-                })
-            }
-            {
-                images?.map((image) => {
-                    return (
-                        <ImageElement image={image} />
-                    );
-                })
-            }
-            {
-                videos?.map((video) => {
-                    return (
-                        <VideoElement video={video} />
-                    );
-                })
-            }
+            {profiles[0].projectData.map(project => {
+                const content = profiles[0].contentData.filter((content) => content.project = project.id);
+                return (
+                    <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', }}>
+                        {content.map(val => {
+                            return (
+                                <GeneralElement val={val} />
+                            );
+                        })}
+                    </div>
+                );
+            })}
         </div>
     );
 };
