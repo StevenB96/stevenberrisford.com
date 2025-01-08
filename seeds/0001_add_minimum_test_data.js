@@ -1,14 +1,11 @@
-// Media Types
-const IMAGE = 1;
-const PDF = 2;
-const VIDEO = 3;
-const WEB_PAGE = 4;
+const types = require('../constants/types');
+var defineEnv = require('../config/defineEnv');
 
-// Content Types
-const PROFILE = 1;
-const PROFESSIONAL = 2;
-const PERSONAL = 3;
-const RECREATIONAL = 4;
+/**
+ * Set env variables for app.
+ */
+
+defineEnv('..');
 
 /**
  * @param { import("knex").Knex } knex
@@ -72,8 +69,8 @@ exports.seed = function (knex) {
           description: 'An article advertising the application and discussing the target audience, safety and transparency.',
           media_id: null,
           media_link: `${process.env.IP_DOMAIN}/public/documents/BARE_Dating_Article.html`,
-          media_type: WEB_PAGE,
-          type: PROFESSIONAL,
+          media_type: types.WEB_PAGE_MEDIA_TYPE,
+          type: types.PROFESSIONAL_CONTENT_TYPE,
           order: 3
         },
         {
@@ -83,8 +80,8 @@ exports.seed = function (knex) {
           description: 'A view of the picture blurring functionality.',
           media_id: null,
           media_link: `${process.env.IP_DOMAIN}/public/images/content/Bare_Dating_Blurring.png`,
-          media_type: IMAGE,
-          type: PROFESSIONAL,
+          media_type:  types.IMAGE_MEDIA_TYPE,
+          type: types.PROFESSIONAL_CONTENT_TYPE,
           order: 1
         },
         {
@@ -94,8 +91,8 @@ exports.seed = function (knex) {
           description: 'A view of the menus and general presentation.',
           media_id: null,
           media_link: `${process.env.IP_DOMAIN}/public/images/content/Bare_Dating_Menus.png`,
-          media_type: IMAGE,
-          type: PROFESSIONAL,
+          media_type: types.IMAGE_MEDIA_TYPE,
+          type: types.PROFESSIONAL_CONTENT_TYPE,
           order: 2
         }
       ]);
