@@ -23,7 +23,15 @@ const WebPage = ({
     webPage
 }) => {
     return (
-        <div style={{ borderStyle: 'solid', width: 200, aspectRatio: 1, }}>
+        <div
+            style={{
+                borderStyle: 'solid',
+                width: 300,
+                aspectRatio: 1,
+                display: 'flex',
+                alignItems: 'center',
+                flexDirection: 'column',
+            }}>
             <h2>{webPage.title}</h2>
             <iframe
                 src={webPage.media_link}
@@ -38,8 +46,15 @@ const WebPage = ({
 
 const ImageElement = ({ image }) => {
     return (
-        <div style={{ borderStyle: 'solid', width: 200, aspectRatio: 1, }}>
-            <h2>{image.title}</h2>
+        <div
+            style={{
+                borderStyle: 'solid',
+                width: 300,
+                aspectRatio: 1,
+                display: 'flex',
+                alignItems: 'center',
+                flexDirection: 'row',
+            }}>            <h2>{image.title}</h2>
             <p>{image.text}</p>
             <img
                 src={image.media_link}
@@ -54,7 +69,15 @@ const ImageElement = ({ image }) => {
 
 const VideoElement = ({ video }) => {
     return (
-        <div style={{ borderStyle: 'solid', width: 200, aspectRatio: 1, }}>
+        <div
+            style={{
+                borderStyle: 'solid',
+                width: 300,
+                aspectRatio: 1,
+                display: 'flex',
+                alignItems: 'center',
+                flexDirection: 'row',
+            }}>
             <h2>{video.title}</h2>
             <p>{video.text}</p>
             <YouTube
@@ -112,16 +135,34 @@ const App = ({
     }, [dispatch]);
 
     return (
-        <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', }}>
-            {profiles[0].projectData.map(project => {
+        <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            flexDirection: 'column',
+        }}>
+            {profiles[0]?.projectData.map(project => {
                 const content = profiles[0].contentData.filter((content) => content.project = project.id);
                 return (
-                    <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', }}>
-                        {content.map(val => {
-                            return (
-                                <GeneralElement val={val} />
-                            );
-                        })}
+                    <div
+                        style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            flexDirection: 'column',
+                        }}>
+                        <h1>{project.title}</h1>
+                        <div
+                            style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                flexDirection: 'row',
+                            }}>
+                            {content.map(val => {
+                                return (
+                                    <GeneralElement val={val} />
+
+                                );
+                            })}
+                        </div>
                     </div>
                 );
             })}
