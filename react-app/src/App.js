@@ -9,6 +9,7 @@ import {
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Accordion from 'react-bootstrap/Accordion';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import YouTube from 'react-youtube';
 import {
     getSiteRequest,
@@ -205,21 +206,20 @@ const App = () => {
                 <Accordion>
                     {profiles[0].projectData.map(project => {
                         const content = profiles[0].contentData.filter(contentItem => contentItem.project === project.id);
-                        return content.length > 0 ? (
+                        const hasContent = content.length > 0;
+
+                        return (
                             <Accordion.Item key={project.id} eventKey={project.id.toString()}>
-                                <Accordion.Header>{project.title || null}</Accordion.Header>
+                                <Accordion.Header>{project.title || "No Title"}</Accordion.Header>
                                 <Accordion.Body>
-                                    <div style={accordionBodyStyle}>
-                                        {project.description && <h2>{project.description}</h2>}
-                                        <ProjectCarousel content={content} />
-                                    </div>
-                                </Accordion.Body>
-                            </Accordion.Item>
-                        ) : (
-                            <Accordion.Item key={project.id} eventKey={project.id.toString()}>
-                                <Accordion.Header>{project.title || null}</Accordion.Header>
-                                <Accordion.Body>
-                                    <p>No content available.</p>
+                                    {hasContent ? (
+                                        <div style={accordionBodyStyle}>
+                                            {project.description && <h2>{project.description}</h2>}
+                                            <ProjectCarousel content={content} />
+                                        </div>
+                                    ) : (
+                                        <p>No content available.</p>
+                                    )}
                                 </Accordion.Body>
                             </Accordion.Item>
                         );
