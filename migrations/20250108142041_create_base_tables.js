@@ -43,7 +43,7 @@ exports.up = function (knex) {
             table.string('media_id');
             table.string('media_link');
             table.integer('media_type');
-            table.string('type');
+            table.integer('type');
             table.integer('order');
             table.timestamps(true, true);
         }),

@@ -80,3 +80,11 @@ input[type="reset"]:not([class="standard-button"]) {
 [id^="zoid-paypal-buttons-uid_"] {
     z-index: 1;
 }
+
+.carousel-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    /* height: 500px; */
+}

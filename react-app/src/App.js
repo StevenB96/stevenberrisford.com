@@ -8,6 +8,7 @@ import {
 } from 'react-redux';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import Accordion from 'react-bootstrap/Accordion';
 import YouTube from 'react-youtube';
 import {
     getSiteRequest,
@@ -24,174 +25,208 @@ const WebPage = ({
     webPage
 }) => {
     return (
-        <div
-            style={{
-                borderStyle: 'solid',
-                width: 300,
-                aspectRatio: 1,
-                display: 'flex',
-                alignItems: 'center',
-                flexDirection: 'column',
-            }}>
-            <h2>{webPage.title}</h2>
-            <iframe
-                src={webPage.media_link}
-                title={webPage.title}
-                width={'100%'}
-                height={'100%'}
-            >
-            </iframe>
-        </div>
+        <iframe
+            src={webPage.media_link}
+            title={webPage.title}
+            width={'100%'}
+            height={'100%'}
+        >
+        </iframe>
     );
 };
 
 const ImageElement = ({ image }) => {
     return (
-        <div
+        <img
+            src={image.media_link}
+            alt={image.title}
             style={{
-                borderStyle: 'solid',
-                width: 300,
-                aspectRatio: 1,
-                display: 'flex',
-                alignItems: 'center',
-                flexDirection: 'row',
-            }}>            <h2>{image.title}</h2>
-            <p>{image.text}</p>
-            <img
-                src={image.media_link}
-                alt={image.title}
-                width={'100%'}
-                height={'100%'}
-                style={{ objectFit: 'cover' }}
-            />
-        </div>
+                objectFit: 'cover',
+                width: '100%',
+                height: '100%',
+            }}
+        />
     );
 };
 
 const VideoElement = ({ video }) => {
     return (
-        <div
-            style={{
-                borderStyle: 'solid',
-                width: 300,
-                aspectRatio: 1,
-                display: 'flex',
-                alignItems: 'center',
-                flexDirection: 'row',
-            }}>
-            <h2>{video.title}</h2>
-            <p>{video.text}</p>
-            <YouTube
-                // ref={playerRef}
-                // width={squareSize}
-                // height={squareSize}
-                className="youtube_video"
-                videoId={video.media_id}
-                opts={{
-                    playerVars: {
-                        autoplay: 0,
-                    }
-                }}
-                style={{}}
-            />
-        </div>
+        <YouTube
+            // ref={playerRef}
+            // width={squareSize}
+            // height={squareSize}
+            className="youtube_video"
+            videoId={video.media_id}
+            opts={{
+                playerVars: {
+                    autoplay: 0,
+                }
+            }}
+            style={{}}
+        />
     );
 };
 
 const GeneralElement = ({ item }) => {
-    if (item.type = WEB_PAGE_MEDIA_TYPE) {
-        return (
-            <WebPage webPage={item} />
-        );
-    };
-    if (item.type = WEB_PAGE_MEDIA_TYPE) {
-        return (
-            <WebPage webPage={item} />
-        );
-    };
-    if (item.type = WEB_PAGE_MEDIA_TYPE) {
-        return (
-            <ImageElement image={item} />
-        );
-    };
-    if (item.type = WEB_PAGE_MEDIA_TYPE) {
-        return (
-            <VideoElement video={item} />
-        );
-    };
-    return null;
+    let media = null;
+
+    switch (item.media_type) {
+        case IMAGE_MEDIA_TYPE:
+            media = <ImageElement image={item} />;
+            break;
+        case PDF_MEDIA_TYPE:
+            media = <WebPage webPage={item} />;
+            break;
+        case VIDEO_MEDIA_TYPE:
+            media = <VideoElement video={item} />;
+            break;
+        case WEB_PAGE_MEDIA_TYPE:
+            media = <WebPage webPage={item} />;
+            break;
+        default:
+            media = null;
+    }
+
+    return (
+        <div
+            style={{
+                borderStyle: 'solid',
+                boxSizing: 'border-box',
+                display: 'flex',
+                justifyContent: 'flex-start',
+                alignItems: 'flex-start',
+                flexDirection: 'column',
+                backgroundColor: 'grey',
+                width: '75%',
+                height: '100%',
+            }}>
+            <div
+                style={{
+                    padding: '2%',
+                }}>
+                {
+                    item.title ?
+                        <h3 style={{ margin: '2%' }}>{item.title}</h3> :
+                        null
+                }
+                {
+                    item.description ?
+                        <p style={{ margin: '2%' }}>{item.description}</p> :
+                        null
+                }
+            </div>
+            {media}
+        </div>
+    );
 };
 
 const ProjectCarousel = ({ content }) => {
     const responsive = {
         desktop: {
-            breakpoint: { max: 2000, min: 0 },
-            items: 4
+            breakpoint: { max: 3000, min: 1024 },
+            items: 3,
+            slidesToSlide: 3
+        },
+        tablet: {
+            breakpoint: { max: 1024, min: 464 },
+            items: 3,
+            slidesToSlide: 3
+        },
+        mobile: {
+            breakpoint: { max: 464, min: 0 },
+            items: 3,
+            slidesToSlide: 3
         }
     };
 
     return (
-        <div style={{ width: '100%', }}>
-            <Carousel responsive={responsive}>
-                {content.map((item) => <GeneralElement item={item} />)}
+        <div
+            style={{
+                width: '100%',
+                borderStyle: 'solid',
+                borderColor: 'lightgrey',
+                borderBox: 'solid',
+            }}>
+            <Carousel
+                showDots={false}
+                responsive={responsive}
+                infinite={true}
+                autoPlay={false}
+                autoPlaySpeed={1000}
+                keyBoardControl={true}
+                // customTransition="all .5"
+                transitionDuration={300}
+                itemClass="carousel-item"
+            >
+                {
+                    content.map(item => (
+                        <GeneralElement
+                            key={item?.id}
+                            item={item}
+                        />
+                    ))
+                }
             </Carousel>
         </div>
 
     );
 }
 
-const App = ({
-}) => {
+const App = () => {
     const dispatch = useDispatch();
-
-    const {
-        site,
-        profiles,
-    } = useSelector(state => state.app);
+    const { profiles } = useSelector(state => state.app);
 
     useEffect(() => {
         dispatch(getSiteRequest());
         dispatch(getProfilesRequest());
     }, [dispatch]);
 
-    const hasProfiles = profiles && profiles.length > 0 && profiles[0]?.projectData && profiles[0].projectData.length > 0;
+    const hasProfiles = profiles?.length > 0 && profiles[0]?.projectData?.length > 0;
+
+    const appStyle = {
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        width: '100%',
+        border: '1px solid black',
+        boxSizing: 'border-box'
+    };
+
+    const accordionBodyStyle = {
+        display: 'flex',
+        flexDirection: 'column',
+        width: '100%',
+        border: '1px solid grey'
+    };
 
     return (
-        <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            flexDirection: 'column',
-        }}>
+        <div style={appStyle}>
             {hasProfiles ? (
-                profiles[0].projectData.map(project => {
-                    const content = profiles[0].contentData.filter(contentItem => contentItem.project === project.id);
-
-                    return (
-                        <div
-                            key={project.id}
-                            style={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                flexDirection: 'column',
-                            }}>
-                            {
-                                project.title ?
-                                    <h1>{project.title}</h1> :
-                                    null
-                            }
-                            {
-                                project.description ?
-                                    <h2>{project.description}</h2> :
-                                    null
-                            }
-                            <ProjectCarousel content={content} />
-                        </div>
-                    );
-                })
+                <Accordion>
+                    {profiles[0].projectData.map(project => {
+                        const content = profiles[0].contentData.filter(contentItem => contentItem.project === project.id);
+                        return content.length > 0 ? (
+                            <Accordion.Item key={project.id} eventKey={project.id.toString()}>
+                                <Accordion.Header>{project.title || null}</Accordion.Header>
+                                <Accordion.Body>
+                                    <div style={accordionBodyStyle}>
+                                        {project.description && <h2>{project.description}</h2>}
+                                        <ProjectCarousel content={content} />
+                                    </div>
+                                </Accordion.Body>
+                            </Accordion.Item>
+                        ) : (
+                            <Accordion.Item key={project.id} eventKey={project.id.toString()}>
+                                <Accordion.Header>{project.title || null}</Accordion.Header>
+                                <Accordion.Body>
+                                    <p>No content available.</p>
+                                </Accordion.Body>
+                            </Accordion.Item>
+                        );
+                    })}
+                </Accordion>
             ) : (
-                <span>
-                    No profiles available.
-                </span>
+                <p>No profiles available.</p>
             )}
         </div>
     );
