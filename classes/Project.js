@@ -1,5 +1,5 @@
 const db = require('../config/db');
-import Project from './Project';
+const Content = require('../classes/Content');
 
 class Project {
   constructor(data) {

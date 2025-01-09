@@ -8,8 +8,10 @@ import {
 } from 'react-redux';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import Accordion from 'react-bootstrap/Accordion';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import {
+    FaChevronUp,
+    FaChevronDown
+} from "react-icons/fa";
 import YouTube from 'react-youtube';
 import {
     getSiteRequest,
@@ -94,8 +96,8 @@ const GeneralElement = ({ item }) => {
                 borderStyle: 'solid',
                 boxSizing: 'border-box',
                 display: 'flex',
-                justifyContent: 'flex-start',
-                alignItems: 'flex-start',
+                justifyContent: 'center',
+                alignItems: 'center',
                 flexDirection: 'column',
                 backgroundColor: 'grey',
                 width: '75%',
@@ -144,9 +146,6 @@ const ProjectCarousel = ({ content }) => {
         <div
             style={{
                 width: '100%',
-                borderStyle: 'solid',
-                borderColor: 'lightgrey',
-                borderBox: 'solid',
             }}>
             <Carousel
                 showDots={false}
@@ -171,63 +170,96 @@ const ProjectCarousel = ({ content }) => {
         </div>
 
     );
+};
+
+const ProjectGroup = ({ project }) => {
+    const [displayCarousel, setDisplayCarousel] = useState(false);
+
+    const bodyStyle = {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        width: '100%',
+    };
+
+    const buttonStyle = {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+    };
+
+    const content = project?.contentData || [];
+
+    return (
+        <div key={project.id} eventKey={project.id.toString()}>
+            <div style={buttonStyle}>
+                <h1 style={{ margin: '1%' }}>{project.title || "No Title"}</h1>
+                <div
+                    style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}
+                    onClick={(e) => setDisplayCarousel(!displayCarousel)}>
+                    {displayCarousel === true ?
+                        <FaChevronUp /> :
+                        <FaChevronDown />
+                    }
+                </div>
+            </div>
+            {
+                displayCarousel === true && (
+                    <div style={bodyStyle}>
+                        <h2 style={{ margin: '1%' }}>{project.description || "No Description"}</h2>
+                        <ProjectCarousel content={content} />
+                    </div>
+                )
+            }
+        </div>
+    );
+};
+
+const ProjectsSection = ({ }) => {
+    const profiles = useSelector(state => state.app.profiles);
+
+    const hasProjects = profiles && profiles.length > 0 && profiles[0]?.projectData && profiles[0].projectData.length > 0;
+
+    if (!hasProjects) {
+        return <p>No projects available.</p>;
+    };
+
+    const projectGroups = profiles[0].projectData.map(project => {
+        return <ProjectGroup key={project.id} project={project} />;
+    });
+
+    return (
+        <div>
+            {projectGroups}
+        </div>
+    );
 }
 
 const App = () => {
     const dispatch = useDispatch();
-    const { profiles } = useSelector(state => state.app);
 
     useEffect(() => {
         dispatch(getSiteRequest());
         dispatch(getProfilesRequest());
     }, [dispatch]);
 
-    const hasProfiles = profiles?.length > 0 && profiles[0]?.projectData?.length > 0;
-
     const appStyle = {
         display: 'flex',
         justifyContent: 'center',
         flexDirection: 'column',
         width: '100%',
-        border: '1px solid black',
         boxSizing: 'border-box'
-    };
-
-    const accordionBodyStyle = {
-        display: 'flex',
-        flexDirection: 'column',
-        width: '100%',
-        border: '1px solid grey'
     };
 
     return (
         <div style={appStyle}>
-            {hasProfiles ? (
-                <Accordion>
-                    {profiles[0].projectData.map(project => {
-                        const content = profiles[0].contentData.filter(contentItem => contentItem.project === project.id);
-                        const hasContent = content.length > 0;
-
-                        return (
-                            <Accordion.Item key={project.id} eventKey={project.id.toString()}>
-                                <Accordion.Header>{project.title || "No Title"}</Accordion.Header>
-                                <Accordion.Body>
-                                    {hasContent ? (
-                                        <div style={accordionBodyStyle}>
-                                            {project.description && <h2>{project.description}</h2>}
-                                            <ProjectCarousel content={content} />
-                                        </div>
-                                    ) : (
-                                        <p>No content available.</p>
-                                    )}
-                                </Accordion.Body>
-                            </Accordion.Item>
-                        );
-                    })}
-                </Accordion>
-            ) : (
-                <p>No profiles available.</p>
-            )}
+            <ProjectsSection />
         </div>
     );
 };

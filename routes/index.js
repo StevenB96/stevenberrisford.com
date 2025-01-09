@@ -6,6 +6,7 @@ const router = express.Router();
 const db = require('../config/db');
 var defineEnv = require('../config/defineEnv');
 const Profile = require('../classes/Profile');
+const Project = require('../classes/Project');
 
 /**
  * Set env variables for app.
@@ -39,6 +40,14 @@ router.get('/profiles', async (req, res, next) => {
     const profiles = await Promise.all(profileData.map(async (profile) => {
       const profileInstance = new Profile(profile); // Assuming Profile is a class
       await profileInstance.initialise(); // Await the initialise method
+
+      // Initialise the project data asynchronously
+      profileInstance.projectData = await Promise.all(profileInstance.projectData.map(async (project) => {
+        const projectInstance = new Project(project)
+        await projectInstance.initialise(); // Await the initialise method
+        return projectInstance; // Return the instance
+      }));
+
       return profileInstance; // Return the instance
     }));
 
