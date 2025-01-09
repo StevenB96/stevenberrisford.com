@@ -6,7 +6,8 @@ import {
     useDispatch,
     useSelector
 } from 'react-redux';
-import Slider from "react-slick";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 import YouTube from 'react-youtube';
 import {
     getSiteRequest,
@@ -97,28 +98,47 @@ const VideoElement = ({ video }) => {
     );
 };
 
-const GeneralElement = ({ val }) => {
-    if (val.type = WEB_PAGE_MEDIA_TYPE) {
+const GeneralElement = ({ item }) => {
+    if (item.type = WEB_PAGE_MEDIA_TYPE) {
         return (
-            <WebPage webPage={val} />
+            <WebPage webPage={item} />
         );
     };
-    if (val.type = WEB_PAGE_MEDIA_TYPE) {
+    if (item.type = WEB_PAGE_MEDIA_TYPE) {
         return (
-            <WebPage webPage={val} />
+            <WebPage webPage={item} />
         );
     };
-    if (val.type = WEB_PAGE_MEDIA_TYPE) {
+    if (item.type = WEB_PAGE_MEDIA_TYPE) {
         return (
-            <ImageElement image={val} />
+            <ImageElement image={item} />
         );
     };
-    if (val.type = WEB_PAGE_MEDIA_TYPE) {
+    if (item.type = WEB_PAGE_MEDIA_TYPE) {
         return (
-            <VideoElement video={val} />
+            <VideoElement video={item} />
         );
     };
+    return null;
 };
+
+const ProjectCarousel = ({ content }) => {
+    const responsive = {
+        desktop: {
+            breakpoint: { max: 2000, min: 0 },
+            items: 4
+        }
+    };
+
+    return (
+        <div style={{ width: '100%', }}>
+            <Carousel responsive={responsive}>
+                {content.map((item) => <GeneralElement item={item} />)}
+            </Carousel>
+        </div>
+
+    );
+}
 
 const App = ({
 }) => {
@@ -134,38 +154,45 @@ const App = ({
         dispatch(getProfilesRequest());
     }, [dispatch]);
 
+    const hasProfiles = profiles && profiles.length > 0 && profiles[0]?.projectData && profiles[0].projectData.length > 0;
+
     return (
         <div style={{
             display: 'flex',
             alignItems: 'center',
             flexDirection: 'column',
         }}>
-            {profiles[0]?.projectData.map(project => {
-                const content = profiles[0].contentData.filter((content) => content.project = project.id);
-                return (
-                    <div
-                        style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            flexDirection: 'column',
-                        }}>
-                        <h1>{project.title}</h1>
+            {hasProfiles ? (
+                profiles[0].projectData.map(project => {
+                    const content = profiles[0].contentData.filter(contentItem => contentItem.project === project.id);
+
+                    return (
                         <div
+                            key={project.id}
                             style={{
                                 display: 'flex',
                                 alignItems: 'center',
-                                flexDirection: 'row',
+                                flexDirection: 'column',
                             }}>
-                            {content.map(val => {
-                                return (
-                                    <GeneralElement val={val} />
-
-                                );
-                            })}
+                            {
+                                project.title ?
+                                    <h1>{project.title}</h1> :
+                                    null
+                            }
+                            {
+                                project.description ?
+                                    <h2>{project.description}</h2> :
+                                    null
+                            }
+                            <ProjectCarousel content={content} />
                         </div>
-                    </div>
-                );
-            })}
+                    );
+                })
+            ) : (
+                <span>
+                    No profiles available.
+                </span>
+            )}
         </div>
     );
 };

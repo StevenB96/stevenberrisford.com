@@ -36,7 +36,19 @@ exports.seed = function (knex) {
       const profile = await knex('profile').insert([
         {
           full_name: 'Steven Berrisford',
-          personal_summary: 'Placeholder personal summary.',
+          personal_summary: 'I am a highly motivated and diligent software developer, eager to contribute my skills to a Mid-Level software development position or a comparable role.'
+            +
+            'With 3 years of solid experience, I have the expertise to quickly make a positive impact.\n\nHere is a short summary:'
+            +
+            '\n • 3 years full stack experience as a: React developer, React Native developer, and Laravel developer.'
+            +
+            '\n • 2+ years experience as a: Python developer, Node developer including: Django framework, Express framework.'
+            +
+            '\n • Excellent skills in Amazon Web Services, Docker Containers, Kubernetes, and Terraform Infrastructure as Code.'
+            +
+            '\n • Ability to mentor juniors and present latest developments and trends in Software Development and DevOps.'
+            +
+            '\n • Track record of building connections with internal stakeholders and fostering a collaborative environment.',
           picture_link: `${process.env.IP_DOMAIN}/public/images/content/Profile_Picture.pdf`,
           job_title: 'Full Stack Developer',
           cv_link: `${process.env.IP_DOMAIN}/public/documents/CV.pdf`,
@@ -61,35 +73,46 @@ exports.seed = function (knex) {
         {
           project: project[0].id,
           profile: profile[0].id,
-          title: 'BARE Dating: A Transparent App That Helps Singles Find Open-Minded Romantic Partners',
-          description: 'An article advertising the application and discussing the target audience, safety and transparency.',
+          title: 'Article',
+          description: 'An article reviewing the application and discussing the target audience, safety and transparency.',
           media_id: null,
-          media_link: `${process.env.IP_DOMAIN}/public/documents/BARE_Dating_Article.html`,
+          media_link: `${process.env.IP_DOMAIN}/public/documents/Bare_Dating_Article.html`,
           media_type: types.WEB_PAGE_MEDIA_TYPE,
-          type: types.PROFESSIONAL_CONTENT_TYPE,
-          order: 3
-        },
-        {
-          project: project[0].id,
-          profile: profile[0].id,
-          title: 'Blurring',
-          description: 'A view of the picture blurring functionality.',
-          media_id: null,
-          media_link: `${process.env.IP_DOMAIN}/public/images/content/Bare_Dating_Blurring.png`,
-          media_type: types.IMAGE_MEDIA_TYPE,
           type: types.PROFESSIONAL_CONTENT_TYPE,
           order: 1
         },
         {
           project: project[0].id,
           profile: profile[0].id,
-          title: 'Menus',
-          description: 'A view of the menus and general presentation.',
+          title: 'Archive',
+          description: 'A page providing information about the application, including images and APKs (inaccessible).',
           media_id: null,
-          media_link: `${process.env.IP_DOMAIN}/public/images/content/Bare_Dating_Menus.png`,
-          media_type: types.IMAGE_MEDIA_TYPE,
+          media_link: `${process.env.IP_DOMAIN}/public/documents/BARE_Dating_Archive.html`,
+          media_type: types.WEB_PAGE_MEDIA_TYPE,
           type: types.PROFESSIONAL_CONTENT_TYPE,
           order: 2
+        },
+        {
+          project: project[0].id,
+          profile: profile[0].id,
+          title: 'Advert',
+          description: `A picture of the functionality used to promote the application's features.`,
+          media_id: null,
+          media_link: `${process.env.IP_DOMAIN}/public/images/content/Bare_Dating_Advert.jpg`,
+          media_type: types.IMAGE_MEDIA_TYPE,
+          type: types.PROFESSIONAL_CONTENT_TYPE,
+          order: 3
+        },
+        {
+          project: project[0].id,
+          profile: profile[0].id,
+          title: 'Chat and Settings',
+          description: 'An in-app picture of the chat history and the settings page.',
+          media_id: null,
+          media_link: `${process.env.IP_DOMAIN}/public/images/content/Bare_Dating_Chat_and_Settings.png`,
+          media_type: types.IMAGE_MEDIA_TYPE,
+          type: types.PROFESSIONAL_CONTENT_TYPE,
+          order: 4
         }
       ]);
 
