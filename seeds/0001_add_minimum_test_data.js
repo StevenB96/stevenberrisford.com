@@ -49,7 +49,7 @@ exports.seed = function (knex) {
             '\n • Ability to mentor juniors and present latest developments and trends in Software Development and DevOps.'
             +
             '\n • Track record of building connections with internal stakeholders and fostering a collaborative environment.',
-          picture_link: `${process.env.IP_DOMAIN}/public/images/content/Profile_Picture.pdf`,
+          picture_link: `${process.env.IP_DOMAIN}/public/images/content/Profile_Picture.jpg`,
           job_title: 'Full Stack Developer',
           cv_link: `${process.env.IP_DOMAIN}/public/documents/CV.pdf`,
           phone_number: '+44 (0)7891078922',

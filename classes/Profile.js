@@ -28,19 +28,23 @@ class Profile {
   async getProjectData(id) {
     this.projectData = await db.select()
       .from('project')
-      .where({ profile: id });;
+      .where({
+        profile: id,
+        project: null
+      });
   }
 
   async getContentData(id) {
     this.contentData = await db.select()
       .from('content')
-      .where({ profile: id });;
+      .where({ profile: id })
+      .andWhereNot({ project: null });
   }
 
   async getReferenceData(id) {
     this.referenceData = await db.select()
       .from('reference')
-      .where({ profile: id });;
+      .where({ profile: id });
   }
 }
 
