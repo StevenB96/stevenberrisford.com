@@ -30,7 +30,6 @@ class Profile {
       .from('project')
       .where({
         profile: id,
-        project: null
       });
   }
 
