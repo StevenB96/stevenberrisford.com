@@ -25,6 +25,7 @@ const ProfileSection = () => {
         minHeight: '100vh',
         borderRightStyle: 'solid',
         boxSizing: 'border-box',
+        backgroundColor: 'white',
     };
 
     return (
@@ -52,6 +53,7 @@ const ProfileSection = () => {
 }
 
 const App = () => {
+    const site = useSelector(state => state.app.site);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -65,7 +67,8 @@ const App = () => {
         alignItems: 'center',
         flexDirection: 'column',
         width: '100%',
-        boxSizing: 'border-box'
+        boxSizing: 'border-box',
+        background: `url(${site.background_image_link}) no-repeat center center fixed`,
     };
 
     const containerStyle = {

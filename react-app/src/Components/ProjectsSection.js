@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import ProjectGroup from './ProjectGroup';
 
 const ProjectsSection = () => {
+    const [drawer, setDrawer] = useState(false);
     const profiles = useSelector(state => state.app.profiles);
     const hasProjects = profiles && profiles.length > 0 && profiles[0]?.projectData && profiles[0].projectData.length > 0;
 
@@ -11,7 +12,12 @@ const ProjectsSection = () => {
     };
 
     const projectGroups = profiles[0].projectData.map(project => {
-        return <ProjectGroup key={project.id} project={project} />;
+        return <ProjectGroup
+            key={project.id}
+            project={project}
+            drawer={drawer}
+            setDrawer={setDrawer}
+        />;
     });
 
     const textContainerStyle = {
@@ -19,13 +25,12 @@ const ProjectsSection = () => {
         flexDirection: 'column',
         alignItems: 'center',
         width: '100%',
-        backgroundColor: 'grey',
         borderBottomStyle: 'solid',
         boxSizing: 'border-box',
     };
 
     return (
-        <div>
+        <div style={{ backgroundColor: 'white', }}>
             <div style={textContainerStyle}>
                 <h1 style={{ margin: '2%', }}>
                     Projects

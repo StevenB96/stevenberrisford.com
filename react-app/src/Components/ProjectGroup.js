@@ -1,27 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FaChevronUp, FaChevronDown } from 'react-icons/fa';
 import ProjectCarousel from './ProjectCarousel';
 
-const ProjectGroup = ({ project }) => {
-    const [displayCarousel, setDisplayCarousel] = useState(false);
-
-    const bodyStyle = {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        width: '100%',
-        marginBottom: '2%',
-    };
+const ProjectHeader = ({
+    project,
+    drawer,
+    setDrawer,
+}) => {
+    const handleSetDrawer = () => {
+        setDrawer(project.id === drawer ? null : project.id)
+    }
 
     const buttonStyle = {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        gap: 10,
-        borderBottomStyle: 'dotted',
-        boxSizing: 'border-box',
+        gap: '2%',
         width: '100%',
+        backgroundColor: 'grey',
     };
 
     const iconContainerStyle = {
@@ -31,27 +28,45 @@ const ProjectGroup = ({ project }) => {
         alignItems: 'center',
     };
 
+    return (
+        <button
+            onClick={handleSetDrawer}
+            style={buttonStyle}>
+            {project.title && <h1>{project.title}</h1>}
+            <div
+                style={iconContainerStyle}>
+                {drawer === project.id ? <FaChevronUp /> : <FaChevronDown />}
+            </div>
+        </button>
+    );
+}
+
+const ProjectGroup = ({
+    project,
+    drawer,
+    setDrawer
+}) => {
+    const bodyStyle = {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        paddingBottom: '2%',
+        backgroundColor: 'lightGrey',
+    };
+
     const content = project?.contentData || [];
 
     return (
-        <div
-            key={project.id}
-            eventKey={project.id.toString()}
-        >
-            <button
-                onClick={() => setDisplayCarousel(!displayCarousel)}
-                style={buttonStyle}>
-                {project.title && <h1>{project.title}</h1>}
-                <div
-                    style={iconContainerStyle}>
-                    {displayCarousel ? <FaChevronUp /> : <FaChevronDown />}
-                </div>
-            </button>
-            {displayCarousel && (
+        <div key={project.id}>
+            <ProjectHeader
+                project={project}
+                drawer={drawer}
+                setDrawer={setDrawer}
+            />
+            {drawer === project.id && (
                 <div style={bodyStyle}>
                     {project.description &&
-                        <h2
-                            style={{ margin: '2%' }}>
+                        <h2>
                             {project.description}
                         </h2>
                     }
