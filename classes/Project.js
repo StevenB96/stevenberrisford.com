@@ -23,7 +23,9 @@ class Project {
   async getContentData(id) {
     this.contentData = await db.select()
       .from('content')
-      .where({ project: id, });
+      .where({
+        project: id,
+      });
   }
 }
 

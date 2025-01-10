@@ -36,8 +36,10 @@ class Profile {
   async getContentData(id) {
     this.contentData = await db.select()
       .from('content')
-      .where({ profile: id })
-      .andWhereNot({ project: null });
+      .where({
+        profile: id,
+        project: null
+      });
   }
 
   async getReferenceData(id) {
