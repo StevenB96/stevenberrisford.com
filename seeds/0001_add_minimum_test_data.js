@@ -76,7 +76,7 @@ exports.seed = function (knex) {
           title: 'Article',
           description: 'An article reviewing the application and discussing the target audience, safety and transparency.',
           media_id: null,
-          media_link: `${process.env.IP_DOMAIN}/public/documents/Bare_Dating_Article.html`,
+          media_link: `${process.env.IP_DOMAIN}/public/documents/BARE_Dating_Article.html`,
           media_type: types.WEB_PAGE_MEDIA_TYPE,
           type: types.PROFESSIONAL_CONTENT_TYPE,
           order: 1
