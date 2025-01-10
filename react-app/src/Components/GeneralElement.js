@@ -6,8 +6,9 @@ import VideoElement from './VideoElement';
 
 const GeneralElement = ({ item }) => {
     let media = null;
+    const media_type = !isNaN(item.media_type) ? parseInt(item.media_type, 10) : item.media_type;
 
-    switch (item.media_type) {
+    switch (media_type) {
         case IMAGE_MEDIA_TYPE:
             media = <ImageElement image={item} />;
             break;
