@@ -31,7 +31,6 @@ const ScrollButton = ({
                 height: 'calc(100%)',
                 width: arrowWidth,
                 backgroundColor: 'grey',
-                boxSizing: 'border-box',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',

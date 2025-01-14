@@ -29,7 +29,6 @@ const ProjectsSection = () => {
         flexDirection: 'column',
         alignItems: 'center',
         width: '100%',
-        boxSizing: 'border-box',
     };
 
     const textStyle = {

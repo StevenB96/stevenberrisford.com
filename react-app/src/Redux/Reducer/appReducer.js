@@ -6,11 +6,14 @@ import {
   GET_PROFILES_REQUEST,
   GET_PROFILES_SUCCESS,
   GET_PROFILES_FAILURE,
+
+  SET_CONTENT_DISPLAY_REQUEST,
 } from '../Actions/appActions';
 
 const initialState = {
   site: {},
   profiles: [],
+  activeContentDisplay: null,
   loading: false,
   error: null,
 };
@@ -57,6 +60,15 @@ const app = (state = initialState, action) => {
         ...state,
         loading: false,
         error: true
+      };
+
+    // Content display actions
+    case SET_CONTENT_DISPLAY_REQUEST:
+      return {
+        ...state,
+        activeContentDisplay: action.params.activeContentDisplay,
+        loading: true,
+        error: null
       };
 
     // Default case returns the current state unchanged if no actions match

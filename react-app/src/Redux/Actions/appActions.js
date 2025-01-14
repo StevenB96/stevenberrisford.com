@@ -31,3 +31,20 @@ export const getProfilesFailure = (error) => ({
   type: GET_PROFILES_FAILURE,
   payload: error,
 });
+
+export const SET_CONTENT_DISPLAY_REQUEST = 'SET_CONTENT_DISPLAY_REQUEST';
+export const SET_CONTENT_DISPLAY_SUCCESS = 'SET_CONTENT_DISPLAY_SUCCESS';
+export const SET_CONTENT_DISPLAY_FAILURE = 'SET_CONTENT_DISPLAY_FAILURE';
+
+export const setContentDisplayRequest = (params) => ({
+  type: SET_CONTENT_DISPLAY_REQUEST,
+  params,
+});
+export const setContentDisplaysSuccess = (data) => ({
+  type: SET_CONTENT_DISPLAY_SUCCESS,
+  payload: data,
+});
+export const setContentDisplayFailure = (error) => ({
+  type: SET_CONTENT_DISPLAY_FAILURE,
+  payload: error,
+});

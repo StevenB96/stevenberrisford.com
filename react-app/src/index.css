@@ -87,3 +87,7 @@ input[type="reset"]:not([class="standard-button"]) {
     align-items: flex-start;
     box-sizing: border-box;
 }
+
+* {
+    box-sizing: border-box;
+}

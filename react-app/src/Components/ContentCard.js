@@ -1,4 +1,10 @@
 import React from 'react';
+import {
+    useDispatch,
+} from 'react-redux';
+import {
+    setContentDisplayRequest,
+} from '../Redux/Actions/appActions';
 // import { IMAGE_MEDIA_TYPE, PDF_MEDIA_TYPE, VIDEO_MEDIA_TYPE, WEB_PAGE_MEDIA_TYPE } from '../constants/types';
 // import ImageElement from './ImageElement';
 // import WebPage from './WebPage';
@@ -7,10 +13,11 @@ import { FaExpandAlt } from "react-icons/fa";
 
 const ContentCard = ({
     item,
-    onClick,
 }) => {
+    const dispatch = useDispatch();
+
     const handleOnClick = () => {
-        onClick();
+        dispatch(setContentDisplayRequest({ activeContentDisplay: item.id, }));
     };
     // let media = null;
     // const media_type = !isNaN(item.media_type) ? parseInt(item.media_type, 10) : item.media_type;
@@ -34,7 +41,6 @@ const ContentCard = ({
 
     const containerStyle = {
         borderStyle: 'solid',
-        boxSizing: 'border-box',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'flex-start',
@@ -51,7 +57,6 @@ const ContentCard = ({
         alignItems: 'flex-start',
         flexDirection: 'row',
         width: '100%',
-        boxSizing: 'border-box',
     };
 
     const titleTextStyle = {
