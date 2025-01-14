@@ -20,19 +20,25 @@ const ProjectsSection = () => {
         />;
     });
 
+    const containerStyle = {
+        backgroundColor: 'darkGrey',
+    }
+
     const textContainerStyle = {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         width: '100%',
-        borderBottomStyle: 'solid',
         boxSizing: 'border-box',
     };
 
+    const textStyle = {
+    };
+
     return (
-        <div style={{ backgroundColor: 'white', }}>
+        <div style={containerStyle}>
             <div style={textContainerStyle}>
-                <h1 style={{ margin: '2%', }}>
+                <h1 style={textStyle}>
                     Projects
                 </h1>
             </div>

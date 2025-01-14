@@ -84,7 +84,6 @@ input[type="reset"]:not([class="standard-button"]) {
 .carousel-item {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     box-sizing: border-box;
-    /* height: 500px; */
 }
