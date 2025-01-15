@@ -92,8 +92,8 @@ const ProjectCarousel = ({
                 customRightArrow={<ScrollButton isLeft={false} />}
                 customLeftArrow={<ScrollButton isLeft={true} />}
             >
-                {content.map(item => (
-                    <ContentCard key={item?.id} item={item} />
+                {content.map(contentItem => (
+                    <ContentCard key={contentItem?.id} contentItem={contentItem} />
                 ))}
             </Carousel>
         </div>

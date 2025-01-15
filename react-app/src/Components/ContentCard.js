@@ -5,39 +5,21 @@ import {
 import {
     setContentDisplayRequest,
 } from '../Redux/Actions/appActions';
-// import { IMAGE_MEDIA_TYPE, PDF_MEDIA_TYPE, VIDEO_MEDIA_TYPE, WEB_PAGE_MEDIA_TYPE } from '../constants/types';
-// import ImageElement from './ImageElement';
-// import WebPage from './WebPage';
-// import VideoElement from './VideoElement';
 import { FaExpandAlt } from "react-icons/fa";
 
 const ContentCard = ({
-    item,
+    contentItem,
 }) => {
     const dispatch = useDispatch();
 
     const handleOnClick = () => {
-        dispatch(setContentDisplayRequest({ activeContentDisplay: item.id, }));
+        dispatch(setContentDisplayRequest({
+            activeContentDisplay: {
+                itemId: contentItem.id,
+                projectId: contentItem.project,
+            }
+        }));
     };
-    // let media = null;
-    // const media_type = !isNaN(item.media_type) ? parseInt(item.media_type, 10) : item.media_type;
-
-    // switch (media_type) {
-    //     case IMAGE_MEDIA_TYPE:
-    //         media = <ImageElement image={item} />;
-    //         break;
-    //     case PDF_MEDIA_TYPE:
-    //         media = <WebPage webPage={item} />;
-    //         break;
-    //     case VIDEO_MEDIA_TYPE:
-    //         media = <VideoElement video={item} />;
-    //         break;
-    //     case WEB_PAGE_MEDIA_TYPE:
-    //         media = <WebPage webPage={item} />;
-    //         break;
-    //     default:
-    //         media = null;
-    // }
 
     const containerStyle = {
         borderStyle: 'solid',
@@ -74,9 +56,9 @@ const ContentCard = ({
 
     return (
         <div style={containerStyle}>
-            {item.title && (
+            {contentItem.title && (
                 <div style={titleStyle}>
-                    <h3 style={titleTextStyle}>{item.title}</h3>
+                    <h3 style={titleTextStyle}>{contentItem.title}</h3>
                     <button
                         onClick={handleOnClick}
                         style={buttonContainerStyle}>
@@ -84,8 +66,8 @@ const ContentCard = ({
                     </button>
                 </div>
             )}
-            {item.description && (
-                <p style={descriptionStyle}>{item.description}</p>
+            {contentItem.description && (
+                <p style={descriptionStyle}>{contentItem.description}</p>
             )}
         </div>
     );

@@ -10,7 +10,15 @@ import {
     getProfilesRequest,
     setContentDisplayRequest,
 } from './Redux/Actions/appActions';
+import { FaCompressAlt } from "react-icons/fa";
+
 import ProjectsSection from './Components/ProjectsSection';
+
+
+import { IMAGE_MEDIA_TYPE, PDF_MEDIA_TYPE, VIDEO_MEDIA_TYPE, WEB_PAGE_MEDIA_TYPE } from './constants/types';
+import ImageElement from './Components/ImageElement';
+import WebPage from './Components/WebPage';
+import VideoElement from './Components/VideoElement';
 
 const ProfileSection = () => {
     const profiles = useSelector(state => state.app.profiles);
@@ -60,10 +68,100 @@ const ProfileSection = () => {
             </div>
         </div>
     );
+};
+
+const GeneralMediaElement = ({ item }) => {
+    let media = null;
+    const media_type = !isNaN(item.media_type) ? parseInt(item.media_type, 10) : item.media_type;
+
+    switch (media_type) {
+        case IMAGE_MEDIA_TYPE:
+            media = <ImageElement image={item} />;
+            break;
+        case PDF_MEDIA_TYPE:
+            media = <WebPage webPage={item} />;
+            break;
+        case VIDEO_MEDIA_TYPE:
+            media = <VideoElement video={item} />;
+            break;
+        case WEB_PAGE_MEDIA_TYPE:
+            media = <WebPage webPage={item} />;
+            break;
+        default:
+            media = null;
+    }
+
+    return media;
 }
 
+const ContentCloseButton = () => {
+    const dispatch = useDispatch();
+
+    const handleOnClick = () => {
+        dispatch(setContentDisplayRequest({ activeContentDisplay: null }));
+    };
+
+    return (
+        <button
+            onClick={handleOnClick}
+            style={{
+                position: 'absolute',
+                top: 0,
+                right: 0,
+                height: '5vw',
+                width: '5vw',
+                borderRadius: '50%',
+                backgroundColor: 'white',
+                transform: 'translate(25%, -25%)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderStyle: 'solid',
+            }}>
+            <FaCompressAlt size={'2.5vw'} />
+        </button>
+    );
+};
+
+const ContentOverlay = () => {
+    const { profiles, activeContentDisplay } = useSelector(state => state.app);
+
+    const profile = profiles[0];
+    const { projectId = null, itemId = null } = activeContentDisplay;
+
+    const findContent = (projectId, itemId) => {
+        if (projectId) {
+            const project = profile.projectData.find(project => projectId === project.id);
+            return project ? project.contentData.find(content => itemId === content.id) : null;
+        }
+        return profile.contentData.find(content => itemId === content.id);
+    };
+
+    const content = findContent(projectId, itemId);
+
+    const topOffset = 50;
+
+    return (
+        <div style={{
+            position: 'absolute',
+            left: '20vw',
+            top: topOffset,
+            height: '60vw',
+            maxHeight: `calc(100vh - ${2 * topOffset}px)`,
+            width: '60vw',
+            transform: 'translate(0vw, 0vw)',
+        }}>
+            <GeneralMediaElement item={content} />
+            <ContentCloseButton />
+        </div>
+    );
+};
+
 const App = () => {
-    const site = useSelector(state => state.app.site);
+    const {
+        site,
+        activeContentDisplay
+    } = useSelector(state => state.app);
 
     const dispatch = useDispatch();
 
@@ -103,6 +201,9 @@ const App = () => {
                     <ProjectsSection />
                 </div>
             </div>
+            {activeContentDisplay &&
+                <ContentOverlay />
+            }
         </div>
     );
 };
