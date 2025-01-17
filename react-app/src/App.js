@@ -41,19 +41,18 @@ const ProfileSection = () => {
         alignItems: 'center',
         justifyContent: 'flex-start',
         // Sizing
-        width: '30vw',
+        width: '35vw',
         minHeight: '100vh',
         padding: '2vw',
         // Border
         borderRightStyle: 'solid',
-        borderWidth: '0.3vw',
         // Background and Overflow
         backgroundColor: 'whitesmoke',
         overflowY: 'auto',
     };
 
     return (
-        <div style={containerStyle}>
+        <div style={containerStyle} className='base-border-width'>
             <img
                 style={{
                     width: '50%',
@@ -122,13 +121,14 @@ const ContentCloseButton = () => {
                 // Color and Background
                 backgroundColor: 'white',
                 borderStyle: 'solid',
-                borderWidth: '0.3vw',
                 // Transform and Alignment
                 transform: 'translate(25%, -25%)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-            }}>
+            }}
+            className='base-border-width'
+            >
             <CiUnread size={'70%'} style={{ strokeWidth: '0.05vw', }} />
         </button>
     );
@@ -207,7 +207,7 @@ const App = () => {
             <div style={containerStyle}>
                 <ProfileSection />
                 <div style={{
-                    width: '70vw'
+                    width: '65vw'
                 }}>
                     <ProjectsSection />
                 </div>

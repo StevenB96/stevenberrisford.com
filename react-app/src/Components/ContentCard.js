@@ -24,7 +24,6 @@ const ContentCard = ({
     const containerStyle = {
         // Border
         borderStyle: 'solid',
-        borderWidth: '0.3vw',
         borderRadius: '1vw',
         // Flexbox
         display: 'flex',
@@ -67,7 +66,7 @@ const ContentCard = ({
     };
 
     return (
-        <div style={containerStyle}>
+        <div style={containerStyle} className='base-border-width'>
             {contentItem.title && (
                 <div style={titleStyle}>
                     <h3 style={titleTextStyle}>{contentItem.title}</h3>

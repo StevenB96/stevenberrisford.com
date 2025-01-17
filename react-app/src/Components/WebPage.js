@@ -9,9 +9,9 @@ const WebPage = ({ webPage }) => {
             height={'100%'}
             style={{ 
                 borderStyle: 'solid',
-                borderWidth: '0.3vw',
                 borderRadius: '1vw',
             }}
+            className='base-border-width'
         />
     );
 };

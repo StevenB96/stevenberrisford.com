@@ -12,9 +12,9 @@ const VideoElement = ({ video }) => {
             }}
             style={{
                 borderStyle: 'solid',
-                borderWidth: '0.3vw',
                 borderRadius: '1vw',
             }}
+            className='base-border-width'
         />
     );
 };

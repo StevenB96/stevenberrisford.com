@@ -9,7 +9,6 @@ html {
 }
 
 body {
-    font-family: 'Quicksand', 'sans-serif' !important;
     padding: 0;
     margin: 0;
     overflow-x: hidden;
@@ -24,38 +23,38 @@ h1 {
 
 h2 {
     /* font-size: 1.5em; */
-    font-size: calc(1.5 * min(max(1.5vw, 10px), 20px));
+    font-size: calc(1.5 * min(max(1.5vw, 12px), 24px));
     user-select: none;
 }
 
 h3 {
     /* font-size: 1.17em; */
-    font-size: calc(1.17 * min(max(1.5vw, 10px), 20px));
+    font-size: calc(1.17 * min(max(1.5vw, 12px), 24px));
     user-select: none;
 }
 
 h6 {
     /* font-size: 1em; */
-    font-size: calc(1 * min(max(1.5vw, 10px), 20px));
+    font-size: calc(1 * min(max(1.5vw, 12px), 24px));
     user-select: none;
 }
 
 p {
     /* font-size: 1em; */
-    font-size: calc(1 * min(max(1.5vw, 10px), 20px));
+    font-size: calc(1 * min(max(1.5vw, 12px), 24px));
     user-select: none;
 }
 
 input {
-    /* font-size: 1.17em; */
-    font-size: calc(max(calc(4vw / (3 / 1.17)), calc(1.17 * 10px)) / 1.2);
+    /* font-size: 1em; */
+    font-size: calc(1 * min(max(1.5vw, 12px), 24px));
     user-select: none;
     font-weight: bold;
 }
 
 .small-p {
-    /* font-size: 1em; */
-    font-size: calc(max(calc(4vw / (3 / 0.75)), calc(0.75 * 10px)) / 1.2);
+    /* font-size: 0.75em; */
+    font-size: calc(0.75 * min(max(1.5vw, 12px), 24px));
     user-select: none;
 }
 
@@ -91,8 +90,10 @@ input[type="reset"]:not([class="standard-button"]) {
 
 * {
     box-sizing: border-box;
+    word-break: break-word;
+    font-family: 'Quicksand', 'sans-serif' !important;
 }
 
-/* .fa-expand-alt path {
-    stroke-width: 3px !important;
-} */
+.base-border-width {
+    border-width: max(0.3vw, 3px) !important;
+}

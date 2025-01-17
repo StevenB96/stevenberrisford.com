@@ -30,7 +30,6 @@ const ProjectsSection = () => {
         alignItems: 'center',
         width: '100%',
         borderBottomStyle: 'solid',
-        borderWidth: '0.3vw',
     };
 
     const textStyle = {
@@ -38,7 +37,7 @@ const ProjectsSection = () => {
 
     return (
         <div style={containerStyle}>
-            <div style={textContainerStyle}>
+            <div style={textContainerStyle} className='base-border-width'>
                 <h1 style={textStyle}>
                     <u>Projects</u>
                 </h1>

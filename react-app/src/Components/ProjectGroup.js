@@ -20,7 +20,7 @@ const ProjectHeader = ({
         width: '100%',
         backgroundColor: 'grey',
         borderBottomStyle: 'dashed',
-        borderWidth: '0.3vw',
+        // borderWidth: 'max(0.3vw, 2px)',
     };
 
     const titleStyle = {
@@ -37,7 +37,9 @@ const ProjectHeader = ({
     return (
         <button
             onClick={handleSetDrawer}
-            style={buttonStyle}>
+            style={buttonStyle}
+            className='base-border-width'
+        >
             {project.title &&
                 <h2 style={titleStyle}>{project.title}</h2>
             }

@@ -38,7 +38,6 @@ const ScrollButton = ({
                 // Border
                 borderTopStyle: 'solid',
                 borderBottomStyle: 'solid',
-                borderWidth: '0.3vw',
                 ...(isLeft ?
                     {
                         left: 0,
@@ -53,7 +52,9 @@ const ScrollButton = ({
                         borderLeftStyle: 'solid',
                     }
                 )
-            }}>
+            }}
+            className='base-border-width'
+        >
             {symbol}
         </button>
     );
@@ -75,7 +76,7 @@ const ProjectCarousel = ({
         },
         mobile: {
             breakpoint: { max: 464, min: 0 },
-            items: 3,
+            items: 1,
             slidesToSlide: 1
         }
     };
