@@ -22,6 +22,7 @@ const CustomNavItem = ({
     transition: 'background-color 0.1s ease-in-out, text-decoration 0.1s ease-in-out',
     borderLeftStyle: index === 0 ? 'solid' : undefined,
     borderRightStyle: 'solid',
+    borderWidth: '0.3vw',
     borderTopStyle: 'solid',
     borderWidth: 'max(0.3vw, 2.25px)',
     boxSizing: 'border-box',

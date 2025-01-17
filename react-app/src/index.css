@@ -18,30 +18,31 @@ body {
 
 h1 {
     /* font-size: 2em; */
-    font-size: calc(max(calc(4vw / (3 / 2)), calc(2 * 10px)) / 1.2);
+    font-size: calc(2 * min(max(1.5vw, 10px), 20px));
     user-select: none;
 }
 
 h2 {
     /* font-size: 1.5em; */
-    font-size: calc(max(calc(4vw / (3 / 1.5)), calc(1.5 * 10px)) / 1.2);
+    font-size: calc(1.5 * min(max(1.5vw, 10px), 20px));
     user-select: none;
 }
 
 h3 {
     /* font-size: 1.17em; */
-    font-size: calc(max(calc(4vw / (3 / 1.17)), calc(1.17 * 10px)) / 1.2);
+    font-size: calc(1.17 * min(max(1.5vw, 10px), 20px));
     user-select: none;
 }
 
 h6 {
-    font-size: calc(max(calc(4vw / (3 / 1)), 10px) / 1.2);
+    /* font-size: 1em; */
+    font-size: calc(1 * min(max(1.5vw, 10px), 20px));
     user-select: none;
 }
 
 p {
     /* font-size: 1em; */
-    font-size: calc(max(calc(4vw / (3 / 1)), 10px) / 1.2);
+    font-size: calc(1 * min(max(1.5vw, 10px), 20px));
     user-select: none;
 }
 
@@ -91,3 +92,7 @@ input[type="reset"]:not([class="standard-button"]) {
 * {
     box-sizing: border-box;
 }
+
+/* .fa-expand-alt path {
+    stroke-width: 3px !important;
+} */

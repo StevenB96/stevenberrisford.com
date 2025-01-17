@@ -8,7 +8,9 @@ const WebPage = ({ webPage }) => {
             width={'100%'}
             height={'100%'}
             style={{ 
-                border: 0,
+                borderStyle: 'solid',
+                borderWidth: '0.3vw',
+                borderRadius: '1vw',
             }}
         />
     );

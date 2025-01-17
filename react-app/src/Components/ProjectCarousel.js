@@ -2,10 +2,7 @@ import React from 'react';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import ContentCard from './ContentCard';
-import {
-    FaAngleLeft,
-    FaAngleRight,
-} from 'react-icons/fa';
+import { GoChevronLeft, GoChevronRight } from "react-icons/go";
 
 const ScrollButton = ({
     isLeft = true,
@@ -18,35 +15,41 @@ const ScrollButton = ({
     } = rest;
 
     const symbol = isLeft ?
-        <FaAngleLeft size={'2.5vw'} /> :
-        <FaAngleRight size={'2.5vw'} />;
+        <GoChevronLeft size={'2.5vw'} style={{ strokeWidth: '0.05vw', }} /> :
+        <GoChevronRight size={'2.5vw'} style={{ strokeWidth: '0.05vw', }} />;
 
-    const arrowWidth = '3vw';
+    const arrowWidth = '2vw';
 
     return (
         <button
             onClick={() => onClick()}
             style={{
+                // Positioning
                 position: 'absolute',
+                // Size
                 height: 'calc(100%)',
-                width: arrowWidth,
-                backgroundColor: 'grey',
+                width: '2.5vw',
+                // Background
+                backgroundColor: 'whitesmoke',
+                // Flexbox
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
+                // Border
                 borderTopStyle: 'solid',
                 borderBottomStyle: 'solid',
+                borderWidth: '0.3vw',
                 ...(isLeft ?
                     {
                         left: 0,
-                        borderBottomRightRadius: arrowWidth,
-                        borderTopRightRadius: arrowWidth,
+                        borderBottomRightRadius: '1vw',
+                        borderTopRightRadius: '1vw',
                         borderRightStyle: 'solid',
                     } :
                     {
                         right: 0,
-                        borderBottomLeftRadius: arrowWidth,
-                        borderTopLeftRadius: arrowWidth,
+                        borderBottomLeftRadius: '1vw',
+                        borderTopLeftRadius: '1vw',
                         borderLeftStyle: 'solid',
                     }
                 )

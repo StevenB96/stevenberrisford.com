@@ -1,9 +1,6 @@
 import React from 'react';
-import {
-    FaChevronUp,
-    FaChevronDown,
-} from 'react-icons/fa';
 import ProjectCarousel from './ProjectCarousel';
+import { GoChevronUp, GoChevronDown } from "react-icons/go";
 
 const ProjectHeader = ({
     project,
@@ -45,8 +42,8 @@ const ProjectHeader = ({
             <div
                 style={iconContainerStyle}>
                 {drawer === project.id ?
-                    <FaChevronUp size={'100%'} /> :
-                    <FaChevronDown size={'100%'} />
+                    <GoChevronUp size={'100%'} style={{ strokeWidth: '0.05vw', }} /> :
+                    <GoChevronDown size={'100%'} style={{ strokeWidth: '0.05vw', }} />
                 }
             </div>
         </button>
@@ -66,13 +63,15 @@ const ProjectGroup = ({
         alignItems: 'center',
         paddingTop: '3vw',
         paddingBottom: '3vw',
-        backgroundColor: 'lightGrey',
+        backgroundColor: 'whitesmoke',
         gap: '2vw',
         position: 'relative',
     };
 
     const descriptionStyle = {
         margin: 0,
+        marginRight: '2vw',
+        marginLeft: '2vw'
     };
 
     return (

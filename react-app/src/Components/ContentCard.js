@@ -5,7 +5,7 @@ import {
 import {
     setContentDisplayRequest,
 } from '../Redux/Actions/appActions';
-import { FaExpandAlt } from "react-icons/fa";
+import { CiRead } from "react-icons/ci";
 
 const ContentCard = ({
     contentItem,
@@ -22,15 +22,23 @@ const ContentCard = ({
     };
 
     const containerStyle = {
+        // Border
         borderStyle: 'solid',
+        borderWidth: '0.3vw',
+        borderRadius: '1vw',
+        // Flexbox
         display: 'flex',
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'flex-start',
-        flexDirection: 'column',
-        backgroundColor: 'grey',
+        // Layout
         width: '75%',
         padding: '1vw',
         gap: '1vw',
+        // Positioning
+        position: 'relative',
+        // Background
+        backgroundColor: 'grey',
     };
 
     const titleStyle = {
@@ -46,8 +54,12 @@ const ContentCard = ({
     };
 
     const buttonContainerStyle = {
-        minWidth: '2.5vw',
+        // Size
         width: '2.5vw',
+        // Flexbox
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
     };
 
     const descriptionStyle = {
@@ -62,7 +74,7 @@ const ContentCard = ({
                     <button
                         onClick={handleOnClick}
                         style={buttonContainerStyle}>
-                        <FaExpandAlt size={'100%'} />
+                        <CiRead size={'200%'} style={{ strokeWidth: '0.05vw', }} />
                     </button>
                 </div>
             )}

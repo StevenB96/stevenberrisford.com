@@ -9,7 +9,10 @@ const ImageElement = ({ image }) => {
                 objectFit: 'cover',
                 width: '100%',
                 height: '100%',
-                pointerEvents: 'none', 
+                pointerEvents: 'none',
+                borderStyle: 'solid',
+                borderWidth: '0.3vw',
+                borderRadius: '1vw',
             }}
         />
     );

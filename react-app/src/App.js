@@ -10,12 +10,17 @@ import {
     getProfilesRequest,
     setContentDisplayRequest,
 } from './Redux/Actions/appActions';
-import { FaCompressAlt } from "react-icons/fa";
+import { CiUnread } from "react-icons/ci";
 
 import ProjectsSection from './Components/ProjectsSection';
 
 
-import { IMAGE_MEDIA_TYPE, PDF_MEDIA_TYPE, VIDEO_MEDIA_TYPE, WEB_PAGE_MEDIA_TYPE } from './constants/types';
+import {
+    IMAGE_MEDIA_TYPE,
+    PDF_MEDIA_TYPE,
+    VIDEO_MEDIA_TYPE,
+    WEB_PAGE_MEDIA_TYPE
+} from './constants/types';
 import ImageElement from './Components/ImageElement';
 import WebPage from './Components/WebPage';
 import VideoElement from './Components/VideoElement';
@@ -41,8 +46,9 @@ const ProfileSection = () => {
         padding: '2vw',
         // Border
         borderRightStyle: 'solid',
+        borderWidth: '0.3vw',
         // Background and Overflow
-        backgroundColor: 'white',
+        backgroundColor: 'whitesmoke',
         overflowY: 'auto',
     };
 
@@ -105,20 +111,25 @@ const ContentCloseButton = () => {
         <button
             onClick={handleOnClick}
             style={{
+                // Positioning
                 position: 'absolute',
                 top: 0,
                 right: 0,
+                // Size and Shape
                 height: '5vw',
                 width: '5vw',
                 borderRadius: '50%',
+                // Color and Background
                 backgroundColor: 'white',
+                borderStyle: 'solid',
+                borderWidth: '0.3vw',
+                // Transform and Alignment
                 transform: 'translate(25%, -25%)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                borderStyle: 'solid',
             }}>
-            <FaCompressAlt size={'2.5vw'} />
+            <CiUnread size={'70%'} style={{ strokeWidth: '0.05vw', }} />
         </button>
     );
 };
