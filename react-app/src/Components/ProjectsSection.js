@@ -29,6 +29,8 @@ const ProjectsSection = () => {
         flexDirection: 'column',
         alignItems: 'center',
         width: '100%',
+        borderBottomStyle: 'solid',
+        borderWidth: '0.3vw',
     };
 
     const textStyle = {
@@ -38,7 +40,7 @@ const ProjectsSection = () => {
         <div style={containerStyle}>
             <div style={textContainerStyle}>
                 <h1 style={textStyle}>
-                    Projects
+                    <u>Projects</u>
                 </h1>
             </div>
             {projectGroups}
