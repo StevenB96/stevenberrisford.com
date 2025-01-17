@@ -19,6 +19,8 @@ const ProjectHeader = ({
         gap: '2%',
         width: '100%',
         backgroundColor: 'grey',
+        borderBottomStyle: 'dashed',
+        borderWidth: '0.3vw',
     };
 
     const titleStyle = {
