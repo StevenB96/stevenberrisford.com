@@ -31,7 +31,7 @@ const ContentCard = ({
         justifyContent: 'center',
         alignItems: 'flex-start',
         // Layout
-        width: '75%',
+        width: '100%',
         padding: '1vw',
         gap: '1vw',
         // Positioning
