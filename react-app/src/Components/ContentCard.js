@@ -31,7 +31,7 @@ const ContentCard = ({
         justifyContent: 'center',
         alignItems: 'flex-start',
         // Layout
-        width: '100%',
+        width: 'calc(100% - 4vw)',
         padding: '1vw',
         gap: '1vw',
         // Positioning
@@ -66,7 +66,7 @@ const ContentCard = ({
     };
 
     return (
-        <div style={containerStyle} className='base-border-width'>
+        <div style={containerStyle}>
             {contentItem.title && (
                 <div style={titleStyle}>
                     <h3 style={titleTextStyle}>{contentItem.title}</h3>

@@ -11,7 +11,6 @@ const WebPage = ({ webPage }) => {
                 borderStyle: 'solid',
                 borderRadius: '1vw',
             }}
-            className='base-border-width'
         />
     );
 };

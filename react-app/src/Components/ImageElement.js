@@ -13,7 +13,6 @@ const ImageElement = ({ image }) => {
                 borderStyle: 'solid',
                 borderRadius: '1vw',
             }}
-            className='base-border-width'
         />
     );
 };

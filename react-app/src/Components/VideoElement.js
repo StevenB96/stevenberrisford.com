@@ -14,7 +14,6 @@ const VideoElement = ({ video }) => {
                 borderStyle: 'solid',
                 borderRadius: '1vw',
             }}
-            className='base-border-width'
         />
     );
 };

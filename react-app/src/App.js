@@ -13,7 +13,7 @@ import {
 import { CiUnread } from "react-icons/ci";
 
 import ProjectsSection from './Components/ProjectsSection';
-
+import ProfileSection from './Components/ProfileSection';
 
 import {
     IMAGE_MEDIA_TYPE,
@@ -25,55 +25,6 @@ import ImageElement from './Components/ImageElement';
 import WebPage from './Components/WebPage';
 import VideoElement from './Components/VideoElement';
 
-const ProfileSection = () => {
-    const profiles = useSelector(state => state.app.profiles);
-
-    const profileExists = profiles && profiles.length > 0;
-
-    if (!profileExists) {
-        return <p>No profile available.</p>;
-    }
-
-    const containerStyle = {
-        // Layout
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        // Sizing
-        width: '35vw',
-        minHeight: '100vh',
-        padding: '2vw',
-        // Border
-        borderRightStyle: 'solid',
-        // Background and Overflow
-        backgroundColor: 'whitesmoke',
-        overflowY: 'auto',
-    };
-
-    return (
-        <div style={containerStyle} className='base-border-width'>
-            <img
-                style={{
-                    width: '50%',
-                }}
-                src={profiles[0]?.picture_link}
-                alt={'Profile Picture'}
-            />
-            <div>
-                <h2>
-                    {profiles[0]?.full_name}
-                </h2>
-                <h3>
-                    {profiles[0]?.job_title}
-                </h3>
-                <p style={{ whiteSpace: 'pre-wrap' }}>
-                    {profiles[0]?.personal_summary}
-                </p>
-            </div>
-        </div>
-    );
-};
 
 const GeneralMediaElement = ({ item }) => {
     let media = null;
@@ -127,7 +78,6 @@ const ContentCloseButton = () => {
                 alignItems: 'center',
                 justifyContent: 'center',
             }}
-            className='base-border-width'
             >
             <CiUnread size={'70%'} style={{ strokeWidth: '0.05vw', }} />
         </button>
@@ -205,9 +155,9 @@ const App = () => {
     return (
         <div style={appStyle}>
             <div style={containerStyle}>
-                <ProfileSection />
+                {/* <ProfileSection /> */}
                 <div style={{
-                    width: '65vw'
+                    width: '100vw'
                 }}>
                     <ProjectsSection />
                 </div>

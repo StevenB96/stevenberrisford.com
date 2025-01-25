@@ -29,7 +29,7 @@ const ProjectsSection = () => {
             <Tree aria-label="default">
                 <TreeItem itemType="branch">
                     <TreeItemLayout>Projects</TreeItemLayout>
-                    <Tree aria-label="level1">
+                    <Tree aria-label="menu-level">
                         {projectGroups}
                     </Tree>
                 </TreeItem>

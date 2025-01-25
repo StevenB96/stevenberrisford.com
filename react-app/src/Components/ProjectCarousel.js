@@ -17,7 +17,16 @@ const SliderCard = ({
     index
 }) => {
     return (
-        <CarouselCard aria-label={`carousel-slide-${index + 1}`}>
+        <CarouselCard
+            aria-label={`carousel-slide-${index + 1}`}
+            style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+                marginBottom: '1vw',
+            }}
+        >
             <ContentCard contentItem={contentItem} />
         </CarouselCard >
     );
@@ -28,6 +37,10 @@ const ProjectCarousel = ({
 }) => {
     return (
         <Carousel
+            style={{
+                marginBottom: '1vw',
+                width: '100%',
+            }}
             groupSize={1}
             circular
         >
