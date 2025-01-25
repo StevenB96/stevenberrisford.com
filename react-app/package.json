@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fluentui/react-components": "^9.58.0",
     "@fontsource/quicksand": "^5.0.18",
     "@paypal/react-paypal-js": "^8.7.0",
     "@react-hook/window-scroll": "^1.3.0",
