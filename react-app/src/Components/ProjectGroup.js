@@ -1,10 +1,16 @@
-import React from 'react';
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
+
 import ProjectCarousel from './ProjectCarousel';
 
-import { Tree, TreeItem, TreeItemLayout } from "@fluentui/react-components";
+import {
+    AccordionHeader,
+    AccordionItem,
+    AccordionPanel,
+} from "@fluentui/react-components";
 
 const ProjectGroup = ({
     project,
+    openProject
 }) => {
     const content = project?.contentData || [];
 
@@ -23,25 +29,53 @@ const ProjectGroup = ({
     };
 
     return (
-        <TreeItem key={project.id} itemType="branch">
-            <TreeItemLayout>{project.title}</TreeItemLayout>
-            <Tree aria-label="project-level">
+        <AccordionItem value={project.id}>
+            <AccordionHeader
+                // expandIcon={
+                //     <div style={{
+                //         marginLeft: '2vw',
+                //         marginRight: '1vw'
+                //     }}>
+                //         {
+                //             openProject === project.id ?
+                //                 <FaChevronLeft
+                //                     size={'0.5em'}
+                //                     style={{
+                //                         strokeWidth: '0.05vw',
+                //                     }}
+                //                 />
+                //                 :
+                //                 <FaChevronRight
+                //                     size={'0.5em'}
+                //                     style={{
+                //                         strokeWidth: '0.05vw',
+                //                     }}
+                //                 />
+                //         }
+                //     </div>
+                // }
+            >
+                <h3 style={{ fontWeight: 'normal' }}>
+                    {project.title}
+                </h3>
+            </AccordionHeader>
+            <AccordionPanel>
                 <div style={wrapperStyle}>
                     <div style={bodyStyle}>
                         {project.description &&
-                            <div
+                            <p
                                 style={descriptionStyle}
                             >
                                 {project.description}
-                            </div>
+                            </p>
                         }
                         <ProjectCarousel
                             content={content}
                         />
                     </div>
                 </div>
-            </Tree>
-        </TreeItem>
+            </AccordionPanel>
+        </AccordionItem>
     );
 };
 

@@ -1,13 +1,31 @@
-import React, { useState } from 'react';
+import React, {
+    useState,
+} from 'react';
 import { useSelector } from 'react-redux';
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 
-import { Tree, TreeItem, TreeItemLayout } from "@fluentui/react-components";
+import {
+    Accordion,
+    AccordionHeader,
+    AccordionItem,
+    AccordionPanel,
+} from "@fluentui/react-components";
 
 import ProjectGroup from './ProjectGroup';
 
-const ProjectsSection = () => {
+const ProjectsSection = ({ openSection }) => {
     const profiles = useSelector(state => state.app.profiles);
     const hasProjects = profiles && profiles.length > 0 && profiles[0]?.projectData && profiles[0].projectData.length > 0;
+
+    const [openProject, setOpenProject] = useState(0);
+
+    const handleToggleProject = (_, data) => {
+        setOpenProject(
+            openProject === data.value ?
+                0 :
+                data.value
+        )
+    };
 
     if (!hasProjects) {
         return <p>No projects available.</p>;
@@ -17,25 +35,55 @@ const ProjectsSection = () => {
         return <ProjectGroup
             key={project.id}
             project={project}
+            openProject={openProject}
         />;
     });
 
-    const containerStyle = {
-        backgroundColor: 'darkGrey',
-    }
-
     return (
-        <div style={containerStyle}>
-            <Tree aria-label="default">
-                <TreeItem itemType="branch">
-                    <TreeItemLayout>Projects</TreeItemLayout>
-                    <Tree aria-label="menu-level">
-                        {projectGroups}
-                    </Tree>
-                </TreeItem>
-            </Tree>
-        </div>
+        <AccordionItem value={1}>
+            <AccordionHeader
+                expandIcon={
+                    <div style={{
+                        marginLeft: '1vw',
+                        marginRight: '1vw'
+                    }}>
+                        {
+                            openSection === 1 ?
+                                <FaChevronLeft
+                                    size={'0.5em'}
+                                    style={{
+                                        strokeWidth: '0.05vw',
+                                    }}
+                                />
+                                :
+                                <FaChevronRight
+                                    size={'0.5em'}
+                                    style={{
+                                        strokeWidth: '0.05vw',
+                                    }}
+                                />
+                        }
+                    </div>
+                }
+            >
+                <h2 style={{
+                    fontWeight: 'normal',
+                }}>
+                    Projects
+                </h2>
+            </AccordionHeader>
+            <AccordionPanel>
+                <Accordion
+                    collapsible
+                    onToggle={handleToggleProject}
+                    openItems={setOpenProject}
+                >
+                    {projectGroups}
+                </Accordion>
+            </AccordionPanel>
+        </AccordionItem>
     );
 }
 
 export default ProjectsSection;
+

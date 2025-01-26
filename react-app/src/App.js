@@ -1,5 +1,6 @@
 import React, {
     useEffect,
+    useState,
 } from 'react';
 import {
     useDispatch,
@@ -11,6 +12,11 @@ import {
     setContentDisplayRequest,
 } from './Redux/Actions/appActions';
 import { CiUnread } from "react-icons/ci";
+import { Divider } from "@fluentui/react-components";
+
+import {
+    Accordion,
+} from "@fluentui/react-components";
 
 import ProjectsSection from './Components/ProjectsSection';
 import ProfileSection from './Components/ProfileSection';
@@ -78,7 +84,7 @@ const ContentCloseButton = () => {
                 alignItems: 'center',
                 justifyContent: 'center',
             }}
-            >
+        >
             <CiUnread size={'70%'} style={{ strokeWidth: '0.05vw', }} />
         </button>
     );
@@ -131,6 +137,16 @@ const App = () => {
         dispatch(getProfilesRequest());
     }, [dispatch]);
 
+    const [openSection, setOpenSection] = useState(1);
+
+    const handleToggleSection = (_, data) => {
+        setOpenSection(
+            openSection === data.value ?
+                0 :
+                data.value
+        )
+    };
+
     const appStyle = {
         // Layout
         display: 'flex',
@@ -149,17 +165,29 @@ const App = () => {
         justifyContent: 'center',
         // Sizing
         width: '100vw',
-        height: '100vh',
+        minHeight: '100vh',
     };
+
+    const sectionContainerStyle = {
+        backgroundColor: 'lightgrey',
+        width: '100%',
+    }
 
     return (
         <div style={appStyle}>
             <div style={containerStyle}>
-                {/* <ProfileSection /> */}
-                <div style={{
-                    width: '100vw'
-                }}>
-                    <ProjectsSection />
+                <ProfileSection />
+                <Divider vertical={true} />
+                <div style={sectionContainerStyle}>
+                    <Accordion
+                        onToggle={handleToggleSection}
+                        openItems={setOpenSection}
+                        collapsible
+                    >
+                        <ProjectsSection
+                            openSection={openSection}
+                        />
+                    </Accordion>
                 </div>
             </div>
             {activeContentDisplay &&

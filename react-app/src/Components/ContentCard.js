@@ -37,7 +37,7 @@ const ContentCard = ({
         // Positioning
         position: 'relative',
         // Background
-        backgroundColor: 'grey',
+        backgroundColor: 'lightgrey',
     };
 
     const titleStyle = {
