@@ -2,7 +2,7 @@ import React, {
     useState,
 } from 'react';
 import { useSelector } from 'react-redux';
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
+import { FaChevronDown, FaChevronRight } from "react-icons/fa";
 
 import {
     Accordion,
@@ -44,20 +44,20 @@ const ProjectsSection = ({ openSection }) => {
             <AccordionHeader
                 expandIcon={
                     <div style={{
-                        marginLeft: '1vw',
+                        marginLeft: '2vw',
                         marginRight: '1vw'
                     }}>
                         {
                             openSection === 1 ?
-                                <FaChevronLeft
-                                    size={'0.5em'}
+                                <FaChevronDown
+                                    size={'2vw'}
                                     style={{
                                         strokeWidth: '0.05vw',
                                     }}
                                 />
                                 :
                                 <FaChevronRight
-                                    size={'0.5em'}
+                                    size={'2vw'}
                                     style={{
                                         strokeWidth: '0.05vw',
                                     }}
@@ -76,7 +76,7 @@ const ProjectsSection = ({ openSection }) => {
                 <Accordion
                     collapsible
                     onToggle={handleToggleProject}
-                    openItems={setOpenProject}
+                    openItems={openProject}
                 >
                     {projectGroups}
                 </Accordion>

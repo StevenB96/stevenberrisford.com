@@ -8,7 +8,7 @@ import useScrollPosition from '@react-hook/window-scroll';
 import {
     ToggleButton
 } from "@fluentui/react-components";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 
 const ProfileSection = () => {
@@ -30,7 +30,7 @@ const ProfileSection = () => {
         justifyContent: 'flex-start',
         position: 'relative',
         // Sizing
-        padding: '2vw',
+        padding: '3vw',
         // Background and Overflow
         backgroundColor: 'whitesmoke',
         overflowY: 'hidden',
@@ -41,7 +41,9 @@ const ProfileSection = () => {
         } : {
             minWidth: '65vw',
             width: '65vw',
-        })
+        }),
+        borderRightWidth: '0.3vw',
+        borderRightStyle: 'solid',
     };
 
     const toggleButtonStyle = {
@@ -49,49 +51,51 @@ const ProfileSection = () => {
         top: `calc(${scrollY}px + 50vh)`,
         right: '0',
         backgroundColor: 'lightgrey',
-        borderTopLeftRadius: '1vw',
-        borderBottomLeftRadius: '1vw',
+        borderTopLeftRadius: '2vw',
+        borderBottomLeftRadius: '2vw',
+        borderWidth: '0.3vw',
         transform: 'translate(0%,-50%)',
-        width: '2vw',
         height: '20vw',
         borderStyle: 'solid',
         borderRightStyle: null,
+        width: '3vw',
     };
 
     return (
         <div style={containerStyle}>
-            <ToggleButton
-                icon={isOpen ?
+            <button
+                onClick={() => setIsOpen(!isOpen)}
+                style={toggleButtonStyle}>
+                {isOpen ?
                     <FaChevronLeft
-                        size={'0.5em'}
+                        size={'2vw'}
                         style={{
                             strokeWidth: '0.05vw',
                         }}
                     /> :
                     <FaChevronRight
-                        size={'0.5em'}
+                        size={'2vw'}
                         style={{
                             strokeWidth: '0.05vw',
                         }}
                     />
                 }
-                style={toggleButtonStyle}
-                onClick={() => setIsOpen(!isOpen)}
-            />
+            </button>
             <img
                 style={{
                     width: '50%',
+                    borderRadius: '2vw',
                 }}
                 src={profiles[0]?.picture_link}
                 alt={'Profile Picture'}
             />
             <div>
-                <h2>
+                <h1>
                     {profiles[0]?.full_name}
-                </h2>
-                <h3>
+                </h1>
+                <h2>
                     {profiles[0]?.job_title}
-                </h3>
+                </h2>
                 <h3 style={{
                     fontWeight: 'normal',
                     whiteSpace: 'pre-wrap'

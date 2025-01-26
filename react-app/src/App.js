@@ -75,6 +75,7 @@ const ContentCloseButton = () => {
                 height: '5vw',
                 width: '5vw',
                 borderRadius: '50%',
+                borderWidth: '0.3vw',
                 // Color and Background
                 backgroundColor: 'white',
                 borderStyle: 'solid',
@@ -85,7 +86,10 @@ const ContentCloseButton = () => {
                 justifyContent: 'center',
             }}
         >
-            <CiUnread size={'70%'} style={{ strokeWidth: '0.05vw', }} />
+            <CiUnread
+                size={'3vw'}
+                style={{ strokeWidth: '0.05vw', }}
+            />
         </button>
     );
 };
@@ -177,11 +181,10 @@ const App = () => {
         <div style={appStyle}>
             <div style={containerStyle}>
                 <ProfileSection />
-                <Divider vertical={true} />
                 <div style={sectionContainerStyle}>
                     <Accordion
                         onToggle={handleToggleSection}
-                        openItems={setOpenSection}
+                        openItems={openSection}
                         collapsible
                     >
                         <ProjectsSection

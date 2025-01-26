@@ -13,6 +13,7 @@ const VideoElement = ({ video }) => {
             style={{
                 borderStyle: 'solid',
                 borderRadius: '1vw',
+                borderWidth: '0.3vw',
             }}
         />
     );

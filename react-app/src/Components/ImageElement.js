@@ -12,6 +12,7 @@ const ImageElement = ({ image }) => {
                 pointerEvents: 'none',
                 borderStyle: 'solid',
                 borderRadius: '1vw',
+                borderWidth: '0.3vw',
             }}
         />
     );

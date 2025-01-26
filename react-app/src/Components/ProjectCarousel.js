@@ -85,9 +85,19 @@ const ProjectCarousel = ({
                             onClick={() => setActiveIndex(index)}>
                             {
                                 (index === activeIndex) ?
-                                    <GoDotFill />
+                                    <GoDotFill
+                                        size={'3vw'}
+                                        style={{
+                                            strokeWidth: '0.05vw',
+                                        }}
+                                    />
                                     :
-                                    <GoDot />
+                                    <GoDot
+                                        size={'2vw'}
+                                        style={{
+                                            strokeWidth: '0.05vw',
+                                        }}
+                                    />
                             }
                         </button>
                     }

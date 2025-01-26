@@ -1,4 +1,4 @@
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
+import { FaChevronDown, FaChevronRight } from "react-icons/fa";
 
 import ProjectCarousel from './ProjectCarousel';
 
@@ -31,29 +31,29 @@ const ProjectGroup = ({
     return (
         <AccordionItem value={project.id}>
             <AccordionHeader
-                // expandIcon={
-                //     <div style={{
-                //         marginLeft: '2vw',
-                //         marginRight: '1vw'
-                //     }}>
-                //         {
-                //             openProject === project.id ?
-                //                 <FaChevronLeft
-                //                     size={'0.5em'}
-                //                     style={{
-                //                         strokeWidth: '0.05vw',
-                //                     }}
-                //                 />
-                //                 :
-                //                 <FaChevronRight
-                //                     size={'0.5em'}
-                //                     style={{
-                //                         strokeWidth: '0.05vw',
-                //                     }}
-                //                 />
-                //         }
-                //     </div>
-                // }
+                expandIcon={
+                    <div style={{
+                        marginLeft: '3vw',
+                        marginRight: '1vw'
+                    }}>
+                        {
+                            openProject === project.id ?
+                                <FaChevronDown
+                                    size={'2vw'}
+                                    style={{
+                                        strokeWidth: '0.05vw',
+                                    }}
+                                />
+                                :
+                                <FaChevronRight
+                                    size={'2vw'}
+                                    style={{
+                                        strokeWidth: '0.05vw',
+                                    }}
+                                />
+                        }
+                    </div>
+                }
             >
                 <h3 style={{ fontWeight: 'normal' }}>
                     {project.title}

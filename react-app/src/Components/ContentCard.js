@@ -25,6 +25,7 @@ const ContentCard = ({
         // Border
         borderStyle: 'solid',
         borderRadius: '1vw',
+        borderWidth: '0.3vw',
         // Flexbox
         display: 'flex',
         flexDirection: 'column',
@@ -54,7 +55,8 @@ const ContentCard = ({
 
     const buttonContainerStyle = {
         // Size
-        width: '2.5vw',
+        width: '4vw',
+        height: '4vw',
         // Flexbox
         display: 'flex',
         alignItems: 'center',
@@ -73,7 +75,7 @@ const ContentCard = ({
                     <button
                         onClick={handleOnClick}
                         style={buttonContainerStyle}>
-                        <CiRead size={'200%'} style={{ strokeWidth: '0.05vw', }} />
+                        <CiRead size={'4vw'} style={{ strokeWidth: '0.05vw', }} />
                     </button>
                 </div>
             )}
