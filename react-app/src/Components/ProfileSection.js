@@ -39,6 +39,8 @@ const ProfileSection = () => {
         ...(!isOpen ? {
             width: '35vw',
         } : {
+            minWidth: '65vw',
+            width: '65vw',
         })
     };
 
@@ -51,7 +53,7 @@ const ProfileSection = () => {
         borderBottomLeftRadius: '1vw',
         transform: 'translate(0%,-50%)',
         width: '2vw',
-        height: '20%',
+        height: '20vw',
         borderStyle: 'solid',
         borderRightStyle: null,
     };
