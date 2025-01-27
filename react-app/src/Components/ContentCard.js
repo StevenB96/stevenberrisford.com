@@ -5,7 +5,9 @@ import {
 import {
     setContentDisplayRequest,
 } from '../Redux/Actions/appActions';
-import { CiRead } from "react-icons/ci";
+import { IoMdEye } from "react-icons/io";
+
+
 
 const ContentCard = ({
     contentItem,
@@ -76,7 +78,10 @@ const ContentCard = ({
                     <button
                         onClick={handleOnClick}
                         style={buttonContainerStyle}>
-                        <CiRead size={'4vw'} style={{ strokeWidth: '0.05vw', }} />
+                        <IoMdEye
+                            size={'4vw'}
+                            style={{ strokeWidth: '0.05vw', }}
+                        />
                     </button>
                 </div>
             )}

@@ -81,7 +81,7 @@ Table of Contents
 4. Docker Compose Commands
 
 - Start Services:
-  docker-compose up
+  docker-compose up (optional -d)
 
 - Stop Services:
   docker-compose down

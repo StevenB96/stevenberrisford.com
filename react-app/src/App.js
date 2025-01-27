@@ -11,8 +11,7 @@ import {
     getProfilesRequest,
     setContentDisplayRequest,
 } from './Redux/Actions/appActions';
-import { CiUnread } from "react-icons/ci";
-import { Divider } from "@fluentui/react-components";
+import { IoMdEyeOff } from "react-icons/io";
 
 import {
     Accordion,
@@ -72,8 +71,8 @@ const ContentCloseButton = () => {
                 top: 0,
                 right: 0,
                 // Size and Shape
-                height: '5vw',
-                width: '5vw',
+                height: '6vw',
+                width: '6vw',
                 borderRadius: '50%',
                 borderWidth: '0.3vw',
                 // Color and Background
@@ -86,8 +85,8 @@ const ContentCloseButton = () => {
                 justifyContent: 'center',
             }}
         >
-            <CiUnread
-                size={'3vw'}
+            <IoMdEyeOff
+                size={'4vw'}
                 style={{ strokeWidth: '0.05vw', }}
             />
         </button>
