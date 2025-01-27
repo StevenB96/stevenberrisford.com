@@ -5,9 +5,6 @@ import {
     useSelector,
 } from 'react-redux';
 import useScrollPosition from '@react-hook/window-scroll';
-import {
-    ToggleButton
-} from "@fluentui/react-components";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 
@@ -38,10 +35,12 @@ const ProfileSection = () => {
         // Additional styles if isOpen is true
         ...(!isOpen ? {
             width: '35vw',
+            minWidth: '35vw',
         } : {
-            minWidth: '65vw',
             width: '65vw',
+            minWidth: '65vw',
         }),
+        transition: 'all 0.5s ease-in-out',
         borderRightWidth: '0.3vw',
         borderRightStyle: 'solid',
     };
@@ -84,6 +83,7 @@ const ProfileSection = () => {
             <img
                 style={{
                     width: '50%',
+                    minWidth: '20vw',
                     borderRadius: '2vw',
                 }}
                 src={profiles[0]?.picture_link}
