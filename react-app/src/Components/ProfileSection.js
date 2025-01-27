@@ -90,7 +90,7 @@ const ProfileSection = () => {
                 alt={'Profile Picture'}
             />
             <div>
-                <h1>
+                <h1 style={{textAlign: 'center',}}>
                     {profiles[0]?.full_name}
                 </h1>
                 <h2>
