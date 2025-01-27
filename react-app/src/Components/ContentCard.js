@@ -64,7 +64,8 @@ const ContentCard = ({
     };
 
     const descriptionStyle = {
-        margin: 0
+        margin: 0,
+        whiteSpace: 'pre-wrap',
     };
 
     return (

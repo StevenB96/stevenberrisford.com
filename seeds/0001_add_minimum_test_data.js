@@ -62,8 +62,8 @@ exports.seed = function (knex) {
       const project = await knex('project').insert([
         {
           profile: profile[0].id,
-          title: 'Dating Application',
-          description: 'A full stack mobile dating application loosely based on the naked attraction TV series.',
+          title: 'Bare Dating Mobile Application',
+          description: 'A full-stack mobile dating application inspired by the television series "Naked Attraction."',
           order: 1
         }
       ]).returning('id');
@@ -73,8 +73,8 @@ exports.seed = function (knex) {
         {
           project: project[0].id,
           profile: profile[0].id,
-          title: 'Article',
-          description: 'An article reviewing the application and discussing the target audience, safety and transparency.',
+          title: 'DatingNews Article',
+          description: 'This article discussed the BARE Dating app, which was launched in 2020 to help singles find open-minded romantic partners in a safe environment. Founded by Alex Sergent, Phil Beesley, and Gillian Myhill, BARE addressed common dating challenges like safety and compatibility.\n\nThe app utilised advanced AI technology to verify profiles, ensuring a secure experience while empowering users—especially women—with control over their personal information through features like the "Reveal Feature," which allowed users to choose when to view images from matches.\n\nBARE also promoted transparency in relationship preferences, enabling users to select options such as "Something Less Serious" or "Something More Serious." As it prepared to launch in the U.S., BARE aimed to enhance its features and build a community where individuals could explore their identities and desires in an inclusive way.',
           media_id: null,
           media_link: `${process.env.IP_DOMAIN}/public/documents/BARE_Dating_Article.html`,
           media_type: types.WEB_PAGE_MEDIA_TYPE,
@@ -84,8 +84,8 @@ exports.seed = function (knex) {
         {
           project: project[0].id,
           profile: profile[0].id,
-          title: 'Archive',
-          description: 'A page providing information about the application, including images and APKs (inaccessible).',
+          title: 'ApkPure Archive',
+          description: `The page offers a comprehensive overview of the app "BARE: Dating Safely," developed by BARE Dating Group and released on November 12, 2021, including file size, featured images and a detailed description. It highlights BARE's purpose of creating a comfortable space for users, particularly women, to communicate their dating intentions and preferences while emphasising honesty, inclusiveness, and safety.`,
           media_id: null,
           media_link: `${process.env.IP_DOMAIN}/public/documents/BARE_Dating_Archive.html`,
           media_type: types.WEB_PAGE_MEDIA_TYPE,
@@ -95,10 +95,10 @@ exports.seed = function (knex) {
         {
           project: project[0].id,
           profile: profile[0].id,
-          title: 'Advert',
-          description: `A picture of the functionality used to promote the application's features.`,
+          title: 'Reveal Functionality',
+          description: `A couple of promotional screenshots. The first shows the screen where you matched with users and the second shows the screen which dealt with the reveal functionality.`,
           media_id: null,
-          media_link: `${process.env.IP_DOMAIN}/public/images/content/Bare_Dating_Advert.jpg`,
+          media_link: `${process.env.IP_DOMAIN}/public/images/content/Bare_Dating_Reveal.png`,
           media_type: types.IMAGE_MEDIA_TYPE,
           type: types.PROFESSIONAL_CONTENT_TYPE,
           order: 3
@@ -107,9 +107,9 @@ exports.seed = function (knex) {
           project: project[0].id,
           profile: profile[0].id,
           title: 'Chat and Settings',
-          description: 'An in-app picture of the chat history and the settings page.',
+          description: 'A few promotional screenshots. The first one shows the home screen and the others each show a stage in the signup process respectively.',
           media_id: null,
-          media_link: `${process.env.IP_DOMAIN}/public/images/content/Bare_Dating_Chat_and_Settings.png`,
+          media_link: `${process.env.IP_DOMAIN}/public/images/content/Bare_Dating_Sign_Up.png`,
           media_type: types.IMAGE_MEDIA_TYPE,
           type: types.PROFESSIONAL_CONTENT_TYPE,
           order: 4

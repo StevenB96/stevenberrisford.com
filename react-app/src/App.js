@@ -121,6 +121,7 @@ const ContentOverlay = () => {
             maxHeight: `calc(100vh - ${2 * topOffset}px)`,
             width: '60vw',
             transform: 'translate(0vw, 0vw)',
+            backgroundColor: 'whitesmoke',
         }}>
             <GeneralMediaElement item={content} />
             <ContentCloseButton />
