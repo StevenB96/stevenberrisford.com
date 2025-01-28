@@ -1,4 +1,6 @@
 import React, {
+    useEffect,
+    useRef,
     useState,
 } from 'react';
 import { GoDot, GoDotFill } from "react-icons/go";
@@ -16,8 +18,21 @@ import ContentCard from './ContentCard';
 const SliderCard = ({
     contentItem,
     count,
-    index
+    index,
+    activeIndex
 }) => {
+    const contentRef = useRef(null);
+    const [originalHeight, setOriginalHeight] = useState(0);
+
+    useEffect(() => {
+        // Measure the height of the ContentCard if the ref is available
+        if (contentRef.current) {
+            setOriginalHeight(contentRef.current.offsetHeight); // Get the original height
+        }
+    }, [contentItem]); // Re-run when contentItem changes
+
+    const isVisible = index === activeIndex;
+
     return (
         <CarouselCard
             aria-label={`${index + 1} of ${count}`}
@@ -25,12 +40,25 @@ const SliderCard = ({
                 display: 'flex',
                 flexDirection: 'row',
                 justifyContent: 'center',
-                alignItems: 'center',
+                alignItems: 'flex-start',
                 marginBottom: '1vw',
+                opacity: isVisible ? 1 : 0,
+                height: isVisible? originalHeight : 0,
+                overflow: 'hidden',
+                transition: 'height 0.4s ease, opacity 0.2s ease'
             }}
         >
-            <ContentCard contentItem={contentItem} />
-        </CarouselCard >
+            <div
+                ref={contentRef}
+                style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    marginBottom: '1vw',
+                }}
+            >
+                <ContentCard contentItem={contentItem} />
+            </div>
+        </CarouselCard>
     );
 };
 
@@ -92,6 +120,7 @@ const ProjectCarousel = ({
                             contentItem={contentItem}
                             index={index}
                             count={content.lenght}
+                            activeIndex={activeIndex}
                         />
                     ))}
                 </CarouselSlider>

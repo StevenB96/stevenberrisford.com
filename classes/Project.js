@@ -25,7 +25,8 @@ class Project {
       .from('content')
       .where({
         project: id,
-      });
+      })
+      .orderBy('order');
   }
 }
 

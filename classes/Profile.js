@@ -30,7 +30,8 @@ class Profile {
       .from('project')
       .where({
         profile: id,
-      });
+      })
+      .orderBy('order');
   }
 
   async getContentData(id) {
@@ -39,7 +40,8 @@ class Profile {
       .where({
         profile: id,
         project: null
-      });
+      })
+      .orderBy('order');
   }
 
   async getReferenceData(id) {

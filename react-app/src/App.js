@@ -12,6 +12,8 @@ import {
     setContentDisplayRequest,
 } from './Redux/Actions/appActions';
 import { IoMdEyeOff } from "react-icons/io";
+import { CgCloseR } from "react-icons/cg";
+
 
 import {
     Accordion,
@@ -52,7 +54,19 @@ const GeneralMediaElement = ({ item }) => {
             media = null;
     }
 
-    return media;
+    return <div
+        style={{
+            borderStyle: 'solid',
+            borderRadius: '1vw',
+            borderWidth: '0.3vw',
+            overflow: 'hidden',
+            height: '100%',
+            width: '100%',
+            backgroundColor: 'whitesmoke',
+            userSelect: 'none',
+        }}>
+        {media}
+    </div>;
 }
 
 const ContentCloseButton = () => {
@@ -63,33 +77,26 @@ const ContentCloseButton = () => {
     };
 
     return (
-        <button
+        <CgCloseR
             onClick={handleOnClick}
+            size={'4vw'}
             style={{
+                strokeWidth: '0.05vw',
+                // Transform and Alignment
+                transform: 'translate(-25%, 25%)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
                 // Positioning
                 position: 'absolute',
                 top: 0,
                 right: 0,
-                // Size and Shape
-                height: '6vw',
-                width: '6vw',
-                borderRadius: '50%',
-                borderWidth: '0.3vw',
                 // Color and Background
-                backgroundColor: 'white',
-                borderStyle: 'solid',
-                // Transform and Alignment
-                transform: 'translate(25%, -25%)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
+                backgroundColor: 'lightGrey',
+                borderRadius: '15%',
+                cursor: 'pointer',
             }}
-        >
-            <IoMdEyeOff
-                size={'4vw'}
-                style={{ strokeWidth: '0.05vw', }}
-            />
-        </button>
+        />
     );
 };
 
@@ -120,7 +127,6 @@ const ContentOverlay = () => {
             maxHeight: `calc(100vh - ${2 * topOffset}px)`,
             width: '60vw',
             transform: 'translate(0vw, 0vw)',
-            backgroundColor: 'whitesmoke',
         }}>
             <GeneralMediaElement item={content} />
             <ContentCloseButton />
@@ -158,7 +164,7 @@ const App = () => {
         alignItems: 'center',
         flexDirection: 'column',
         // Background and Overflow
-        background: `url(${site.background_image_link}) no-repeat center center fixed`,
+        background: `url(${site?.background_image_link}) no-repeat center center fixed`,
         overflowX: 'hidden',
     };
 

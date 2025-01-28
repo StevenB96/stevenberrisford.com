@@ -81,13 +81,6 @@ input[type="reset"]:not([class="standard-button"]) {
     z-index: 1;
 }
 
-.carousel-item {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    box-sizing: border-box;
-}
-
 * {
     box-sizing: border-box;
     word-break: break-word;

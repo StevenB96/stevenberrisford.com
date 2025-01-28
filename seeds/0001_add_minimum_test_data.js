@@ -63,8 +63,8 @@ exports.seed = function (knex) {
         {
           profile: profile[0].id,
           title: 'Bare Dating Mobile Application',
-          description: 'A full-stack mobile dating application inspired by the television series "Naked Attraction."',
-          order: 1
+          description: 'A full-stack mobile dating application inspired by the television series "Naked Attraction."\n\nMy contribution was primarily technical; I focused on building the UI, adding components, styling according to the specifications, and incorporating animations. Subsequently, I worked on image modifications, API calls, and push notifications. Finally, I implemented the whole games feature.',
+          order: 3
         }
       ]).returning('id');
 

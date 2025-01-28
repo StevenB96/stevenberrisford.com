@@ -10,11 +10,7 @@ const VideoElement = ({ video }) => {
                     autoplay: 0,
                 }
             }}
-            style={{
-                borderStyle: 'solid',
-                borderRadius: '1vw',
-                borderWidth: '0.3vw',
-            }}
+            style={{}}
         />
     );
 };

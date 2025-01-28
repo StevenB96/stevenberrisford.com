@@ -85,6 +85,7 @@ const ProfileSection = () => {
                     width: '50%',
                     minWidth: '20vw',
                     borderRadius: '2vw',
+                    userSelect: 'none',
                 }}
                 src={profiles[0]?.picture_link}
                 alt={'Profile Picture'}

@@ -26,6 +26,7 @@ const ProjectGroup = ({
 
     const descriptionStyle = {
         margin: '1vw 2vw 1vw 2vw',
+        whiteSpace: 'pre-wrap',
     };
 
     return (

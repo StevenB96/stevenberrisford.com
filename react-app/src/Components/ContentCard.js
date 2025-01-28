@@ -5,7 +5,7 @@ import {
 import {
     setContentDisplayRequest,
 } from '../Redux/Actions/appActions';
-import { IoMdEye } from "react-icons/io";
+import { FaExternalLinkAlt } from "react-icons/fa";
 
 
 
@@ -32,9 +32,9 @@ const ContentCard = ({
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'flex-start',
+        alignItems: 'center',
         // Layout
-        width: 'calc(100% - 4vw)',
+        maxWidth: 'calc(100% - 4vw)',
         padding: '1vw',
         gap: '1vw',
         // Positioning
@@ -46,9 +46,9 @@ const ContentCard = ({
     const titleStyle = {
         display: 'flex',
         justifyContent: 'space-between',
-        alignItems: 'flex-start',
+        alignItems: 'center',
         flexDirection: 'row',
-        width: '100%',
+        gap: '1vw',
     };
 
     const titleTextStyle = {
@@ -78,8 +78,8 @@ const ContentCard = ({
                     <button
                         onClick={handleOnClick}
                         style={buttonContainerStyle}>
-                        <IoMdEye
-                            size={'4vw'}
+                        <FaExternalLinkAlt
+                            size={'3vw'}
                             style={{ strokeWidth: '0.05vw', }}
                         />
                     </button>

@@ -18,7 +18,7 @@ exports.seed = async function (knex) {
     {
       profile: profile.id,
       title: '2PD Web and Mobile Application',
-      description: 'A full-stack application aiming to treat phantom limb pain with electric stimulation.',
+      description: 'A full-stack application aiming to treat phantom limb pain with electric stimulation.\n\nI was the primary developer for a new development phase. I adapted to new technologies such as Bluetooth, learned to work with Java, and adjusted to new internal processes. Additionally, the opportunity to deploy the full-stack application on AWS EC2 expanded my knowledge of Cloud deployment.',
       order: 2
     }
   ]).returning('id');
@@ -51,7 +51,7 @@ exports.seed = async function (knex) {
       project: project[0].id,
       profile: profile.id,
       title: 'Mobile Application for Managing the Device',
-      description: `A screenshot showing the graphical representation of the electrodes with which the patient would interact. At the top, it shows the training and assessment modes while below it shows the level progression system. The objective for the patient was to identify the position and type of stimulation burst within a set time period.`,
+      description: `An image showing the graphical representation of the electrodes with which the patient would interact. At the top, it shows the training and assessment modes while below it shows the level progression system. The objective for the patient was to identify the position and type of stimulation burst within a set time period.`,
       media_id: null,
       media_link: `${process.env.IP_DOMAIN}/public/images/content/2PD_Mobile_App.png`,
       media_type: types.IMAGE_MEDIA_TYPE,
